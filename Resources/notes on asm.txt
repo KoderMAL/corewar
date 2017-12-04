@@ -1,0 +1,17 @@
+- opcode = code envoyé pour la detection d’operation dans op.c (elles sont au nb de 16.)
+- chaque operation peut prendre des paramètres qui sont indiquées après sont opcode.
+
+live : exemple : live %04 donne en hex => 01 00 00 00 04
+- live envoie un signal “alive”
+
+zjump  : exemple => 09 FF Fb
+- le curseur passe d'une instruction a l'autre et semble ignorer l'instruction zjump a la seconde lecture.
+- zjump n'est pas ignore si le carry = 1 (derniere operation successful mets le carry a 1)
+- zjump adresse, semble renvoyer a -4 x X pour les X lignes précédentes
+
+add : exemple 04 r1 + r2 = r3 => 04 54 01 02 03
+- op code en first
+- 54 annonce les registres?
+- 01, 02 et 03 sont les registres (exprimé en vexa donc r10 = 0a)
+- registre max => r99 (=63)
+- l’add n’a pas l’air de fonctionner (carry = 0) quand le registre > 16 (r16 = 10)
