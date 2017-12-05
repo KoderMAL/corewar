@@ -6,17 +6,31 @@
 /*   By: alalaoui <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/04 15:49:30 by alalaoui          #+#    #+#             */
-/*   Updated: 2017/12/05 14:27:32 by alalaoui         ###   ########.fr       */
+/*   Updated: 2017/12/05 18:17:11 by alalaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
 #include <stdio.h>
 
-int			main(int ac, char **av)
+static void		openfile_initialization(t_env *env, int fd)
 {
-	t_openfile	of;
-	t_openfile	of2;
+	openfile_init(&env->input, fd);
+	openfile_init(&env->output, STDOUT_FILENO);
+	env->state = &state_0;
+	env->name_length = 0;
+	env->comment_length = 0;
+	env->line = 0;
+	env->col = 0;
+	env->err = 0;
+	env->err_msg = NULL;
+	ft_bzero(env->name, PROG_NAME_LENGTH);
+	ft_bzero(env->comment, COMMENT_LENGTH);
+}
+
+int				main(int ac, char **av)
+{
+	t_env		env;
 	char		c;
 	int			fd;
 
@@ -26,13 +40,17 @@ int			main(int ac, char **av)
 		write(1, "usage: ./asm [file.s]\n", 22);
 		return (-1);
 	}
-	if (!(fd = open(av[1], O_RDONLY)))
+	if ((fd = open(av[1], O_RDONLY)) < 2)
 		return (-1);
-	openfile_init(&of, fd);
-	openfile_init(&of2, STDOUT_FILENO);
-	while ((openfile_read_char(&of, &c) == 1))
-		openfile_write_char(&of2, c);
-	openfile_flush(&of2);
-//	printf("buffer:\n%s", of2.buffer);
+	openfile_initialization(&env, fd);
+	while ((openfile_read_char(&(env.input), &c) == 1))
+	{
+		openfile_write_char(&(env.output), c);
+		//printf("letter:%c\n", c);
+		(env.state)(&env, c);
+		ft_error_check(env.err, env.err_msg);
+	}
+	openfile_flush(&(env.output));
+	close(fd);
 	return (0);
 }

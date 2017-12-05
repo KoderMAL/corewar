@@ -2,7 +2,11 @@ NAME = asm
 
 SRC = asm.c\
 	  openfile.c\
+	  error.c\
+	  states_0-4.c\
+	  states_5-9.c\
 	  ft_strlen.c\
+	  ft_bzero.c\
 
 OBJ = $(SRC:.c=.o)
 
