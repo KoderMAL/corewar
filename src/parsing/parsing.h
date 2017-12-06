@@ -16,6 +16,8 @@
 # include "main/asm.h"
 # include "ft/ft.h"
 
+void	state_comment(t_env *env, char c);
+
 void	state_0(t_env *env, char c);
 void	state_1(t_env *env, char c);
 void	state_2(t_env *env, char c);

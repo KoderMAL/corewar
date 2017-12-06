@@ -31,6 +31,7 @@ typedef struct		s_env
 	char		comment[COMMENT_LENGTH];
 	int			comment_length;
 	void		(*state)(struct s_env *env, char c);
+	void		(*state_backup)(struct s_env *env, char c);
 }					t_env;
 
 void				ft_error_check(int err, char *err_msg);

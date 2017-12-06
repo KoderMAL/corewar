@@ -19,6 +19,11 @@ void		state_0(t_env *env, char c)
 		env->state = &state_0;
 	else if (c == '.')
 		env->state = &state_1;
+	else if (c == '#')
+	{
+		env->state_backup = env->state;
+		env->state = &state_comment;
+	}
 	else
 	{
 		env->err = 1;

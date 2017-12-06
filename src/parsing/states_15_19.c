@@ -29,8 +29,11 @@ void		state_16(t_env *env, char c)
 {
 	if (c == ' ' || c == '\t')
 		return ;
-	if (c == '"')
+	else if (c == '"')
 		env->state = &state_17;
+	else
+		env->err = 1;
+		env->err_msg = "syntax error at state 16 (comment format)\n";
 }
 
 void		state_17(t_env *env, char c)
@@ -50,8 +53,18 @@ void		state_18(t_env *env, char c)
 {
 	if (c == ' ' || c == '\t')
 		return ;
-	if (c == '\n')
+	else if (c == '\n')
 		env->state = &state_19;
+	else if (c == '#')
+	{
+		env->state_backup = env->state;
+		env->state = &state_comment;
+	}
+	else
+	{
+		env->err = 1;
+		env->err_msg = "syntax error at state 18 (comment format)\n";
+	}
 }
 
 void		state_19(t_env *env, char c)
@@ -60,6 +73,16 @@ void		state_19(t_env *env, char c)
 		return ;
 	else if (c == ' ' || c == '\t' || c == '\v')
 		return ;
-	if (ft_isprint(c))
+	else if (c == '#')
+	{
+		env->state_backup = env->state;
+		env->state = &state_comment;
+	}
+	else if (ft_isprint(c))
 		env->state = NULL;
+	else
+	{
+		env->err = 1;
+		env->err_msg = "syntax error at state 19 (awaiting instruction)\n";
+	}
 }
