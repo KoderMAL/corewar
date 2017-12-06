@@ -2,6 +2,7 @@ Module d'entrees / sorties
 ==========================
 
 Entrees / sorties bufferisees (GNL en mieux). Structure definie et initialisee separement donc pas besoin de malloc et de liste chainee.
+
 ```C
 #define BUF_SIZE (1024)
 
