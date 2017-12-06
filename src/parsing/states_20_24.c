@@ -1,21 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error.c                                            :+:      :+:    :+:   */
+/*   states_20-24.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: alalaoui <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/12/05 16:19:23 by alalaoui          #+#    #+#             */
-/*   Updated: 2017/12/05 16:24:23 by alalaoui         ###   ########.fr       */
+/*   Created: 2017/12/06 11:26:45 by alalaoui          #+#    #+#             */
+/*   Updated: 2017/12/06 13:43:38 by alalaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
-#include <stdlib.h>
-#include "ft/ft.h"
+#include "main/asm.h"
+#include "parsing.h"
 
-void		ft_error_check(int err, char *err_msg)
+void		state_20(t_env *env, char c)
 {
-	if (err)
-		write(1, err_msg, ft_strlen(err_msg));
+    return ;
 }

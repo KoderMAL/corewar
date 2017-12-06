@@ -29,12 +29,32 @@ static void		env_initialization(t_env *env, int fd)
 	env->err_msg = NULL;
 	ft_bzero(env->name, PROG_NAME_LENGTH);
 	ft_bzero(env->comment, COMMENT_LENGTH);
+	env->reread = 0;
+}
+
+static void		parse(t_env *env)
+{
+	char c;
+
+	while (env->err == 0)
+	{
+		if (env->reread == 0)
+		{
+			if (openfile_read_char(&(env->input), &c) != 1)
+				break ;
+			openfile_write_char(&(env->output), c);
+		}
+		else
+			env->reread = 0;
+		(env->state)(env, c);
+		ft_line_col(env, c);
+		ft_error_check(env->err, env->err_msg);
+	}
 }
 
 int				main(int ac, char **av)
 {
 	t_env		env;
-	char		c;
 	int			fd;
 
 	if (ac != 2 || ft_strlen(av[1]) < 2 || (av[1][ft_strlen(av[1]) - 1] != 's'
@@ -46,13 +66,7 @@ int				main(int ac, char **av)
 	if ((fd = open(av[1], O_RDONLY)) < 2)
 		return (-1);
 	env_initialization(&env, fd);
-	while ((openfile_read_char(&(env.input), &c) == 1))
-	{
-		openfile_write_char(&(env.output), c);
-		(env.state)(&env, c);
-		ft_line_col(&env, c);
-		ft_error_check(env.err, env.err_msg);
-	}
+	parse(&env);
 	openfile_flush(&(env.output));
 	close(fd);
 	return (0);

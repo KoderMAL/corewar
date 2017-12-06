@@ -40,7 +40,7 @@ void		state_17(t_env *env, char c)
 {
 	if (c == '"')
 		env->state = &state_18;
-	if (env->comment_length == COMMENT_LENGTH - 1)
+	else if (env->comment_length == COMMENT_LENGTH - 1)
 	{
 		env->err = 1;
 		env->err_msg = "program comment too long!\n";
@@ -57,7 +57,7 @@ void		state_18(t_env *env, char c)
 		env->state = &state_19;
 	else if (c == '#')
 	{
-		env->state_backup = env->state;
+		env->state_next = &state_19;
 		env->state = &state_comment;
 	}
 	else
@@ -75,11 +75,11 @@ void		state_19(t_env *env, char c)
 		return ;
 	else if (c == '#')
 	{
-		env->state_backup = env->state;
+		env->state_next = &state_19;
 		env->state = &state_comment;
 	}
 	else if (ft_isprint(c))
-		env->state = NULL;
+		env->state = &state_20;
 	else
 	{
 		env->err = 1;

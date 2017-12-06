@@ -19,7 +19,10 @@ void		state_5(t_env *env, char c)
 	if (c == ' ' || c == '\t')
 		return ;
 	else if (c == '"')
+	{
 		env->state = &state_6;
+		env->name_length = 0;
+	}
 	else
 	{
 		env->err = 1;
@@ -31,7 +34,7 @@ void		state_6(t_env *env, char c)
 {
 	if (c == '"')
 		env->state = &state_7;
-	if (env->name_length == PROG_NAME_LENGTH - 1)
+	else if (env->name_length == PROG_NAME_LENGTH - 1)
 	{
 		env->err = 1;
 		env->err_msg = "program name too long!\n";
@@ -48,7 +51,7 @@ void		state_7(t_env *env, char c)
 		env->state = &state_8;
 	else if (c == '#')
 	{
-		env->state_backup = env->state;
+		env->state_next = &state_8;
 		env->state = &state_comment;
 	}
 	else
@@ -66,7 +69,7 @@ void		state_8(t_env *env, char c)
 		env->state = &state_9;
 	else if (c == '#')
 	{
-		env->state_backup = env->state;
+		env->state_next = &state_8;
 		env->state = &state_comment;
 	}
 	else

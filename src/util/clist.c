@@ -52,6 +52,7 @@ char		clist_pop_back(t_clist *clist)
 	else
 		clist->last->next = NULL;
 	clist->len--;
+	c = element->c;
 	free(element);
 	return (c);
 }
@@ -61,10 +62,14 @@ char		*clist_join(t_clist *clist)
 	char	*joined;
 	size_t	copied;
 
+	copied = 0;
 	joined = (char*)malloc(sizeof(char) * (clist->len + 1));
 	if (joined == NULL)
+	{
+		while (clist->len > 0)
+			joined[copied++] = clist_pop_back(clist);
 		return (NULL);
-	copied = 0;
+	}
 	while (clist->len > 0)
 		joined[copied++] = clist_pop_back(clist);
 	joined[copied] = '\0';
