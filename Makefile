@@ -16,7 +16,7 @@ HEADERS = asm.h op.h ft.h openfile.h parsing.h clist.h
 SRC = $(SRC_MAIN) $(SRC_FT) $(SRC_IO) $(SRC_PARSING) $(SRC_UTIL)
 OBJ_TMP = $(SRC:.c=.o)
 
-VPATH = src/ft src/io src/main src/parsing
+VPATH = src/ft src/io src/main src/parsing src/util
 IFLAGS = -Isrc
 OBJ_DIR = obj
 OBJ = $(addprefix $(OBJ_DIR)/, $(OBJ_TMP))
