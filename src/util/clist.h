@@ -35,6 +35,4 @@ char			clist_pop_back(t_clist *clist);
 char			*clist_join(t_clist *clist);
 int				clist_delete(t_clist *clist);
 
-
-
 #endif

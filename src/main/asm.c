@@ -15,7 +15,7 @@
 #include "asm.h"
 #include "parsing/parsing.h"
 #include "ft/ft.h"
-#include <stdio.h>//don't forget to delete
+
 static void		env_initialization(t_env *env, int fd)
 {
 	openfile_init(&env->input, fd);
@@ -49,7 +49,6 @@ int				main(int ac, char **av)
 	while ((openfile_read_char(&(env.input), &c) == 1))
 	{
 		openfile_write_char(&(env.output), c);
-		//printf("letter:%c\n", c);
 		(env.state)(&env, c);
 		ft_line_col(&env, c);
 		ft_error_check(env.err, env.err_msg);

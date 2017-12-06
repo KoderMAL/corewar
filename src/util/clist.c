@@ -44,7 +44,7 @@ char		clist_pop_back(t_clist *clist)
 	char			c;
 
 	if (clist->len == 0)
-		return (0) ;
+		return (0);
 	element = clist->last;
 	clist->last = element->prev;
 	if (clist->len == 1)

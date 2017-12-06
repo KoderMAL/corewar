@@ -24,7 +24,6 @@ int			openfile_read_char(t_openfile *of, char *c)
 {
 	if (of->pos == of->buff_size)
 	{
-
 		of->buff_size = read(of->fd, of->buffer, BUFF_SIZE);
 		of->pos = 0;
 		if (of->buff_size == 0)
