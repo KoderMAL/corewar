@@ -6,7 +6,7 @@
 /*   By: alalaoui <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/06 11:26:45 by alalaoui          #+#    #+#             */
-/*   Updated: 2017/12/06 13:13:42 by alalaoui         ###   ########.fr       */
+/*   Updated: 2017/12/06 13:43:38 by alalaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,19 +23,14 @@ void		state_15(t_env *env, char c)
 		env->err = 1;
 		env->err_msg = "syntax error at state 15 (comment format)\n";
 	}
-	env->col++;
 }
 
 void		state_16(t_env *env, char c)
 {
 	if (c == ' ' || c == '\t')
-	{
-		env->col++;
 		return ;
-	}
 	if (c == '"')
 		env->state = &state_17;
-	env->col++;
 }
 
 void		state_17(t_env *env, char c)
@@ -49,7 +44,6 @@ void		state_17(t_env *env, char c)
 	}
 	else
 		env->comment[env->comment_length++] = c;
-	env->col++;
 }
 
 void		state_18(t_env *env, char c)
@@ -57,20 +51,13 @@ void		state_18(t_env *env, char c)
 	if (c == ' ' || c == '\t')
 		return ;
 	if (c == '\n')
-	{
-		env->col = 0;
-		env->line++;
 		env->state = &state_19;
-	}
 }
 
 void		state_19(t_env *env, char c)
 {
 	if (c == '\n')
-	{
-		env->line++;
 		return ;
-	}
 	else if (c == ' ' || c == '\t' || c == '\v')
 		return ;
 	if (ft_isprint(c))

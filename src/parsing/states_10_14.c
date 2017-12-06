@@ -6,7 +6,7 @@
 /*   By: alalaoui <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/06 10:56:20 by alalaoui          #+#    #+#             */
-/*   Updated: 2017/12/06 13:05:39 by alalaoui         ###   ########.fr       */
+/*   Updated: 2017/12/06 13:43:06 by alalaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ void			state_10(t_env *env, char c)
 		env->err = 1;
 		env->err_msg = "syntax error at state 10 (comment format)\n";
 	}
-	env->col++;
 }
 
 void			state_11(t_env *env, char c)
@@ -35,7 +34,6 @@ void			state_11(t_env *env, char c)
 		env->err = 1;
 		env->err_msg = "syntax error at state 11 (comment format)\n";
 	}
-	env->col++;
 }
 
 void			state_12(t_env *env, char c)
@@ -47,7 +45,6 @@ void			state_12(t_env *env, char c)
 		env->err = 1;
 		env->err_msg = "syntax error at state 12 (comment format)\n";
 	}
-	env->col++;
 }
 
 void			state_13(t_env *env, char c)
@@ -59,7 +56,6 @@ void			state_13(t_env *env, char c)
 		env->err = 1;
 		env->err_msg = "syntax error at state 13 (comment format)\n";
 	}
-	env->col++;
 }
 
 void			state_14(t_env *env, char c)
@@ -71,5 +67,4 @@ void			state_14(t_env *env, char c)
 		env->err = 1;
 		env->err_msg = "syntax error at state 14 (comment format)\n";
 	}
-	env->col++;
 }

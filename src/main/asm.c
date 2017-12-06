@@ -6,7 +6,7 @@
 /*   By: alalaoui <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/04 15:49:30 by alalaoui          #+#    #+#             */
-/*   Updated: 2017/12/06 13:16:38 by alalaoui         ###   ########.fr       */
+/*   Updated: 2017/12/06 13:26:53 by alalaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ int				main(int ac, char **av)
 		openfile_write_char(&(env.output), c);
 		//printf("letter:%c\n", c);
 		(env.state)(&env, c);
+		ft_line_col(&env, c);
 		ft_error_check(env.err, env.err_msg);
 	}
 	openfile_flush(&(env.output));

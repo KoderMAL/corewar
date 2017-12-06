@@ -6,7 +6,7 @@
 /*   By: alalaoui <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/04 16:36:08 by alalaoui          #+#    #+#             */
-/*   Updated: 2017/12/05 18:17:01 by alalaoui         ###   ########.fr       */
+/*   Updated: 2017/12/06 15:42:45 by alalaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 
 # include "op.h"
 # include "io/openfile.h"
+# include "util/clist.h"
+# include "ft/ft.h"
 
 typedef struct		s_env
 {
