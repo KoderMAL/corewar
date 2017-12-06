@@ -6,7 +6,7 @@
 /*   By: alalaoui <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/04 15:49:30 by alalaoui          #+#    #+#             */
-/*   Updated: 2017/12/05 18:17:11 by alalaoui         ###   ########.fr       */
+/*   Updated: 2017/12/06 13:16:38 by alalaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 #include "asm.h"
 #include "parsing/parsing.h"
 #include "ft/ft.h"
-
+#include <stdio.h>//don't forget to delete
 static void		env_initialization(t_env *env, int fd)
 {
 	openfile_init(&env->input, fd);
