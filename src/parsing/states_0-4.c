@@ -10,8 +10,9 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "asm.h"
-#include <stdio.h>
+#include "main/asm.h"
+#include "parsing.h"
+
 void 		state_0(t_env *env, char c)
 {
 	if (c == '\n' || c == ' ' || c == '\t')

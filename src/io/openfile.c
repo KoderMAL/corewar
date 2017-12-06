@@ -10,7 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "asm.h"
+#include <unistd.h>
+#include "openfile.h"
 
 void		openfile_init(t_openfile *of, int fd)
 {

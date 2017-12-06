@@ -10,7 +10,9 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "asm.h"
+#include <stdlib.h>
+#include "main/asm.h"
+#include "parsing.h"
 
 void		state_5(t_env *env, char c)
 {

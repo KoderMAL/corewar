@@ -1,35 +1,38 @@
 NAME = asm
+CC = gcc
+ifeq ($(DEBUG),yes)
+	CFLAGS = -Wall -Wextra -g -O0 -fsanitize=address
+else
+	CFLAGS = -Ofast -march=native -Wall -Wextra
+endif
 
-SRC = asm.c\
-	  openfile.c\
-	  error.c\
-	  states_0-4.c\
-	  states_5-9.c\
-	  ft_strlen.c\
-	  ft_bzero.c\
+SRC_MAIN = asm.c error.c op.c
+SRC_FT = ft_bzero.c ft_strlen.c
+SRC_IO = openfile.c
+SRC_PARSING = states_0-4.c states_5-9.c
+HEADERS = asm.h op.h ft.h openfile.h parsing.h
 
-OBJ = $(SRC:.c=.o)
+SRC = $(SRC_MAIN) $(SRC_FT) $(SRC_IO) $(SRC_PARSING)
+OBJ_TMP = $(SRC:.c=.o)
 
-FLAGS = -Wall -Wextra -Werror
-CC = gcc $(FLAGS)
+VPATH = src/ft src/io src/main src/parsing
+IFLAGS = -Isrc
+OBJ_DIR = obj
+OBJ = $(addprefix $(OBJ_DIR)/, $(OBJ_TMP))
 
 all : $(NAME)
 
 $(NAME): $(OBJ)
-	@$(CC) $(OBJ) -o $@
-	@echo "\033[32m> [asm] ready to use.\033[00m"
-	@echo "usage: ./asm [file.s]"
+	$(CC) $(CFLAGS) -o $(NAME) $(OBJ)
 
-%.o: %.c
-	@$(CC) -o $@ -c $<
+$(OBJ_DIR)/%.o: %.c $(HEADERS)
+	$(CC) -c $(CFLAGS) -o $@ $< $(IFLAGS)
 
 clean:
-	@rm -f $(OBJ)
-	@echo "Objects cleaned"
+	rm -f $(OBJ)
 
 fclean: clean
-	@rm -f $(NAME)
-	@echo "asm cleaned"
+	rm -f $(NAME)
 
 re: fclean all
 

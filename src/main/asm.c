@@ -10,10 +10,13 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <unistd.h>
+#include <fcntl.h>
 #include "asm.h"
-#include <stdio.h>
+#include "parsing/parsing.h"
+#include "ft/ft.h"
 
-static void		openfile_initialization(t_env *env, int fd)
+static void		env_initialization(t_env *env, int fd)
 {
 	openfile_init(&env->input, fd);
 	openfile_init(&env->output, STDOUT_FILENO);
@@ -42,7 +45,7 @@ int				main(int ac, char **av)
 	}
 	if ((fd = open(av[1], O_RDONLY)) < 2)
 		return (-1);
-	openfile_initialization(&env, fd);
+	env_initialization(&env, fd);
 	while ((openfile_read_char(&(env.input), &c) == 1))
 	{
 		openfile_write_char(&(env.output), c);
