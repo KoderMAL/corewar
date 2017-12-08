@@ -6,7 +6,7 @@
 /*   By: alalaoui <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/06 11:26:45 by alalaoui          #+#    #+#             */
-/*   Updated: 2017/12/06 13:43:38 by alalaoui         ###   ########.fr       */
+/*   Updated: 2017/12/08 15:24:27 by alalaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ void		state_19(t_env *env, char c)
 		env->state_next = &state_19;
 		env->state = &state_comment;
 	}
-	else if (ft_isprint(c))
+	else if (ft_strchr(LABEL_CHARS, c))
 		env->state = &state_20;
 	else
 	{

@@ -6,7 +6,7 @@
 /*   By: alalaoui <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/04 15:49:30 by alalaoui          #+#    #+#             */
-/*   Updated: 2017/12/06 13:26:53 by alalaoui         ###   ########.fr       */
+/*   Updated: 2017/12/08 18:46:10 by alalaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ static void		env_initialization(t_env *env, int fd)
 	ft_bzero(env->name, PROG_NAME_LENGTH);
 	ft_bzero(env->comment, COMMENT_LENGTH);
 	env->reread = 0;
+	env->labels = NULL;
 }
 
 static void		parse(t_env *env)
@@ -69,5 +70,6 @@ int				main(int ac, char **av)
 	parse(&env);
 	openfile_flush(&(env.output));
 	close(fd);
+//	create_champion(&env);
 	return (0);
 }

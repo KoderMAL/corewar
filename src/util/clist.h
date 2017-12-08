@@ -6,7 +6,7 @@
 /*   By: alalaoui <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/06 13:50:22 by alalaoui          #+#    #+#             */
-/*   Updated: 2017/12/06 15:42:55 by alalaoui         ###   ########.fr       */
+/*   Updated: 2017/12/08 17:42:45 by alalaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,5 +34,8 @@ int				clist_push_front(t_clist *clist, char c);
 char			clist_pop_back(t_clist *clist);
 char			*clist_join(t_clist *clist);
 int				clist_delete(t_clist *clist);
+
+void			record_label(t_env *env);
+t_label			*init_label(t_env *env);
 
 #endif
