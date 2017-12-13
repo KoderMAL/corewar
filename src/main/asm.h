@@ -6,7 +6,7 @@
 /*   By: alalaoui <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/04 16:36:08 by alalaoui          #+#    #+#             */
-/*   Updated: 2017/12/13 11:28:39 by alalaoui         ###   ########.fr       */
+/*   Updated: 2017/12/13 17:56:33 by alalaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include "io/openfile.h"
 # include "util/clist.h"
 # include "ft/ft.h"
+# include "parsing/parsing.h"
 
 typedef struct		s_label
 {
@@ -25,16 +26,18 @@ typedef struct		s_label
 	struct s_label	*next;
 }					t_label;
 
-typedef struct		command_arg
+typedef struct		s_args
 {
-	t_arg_type		type;
-	int				value;
-}
+	int				type;
+	char			value[4];
+	t_args			*next;
+}					t_args;
 
 typedef struct		s_command
 {
 	char			*name;
-	t_command_arg	arg[4];
+	t_op			op;
+	t_args			args;
 	int				n_arg;
 }					t_command;
 
@@ -42,7 +45,6 @@ typedef struct		s_env
 {
 	t_openfile	input;
 	t_openfile	output;
-	t_op		op;
 	int			line;
 	int			col;
 	int			err;

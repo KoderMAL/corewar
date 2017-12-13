@@ -6,7 +6,7 @@
 /*   By: alalaoui <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/06 11:26:45 by alalaoui          #+#    #+#             */
-/*   Updated: 2017/12/13 11:30:48 by alalaoui         ###   ########.fr       */
+/*   Updated: 2017/12/13 17:56:38 by alalaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,10 +42,20 @@ void		state_21(t_env *env, char c)
 		return ;
 	else if (c == '#')
 	{
-		env->state_next = &state_19;
+		env->state_next = &state_21;
 		env->state = &state_comment;
 	}
+	else if (ft_strchr(LABEL_CHARS, c) != NULL || c == ':' || c == '%' ||
+			c == ',')
+	{
+		if (clist_push_front(&(env->clist), c))
+			ft_err(env, "memory error while parsing number\n");
+		env->offset++;
+	}
 	else if (c == '\n')
+	{
+		parse_arguments(env);
 		env->state = &state_20;
+	}
 	// verifier arguments;
 }

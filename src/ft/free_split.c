@@ -1,25 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft.h                                               :+:      :+:    :+:   */
+/*   free_split.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: alalaoui <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/12/04 16:36:08 by alalaoui          #+#    #+#             */
-/*   Updated: 2017/12/13 15:16:44 by alalaoui         ###   ########.fr       */
+/*   Created: 2017/10/05 14:37:28 by alalaoui          #+#    #+#             */
+/*   Updated: 2017/10/05 14:44:20 by alalaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_H
-# define FT_H
+#include "libft.h"
 
-# include <string.h>
+void			free_split(char ***split)
+{
+	int			j;
 
-size_t	ft_strlen(const char *s);
-void	ft_bzero(void *s, size_t n);
-int		ft_isprint(int c);
-char	*ft_strchr(const char *s, int c);
-char	**ft_strsplit(char const *s, char c);
-void	free_split(char ***split);
-
-#endif
+	j = 0;
+	while ((*split)[j])
+		free((*split)[j++]);
+	free(*split);
+}
