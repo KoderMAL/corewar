@@ -6,7 +6,7 @@
 /*   By: alalaoui <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/06 11:26:45 by alalaoui          #+#    #+#             */
-/*   Updated: 2017/12/08 15:24:27 by alalaoui         ###   ########.fr       */
+/*   Updated: 2017/12/13 11:42:21 by alalaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,7 @@ void		state_15(t_env *env, char c)
 	if (c == 't')
 		env->state = &state_16;
 	else
-	{
-		env->err = 1;
-		env->err_msg = "syntax error at state 15 (comment format)\n";
+		ft_err(env, "syntax error at state 15 (comment format)\n");
 	}
 }
 
@@ -32,8 +30,7 @@ void		state_16(t_env *env, char c)
 	else if (c == '"')
 		env->state = &state_17;
 	else
-		env->err = 1;
-		env->err_msg = "syntax error at state 16 (comment format)\n";
+		ft_err(env, "syntax error at state 16 (comment format)\n");
 }
 
 void		state_17(t_env *env, char c)
@@ -41,10 +38,7 @@ void		state_17(t_env *env, char c)
 	if (c == '"')
 		env->state = &state_18;
 	else if (env->comment_length == COMMENT_LENGTH - 1)
-	{
-		env->err = 1;
-		env->err_msg = "program comment too long!\n";
-	}
+		ft_err(env, "program comment too long!\n");
 	else
 		env->comment[env->comment_length++] = c;
 }
@@ -61,10 +55,7 @@ void		state_18(t_env *env, char c)
 		env->state = &state_comment;
 	}
 	else
-	{
-		env->err = 1;
-		env->err_msg = "syntax error at state 18 (comment format)\n";
-	}
+		ft_err(env, "syntax error at state 18 (comment format)\n");
 }
 
 void		state_19(t_env *env, char c)
@@ -81,8 +72,5 @@ void		state_19(t_env *env, char c)
 	else if (ft_strchr(LABEL_CHARS, c))
 		env->state = &state_20;
 	else
-	{
-		env->err = 1;
-		env->err_msg = "syntax error at state 19 (awaiting instruction)\n";
-	}
+		ft_err(env, "syntax error at state 19 (awaiting instruction)\n");
 }

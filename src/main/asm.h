@@ -6,7 +6,7 @@
 /*   By: alalaoui <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/04 16:36:08 by alalaoui          #+#    #+#             */
-/*   Updated: 2017/12/08 19:04:12 by alalaoui         ###   ########.fr       */
+/*   Updated: 2017/12/13 11:28:39 by alalaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,7 @@ typedef struct		s_env
 	int			offset;
 }					t_env;
 
+void				ft_err(t_env *env, char *s);
 void				ft_error_check(int err, char *err_msg);
 
 #endif

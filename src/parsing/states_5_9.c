@@ -6,7 +6,7 @@
 /*   By: alalaoui <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/05 16:50:12 by alalaoui          #+#    #+#             */
-/*   Updated: 2017/12/06 13:42:47 by alalaoui         ###   ########.fr       */
+/*   Updated: 2017/12/13 11:51:00 by alalaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,7 @@ void		state_5(t_env *env, char c)
 		env->name_length = 0;
 	}
 	else
-	{
-		env->err = 1;
-		env->err_msg = "syntax error at state 5 (name format)\n";
-	}
+		ft_err(env, "syntax error at state 5 (name format)\n");
 }
 
 void		state_6(t_env *env, char c)
@@ -35,10 +32,7 @@ void		state_6(t_env *env, char c)
 	if (c == '"')
 		env->state = &state_7;
 	else if (env->name_length == PROG_NAME_LENGTH - 1)
-	{
-		env->err = 1;
-		env->err_msg = "program name too long!\n";
-	}
+		ft_err(env, "program name too long\n");
 	else
 		env->name[env->name_length++] = c;
 }
@@ -55,10 +49,7 @@ void		state_7(t_env *env, char c)
 		env->state = &state_comment;
 	}
 	else
-	{
-		env->err = 1;
-		env->err_msg = "syntax error at state 7 (name format)\n";
-	}
+		ft_err(env, "syntax error at state 7 (name format)\n");
 }
 
 void		state_8(t_env *env, char c)
@@ -73,10 +64,7 @@ void		state_8(t_env *env, char c)
 		env->state = &state_comment;
 	}
 	else
-	{
-		env->err = 1;
-		env->err_msg = "syntax error at state 8 (name format)\n";
-	}
+		ft_err(env, "syntax error at state 8 (name format)\n");
 }
 
 void		state_9(t_env *env, char c)
@@ -84,8 +72,5 @@ void		state_9(t_env *env, char c)
 	if (c == 'c')
 		env->state = &state_10;
 	else
-	{
-		env->err = 1;
-		env->err_msg = "syntax error at state 9 (comment format)\n";
-	}
+		ft_err(env, "syntax error at state 9 (name format)\n");
 }

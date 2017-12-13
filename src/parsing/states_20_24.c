@@ -6,7 +6,7 @@
 /*   By: alalaoui <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/06 11:26:45 by alalaoui          #+#    #+#             */
-/*   Updated: 2017/12/08 19:10:26 by alalaoui         ###   ########.fr       */
+/*   Updated: 2017/12/13 11:30:48 by alalaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,26 +23,17 @@ void		state_20(t_env *env, char c)
 	else if (ft_strchr(LABEL_CHARS, c) != NULL)
 	{
 		if (clist_push_front(&(env->clist), c))
-		{
-			env->err = 1;
-			env->err_msg = "memory error while parsing number\n";
-		}
+			ft_err(env, "memory error while parsing number\n");
 		env->offset++;
 	}
 	else if (c == ' ' || c == '\t')
 	{
-		if ((env->op = find_name(env)) == NULL)
-		{
-			env->err = 1;
-			env->err_msg = "command not found\n";
-		}
+		if ((env->op = find_op(env)) == NULL)
+			ft_err(env, "command not found\n");
 		env->state = &state_21;
 	}
 	else
-	{
-		env->err = 1;
-		env->err_msg("syntax error at state 20");
-	}
+		ft_err(env, "syntax error at state 20");
 }
 
 void		state_21(t_env *env, char c)
