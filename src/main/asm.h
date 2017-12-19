@@ -6,7 +6,7 @@
 /*   By: alalaoui <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/04 16:36:08 by alalaoui          #+#    #+#             */
-/*   Updated: 2017/12/13 17:56:33 by alalaoui         ###   ########.fr       */
+/*   Updated: 2017/12/19 15:47:28 by alalaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,14 +30,14 @@ typedef struct		s_args
 {
 	int				type;
 	char			value[4];
-	t_args			*next;
+	struct s_args	*next;
 }					t_args;
 
 typedef struct		s_command
 {
 	char			*name;
 	t_op			op;
-	t_args			args;
+	struct s_args	args;
 	int				n_arg;
 }					t_command;
 
@@ -65,5 +65,4 @@ typedef struct		s_env
 
 void				ft_err(t_env *env, char *s);
 void				ft_error_check(int err, char *err_msg);
-
 #endif

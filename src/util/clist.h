@@ -6,7 +6,7 @@
 /*   By: alalaoui <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/06 13:50:22 by alalaoui          #+#    #+#             */
-/*   Updated: 2017/12/08 17:42:45 by alalaoui         ###   ########.fr       */
+/*   Updated: 2017/12/19 16:31:50 by alalaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define CLIST_H
 
 # include <stdlib.h>
+# include "main/asm.h"
 
 typedef struct	s_clist_elem
 {
