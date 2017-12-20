@@ -1,25 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_bzero.c                                         :+:      :+:    :+:   */
+/*   openfile_write.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alalaoui <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: stoupin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/04/18 17:23:17 by alalaoui          #+#    #+#             */
-/*   Updated: 2017/12/05 16:26:32 by alalaoui         ###   ########.fr       */
+/*   Created: 2017/12/05 13:44:43 by stoupin           #+#    #+#             */
+/*   Updated: 2017/12/05 14:32:13 by stoupin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <string.h>
+#include "openfile.h"
 
-void	ft_bzero(void *s, size_t n)
+void		openfile_write_str(t_openfile *of, char *s, int endl)
 {
-	unsigned char	*bytes;
-
-	bytes = s;
-	if (n != 0)
-	{
-		while (n--)
-			*bytes++ = '\0';
-	}
+    while (*s != '\0')
+        openfile_write_char(of, *s++);
+    if (endl)
+        openfile_write_char(of, '\n');
 }

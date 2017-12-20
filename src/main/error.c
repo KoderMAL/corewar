@@ -15,13 +15,14 @@
 #include "main/asm.h"
 #include "ft/ft.h"
 
-void		ft_err(t_env *env, char *s)
+int		ft_err(t_env *env, char *s)
 {
 	env->err = 1;
 	env->err_msg = s;
+	return (1);
 }
 
-void		ft_error_check(int err, char *err_msg)
+void	ft_error_check(int err, char *err_msg)
 {
 	if (err)
 		write(1, err_msg, ft_strlen(err_msg));

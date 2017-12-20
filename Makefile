@@ -7,10 +7,10 @@ else
 endif
 
 SRC_MAIN = asm.c error.c op.c record_label.c
-SRC_FT = ft_bzero.c ft_strlen.c ft_isprint.c ft_strchr.c ft_strsplit.c free_split.c
+SRC_FT = ft_strlen.c ft_isprint.c ft_strchr.c ft_strsplit.c free_split.c
 SRC_UTIL = cqueue.c
-SRC_IO = openfile.c
-SRC_PARSING = ft_line_col.c states_special.c states_0_4.c states_5_9.c states_10_14.c states_15_19.c states_20_24.c parse_arguments.c
+SRC_IO = openfile.c openfile_write.c
+SRC_PARSING = states_special.c states_0_4.c states_5_9.c states_10_14.c states_15_19.c states_20_24.c parse_arguments.c
 HEADERS = asm.h op.h ft.h openfile.h parsing.h cqueue.h
 
 SRC = $(SRC_MAIN) $(SRC_FT) $(SRC_IO) $(SRC_PARSING) $(SRC_UTIL)

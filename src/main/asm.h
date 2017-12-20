@@ -43,7 +43,8 @@ typedef struct		s_command
 typedef struct		s_env
 {
 	t_openfile	input;
-	t_openfile	output;
+	t_openfile	stdout;
+	t_openfile	stderr;
 	int			line;
 	int			col;
 	int			err;
@@ -62,7 +63,7 @@ typedef struct		s_env
 	int			offset;
 }					t_env;
 
-void				ft_err(t_env *env, char *s);
+int					ft_err(t_env *env, char *s);
 void				ft_error_check(int err, char *err_msg);
 
 /*
