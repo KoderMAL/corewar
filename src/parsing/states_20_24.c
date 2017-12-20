@@ -22,7 +22,7 @@ void		state_20(t_env *env, char c)
 	}
 	else if (ft_strchr(LABEL_CHARS, c) != NULL)
 	{
-		if (clist_push_front(&(env->clist), c))
+		if (cqueue_push_front(&(env->cqueue), c))
 			ft_err(env, "memory error while parsing number\n");
 		env->offset++;
 	}
@@ -48,7 +48,7 @@ void		state_21(t_env *env, char c)
 	else if (ft_strchr(LABEL_CHARS, c) != NULL || c == ':' || c == '%' ||
 			c == ',')
 	{
-		if (clist_push_front(&(env->clist), c))
+		if (cqueue_push_front(&(env->cqueue), c))
 			ft_err(env, "memory error while parsing number\n");
 		env->offset++;
 	}

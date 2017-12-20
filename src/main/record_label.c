@@ -12,7 +12,7 @@
 
 #include <stdlib.h>
 #include "asm.h"
-#include "util/clist.h"
+#include "util/cqueue.h"
 
 t_label		*init_label(t_env *env)
 {
@@ -42,21 +42,21 @@ void		record_label(t_env *env)
 		new->next = env->labels;
 		env->labels = new;
 	}
-	if ((new->label = clist_join(&(env->clist))) == NULL)
+	if ((new->label = cqueue_join(&(env->cqueue))) == NULL)
 	{
 		env->err = 1;
 		env->err_msg = "memory error while joining label\n";
 	}
 }
 
-int			ft_clist_cmp(char *name, t_clist *clist)
+int			ft_cqueue_cmp(char *name, t_cqueue *cqueue)
 {
 	int				i;
-	t_clist_elem	*elem;
+	t_cqueue_elem	*elem;
 
 	i = 0;
-	elem = clist->first;
-	while (i < clist->len)
+	elem = cqueue->first;
+	while (i < cqueue->len)
 	{
 		if (name[i] != elem->c)
 			return (name[i] - elem->c);
@@ -73,7 +73,7 @@ const t_op	*find_op(t_env *env)
 	op = g_op_tab;
 	while (op->name)
 	{
-		if (ft_clist_cmp(op->name, &env->clist) == 0)
+		if (ft_cqueue_cmp(op->name, &env->cqueue) == 0)
 			return (op);
 		op++;
 	}

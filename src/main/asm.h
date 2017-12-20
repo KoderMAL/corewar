@@ -15,7 +15,7 @@
 
 # include "op.h"
 # include "io/openfile.h"
-# include "util/clist.h"
+# include "util/cqueue.h"
 # include "ft/ft.h"
 
 typedef struct		s_label
@@ -54,7 +54,7 @@ typedef struct		s_env
 	int			comment_length;
 	void		(*state)(struct s_env *env, char c);
 	void		(*state_next)(struct s_env *env, char c);
-	t_clist		clist;
+	t_cqueue		cqueue;
 	int			reread;
 	t_label		*labels;
 	t_command	*commands;
@@ -71,7 +71,7 @@ void				ft_error_check(int err, char *err_msg);
 
 t_label				*init_label(t_env *env);
 void				record_label(t_env *env);
-int					ft_clist_cmp(char *name, t_clist *clist);
+int					ft_cqueue_cmp(char *name, t_cqueue *cqueue);
 const t_op			*find_op(t_env *env);
 
 #endif

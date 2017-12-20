@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include "main/asm.h"
-#include "util/clist.h"
+#include "util/cqueue.h"
 
 void	state_comment(t_env *env, char c)
 {
@@ -26,12 +26,12 @@ void    state_number(t_env *env, char c)
 {
     if ((c >= '0' && c <= '9') || c == '-' || c == '+')
     {
-        if ((c == '+' || c == '-') && env->clist.len > 0)
+        if ((c == '+' || c == '-') && env->cqueue.len > 0)
         {
             env->err = 1;
             env->err_msg = "syntax error while parsing number: misplaced '+' or '-'\n";
         }
-        if (clist_push_front(&(env->clist), c))
+        if (cqueue_push_front(&(env->cqueue), c))
         {
             env->err = 1;
             env->err_msg = "memory error while parsing number\n";

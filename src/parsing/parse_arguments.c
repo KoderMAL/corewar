@@ -20,7 +20,7 @@ void			parse_arguments(t_env *env)
 	int			i;
 
 	i = 0;
-	args = clist_join(&env->clist);
+	args = cqueue_join(&env->cqueue);
 	if ((split = ft_strsplit(args, ',')) == NULL)
 		ft_err(env, "memory error while using malloc");
 	env->commands->op = env->op;
