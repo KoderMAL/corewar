@@ -63,8 +63,12 @@ typedef struct		s_env
 	int			offset;
 }					t_env;
 
+/*
+** from error.c
+*/
+
 int					ft_err(t_env *env, char *s);
-void				ft_error_check(int err, char *err_msg);
+int					ft_error_check(t_env *env);
 
 /*
 ** from record_label.c

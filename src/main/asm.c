@@ -16,9 +16,8 @@
 #include "parsing/parsing.h"
 #include "ft/ft.h"
 
-static void		env_initialization(t_env *env, int fd)
+static void		env_initialization(t_env *env)
 {
-	openfile_init(&(env->input), fd);
 	openfile_init(&(env->stdout), STDOUT_FILENO);
 	openfile_init(&(env->stderr), STDERR_FILENO);
 	env->state = &state_0;
@@ -34,6 +33,7 @@ static void		env_initialization(t_env *env, int fd)
 
 static void		env_clean(t_env *env)
 {
+	ft_error_check(env);
 	openfile_flush(&(env->stdout));
 	openfile_flush(&(env->stderr));
 }
@@ -85,18 +85,24 @@ int				main(int ac, char **av)
 	t_env		env;
 	int			fd;
 
-	if (ac != 2 || ft_strlen(av[1]) < 2 || (av[1][ft_strlen(av[1]) - 1] != 's'
-				&& av[1][ft_strlen(av[1]) - 2] != '.'))
+	env_initialization(&env);
+	if (ac != 2 || av[1][0] == '\0')
 	{
-		write(1, "usage: ./asm [file.s]\n", 22);
-		return (-1);
+		openfile_write_str(&(env.stdout), "Usage: ", 0);
+		openfile_write_str(&(env.stdout), av[0], 0);
+		openfile_write_str(&(env.stdout), " file.s", 1);
+		ft_err(&env, "");
 	}
-	if ((fd = open(av[1], O_RDONLY)) < 2)
-		return (-1);
-	env_initialization(&env, fd);
-	parse(&env);
-	close(fd);
-	env_clean(&env);
+	fd = -1;
+	if (env.err == 0 && (fd = open(av[1], O_RDONLY)) < 2)
+		ft_err(&env, "Unable to open input file");
+	if (env.err == 0)
+		openfile_init(&(env.input), fd);
+	if (env.err == 0)
+		parse(&env);
+	if (fd >= 2)
+		close(fd);
 //	create_champion(&env);
+	env_clean(&env);
 	return (0);
 }

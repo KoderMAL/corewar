@@ -10,10 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
-#include <stdlib.h>
 #include "main/asm.h"
-#include "ft/ft.h"
 
 int		ft_err(t_env *env, char *s)
 {
@@ -22,8 +19,9 @@ int		ft_err(t_env *env, char *s)
 	return (1);
 }
 
-void	ft_error_check(int err, char *err_msg)
+int		ft_error_check(t_env *env)
 {
-	if (err)
-		write(1, err_msg, ft_strlen(err_msg));
+	if (env->err)
+		openfile_write_str(&(env->stderr), env->err_msg, 1);
+	return (env->err);
 }
