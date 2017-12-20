@@ -12,6 +12,7 @@
 
 #include <unistd.h>
 #include <stdlib.h>
+#include "main/asm.h"
 #include "ft/ft.h"
 
 void		ft_err(t_env *env, char *s)

@@ -10,6 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdlib.h>
 #include "clist.h"
 
 void		clist_init(t_clist *clist)
@@ -60,7 +61,7 @@ char		clist_pop_back(t_clist *clist)
 char		*clist_join(t_clist *clist)
 {
 	char	*joined;
-	size_t	copied;
+	int		copied;
 
 	copied = 0;
 	joined = (char*)malloc(sizeof(char) * (clist->len + 1));

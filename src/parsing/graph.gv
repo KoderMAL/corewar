@@ -1,0 +1,20 @@
+digraph finite_state_machine {
+    rankdir=LR;
+
+    node [shape = doublecircle]; S;
+
+    node [shape = circle];
+    S -> S [ label = "space, tab, new line" ];
+    S -> c0 [ label = "NAME[0]\nCOMMENT[0]\ni = 0" ];
+    c0 -> c0 [ label = "NAME[++i]\nCOMMENT[++i]" ]
+    c0 -> c1 [ label = "space, tab" ]
+    c1 -> c2 [ label = "\"" ]
+    c0 -> c2 [ label = "\"" ]
+    c2 -> c2 [ label = "tout sauf \"\ncheck & save" ]
+    c2 -> c3 [ label = "\"" ]
+    c3 -> c3 [ label = "space, tab" ]
+    c3 -> com [ label = "#" ]
+    com -> com [ label = "tout sauf \\n" ]
+    c3 -> S [ label = "new line\ncheck" ]
+    com -> S [ label = "new line\ncheck" ]
+}

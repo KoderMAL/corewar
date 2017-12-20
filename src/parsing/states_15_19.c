@@ -20,7 +20,6 @@ void		state_15(t_env *env, char c)
 		env->state = &state_16;
 	else
 		ft_err(env, "syntax error at state 15 (comment format)\n");
-	}
 }
 
 void		state_16(t_env *env, char c)

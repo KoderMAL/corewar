@@ -10,7 +10,6 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
 #include <string.h>
 #include <stdlib.h>
 
@@ -57,6 +56,23 @@ int				ft_split_len(char **split)
 	while (split[len])
 		len++;
 	return (len);
+}
+
+char			*ft_strsub(char const *s, int pos, int len)
+{
+	char	*sub;
+	int		i;
+
+	sub = (char*)malloc(sizeof(char) * (len + 1));
+	if (sub == NULL)
+		return (NULL);
+	i = 0;
+	while(i < len)
+	{
+		sub[i] = s[pos + i];
+		i++;
+	}
+	return (sub);
 }
 
 char			**ft_strsplit(char const *s, char c)

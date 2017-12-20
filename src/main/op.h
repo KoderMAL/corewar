@@ -80,4 +80,6 @@ typedef struct		s_op
 	int			has_idx;
 }					t_op;
 
+extern const t_op	g_op_tab[17];
+
 #endif

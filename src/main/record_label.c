@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   stock_labe.c                                       :+:      :+:    :+:   */
+/*   record_label.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: alalaoui <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,7 +10,9 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "clist.h"
+#include <stdlib.h>
+#include "asm.h"
+#include "util/clist.h"
 
 t_label		*init_label(t_env *env)
 {
@@ -32,7 +34,7 @@ void		record_label(t_env *env)
 {
 	t_label	*new;
 
-	new = init->label(env);
+	new = init_label(env);
 	if (!env->labels)
 		env->labels = new;
 	else
@@ -64,14 +66,14 @@ int			ft_clist_cmp(char *name, t_clist *clist)
 	return (name[i]);
 }
 
-t_op		*find_op(t_env *env)
+const t_op	*find_op(t_env *env)
 {
-	t_op	*op;
+	const t_op	*op;
 	
 	op = g_op_tab;
 	while (op->name)
 	{
-		if (ft_clist_cmp(op->name, env->clist) == 0)
+		if (ft_clist_cmp(op->name, &env->clist) == 0)
 			return (op);
 		op++;
 	}
@@ -79,8 +81,5 @@ t_op		*find_op(t_env *env)
 }
 
 void		record_command();
-{
 
-}
-
-void		record_arg()
+void		record_arg();

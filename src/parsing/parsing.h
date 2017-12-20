@@ -16,6 +16,8 @@
 # include "main/asm.h"
 # include "ft/ft.h"
 
+void	parse_arguments(t_env *env);
+
 void	state_comment(t_env *env, char c);
 
 void	state_0(t_env *env, char c);
@@ -43,6 +45,7 @@ void	state_18(t_env *env, char c);
 void	state_19(t_env *env, char c);
 
 void	state_20(t_env *env, char c);
+void	state_21(t_env *env, char c);
 
 void	ft_line_col(t_env *env, char c);
 

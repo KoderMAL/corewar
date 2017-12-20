@@ -17,7 +17,6 @@
 # include "io/openfile.h"
 # include "util/clist.h"
 # include "ft/ft.h"
-# include "parsing/parsing.h"
 
 typedef struct		s_label
 {
@@ -36,7 +35,7 @@ typedef struct		s_args
 typedef struct		s_command
 {
 	char			*name;
-	t_op			op;
+	const t_op		*op;
 	struct s_args	args;
 	int				n_arg;
 }					t_command;
@@ -57,12 +56,22 @@ typedef struct		s_env
 	void		(*state_next)(struct s_env *env, char c);
 	t_clist		clist;
 	int			reread;
-	t_labels	*labels;
-	t_commands	*commands;
-	t_op		op;
+	t_label		*labels;
+	t_command	*commands;
+	const t_op	*op;
 	int			offset;
 }					t_env;
 
 void				ft_err(t_env *env, char *s);
 void				ft_error_check(int err, char *err_msg);
+
+/*
+** from record_label.c
+*/
+
+t_label				*init_label(t_env *env);
+void				record_label(t_env *env);
+int					ft_clist_cmp(char *name, t_clist *clist);
+const t_op			*find_op(t_env *env);
+
 #endif
