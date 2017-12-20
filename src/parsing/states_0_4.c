@@ -13,7 +13,7 @@
 #include "main/asm.h"
 #include "parsing.h"
 
-void		state_0(t_env *env, char c)
+void	state_0(t_env *env, char c)
 {
 	if (c == '\n' || c == ' ' || c == '\t')
 		env->state = &state_0;
@@ -25,18 +25,18 @@ void		state_0(t_env *env, char c)
 		env->state = &state_comment;
 	}
 	else
-		ft_err(env, "syntax error at state 0\n");
+		err(env, "syntax error at state 0");
 }
 
-void		state_1(t_env *env, char c)
+void	state_1(t_env *env, char c)
 {
 	if (c == 'n')
 		env->state = &state_2;
 	else
-		ft_err(env, "syntax error at state 1 (name format)\n");
+		err(env, "syntax error at state 1 (name format)");
 }
 
-void		state_2(t_env *env, char c)
+void	state_2(t_env *env, char c)
 {
 	if (c == 'a')
 	{
@@ -44,10 +44,10 @@ void		state_2(t_env *env, char c)
 		env->name_length++;
 	}
 	else
-		ft_err(env, "syntax error at state 2 (name format)\n");
+		err(env, "syntax error at state 2 (name format)");
 }
 
-void		state_3(t_env *env, char c)
+void	state_3(t_env *env, char c)
 {
 	if (c == 'm')
 	{
@@ -55,10 +55,10 @@ void		state_3(t_env *env, char c)
 		env->name_length++;
 	}
 	else
-		ft_err(env, "syntax error at state 3 (name format)\n");
+		err(env, "syntax error at state 3 (name format)");
 }
 
-void		state_4(t_env *env, char c)
+void	state_4(t_env *env, char c)
 {
 	if (c == 'e')
 	{
@@ -66,5 +66,5 @@ void		state_4(t_env *env, char c)
 		env->name_length++;
 	}
 	else
-		ft_err(env, "syntax error at state 4 (name format)\n");
+		err(env, "syntax error at state 4 (name format)");
 }

@@ -14,7 +14,7 @@
 #include "main/asm.h"
 #include "parsing.h"
 
-void		state_5(t_env *env, char c)
+void	state_5(t_env *env, char c)
 {
 	if (c == ' ' || c == '\t')
 		return ;
@@ -24,20 +24,20 @@ void		state_5(t_env *env, char c)
 		env->name_length = 0;
 	}
 	else
-		ft_err(env, "syntax error at state 5 (name format)\n");
+		err(env, "syntax error at state 5 (name format)\n");
 }
 
-void		state_6(t_env *env, char c)
+void	state_6(t_env *env, char c)
 {
 	if (c == '"')
 		env->state = &state_7;
 	else if (env->name_length == PROG_NAME_LENGTH - 1)
-		ft_err(env, "program name too long\n");
+		err(env, "program name too long\n");
 	else
 		env->name[env->name_length++] = c;
 }
 
-void		state_7(t_env *env, char c)
+void	state_7(t_env *env, char c)
 {
 	if (c == ' ' || c == '\t')
 		return ;
@@ -49,10 +49,10 @@ void		state_7(t_env *env, char c)
 		env->state = &state_comment;
 	}
 	else
-		ft_err(env, "syntax error at state 7 (name format)\n");
+		err(env, "syntax error at state 7 (name format)\n");
 }
 
-void		state_8(t_env *env, char c)
+void	state_8(t_env *env, char c)
 {
 	if (c == '\n' || c == ' ' || c == '\t')
 		return ;
@@ -64,13 +64,13 @@ void		state_8(t_env *env, char c)
 		env->state = &state_comment;
 	}
 	else
-		ft_err(env, "syntax error at state 8 (name format)\n");
+		err(env, "syntax error at state 8 (name format)\n");
 }
 
-void		state_9(t_env *env, char c)
+void	state_9(t_env *env, char c)
 {
 	if (c == 'c')
 		env->state = &state_10;
 	else
-		ft_err(env, "syntax error at state 9 (name format)\n");
+		err(env, "syntax error at state 9 (name format)\n");
 }

@@ -14,35 +14,35 @@
 #include "main/asm.h"
 #include "parsing.h"
 
-void		state_15(t_env *env, char c)
+void	state_15(t_env *env, char c)
 {
 	if (c == 't')
 		env->state = &state_16;
 	else
-		ft_err(env, "syntax error at state 15 (comment format)\n");
+		err(env, "syntax error at state 15 (comment format)");
 }
 
-void		state_16(t_env *env, char c)
+void	state_16(t_env *env, char c)
 {
 	if (c == ' ' || c == '\t')
 		return ;
 	else if (c == '"')
 		env->state = &state_17;
 	else
-		ft_err(env, "syntax error at state 16 (comment format)\n");
+		err(env, "syntax error at state 16 (comment format)");
 }
 
-void		state_17(t_env *env, char c)
+void	state_17(t_env *env, char c)
 {
 	if (c == '"')
 		env->state = &state_18;
 	else if (env->comment_length == COMMENT_LENGTH - 1)
-		ft_err(env, "program comment too long!\n");
+		err(env, "program comment too long!");
 	else
 		env->comment[env->comment_length++] = c;
 }
 
-void		state_18(t_env *env, char c)
+void	state_18(t_env *env, char c)
 {
 	if (c == ' ' || c == '\t')
 		return ;
@@ -54,10 +54,10 @@ void		state_18(t_env *env, char c)
 		env->state = &state_comment;
 	}
 	else
-		ft_err(env, "syntax error at state 18 (comment format)\n");
+		err(env, "syntax error at state 18 (comment format)");
 }
 
-void		state_19(t_env *env, char c)
+void	state_19(t_env *env, char c)
 {
 	if (c == '\n')
 		return ;
@@ -71,5 +71,5 @@ void		state_19(t_env *env, char c)
 	else if (ft_strchr(LABEL_CHARS, c))
 		env->state = &state_20;
 	else
-		ft_err(env, "syntax error at state 19 (awaiting instruction)\n");
+		err(env, "syntax error at state 19 (awaiting instruction)");
 }

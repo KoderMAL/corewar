@@ -67,8 +67,8 @@ typedef struct		s_env
 ** from error.c
 */
 
-int					ft_err(t_env *env, char *s);
-int					ft_error_check(t_env *env);
+int					err(t_env *env, char *s);
+int					err_display(t_env *env);
 
 /*
 ** from record_label.c

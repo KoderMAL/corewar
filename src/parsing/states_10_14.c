@@ -14,42 +14,42 @@
 #include "main/asm.h"
 #include "parsing.h"
 
-void			state_10(t_env *env, char c)
+void	state_10(t_env *env, char c)
 {
 	if (c == 'o')
 		env->state = &state_11;
 	else
-		ft_err(env, "syntax error at state 10 (comment format)\n");
+		err(env, "syntax error at state 10 (comment format)\n");
 }
 
-void			state_11(t_env *env, char c)
+void	state_11(t_env *env, char c)
 {
 	if (c == 'm')
 		env->state = &state_12;
 	else
-		ft_err(env, "syntax error at state 11 (comment format)\n");
+		err(env, "syntax error at state 11 (comment format)\n");
 }
 
-void			state_12(t_env *env, char c)
+void	state_12(t_env *env, char c)
 {
 	if (c == 'm')
 		env->state = &state_13;
 	else
-		ft_err(env, "syntax error at state 12 (comment format)\n");
+		err(env, "syntax error at state 12 (comment format)\n");
 }
 
-void			state_13(t_env *env, char c)
+void	state_13(t_env *env, char c)
 {
 	if (c == 'e')
 		env->state = &state_14;
 	else
-		ft_err(env, "syntax error at state 13 (comment format)\n");
+		err(env, "syntax error at state 13 (comment format)\n");
 }
 
-void			state_14(t_env *env, char c)
+void	state_14(t_env *env, char c)
 {
 	if (c == 'n')
 		env->state = &state_15;
 	else
-		ft_err(env, "syntax error at state 14 (comment format)\n");
+		err(env, "syntax error at state 14 (comment format)\n");
 }

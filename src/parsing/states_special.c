@@ -27,15 +27,9 @@ void    state_number(t_env *env, char c)
     if ((c >= '0' && c <= '9') || c == '-' || c == '+')
     {
         if ((c == '+' || c == '-') && env->cqueue.len > 0)
-        {
-            env->err = 1;
-            env->err_msg = "syntax error while parsing number: misplaced '+' or '-'\n";
-        }
+            err(env, "syntax error while parsing number: misplaced '+' or '-'");
         if (cqueue_push(&(env->cqueue), c))
-        {
-            env->err = 1;
-            env->err_msg = "memory error while parsing number\n";
-        }
+            err(env, "memory error while parsing number");
     }
     else
     {

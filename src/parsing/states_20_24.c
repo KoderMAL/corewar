@@ -13,7 +13,7 @@
 #include "main/asm.h"
 #include "parsing.h"
 
-void		state_20(t_env *env, char c)
+void	state_20(t_env *env, char c)
 {
 	if (c == ':')
 	{	
@@ -23,20 +23,20 @@ void		state_20(t_env *env, char c)
 	else if (ft_strchr(LABEL_CHARS, c) != NULL)
 	{
 		if (cqueue_push(&(env->cqueue), c))
-			ft_err(env, "memory error while parsing number\n");
+			err(env, "memory error while parsing number");
 		env->offset++;
 	}
 	else if (c == ' ' || c == '\t')
 	{
 		if ((env->op = find_op(env)) == NULL)
-			ft_err(env, "command not found\n");
+			err(env, "command not found");
 		env->state = &state_21;
 	}
 	else
-		ft_err(env, "syntax error at state 20");
+		err(env, "syntax error at state 20");
 }
 
-void		state_21(t_env *env, char c)
+void	state_21(t_env *env, char c)
 {
 	if (c == ' ' || c == '\t')
 		return ;
@@ -49,7 +49,7 @@ void		state_21(t_env *env, char c)
 			c == ',')
 	{
 		if (cqueue_push(&(env->cqueue), c))
-			ft_err(env, "memory error while parsing number\n");
+			err(env, "memory error while parsing number");
 		env->offset++;
 	}
 	else if (c == '\n')

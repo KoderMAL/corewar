@@ -32,7 +32,7 @@ static void		env_initialization(t_env *env)
 
 static void		env_clean(t_env *env)
 {
-	ft_error_check(env);
+	err_display(env);
 	openfile_flush(&(env->stdout));
 	openfile_flush(&(env->stderr));
 }
@@ -54,7 +54,7 @@ static int		parse_char(t_env *env, char c)
 	else if (ft_isprint(c))
 		openfile_write_char((&env->stdout), c);
 	else
-		return (ft_err(env, "wrong character"));
+		return (err(env, "wrong character"));
 	(env->state)(env, c);
 	return (0);
 }
@@ -70,7 +70,7 @@ static void		parse(t_env *env)
 		{
 			ret = openfile_read_char(&(env->input), &c);
 			if (ret == -1)
-				ft_err(env, "unable to read input");
+				err(env, "unable to read input");
 			if (ret != 1)
 				break ;
 		}
@@ -90,11 +90,11 @@ int				main(int ac, char **av)
 		openfile_write_str(&(env.stdout), "Usage: ", 0);
 		openfile_write_str(&(env.stdout), av[0], 0);
 		openfile_write_str(&(env.stdout), " file.s", 1);
-		ft_err(&env, "");
+		err(&env, "");
 	}
 	fd = -1;
 	if (env.err == 0 && (fd = open(av[1], O_RDONLY)) < 2)
-		ft_err(&env, "Unable to open input file");
+		err(&env, "Unable to open input file");
 	if (env.err == 0)
 		openfile_init(&(env.input), fd);
 	if (env.err == 0)

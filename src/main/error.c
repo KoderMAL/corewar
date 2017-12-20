@@ -12,14 +12,14 @@
 
 #include "main/asm.h"
 
-int		ft_err(t_env *env, char *s)
+int		err(t_env *env, char *s)
 {
 	env->err = 1;
 	env->err_msg = s;
 	return (1);
 }
 
-int		ft_error_check(t_env *env)
+int		err_display(t_env *env)
 {
 	if (env->err)
 		openfile_write_str(&(env->stderr), env->err_msg, 1);
