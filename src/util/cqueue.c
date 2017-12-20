@@ -20,7 +20,7 @@ void		cqueue_init(t_cqueue *cqueue)
 	cqueue->last = NULL;
 }
 
-int			cqueue_push_front(t_cqueue *cqueue, char c)
+int			cqueue_push(t_cqueue *cqueue, char c)
 {
 	t_cqueue_elem	*element;
 
@@ -28,30 +28,25 @@ int			cqueue_push_front(t_cqueue *cqueue, char c)
 	if (element == NULL)
 		return (1);
 	element->c = c;
-	element->next = cqueue->first;
-	element->prev = NULL;
+	element->next = NULL;
 	if (cqueue->len == 0)
-		cqueue->last = element;
+   		cqueue->first = element;
 	else
-		cqueue->first->prev = element;
-	cqueue->first = element;
+		cqueue->last->next = element;
+	cqueue->last = element;
 	cqueue->len++;
 	return (0);
 }
 
-char		cqueue_pop_back(t_cqueue *cqueue)
+char		cqueue_pop(t_cqueue *cqueue)
 {
 	t_cqueue_elem	*element;
 	char			c;
 
 	if (cqueue->len == 0)
 		return (0);
-	element = cqueue->last;
-	cqueue->last = element->prev;
-	if (cqueue->len == 1)
-		cqueue->first = NULL;
-	else
-		cqueue->last->next = NULL;
+	element = cqueue->first;
+	cqueue->first = element->next;
 	cqueue->len--;
 	c = element->c;
 	free(element);
@@ -61,36 +56,23 @@ char		cqueue_pop_back(t_cqueue *cqueue)
 char		*cqueue_join(t_cqueue *cqueue)
 {
 	char	*joined;
-	int		copied;
+	int 	copied;
 
 	copied = 0;
 	joined = (char*)malloc(sizeof(char) * (cqueue->len + 1));
 	if (joined == NULL)
 	{
-		while (cqueue->len > 0)
-			joined[copied++] = cqueue_pop_back(cqueue);
+		cqueue_delete(cqueue);
 		return (NULL);
 	}
 	while (cqueue->len > 0)
-		joined[copied++] = cqueue_pop_back(cqueue);
+		joined[copied++] = cqueue_pop(cqueue);
 	joined[copied] = '\0';
 	return (joined);
 }
 
-int			cqueue_delete(t_cqueue *cqueue)
+void		cqueue_delete(t_cqueue *cqueue)
 {
-	t_cqueue_elem	*element;
-
 	while (cqueue->len > 0)
-	{
-		element = cqueue->last;
-		cqueue->last = element->prev;
-		if (cqueue->len == 1)
-			cqueue->first = NULL;
-		else
-			cqueue->last->next = NULL;
-		cqueue->len--;
-		free(element);
-	}
-	return (1);
+		cqueue_pop(cqueue);
 }

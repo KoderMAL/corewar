@@ -31,7 +31,7 @@ void    state_number(t_env *env, char c)
             env->err = 1;
             env->err_msg = "syntax error while parsing number: misplaced '+' or '-'\n";
         }
-        if (cqueue_push_front(&(env->cqueue), c))
+        if (cqueue_push(&(env->cqueue), c))
         {
             env->err = 1;
             env->err_msg = "memory error while parsing number\n";

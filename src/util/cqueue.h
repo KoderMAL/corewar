@@ -16,7 +16,6 @@
 typedef struct	s_cqueue_elem
 {
 	char				c;
-	struct s_cqueue_elem	*prev;
 	struct s_cqueue_elem	*next;
 }				t_cqueue_elem;
 
@@ -28,9 +27,9 @@ typedef struct	s_cqueue
 }				t_cqueue;
 
 void			cqueue_init(t_cqueue *cqueue);
-int				cqueue_push_front(t_cqueue *cqueue, char c);
-char			cqueue_pop_back(t_cqueue *cqueue);
+int				cqueue_push(t_cqueue *cqueue, char c);
+char			cqueue_pop(t_cqueue *cqueue);
 char			*cqueue_join(t_cqueue *cqueue);
-int				cqueue_delete(t_cqueue *cqueue);
+void			cqueue_delete(t_cqueue *cqueue);
 
 #endif
