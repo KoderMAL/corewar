@@ -14,7 +14,6 @@
 #include <fcntl.h>
 #include "asm.h"
 #include "parsing/parsing.h"
-#include "ft/ft.h"
 
 static void		env_initialization(t_env *env)
 {
