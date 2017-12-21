@@ -16,31 +16,28 @@
 # include "op.h"
 # include "io/openfile.h"
 # include "util/cqueue.h"
-# include "util/siqueue.h"
 # include "util/pqueue.h"
 # include "ft/ft.h"
 
 typedef struct		s_label
 {
-	char			*label;
-	int				offset;
-	struct s_label	*next;
+	char			*name;
+	size_t			len;
+	int				instruction_number;
 }					t_label;
 
 typedef struct		s_args
 {
 	int				type;
 	char			value[4];
-	struct s_args	*next;
 }					t_args;
 
-typedef struct		s_command
+typedef struct		s_instruction
 {
 	char			*name;
 	const t_op		*op;
-	struct s_args	args;
-	int				n_arg;
-}					t_command;
+	t_pqueue		args;
+}					t_instructions;
 
 typedef struct		s_env
 {
@@ -58,7 +55,7 @@ typedef struct		s_env
 	t_cqueue	characters;
 	size_t		pos;
 	const t_op	*op;
-	t_siqueue	labels;
+	t_pqueue	labels;
 	t_pqueue	instructions;
 }					t_env;
 
@@ -70,9 +67,9 @@ int					err(t_env *env, char *s, int col_back);
 int					err_display(t_env *env);
 
 /*
-** from util.c
+** from label.c
 */
 
-int					ft_cqueue_cmp(const char *name, t_cqueue *cqueue);
+t_label				*label_from_cqueue(t_cqueue *cqueue, int instruction_number);
 
 #endif

@@ -28,7 +28,7 @@ static void		env_initialization(t_env *env)
 	cqueue_init(&(env->characters));
 	env->pos = 0;
 	env->op = NULL;
-	siqueue_init(&(env->labels));
+	pqueue_init(&(env->labels));
 	pqueue_init(&(env->instructions));
 }
 
@@ -38,7 +38,7 @@ static void		env_clean(t_env *env)
 	openfile_flush(&(env->stdout));
 	openfile_flush(&(env->stderr));
 	cqueue_delete(&(env->characters));
-	siqueue_delete(&(env->labels));
+	pqueue_delete(&(env->labels));
 	pqueue_delete(&(env->instructions));
 }
 

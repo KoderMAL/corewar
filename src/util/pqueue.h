@@ -28,7 +28,7 @@ typedef struct	s_pqueue
 }				t_pqueue;
 
 void			pqueue_init(t_pqueue *pqueue);
-int				pqueue_push_pqueue(t_pqueue *pqueue, void *p);
+int				pqueue_push(t_pqueue *pqueue, void *p);
 void			pqueue_delete(t_pqueue *pqueue);
 
 #endif

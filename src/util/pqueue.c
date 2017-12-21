@@ -24,6 +24,8 @@ int			pqueue_push(t_pqueue *pqueue, void *p)
 {
 	t_pqueue_elem	*element;
 
+	if (p == NULL)
+		return (1);
 	element = (t_pqueue_elem*)malloc(sizeof(t_pqueue_elem));
 	if (element == NULL)
 		return (1);
