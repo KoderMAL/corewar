@@ -11,7 +11,6 @@
 /* ************************************************************************** */
 
 #include "main/asm.h"
-#include "main/op.h"
 #include "states.h"
 
 void	state_start(t_env *env, char c)
