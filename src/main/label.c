@@ -18,5 +18,5 @@ t_label	*label_from_cqueue(t_cqueue *cqueue, int instruction_number)
 	ft_cqueue_move(label->name, cqueue);
 	label->len = cqueue->len;
 	label->instruction_number = instruction_number;
-	return (0);
+	return (label);
 }
