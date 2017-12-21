@@ -18,6 +18,7 @@ const t_op	*match_instruction(t_env *env)
 void	state_pre_arg(t_env *env, char c)
 {
 	cqueue_delete(&(env->characters));
+	instruction_init(&(env->instruction));
 	if (c == '\n' || c == COMMENT_CHAR)
 		err(env, "missing arguments after instruction", 0);
 	else if (c == ' ' || c == '\t')

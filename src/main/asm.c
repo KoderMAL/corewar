@@ -30,6 +30,7 @@ static void		env_initialization(t_env *env)
 	env->op = NULL;
 	pqueue_init(&(env->labels));
 	pqueue_init(&(env->instructions));
+	pqueue_init(&(env->instruction.arguments));
 }
 
 static void		env_clean(t_env *env)
@@ -40,6 +41,7 @@ static void		env_clean(t_env *env)
 	cqueue_delete(&(env->characters));
 	pqueue_delete(&(env->labels));
 	pqueue_delete(&(env->instructions));
+	pqueue_delete(&(env->instruction.arguments));
 }
 
 static int		parse_char(t_env *env, char c)

@@ -2,6 +2,10 @@
 #include "asm.h"
 #include "util/cqueue.h"
 
+/*
+** creates a label from a cqueue and an instruction number
+*/
+
 t_label	*label_from_cqueue(t_cqueue *cqueue, int instruction_number)
 {
 	t_label	*label;

@@ -26,37 +26,37 @@ typedef struct		s_label
 	int				instruction_number;
 }					t_label;
 
-typedef struct		s_args
+typedef struct		s_argument
 {
 	int				type;
 	char			value[4];
-}					t_args;
+}					t_argument;
 
 typedef struct		s_instruction
 {
-	char			*name;
 	const t_op		*op;
-	t_pqueue		args;
-}					t_instructions;
+	t_pqueue		arguments;
+}					t_instruction;
 
 typedef struct		s_env
 {
-	t_openfile	input;
-	t_openfile	stdout;
-	t_openfile	stderr;
-	int			line;
-	int			col;
-	int			err;
-	char		*err_msg;
-	int			header;
-	char		name[PROG_NAME_LENGTH];
-	char		comment[COMMENT_LENGTH];
-	void		(*state)(struct s_env *env, char c);
-	t_cqueue	characters;
-	size_t		pos;
-	const t_op	*op;
-	t_pqueue	labels;
-	t_pqueue	instructions;
+	t_openfile		input;
+	t_openfile		stdout;
+	t_openfile		stderr;
+	int				line;
+	int				col;
+	int				err;
+	char			*err_msg;
+	int				header;
+	char			name[PROG_NAME_LENGTH];
+	char			comment[COMMENT_LENGTH];
+	void			(*state)(struct s_env *env, char c);
+	t_cqueue		characters;
+	size_t			pos;
+	const t_op		*op;
+	t_pqueue		labels;
+	t_pqueue		instructions;
+	t_instruction	instruction;
 }					t_env;
 
 /*
@@ -71,5 +71,12 @@ int					err_display(t_env *env);
 */
 
 t_label				*label_from_cqueue(t_cqueue *cqueue, int instruction_number);
+
+/*
+** from instruction.c
+*/
+
+void				instruction_init(t_instruction *instruction);
+t_instruction		*instruction_dup(t_instruction *instruction);
 
 #endif
