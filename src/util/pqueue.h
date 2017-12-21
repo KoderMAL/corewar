@@ -27,6 +27,10 @@ typedef struct	s_pqueue
 	int				len;
 }				t_pqueue;
 
+/*
+** pqueue.c
+*/
+
 void			pqueue_init(t_pqueue *pqueue);
 int				pqueue_push(t_pqueue *pqueue, void *p);
 void			pqueue_delete(t_pqueue *pqueue);

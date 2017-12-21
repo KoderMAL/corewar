@@ -1,5 +1,9 @@
 #include "util/cqueue.h"
 
+/*
+** same as strcmp but comparse a string with a queue of characters
+*/
+
 int			ft_cqueue_cmp(const char *name, t_cqueue *cqueue)
 {
 	int				i;
@@ -16,6 +20,11 @@ int			ft_cqueue_cmp(const char *name, t_cqueue *cqueue)
 	}
 	return (name[i]);
 }
+
+/*
+** moves a queue of characters to a string
+** after this operation, the queue is empty!
+*/
 
 void		ft_cqueue_move(char *dest, t_cqueue *cqueue)
 {

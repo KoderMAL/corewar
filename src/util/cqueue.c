@@ -13,12 +13,22 @@
 #include <stdlib.h>
 #include "cqueue.h"
 
+/*
+** initializes a queue of characters
+** the cqueue is a linked list containing characters
+** they can be read in the same order as they are written
+*/
+
 void		cqueue_init(t_cqueue *cqueue)
 {
 	cqueue->len = 0;
 	cqueue->first = NULL;
 	cqueue->last = NULL;
 }
+
+/*
+** appends a character to the queue
+*/
 
 int			cqueue_push(t_cqueue *cqueue, char c)
 {
@@ -38,6 +48,10 @@ int			cqueue_push(t_cqueue *cqueue, char c)
 	return (0);
 }
 
+/*
+** gets the first character from the queue (and removes it from the queue)
+*/
+
 char		cqueue_pop(t_cqueue *cqueue)
 {
 	t_cqueue_elem	*element;
@@ -54,6 +68,11 @@ char		cqueue_pop(t_cqueue *cqueue)
 	free(element);
 	return (c);
 }
+
+/*
+** converts the queue to a null-terminated string
+** after this operation, the queue is empty!
+*/
 
 char		*cqueue_join(t_cqueue *cqueue)
 {
@@ -72,6 +91,11 @@ char		*cqueue_join(t_cqueue *cqueue)
 	joined[copied] = '\0';
 	return (joined);
 }
+
+/*
+** empties the queue
+** the stored characters are lost
+*/
 
 void		cqueue_delete(t_cqueue *cqueue)
 {

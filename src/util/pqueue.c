@@ -13,12 +13,22 @@
 #include <stdlib.h>
 #include "pqueue.h"
 
+/*
+** initializes a queue of pointers
+** the cqueue is a linked list containing pointers
+** they can be read in the same order as they are written
+*/
+
 void		pqueue_init(t_pqueue *pqueue)
 {
 	pqueue->len = 0;
 	pqueue->first = NULL;
 	pqueue->last = NULL;
 }
+
+/*
+** appends a pointer to the queue
+*/
 
 int			pqueue_push(t_pqueue *pqueue, void *p)
 {
@@ -39,6 +49,11 @@ int			pqueue_push(t_pqueue *pqueue, void *p)
 	pqueue->len++;
 	return (0);
 }
+
+/*
+** empties the queue
+** the stored pointers are lost
+*/
 
 void		pqueue_delete(t_pqueue *pqueue)
 {
