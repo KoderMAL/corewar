@@ -28,7 +28,7 @@ digraph finite_state_machine {
     command -> pre_arg [ label = "[space, tab]\nif any INSTRUCTIONS matched\n(header = 0)\n" ]
     pre_arg -> pre_arg [ label = "[space, tab]" ]
     pre_arg -> arg [ label = "[any but space or tab ]\n(enqueue)" ]
-    arg -> arg [ label = "[any but space, tab, newline, COMMENT_CHAR ]\n(enqueue)" ]
+    arg -> arg [ label = "[any but space, tab, newline, COMMENT_CHAR, SEPARATOR_CHAR]\n(enqueue)" ]
     arg -> pre_arg [ label = "[SEPARATOR_CHAR]\n(check and store argument)" ]
     arg -> post_arg [ label = "[space, tab]" ]
     post_arg -> post_arg [ label = "[space, tab]" ]
