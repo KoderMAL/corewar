@@ -52,6 +52,10 @@ void	state_str(t_env *env, char c)
 
 void	state_eol(t_env *env, char c)
 {
+	if (match_name(env))
+		env->name[env->pos] = '\0';
+	if (match_comment(env))
+		env->comment[env->pos] = '\0';	
 	if (c == ' ' || c == '\t')
 		return ;
 	else if (c == COMMENT_CHAR)

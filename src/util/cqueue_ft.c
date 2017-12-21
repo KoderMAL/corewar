@@ -30,4 +30,5 @@ void		ft_cqueue_move(char *dest, t_cqueue *cqueue)
 {
 	while (cqueue->len > 0)
 		*dest++ = cqueue_pop(cqueue);
+	*dest++ = '\0';
 }
