@@ -38,3 +38,7 @@ const t_op	g_op_tab[17] =
 	{"aff", 1, {T_REG}, 16, 2, "aff", 1, 0},
 	{0, 0, {0}, 0, 0, 0, 0, 0}
 };
+
+const char *g_name_cmd = NAME_CMD_STRING;
+const char *g_comment_cmd = COMMENT_CMD_STRING;
+const char *g_label_chars = LABEL_CHARS;

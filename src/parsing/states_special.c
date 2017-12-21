@@ -13,16 +13,7 @@
 #include "main/asm.h"
 #include "util/cqueue.h"
 
-void	state_comment(t_env *env, char c)
-{
-	if (c == '\n')
-	{
-		env->state = env->state_next;
-		env->state_next = NULL;
-	}
-}
-
-void    state_number(t_env *env, char c)
+/*void    state_number(t_env *env, char c)
 {
     if ((c >= '0' && c <= '9') || c == '-' || c == '+')
     {
@@ -38,3 +29,4 @@ void    state_number(t_env *env, char c)
         env->reread = 1;
     }
 }
+*/

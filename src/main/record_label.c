@@ -49,23 +49,6 @@ void		record_label(t_env *env)
 	}
 }
 
-int			ft_cqueue_cmp(char *name, t_cqueue *cqueue)
-{
-	int				i;
-	t_cqueue_elem	*elem;
-
-	i = 0;
-	elem = cqueue->first;
-	while (i < cqueue->len)
-	{
-		if (name[i] != elem->c)
-			return (name[i] - elem->c);
-		i++;
-		elem = elem->next;
-	}
-	return (name[i]);
-}
-
 const t_op	*find_op(t_env *env)
 {
 	const t_op	*op;

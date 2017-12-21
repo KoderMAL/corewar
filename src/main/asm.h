@@ -16,6 +16,8 @@
 # include "op.h"
 # include "io/openfile.h"
 # include "util/cqueue.h"
+# include "util/siqueue.h"
+# include "util/pqueue.h"
 # include "ft/ft.h"
 
 typedef struct		s_label
@@ -49,34 +51,28 @@ typedef struct		s_env
 	int			col;
 	int			err;
 	char		*err_msg;
+	int			header;
 	char		name[PROG_NAME_LENGTH];
-	int			name_length;
 	char		comment[COMMENT_LENGTH];
-	int			comment_length;
 	void		(*state)(struct s_env *env, char c);
-	void		(*state_next)(struct s_env *env, char c);
-	t_cqueue		cqueue;
-	int			reread;
-	t_label		*labels;
-	t_command	*commands;
+	t_cqueue	characters;
+	size_t		pos;
 	const t_op	*op;
-	int			offset;
+	t_siqueue	labels;
+	t_pqueue	instructions;
 }					t_env;
 
 /*
 ** from error.c
 */
 
-int					err(t_env *env, char *s);
+int					err(t_env *env, char *s, int col_back);
 int					err_display(t_env *env);
 
 /*
-** from record_label.c
+** from util.c
 */
 
-t_label				*init_label(t_env *env);
-void				record_label(t_env *env);
-int					ft_cqueue_cmp(char *name, t_cqueue *cqueue);
-const t_op			*find_op(t_env *env);
+int					ft_cqueue_cmp(const char *name, t_cqueue *cqueue);
 
 #endif

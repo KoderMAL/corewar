@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cqueue.h                                           :+:      :+:    :+:   */
+/*   siqueue.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: alalaoui <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,37 +10,27 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CQUEUE_H
-# define CQUEUE_H
+#ifndef SIQUEUE_H
+# define SIQUEUE_H
+# include "cqueue.h"
 
-typedef struct	s_cqueue_elem
+typedef struct	s_siqueue_elem
 {
-	char				c;
-	struct s_cqueue_elem	*next;
-}				t_cqueue_elem;
+	char					*s;
+	int						len;
+	int						i;
+	struct s_siqueue_elem	*next;
+}				t_siqueue_elem;
 
-typedef struct	s_cqueue
+typedef struct	s_siqueue
 {
-	t_cqueue_elem	*first;
-	t_cqueue_elem	*last;
+	t_siqueue_elem	*first;
+	t_siqueue_elem	*last;
 	int				len;
-}				t_cqueue;
+}				t_siqueue;
 
-/*
-** cqueue.c
-*/
-
-void			cqueue_init(t_cqueue *cqueue);
-int				cqueue_push(t_cqueue *cqueue, char c);
-char			cqueue_pop(t_cqueue *cqueue);
-char			*cqueue_join(t_cqueue *cqueue);
-void			cqueue_delete(t_cqueue *cqueue);
-
-/*
-** cqueue_ft.c
-*/
-
-int				ft_cqueue_cmp(const char *name, t_cqueue *cqueue);
-void			ft_cqueue_move(char *dest, t_cqueue *cqueue);
+void			siqueue_init(t_siqueue *siqueue);
+int				siqueue_push_cqueue(t_siqueue *siqueue, t_cqueue *cqueue, int i);
+void			siqueue_delete(t_siqueue *siqueue);
 
 #endif

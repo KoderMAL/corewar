@@ -1,20 +1,42 @@
 digraph finite_state_machine {
     rankdir=LR;
 
-    node [shape = doublecircle]; S;
-
+    node [shape = doublecircle]; start;
     node [shape = circle];
-    S -> S [ label = "space, tab, new line" ];
-    S -> c0 [ label = "NAME[0]\nCOMMENT[0]\ni = 0" ];
-    c0 -> c0 [ label = "NAME[++i]\nCOMMENT[++i]" ]
-    c0 -> c1 [ label = "space, tab" ]
-    c1 -> c2 [ label = "\"" ]
-    c0 -> c2 [ label = "\"" ]
-    c2 -> c2 [ label = "tout sauf \"\ncheck & save" ]
-    c2 -> c3 [ label = "\"" ]
-    c3 -> c3 [ label = "space, tab" ]
-    c3 -> com [ label = "#" ]
-    com -> com [ label = "tout sauf \\n" ]
-    c3 -> S [ label = "new line\ncheck" ]
-    com -> S [ label = "new line\ncheck" ]
+
+    entrance [ shape = none, label = "" ]
+    entrance ->start [ label = "(header = 1)" ]
+    start [ label = "start\n(empty queue)" ]
+    start -> start [ label = "[space, tab, new line]" ];
+    start -> comment [ label = "[COMMENT_CHAR]" ]
+    command [ label = "command\nlabel\ninstruction" ]
+    start -> command [ label = "(enqueue)" ];
+    command -> command [ label = "[any but space, tab, new line, \", LABEL_CHAR, COMMENT_CHAR]\n(enqueue)" ]
+    command -> pre_str [ label = "[space, tab]\nif NAME matched\nor COMMENT matched\n(check header == 1)" ]
+    command -> str [ label = "[\"]\nif NAME matched\nor COMMENT matched\n(check header == 1)" ]
+    pre_str -> pre_str [ label = "[space, tab]" ]
+    pre_str -> str [ label = "[\"]" ]
+    str -> str [ label = "[any but \"]\n(check length & save)" ]
+    str -> eol [ label = "[\"]\n(check name length > 0)" ]
+    eol -> eol [ label = "[space, tab]" ]
+    eol -> comment [ label = "[COMMENT_CHAR]" ]
+    comment -> comment [ label = "[any but newline]" ]
+    eol -> start [ label = "[new line]" ]
+    comment -> start [ label = "[new line]" ]
+    command -> start [ label = "[LABEL_CHAR]\n(check all in LABEL_CHARS)\n(save label)\n(header = 0)" ]
+    pre_arg [ label = "pre_arg\n(empty queue)" ]
+    command -> pre_arg [ label = "[space, tab]\nif any INSTRUCTIONS matched\n(header = 0)\n" ]
+    pre_arg -> pre_arg [ label = "[space, tab]" ]
+    pre_arg -> arg [ label = "[any but space or tab ]\n(enqueue)" ]
+    arg -> arg [ label = "[any but space, tab, newline, COMMENT_CHAR ]\n(enqueue)" ]
+    arg -> pre_arg [ label = "[SEPARATOR_CHAR]\n(check and store argument)" ]
+    arg -> post_arg [ label = "[space, tab]" ]
+    post_arg -> post_arg [ label = "[space, tab]" ]
+    post_arg -> pre_arg [ label = "[SEPARATOR_CHAR]" ]
+    post_arg -> comment [ label = "[COMMENT_CHAR]\n(check and store instruction)" ]
+    post_arg -> start [ label = "[new line]\n\n(check and store instruction)" ]
+    arg -> comment [ label = "[COMMENT_CHAR]\n(check and store instruction)" ]
+    arg -> start [ label = "[new line]\n(check and store instruction)" ]
+
+    legend[ shape = rectangle, label = "Legend:\ncondition or state name\n[character]\n(instruction)" ]
 }

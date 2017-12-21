@@ -47,6 +47,8 @@ char		cqueue_pop(t_cqueue *cqueue)
 		return (0);
 	element = cqueue->first;
 	cqueue->first = element->next;
+	if (cqueue->len == 1)
+		cqueue->last = NULL;
 	cqueue->len--;
 	c = element->c;
 	free(element);

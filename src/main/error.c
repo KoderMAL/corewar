@@ -12,10 +12,11 @@
 
 #include "main/asm.h"
 
-int		err(t_env *env, char *s)
+int		err(t_env *env, char *s, int col_back)
 {
 	env->err = 1;
 	env->err_msg = s;
+	env->col -= col_back;
 	return (1);
 }
 
