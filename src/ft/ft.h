@@ -16,11 +16,7 @@
 # include <string.h>
 
 size_t	ft_strlen(const char *s);
-void	ft_bzero(void *s, size_t n);
 int		ft_isprint(int c);
 char	*ft_strchr(const char *s, int c);
-char	**ft_strsplit(char const *s, char c);
-void	free_split(char ***split);
-char	*ft_strtrim(char const *s);
 
 #endif
