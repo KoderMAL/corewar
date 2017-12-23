@@ -14,7 +14,7 @@ t_label	*label_from_cqueue(t_cqueue *cqueue, int instruction_number)
 									 + sizeof(char) * (cqueue->len + 1));
 	if (label == NULL)
 		return (NULL);
-	label->name = (char*)((void*)label + sizeof(label));
+	label->name = (char*)label + sizeof(t_label);
 	label->len = cqueue->len;
 	ft_cqueue_move(label->name, cqueue);
 	label->instruction_number = instruction_number;
