@@ -22,13 +22,18 @@ IFLAGS = -Isrc
 OBJ_DIR = obj
 OBJ = $(addprefix $(OBJ_DIR)/, $(OBJ_TMP))
 
-all : $(NAME)
+all : $(NAME) graph
 
 $(NAME): $(OBJ)
 	$(CC) $(CFLAGS) -o $(NAME) $(OBJ)
 
 $(OBJ_DIR)/%.o: %.c $(HEADERS)
 	$(CC) -c $(CFLAGS) -o $@ $< $(IFLAGS)
+
+graph: src/parsing/graph.pdf
+
+src/parsing/graph.pdf: src/parsing/graph.gv
+	dot -Tpdf $^ -o $@
 
 clean:
 	rm -f $(OBJ)
