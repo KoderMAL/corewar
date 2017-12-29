@@ -20,7 +20,11 @@ void	state_pre_arg(t_env *env, char c)
 	cqueue_delete(&(env->characters));
 	instruction_init(&(env->instruction));
 	if (c == '\n' || c == COMMENT_CHAR)
-		err(env, "missing arguments after instruction", 0);
+	{
+		save_argument(env);
+		save_instruction(env);
+		env->state = c == '\n' ? &state_start : &state_comment;
+	}
 	else if (c == ' ' || c == '\t')
 		return ;
 	else
@@ -41,6 +45,7 @@ void	state_arg(t_env *env, char c)
 	}
 	else if (c == COMMENT_CHAR || c == '\n')
 	{
+		save_argument(env);
 		save_instruction(env);
 		env->state = c == '\n' ? &state_start : &state_comment;
 	}
@@ -59,6 +64,7 @@ void	state_post_arg(t_env *env, char c)
 	}
 	else if (c == COMMENT_CHAR || c == '\n')
 	{
+		save_argument(env);
 		save_instruction(env);
 		env->state = c == '\n' ? &state_start : &state_comment;
 	}
