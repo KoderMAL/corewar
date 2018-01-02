@@ -8,7 +8,11 @@
 
 void			instruction_init(t_instruction *instruction)
 {
-	instruction->op = NULL;;
+	if (env->op)
+	{
+		instruction->op = env->op;
+		env->op = NULL
+	}
 	pqueue_delete(&(instruction->arguments));
 }
 
