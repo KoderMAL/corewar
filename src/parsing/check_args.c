@@ -6,7 +6,7 @@
 /*   By: alalaoui <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/02 16:39:48 by alalaoui          #+#    #+#             */
-/*   Updated: 2018/01/03 18:00:58 by alalaoui         ###   ########.fr       */
+/*   Updated: 2018/01/03 18:11:43 by alalaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ static void		check_value(t_env *env, char *name)
 	}
 }
 
-void			check_label(t_env *env, t_argument *arg, t_pqueue_elem *tmp)
+void			check_label2(t_env *env, t_argument *arg, t_pqueue_elem *tmp)
 {
 	while (tmp)
 	{

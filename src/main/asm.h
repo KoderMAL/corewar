@@ -6,7 +6,7 @@
 /*   By: alalaoui <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/04 16:36:08 by alalaoui          #+#    #+#             */
-/*   Updated: 2018/01/03 16:49:15 by alalaoui         ###   ########.fr       */
+/*   Updated: 2018/01/03 18:11:53 by alalaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ t_instruction		*instruction_dup(t_instruction *instruction);
 ** from check_args.c
 */
 
-int					check_label(t_env *env, t_argument *arg, t_pqueue_elem *tmp);
+int					check_label2(t_env *env, t_argument *arg, t_pqueue_elem *tmp);
 void				check_argument(t_argument *arg, t_env *env);
 
 #endif
