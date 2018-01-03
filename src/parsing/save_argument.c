@@ -6,7 +6,7 @@
 /*   By: alalaoui <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/02 15:46:03 by alalaoui          #+#    #+#             */
-/*   Updated: 2018/01/03 18:00:24 by alalaoui         ###   ########.fr       */
+/*   Updated: 2018/01/03 18:07:24 by alalaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,12 +30,6 @@ static void		arg_save(t_pqueue *pq, t_argument *arg, int type)
 	else
 	{
 		arg->name = cqueue_join(&(env->characters));
-		tmp = arg->name;
-		tmp++;
-			if (!ft_isdigit(tmp) || ft_strlen(tmp) > 11)
-				err(env, "syntax error while parsing argument\n");
-			tmp++;
-		}
 		tmp = arg->name;
 		type == T_DIR ?	tmp++ : 0;
 		arg->value = ft_atoi(tmp);
