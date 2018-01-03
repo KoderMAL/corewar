@@ -6,7 +6,7 @@
 /*   By: alalaoui <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/02 15:46:03 by alalaoui          #+#    #+#             */
-/*   Updated: 2018/01/02 17:22:57 by alalaoui         ###   ########.fr       */
+/*   Updated: 2018/01/03 16:58:06 by alalaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,24 +22,19 @@
 
 static void		arg_save(t_pqueue *pq, t_argument *arg, int type)
 {
-	int				i;
-	t_pqueue_elem	tmp;
-	i = 0;
-	tmp = pq->first;
+	char			*tmp;
+
 	arg->type = type;
 	if (type == T_LAB)
+		arg->name = cqueue_join(&(env->characters));
+	else
 	{
-		// probablement segfault: a enregistrer autrement.
-		arg->value[0] = cqueue_join(&(env->characters));
-		arg->value[1] = '\0';
-		return ;
+		arg->name = cqueue_join(&(env->characters));
+		tmp = arg->name;
+		while (!ft_isdigit(tmp))
+			tmp++;
+		arg->value = ft_atoi(tmp);
 	}
-	while (i < pq->len)
-	{
-		arg->value[i++] = tmp->c;
-		tmp = tmp->next;
-	}
-	arg->value[i] = '\0';
 }
 
 static void		init_arg(t_env *env)
@@ -47,6 +42,10 @@ static void		init_arg(t_env *env)
 	t_argument	*arg;
 
 	arg = (t_argument*)malloc(sizeof(t_argument));
+	arg->type = 0;
+	arg->value = 0;
+	arg->name = NULL;
+	arg->label = NULL;
 	if (env->character->first->c = ':')
 		arg_save(env->instruction->arguments, arg, T_DIR);
 	else if (env->character->first->c = 'r')
