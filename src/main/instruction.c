@@ -6,14 +6,14 @@
 ** instruction->arguments must have been initialized with pqueue_init first!
 */
 
-void			instruction_init(t_instruction *instruction)
+void			instruction_init(t_env *env)
 {
 	if (env->op)
 	{
-		instruction->op = env->op;
-		env->op = NULL
+		env->instruction.op = env->op;
+		env->op = NULL;
 	}
-	pqueue_delete(&(instruction->arguments));
+	pqueue_delete(&(env->instruction.arguments));
 }
 
 /*

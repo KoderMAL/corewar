@@ -7,7 +7,7 @@ else
 endif
 
 SRC_MAIN = asm.c error.c op.c label.c argument.c instruction.c
-SRC_FT = ft_strlen.c ft_isprint.c ft_strchr.c
+SRC_FT = ft_strlen.c ft_isprint.c ft_strchr.c ft_atoi.c ft_strcmp.c ft_isdigit.c
 SRC_UTIL = cqueue.c cqueue_ft.c pqueue.c
 SRC_IO = openfile.c openfile_write.c
 SRC_PARSING = states_main.c states_header.c states_label.c states_instruction.c \

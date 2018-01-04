@@ -6,7 +6,7 @@
 /*   By: alalaoui <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/02 15:46:07 by alalaoui          #+#    #+#             */
-/*   Updated: 2018/01/02 16:14:00 by alalaoui         ###   ########.fr       */
+/*   Updated: 2018/01/04 14:07:49 by alalaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ const t_op	*match_instruction(t_env *env)
 void	state_pre_arg(t_env *env, char c)
 {
 	cqueue_delete(&(env->characters));
-	instruction_init(&(env->instruction));
+	instruction_init(env);
 	if (c == '\n' || c == COMMENT_CHAR)
 	{
 		save_argument(env);

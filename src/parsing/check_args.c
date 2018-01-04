@@ -6,11 +6,12 @@
 /*   By: alalaoui <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/02 16:39:48 by alalaoui          #+#    #+#             */
-/*   Updated: 2018/01/03 18:11:43 by alalaoui         ###   ########.fr       */
+/*   Updated: 2018/01/04 17:16:47 by alalaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "main/asm.h"
+#include <stdlib.h>
 
 /*
 ** Fonction de verification de conformite des arguments,
@@ -28,18 +29,25 @@ static void		check_value(t_env *env, char *name)
 	while (name[i])
 	{
 		if (!ft_isdigit(name[i]) || i > 11)
-			err(env, "syntax error while parsing argument\n");
+			err(env, "syntax error while parsing argument\n", 0);
 		i++;
 	}
 }
 
-void			check_label2(t_env *env, t_argument *arg, t_pqueue_elem *tmp)
+int				find_label(t_argument *arg, t_pqueue *labels)
 {
-	while (tmp)
+	t_pqueue_elem	*tmp;
+	t_label			*lab;
+	int				i;
+
+	i = 0;
+	tmp = labels->first;	
+	while (i++ < labels->len)
 	{
-		if (ft_strcmp(arg->name, tmp->name) != NULL)
+		lab = (t_label*)tmp->p;
+		if (ft_strcmp(arg->name, lab->name) == 0)
 		{
-			arg->label = tmp;
+			arg->label = tmp->p;
 			return (1);
 		}
 		tmp = tmp->next;
@@ -49,23 +57,23 @@ void			check_label2(t_env *env, t_argument *arg, t_pqueue_elem *tmp)
 
 void			check_argument(t_argument *arg, t_env *env)
 {
-	t_pqueue_elem	*tmp;
-
-	if (arg->type = T_LAB)
+	if (arg->type == T_LAB)
 	{
-		if ((tmp = labels->first) == NULL)
-			env->err(env, "label not found");
-		if (!check_label(env, arg, tmp))
+		if (env->labels.first == NULL)
+			err(env, "no label found", 0);
+		if (!find_label(arg, &env->labels))
 			write(1, "NOT FOUND LABEL(recheck_argument)\n", 30); //a supprimer plus tard
 	}
-	else if (arg_type == T_REG)
+	else if (arg->type == T_REG)
+	{
 		if (arg->value > 99 || arg->value < 0)
-			env->err(env, "reg value overflow\n");
-	else if (arg_type == T_IND)
+			err(env, "reg value overflow\n", 0);
+	}
+	else if (arg->type == T_IND)
 		check_value(env, arg->name);
-	else if (arg_type == T_DIR)
-		check_value(env, arg-name + 1);
+	else if (arg->type == T_DIR)
+		check_value(env, arg->name + 1);
 	else
-		err(env, "error while checking argument type\n");
+		err(env, "error while checking argument type\n", 0);
 	free(arg->name);
 }
