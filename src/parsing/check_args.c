@@ -6,7 +6,7 @@
 /*   By: alalaoui <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/02 16:39:48 by alalaoui          #+#    #+#             */
-/*   Updated: 2018/01/04 17:16:47 by alalaoui         ###   ########.fr       */
+/*   Updated: 2018/01/04 17:45:13 by alalaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static void		check_value(t_env *env, char *name)
 {
 	int			i;
 
-	i = 0;
+	i = 1;
 	if (name[i] == '-')
 		i++;
 	while (name[i])
