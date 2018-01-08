@@ -1,7 +1,7 @@
 #include "util/cqueue.h"
 
 /*
-** same as strcmp but comparse a string with a queue of characters
+** same as strcmp but compares a string with a queue of characters
 */
 
 int			ft_cqueue_cmp(const char *name, t_cqueue *cqueue)
