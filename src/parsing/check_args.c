@@ -6,7 +6,7 @@
 /*   By: alalaoui <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/02 16:39:48 by alalaoui          #+#    #+#             */
-/*   Updated: 2018/01/04 17:47:11 by alalaoui         ###   ########.fr       */
+/*   Updated: 2018/01/08 15:01:59 by alalaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,32 @@ static void		check_value(t_env *env, char *name)
 			err(env, "syntax error while parsing argument\n", 0);
 		i++;
 	}
+}
+
+int				find_labels(t_env *env)
+{
+	t_pqueue_elem	*arg;
+	t_pqueue_elem	*inst;
+	t_instruction	*tmp;
+	int				i;
+	int				j;
+
+	i = 0;
+	inst = env->instructions.first;
+	while (i++ < env->instructions.len)
+	{
+		j = 0;
+		tmp = inst->p;
+		arg = tmp->arguments.first->p;
+		while (j++ < tmp->arguments.len)
+		{
+			if (!find_label(arg->p, &env->labels))
+				return (0) ;
+			arg = arg->next;
+		}
+		inst = inst->next;
+	}
+	return (1);
 }
 
 int				find_label(t_argument *arg, t_pqueue *labels)
@@ -60,9 +86,7 @@ void			check_argument(t_argument *arg, t_env *env)
 	if (arg->type == T_LAB)
 	{
 		if (env->labels.first == NULL)
-			err(env, "no label found", 0);
-		if (!find_label(arg, &env->labels))
-			write(1, "NOT FOUND LABEL(recheck_argument)\n", 30); //a supprimer plus tard
+			err(env, "no labels found\n", 0);
 	}
 	else if (arg->type == T_REG)
 	{
