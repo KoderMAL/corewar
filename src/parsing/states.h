@@ -52,4 +52,10 @@ void		save_argument(t_env *env);
 
 void		save_instruction(t_env *env);
 
+/*
+** check_arguments.c
+*/
+
+int			find_labels(t_env *env);
+
 #endif
