@@ -6,7 +6,7 @@
 /*   By: alalaoui <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/04 16:36:08 by alalaoui          #+#    #+#             */
-/*   Updated: 2018/01/04 17:04:33 by alalaoui         ###   ########.fr       */
+/*   Updated: 2018/01/09 18:58:34 by dhadley          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,16 +19,24 @@
 # include "util/pqueue.h"
 # include "ft/ft.h"
 
+typedef struct		s_gap
+{
+	char			*name;
+	int				location;
+	int				size;
+}					t_gap;
+
 typedef struct		s_label
 {
 	char			*name;
-	size_t			len;
-	int				instruction_number;
+	bool			is_lab;
+	int				location;
 }					t_label;
 
 typedef struct		s_argument
 {
 	int				type;
+	int				lab_type;
 	int				value;
 	char			*name;
 	t_label			*label;
@@ -37,6 +45,7 @@ typedef struct		s_argument
 typedef struct		s_instruction
 {
 	const t_op		*op;
+	bool			is_lab;
 	t_pqueue		arguments;
 }					t_instruction;
 
@@ -52,6 +61,7 @@ typedef struct		s_env
 	int				header;
 	char			name[PROG_NAME_LENGTH];
 	char			comment[COMMENT_LENGTH];
+	char			champion[CHAMP_MAX_SIZE];
 	void			(*state)(struct s_env *env, char c);
 	t_cqueue		characters;
 	size_t			pos;
