@@ -6,7 +6,7 @@
 /*   By: alalaoui <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/02 15:46:07 by alalaoui          #+#    #+#             */
-/*   Updated: 2018/01/04 14:07:49 by alalaoui         ###   ########.fr       */
+/*   Updated: 2018/01/09 17:36:51 by alalaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,7 @@ void	state_post_arg(t_env *env, char c)
 	{
 		save_argument(env);
 		save_instruction(env);
+		printf("START\n");
 		env->state = c == '\n' ? &state_start : &state_comment;
 	}
 }
