@@ -6,7 +6,7 @@
 /*   By: alalaoui <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/04 17:48:23 by alalaoui          #+#    #+#             */
-/*   Updated: 2018/01/05 19:24:35 by alalaoui         ###   ########.fr       */
+/*   Updated: 2018/01/09 17:56:36 by alalaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@ static int		check_types(t_instruction *instruction)
 	while (instruction->op->arg_type[i])
 	{
 		a = (t_argument*)arg->p;
+	//	printf("type%s\n", a->name);
+	//	printf("YEAHYEAHYEAH%d-%d\n", a->type, instruction->op->arg_type[i]);
 		if ((a->type | instruction->op->arg_type[i])
 				!= instruction->op->arg_type[i])
 			return (-1);
@@ -41,10 +43,10 @@ static int		check_types(t_instruction *instruction)
 
 static int		check_instruction(t_instruction *instruction)
 {
-	printf("CHECK%d\nCHECK%d\n", instruction->op->n_arg, instruction->arguments.len) ;
+	printf("instruction->name:%s\n", instruction->op->name);
+	printf("CHECK%d\nCHECK%d\n", instruction->op->n_arg, instruction->arguments.len);
 	if (instruction->op->n_arg != instruction->arguments.len)
 		return (-1);
-	printf("CHECK%d\nCHECK%d\n", instruction->op->n_arg, instruction->arguments.len) ;
 	if (check_types(instruction) == -1)
 		return (-1);
 	return (1);	
@@ -56,10 +58,11 @@ void			save_instruction(t_env *env)
 
 	new = NULL;
 	if (check_instruction(&env->instruction) == -1)
-		err(env, "invalid instruction format\n", 0);
+		err(env, "invalid instruction format", 0);
 	else
 	{
 		new = instruction_dup(&env->instruction);
 		pqueue_push(&env->instructions, new);
+//		pqueue_delete(&env->instruction.arguments);
 	}
 }

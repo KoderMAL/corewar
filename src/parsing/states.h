@@ -57,5 +57,6 @@ void		save_instruction(t_env *env);
 */
 
 int			find_labels(t_env *env);
+void		check_value(t_env *env, char *name);
 
 #endif

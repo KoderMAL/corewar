@@ -6,7 +6,7 @@
 /*   By: alalaoui <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/04 15:49:30 by alalaoui          #+#    #+#             */
-/*   Updated: 2018/01/07 17:52:37 by alalaoui         ###   ########.fr       */
+/*   Updated: 2018/01/09 15:17:46 by alalaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,8 @@ static void		parse(t_env *env)
 			break ;
 		parse_char(env, c);
 	}
+	if (env->err)
+		return ;
 	if (!find_labels(env))
 		err(env, "label not found\n", 0);
 }
