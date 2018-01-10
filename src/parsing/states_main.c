@@ -23,7 +23,7 @@ void	state_start(t_env *env, char c)
 		env->state = &state_comment;
 	else
 	{
-	printf("START\n");
+		printf("START\n"); //
 		cqueue_push(&(env->characters), c);
 		env->state = &state_command_label_instruction;
 	}

@@ -14,8 +14,8 @@
 
 void		openfile_write_str(t_openfile *of, char *s, int endl)
 {
-    while (*s != '\0')
-        openfile_write_char(of, *s++);
-    if (endl)
-        openfile_write_char(of, '\n');
+	while (*s != '\0')
+		openfile_write_char(of, *s++);
+	if (endl)
+		openfile_write_char(of, '\n');
 }

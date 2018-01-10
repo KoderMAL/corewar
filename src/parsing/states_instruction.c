@@ -27,7 +27,7 @@ const t_op	*match_instruction(t_env *env)
 	return (NULL);
 }
 
-void	state_pre_arg(t_env *env, char c)
+void		state_pre_arg(t_env *env, char c)
 {
 	cqueue_delete(&(env->characters));
 	instruction_init(env);
@@ -46,7 +46,7 @@ void	state_pre_arg(t_env *env, char c)
 	}
 }
 
-void	state_arg(t_env *env, char c)
+void		state_arg(t_env *env, char c)
 {
 	if (c == ' ' || c == '\t')
 		env->state = &state_post_arg;
@@ -65,7 +65,7 @@ void	state_arg(t_env *env, char c)
 		cqueue_push(&(env->characters), c);
 }
 
-void	state_post_arg(t_env *env, char c)
+void		state_post_arg(t_env *env, char c)
 {
 	if (c == ' ' || c == '\t')
 		return ;

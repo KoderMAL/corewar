@@ -15,10 +15,10 @@
 /*
 ** Cette fonction doit prendre env->instruction,
 ** controler que l'instruction est correcte
-** puis l'ajouter a env->instructions a l'aide de 
+** puis l'ajouter a env->instructions a l'aide de
 ** instruction_dup
 */
-#include <stdio.h>
+
 static int		check_types(t_instruction *instruction)
 {
 	int				i;
@@ -43,13 +43,13 @@ static int		check_types(t_instruction *instruction)
 
 static int		check_instruction(t_instruction *instruction)
 {
-	printf("instruction->name:%s\n", instruction->op->name);
-	printf("CHECK%d\nCHECK%d\n", instruction->op->n_arg, instruction->arguments.len);
+	printf("instruction->name:%s\n", instruction->op->name); //
+	printf("CHECK%d\nCHECK%d\n", instruction->op->n_arg, instruction->arguments.len); //
 	if (instruction->op->n_arg != instruction->arguments.len)
 		return (-1);
 	if (check_types(instruction) == -1)
 		return (-1);
-	return (1);	
+	return (1);
 }
 
 void			save_instruction(t_env *env)

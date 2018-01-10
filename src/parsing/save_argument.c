@@ -27,13 +27,13 @@ static void			arg_save(t_env *env, t_argument *arg, int type)
 
 	arg->type = type;
 	if (type == T_DIR && env->characters.first->c == '%' &&
-			env->characters.first->next->c ==':')
+			env->characters.first->next->c == ':')
 		arg->name = cqueue_join(&(env->characters));
 	else
 	{
 		arg->name = cqueue_join(&(env->characters));
 		tmp = arg->name;
-		type == T_DIR ?	tmp++ : 0;
+		type == T_DIR ? tmp++ : 0;
 		arg->value = ft_atoi(tmp);
 	}
 }
@@ -82,7 +82,7 @@ static t_argument	*init_arg(t_env *env)
 	return (arg);
 }
 
-void		save_argument(t_env *env)
+void				save_argument(t_env *env)
 {
 	t_argument *arg;
 

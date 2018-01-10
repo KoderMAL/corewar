@@ -10,18 +10,6 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   check_args.c                                       :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: alalaoui <marvin@42.fr>                    +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/01/02 16:39:48 by alalaoui          #+#    #+#             */
-/*   Updated: 2018/01/09 17:31:51 by alalaoui         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "main/asm.h"
 #include <stdlib.h>
 
@@ -64,7 +52,7 @@ int				find_labels(t_env *env)
 		while (j++ < tmp->arguments.len)
 		{
 			if (!find_label(arg->p, &env->labels))
-				return (0) ;
+				return (0);
 			arg = arg->next;
 		}
 		inst = inst->next;
@@ -79,11 +67,11 @@ int				find_label(t_argument *arg, t_pqueue *labels)
 	int				i;
 
 	i = 0;
-	tmp = labels->first;	
+	tmp = labels->first;
 	while (i++ < labels->len)
 	{
 		lab = (t_label*)tmp->p;
-	printf("CHECKOUTOTUTOU\n");
+		printf("CHECKOUTOTUTOU\n"); //
 		if (ft_strcmp(arg->name, lab->name) == 0)
 		{
 			arg->label = tmp->p;
