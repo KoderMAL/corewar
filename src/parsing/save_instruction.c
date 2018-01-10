@@ -6,7 +6,7 @@
 /*   By: alalaoui <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/04 17:48:23 by alalaoui          #+#    #+#             */
-/*   Updated: 2018/01/09 17:56:36 by alalaoui         ###   ########.fr       */
+/*   Updated: 2018/01/10 13:20:38 by alalaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,8 @@ static int		check_types(t_instruction *instruction)
 
 static int		check_instruction(t_instruction *instruction)
 {
-	printf("instruction->name:%s\n", instruction->op->name); //
-	printf("CHECK%d\nCHECK%d\n", instruction->op->n_arg, instruction->arguments.len); //
+//	printf("instruction->name:%s\n", instruction->op->name);
+//	printf("CHECK%d\nCHECK%d\n", instruction->op->n_arg, instruction->arguments.len);
 	if (instruction->op->n_arg != instruction->arguments.len)
 		return (-1);
 	if (check_types(instruction) == -1)
