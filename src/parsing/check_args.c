@@ -6,7 +6,7 @@
 /*   By: alalaoui <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/09 17:32:19 by alalaoui          #+#    #+#             */
-/*   Updated: 2018/01/09 18:01:16 by alalaoui         ###   ########.fr       */
+/*   Updated: 2018/01/10 16:13:05 by alalaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ int				find_labels(t_env *env)
 	{
 		j = 0;
 		tmp = inst->p;
-		arg = tmp->arguments.first->p;
+		arg = tmp->arguments.first;
 		while (j++ < tmp->arguments.len)
 		{
 			if (!find_label(arg->p, &env->labels))
@@ -79,11 +79,11 @@ int				find_label(t_argument *arg, t_pqueue *labels)
 	int				i;
 
 	i = 0;
-	tmp = labels->first;	
+	tmp = labels->first;
 	while (i++ < labels->len)
 	{
 		lab = (t_label*)tmp->p;
-	printf("CHECKOUTOTUTOU\n");
+		printf("arg->name:%s\nlabel->name:%s\n", arg->name, lab->name);
 		if (ft_strcmp(arg->name, lab->name) == 0)
 		{
 			arg->label = tmp->p;
