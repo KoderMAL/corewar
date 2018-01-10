@@ -6,17 +6,17 @@
 /*   By: dhadley <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/09 15:26:53 by dhadley           #+#    #+#             */
-/*   Updated: 2018/01/09 21:01:02 by dhadley          ###   ########.fr       */
+/*   Updated: 2018/01/10 18:39:13 by dhadley          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "assembly.h"
 
-char	encode_param_byte(t_pqueue args)
+unsigned char	encode_param_byte(t_pqueue args)
 {
-	char		param_byte;
-	t_argument	*tmp;
-	int			i;
+	unsigned char	param_byte;
+	t_argument		*tmp;
+	int				i;
 
 	i = 0;
 	param_byte = 0;
@@ -25,43 +25,42 @@ char	encode_param_byte(t_pqueue args)
 	{
 		param_byte << 2;
 		if (tmp.type == T_REG)
-			param_byte |= 1;
+			param_byte |= REG_CODE;
 		if (tmp.type == T_DIR || (tmp.type == T_LAB && tmp.lab_type == T_DIR))
-			param_byte |= 2;
+			param_byte |= DIR_CODE;
 		if (tmp.type == T_IND || (tmp.type == T_LAB && tmp.lab_type == T_IND))
-			param_byte |= 3;
+			param_byte |= IND_CODE;
 		tmp = tmp->next;
 		i++;
 	}
-	if (i == 1)
-		param_byte << 6;
-	else if (i == 2)
-		param_byte << 4;
-	else if (i == 3)
-		param_byte << 2;
+	param_byte <<= (8 - (i * 2)); 
 	return (param_byte);
 }
 
-char	*encode_2_bytes(int value)
+void	encode_1_byte(unsigned char *champ, int *LC, int value)
 {
-	char	buf[2];
-	short	short_value;
-
-	ft_memset(buf, '\0', 2);
-	short_value = (short)value;
-	buf[0] = (short_value >> 8);
-	buf[1] = (short_value & 255);
-	return (buf);
+	if (value < 0)
+		value = ~(-value);
+	champ[(*LC)++] = (unsigned char)value;
 }
 
-char	*encode_4_bytes(int value)
+void	encode_2_bytes(unsigned char *champ, int *LC, int value)
 {
-	char	buf[4];
+	short			short_value;
 
-	ft_memset(buf, '\0', 4);
-	buf[0] = (value >> 24);
-	buf[1] = ((value >> 16) & 255);
-	buf[2] = ((value >> 8) & 255);
-	buf[3] = (value & 255);
-	return (buf);
+	if (value < 0)
+		value = ~(-value);
+	short_value = (short)value;	
+	champ[(*LC)++] = (short_value >> 8);
+	champ[(*LC)++] = (short_value & 255);
+}
+
+void	encode_4_bytes(unsigned char *champ, int *LC, int value)
+{
+	if (value < 0)
+		value = ~(-value);
+	champ[(*LC)++] = (value >> 24);
+	champ[(*LC)++] = ((value >> 16) & 255);
+	champ[(*LC)++] = ((value >> 8) & 255);
+	champ[(*LC)++] = (value & 255);
 }

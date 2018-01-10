@@ -6,7 +6,7 @@
 /*   By: dhadley <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/08 15:10:38 by dhadley           #+#    #+#             */
-/*   Updated: 2018/01/09 21:01:39 by dhadley          ###   ########.fr       */
+/*   Updated: 2018/01/10 17:31:12 by dhadley          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@ void	assemble(t_env *env);
 */
 
 void	store_location(t_env *env);
-void	(*assemble_op)(char *champ, int *LC, t_pqueue *gaps, t_pqueue args);
 
 /*
 ** from second_pass.c
@@ -34,9 +33,9 @@ void	(*assemble_op)(char *champ, int *LC, t_pqueue *gaps, t_pqueue args);
 ** from encode_bytes.c
 */
 
-char	*encode_4_bytes(int value);
-char	*encode_2_bytes(int value);
-char	encode_param_byte(t_pqueue args);
+unsigned char	*encode_4_bytes(int value);
+unsigned char	*encode_2_bytes(int value);
+unsigned char	encode_param_byte(t_pqueue args);
 
 /*
 ** conversion functions
