@@ -6,7 +6,7 @@
 /*   By: dhadley <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/10 18:39:49 by dhadley           #+#    #+#             */
-/*   Updated: 2018/01/10 18:49:11 by dhadley          ###   ########.fr       */
+/*   Updated: 2018/01/11 19:16:08 by dhadley          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	assemble_op(unsigned char *champ, int *LC, t_pqueue *gaps, t_pqueue args, t
 	while (i++ < args.len)
 	{
 		if (tmp.type == T_LAB)
-			//storegap with lab name and size 2 or 4;
+			store_gap(LC, gaps, tmp, instruction->op.has_idx);
 		else if (tmp.type == T_DIR)
 		{
 			if (instruction->op.has_idx)

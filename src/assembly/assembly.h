@@ -6,7 +6,7 @@
 /*   By: dhadley <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/08 15:10:38 by dhadley           #+#    #+#             */
-/*   Updated: 2018/01/10 17:31:12 by dhadley          ###   ########.fr       */
+/*   Updated: 2018/01/11 19:17:24 by dhadley          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,11 +23,20 @@ void	assemble(t_env *env);
 ** from first_pass.c
 */
 
-void	store_location(t_env *env);
+void	first_pass(char *champ, t_pqueue instructions, t_pqueue *gaps);
 
 /*
 ** from second_pass.c
 */
+
+void	second_pass(char *champ, t_pqueue gaps);
+
+/*
+** from store_locations.c
+*/ 
+
+void	store_label(int LC, t_label label);
+void	store_gap(int *LC, t_pqueue *gaps, t_argument *arg, int has_idx);
 
 /*
 ** from encode_bytes.c
