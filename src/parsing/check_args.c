@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: alalaoui <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/01/02 16:39:48 by alalaoui          #+#    #+#             */
-/*   Updated: 2018/01/08 15:01:59 by alalaoui         ###   ########.fr       */
+/*   Created: 2018/01/09 17:32:19 by alalaoui          #+#    #+#             */
+/*   Updated: 2018/01/10 16:13:05 by alalaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 ** Appelle err() si il y a une anomalie.
 */
 
-static void		check_value(t_env *env, char *name)
+void			check_value(t_env *env, char *name)
 {
 	int			i;
 
@@ -48,11 +48,11 @@ int				find_labels(t_env *env)
 	{
 		j = 0;
 		tmp = inst->p;
-		arg = tmp->arguments.first->p;
+		arg = tmp->arguments.first;
 		while (j++ < tmp->arguments.len)
 		{
 			if (!find_label(arg->p, &env->labels))
-				return (0) ;
+				return (0);
 			arg = arg->next;
 		}
 		inst = inst->next;
@@ -67,10 +67,11 @@ int				find_label(t_argument *arg, t_pqueue *labels)
 	int				i;
 
 	i = 0;
-	tmp = labels->first;	
+	tmp = labels->first;
 	while (i++ < labels->len)
 	{
 		lab = (t_label*)tmp->p;
+		printf("arg->name:%s\nlabel->name:%s\n", arg->name, lab->name); //
 		if (ft_strcmp(arg->name, lab->name) == 0)
 		{
 			arg->label = tmp->p;
@@ -83,7 +84,7 @@ int				find_label(t_argument *arg, t_pqueue *labels)
 
 void			check_argument(t_argument *arg, t_env *env)
 {
-	if (arg->type == T_LAB)
+	if (arg->type == T_DIR && arg->name[0] == '%' && arg->name[1] == ':')
 	{
 		if (env->labels.first == NULL)
 			err(env, "no labels found\n", 0);
@@ -99,5 +100,5 @@ void			check_argument(t_argument *arg, t_env *env)
 		check_value(env, arg->name + 1);
 	else
 		err(env, "error while checking argument type\n", 0);
-	free(arg->name);
+//	free(arg->name);
 }

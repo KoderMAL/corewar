@@ -6,7 +6,7 @@
 /*   By: alalaoui <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/04 16:36:08 by alalaoui          #+#    #+#             */
-/*   Updated: 2018/01/04 17:04:33 by alalaoui         ###   ########.fr       */
+/*   Updated: 2018/01/10 16:34:13 by stoupin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,8 @@ int					err_display(t_env *env);
 ** from label.c
 */
 
-t_label				*label_from_cqueue(t_cqueue *cqueue, int instruction_number);
+t_label				*label_from_cqueue(t_cqueue *cqueue,
+										int instruction_number);
 
 /*
 ** from instruction.c
