@@ -6,7 +6,7 @@
 /*   By: alalaoui <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/04 16:36:08 by alalaoui          #+#    #+#             */
-/*   Updated: 2018/01/09 18:58:34 by dhadley          ###   ########.fr       */
+/*   Updated: 2018/01/11 19:18:52 by dhadley          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ typedef struct		s_gap
 	char			*name;
 	int				location;
 	int				size;
+	t_label			*label;
 }					t_gap;
 
 typedef struct		s_label
