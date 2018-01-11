@@ -6,7 +6,7 @@
 /*   By: alalaoui <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/09 17:32:19 by alalaoui          #+#    #+#             */
-/*   Updated: 2018/01/11 18:38:29 by alalaoui         ###   ########.fr       */
+/*   Updated: 2018/01/11 19:16:14 by alalaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,6 @@ int				find_label(t_argument *arg, t_pqueue *labels)
 	while (i++ < labels->len)
 	{
 		lab = (t_label*)tmp->p;
-		printf("arg->name:%s\nlabel->name:%s\n", arg->name, lab->name);
 		if (ft_strcmp(arg->name + 2, lab->name) == 0)
 		{
 			arg->label = tmp->p;
@@ -85,8 +84,8 @@ void			check_argument(t_argument *arg, t_env *env)
 {
 	if (arg->type == T_LAB && arg->lab_type == T_DIR)
 	{
-		if (env->labels.first == NULL)
-			err(env, "no labels found\n", 0);
+//		if (env->labels.first == NULL)
+//			err(env, "no labels found\n", 0);
 	}
 	else if (arg->type == T_REG)
 	{
