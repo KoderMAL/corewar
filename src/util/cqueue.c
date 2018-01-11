@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cqueue.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alalaoui <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: stoupin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/12/06 13:49:27 by alalaoui          #+#    #+#             */
-/*   Updated: 2017/12/06 15:41:28 by alalaoui         ###   ########.fr       */
+/*   Created: 2018/01/10 16:22:34 by stoupin           #+#    #+#             */
+/*   Updated: 2018/01/10 16:23:23 by stoupin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ int			cqueue_push(t_cqueue *cqueue, char c)
 	element->c = c;
 	element->next = NULL;
 	if (cqueue->len == 0)
-   		cqueue->first = element;
+		cqueue->first = element;
 	else
 		cqueue->last->next = element;
 	cqueue->last = element;
@@ -77,7 +77,7 @@ char		cqueue_pop(t_cqueue *cqueue)
 char		*cqueue_join(t_cqueue *cqueue)
 {
 	char	*joined;
-	int 	copied;
+	int		copied;
 
 	copied = 0;
 	joined = (char*)malloc(sizeof(char) * (cqueue->len + 1));

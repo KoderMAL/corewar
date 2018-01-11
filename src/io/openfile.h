@@ -27,7 +27,7 @@ void				openfile_init(t_openfile *of, int fd);
 int					openfile_read_char(t_openfile *of, char *c);
 void				openfile_write_char(t_openfile *of, char c);
 void				openfile_flush(t_openfile *of);
-void				openfile_write_str(t_openfile *fd, char *str, int end);
-void				openfile_write_nbr(t_openfile *fd, int *nbr, int end);
+void				openfile_write_str(t_openfile *fd, char *str, int endl);
+void				openfile_write_nbr(t_openfile *fd, int nbr, int endl);
 
 #endif

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   states.h                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: stoupin <marvin@42.fr>                     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/01/10 16:31:44 by stoupin           #+#    #+#             */
+/*   Updated: 2018/01/10 16:31:45 by stoupin          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef STATES_H
 # define STATES_H
 
@@ -31,8 +43,8 @@ int			check_label(t_env *env);
 
 const t_op	*match_instruction(t_env *env);
 void		state_pre_arg(t_env *env, char c);
-void	state_arg(t_env *env, char c);
-void	state_post_arg(t_env *env, char c);
+void		state_arg(t_env *env, char c);
+void		state_post_arg(t_env *env, char c);
 
 /*
 ** save_label.c

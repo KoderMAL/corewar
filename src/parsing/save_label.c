@@ -21,8 +21,7 @@ void	save_label(t_env *env)
 	{
 		error = pqueue_push(
 				&(env->labels),
-				label_from_cqueue(&(env->characters), env->instructions.len)
-				);
+				label_from_cqueue(&(env->characters), env->instructions.len));
 		if (error)
 			err(env, "memory error", -1);
 	}

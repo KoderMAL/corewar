@@ -1,7 +1,19 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   cqueue_ft.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: stoupin <marvin@42.fr>                     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/01/10 16:21:00 by stoupin           #+#    #+#             */
+/*   Updated: 2018/01/10 16:21:01 by stoupin          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "util/cqueue.h"
 
 /*
-** same as strcmp but comparse a string with a queue of characters
+** same as strcmp but compares a string with a queue of characters
 */
 
 int			ft_cqueue_cmp(const char *name, t_cqueue *cqueue)

@@ -34,7 +34,7 @@ static void			arg_save(t_argument *arg, int type)
 	else
 	{
 		tmp = arg->name;
-		type == T_DIR ?	tmp++ : 0;
+		type == T_DIR ? tmp++ : 0;
 		arg->value = ft_atoi(tmp);
 	}
 }
@@ -76,7 +76,7 @@ static t_argument	*init_arg(t_env *env)
 	return (arg);
 }
 
-void		save_argument(t_env *env)
+void				save_argument(t_env *env)
 {
 	t_argument *arg;
 

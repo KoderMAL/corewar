@@ -42,7 +42,7 @@ int			pqueue_push(t_pqueue *pqueue, void *p)
 	element->p = p;
 	element->next = NULL;
 	if (pqueue->len == 0)
-   		pqueue->first = element;
+		pqueue->first = element;
 	else
 		pqueue->last->next = element;
 	pqueue->last = element;
