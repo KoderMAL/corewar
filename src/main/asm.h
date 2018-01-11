@@ -6,7 +6,7 @@
 /*   By: alalaoui <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/04 16:36:08 by alalaoui          #+#    #+#             */
-/*   Updated: 2018/01/04 17:04:33 by alalaoui         ###   ########.fr       */
+/*   Updated: 2018/01/11 16:51:51 by alalaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,16 +28,18 @@ typedef struct		s_label
 
 typedef struct		s_argument
 {
-	int				type;
-	int				value;
 	char			*name;
+	int				type;
+	int				lab_type;
+	int				value;
 	t_label			*label;
 }					t_argument;
 
 typedef struct		s_instruction
 {
 	const t_op		*op;
-	t_pqueue		arguments;
+	int				len;
+	t_argument		arguments[4];
 }					t_instruction;
 
 typedef struct		s_env
@@ -73,6 +75,7 @@ int					err_display(t_env *env);
 */
 
 t_label				*label_from_cqueue(t_cqueue *cqueue, int instruction_number);
+t_argument			*arg_from_cqueue(t_cqueue *cqueue);
 
 /*
 ** from instruction.c

@@ -6,7 +6,7 @@
 /*   By: alalaoui <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/04 15:49:30 by alalaoui          #+#    #+#             */
-/*   Updated: 2018/01/09 15:17:46 by alalaoui         ###   ########.fr       */
+/*   Updated: 2018/01/11 18:15:41 by alalaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,9 @@
 
 static void		env_initialization(t_env *env)
 {
+	int			i;
+
+	i = 0;
 	openfile_init(&(env->stdout), STDOUT_FILENO);
 	openfile_init(&(env->stderr), STDERR_FILENO);
 	env->header = 1;
@@ -30,7 +33,6 @@ static void		env_initialization(t_env *env)
 	env->op = NULL;
 	pqueue_init(&(env->labels));
 	pqueue_init(&(env->instructions));
-	pqueue_init(&(env->instruction.arguments));
 }
 
 static void		env_clean(t_env *env)
@@ -41,7 +43,7 @@ static void		env_clean(t_env *env)
 	cqueue_delete(&(env->characters));
 	pqueue_delete(&(env->labels));
 	pqueue_delete(&(env->instructions));
-	pqueue_delete(&(env->instruction.arguments));
+//	pqueue_delete(&(env->instruction.arguments));
 }
 
 static int		parse_char(t_env *env, char c)

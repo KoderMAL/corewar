@@ -6,7 +6,7 @@
 /*   By: alalaoui <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/09 17:32:19 by alalaoui          #+#    #+#             */
-/*   Updated: 2018/01/10 16:13:05 by alalaoui         ###   ########.fr       */
+/*   Updated: 2018/01/11 18:38:29 by alalaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ void			check_value(t_env *env, char *name)
 
 int				find_labels(t_env *env)
 {
-	t_pqueue_elem	*arg;
+	t_argument		*arg;
 	t_pqueue_elem	*inst;
 	t_instruction	*tmp;
 	int				i;
@@ -60,12 +60,11 @@ int				find_labels(t_env *env)
 	{
 		j = 0;
 		tmp = inst->p;
-		arg = tmp->arguments.first;
-		while (j++ < tmp->arguments.len)
+		while (j++ < tmp->len)
 		{
-			if (!find_label(arg->p, &env->labels))
-				return (0) ;
-			arg = arg->next;
+			arg = &tmp->arguments[j];
+			if (!find_label(arg, &env->labels))
+				return (0);
 		}
 		inst = inst->next;
 	}
@@ -84,7 +83,7 @@ int				find_label(t_argument *arg, t_pqueue *labels)
 	{
 		lab = (t_label*)tmp->p;
 		printf("arg->name:%s\nlabel->name:%s\n", arg->name, lab->name);
-		if (ft_strcmp(arg->name, lab->name) == 0)
+		if (ft_strcmp(arg->name + 2, lab->name) == 0)
 		{
 			arg->label = tmp->p;
 			return (1);
@@ -96,7 +95,7 @@ int				find_label(t_argument *arg, t_pqueue *labels)
 
 void			check_argument(t_argument *arg, t_env *env)
 {
-	if (arg->type == T_DIR && arg->name[0] == '%' && arg->name[1] == ':')
+	if (arg->type == T_LAB && arg->lab_type == T_DIR)
 	{
 		if (env->labels.first == NULL)
 			err(env, "no labels found\n", 0);

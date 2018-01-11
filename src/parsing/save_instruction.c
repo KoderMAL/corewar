@@ -6,7 +6,7 @@
 /*   By: alalaoui <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/04 17:48:23 by alalaoui          #+#    #+#             */
-/*   Updated: 2018/01/10 13:20:38 by alalaoui         ###   ########.fr       */
+/*   Updated: 2018/01/11 18:43:27 by alalaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,30 +22,39 @@
 static int		check_types(t_instruction *instruction)
 {
 	int				i;
-	t_pqueue_elem	*arg;
-	t_argument		*a;
+	int				j;
+	t_argument		*arg;
+	int				lab_type;
 
-	arg = instruction->arguments.first;
 	i = 0;
+	j = 0;
+	lab_type = 0;
 	while (instruction->op->arg_type[i])
 	{
-		a = (t_argument*)arg->p;
-	//	printf("type%s\n", a->name);
-	//	printf("YEAHYEAHYEAH%d-%d\n", a->type, instruction->op->arg_type[i]);
-		if ((a->type | instruction->op->arg_type[i])
-				!= instruction->op->arg_type[i])
-			return (-1);
-		arg = arg->next;
+		arg = &instruction->arguments[j];
+		if (arg->type == T_LAB)
+		{
+			if ((arg->lab_type | instruction->op->arg_type[i])
+					!= instruction->op->arg_type[i])
+				return (-1);
+
+		}
+		else
+		{
+			if ((arg->type | instruction->op->arg_type[i])
+					!= instruction->op->arg_type[i])
+				return (-1);
+		}
 		i++;
+		j++;
 	}
 	return (1);
 }
 
 static int		check_instruction(t_instruction *instruction)
 {
-//	printf("instruction->name:%s\n", instruction->op->name);
-//	printf("CHECK%d\nCHECK%d\n", instruction->op->n_arg, instruction->arguments.len);
-	if (instruction->op->n_arg != instruction->arguments.len)
+	//	printf("CHECK-%d-%d\n",instruction->op->n_arg, instruction->len);
+	if (instruction->op->n_arg != instruction->len)
 		return (-1);
 	if (check_types(instruction) == -1)
 		return (-1);
@@ -63,6 +72,5 @@ void			save_instruction(t_env *env)
 	{
 		new = instruction_dup(&env->instruction);
 		pqueue_push(&env->instructions, new);
-//		pqueue_delete(&env->instruction.arguments);
 	}
 }
