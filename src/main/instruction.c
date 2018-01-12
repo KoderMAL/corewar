@@ -26,7 +26,6 @@ void			instruction_init(t_env *env)
 		env->instruction.len = 0;
 		env->op = NULL;
 	}
-//	(&(env->instruction.arguments));
 }
 
 /*

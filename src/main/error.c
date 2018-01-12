@@ -16,13 +16,26 @@ int		err(t_env *env, char *s, int col_back)
 {
 	env->err = 1;
 	env->err_msg = s;
-	env->col -= col_back;
+	if (col_back < 0)
+		env->col = -1;
+	else
+		env->col -= col_back;
 	return (1);
 }
 
 int		err_display(t_env *env)
 {
 	if (env->err)
+	{
+		openfile_write_str(&(env->stderr), "Error: ", 0);
 		openfile_write_str(&(env->stderr), env->err_msg, 1);
+	}
+	if (env->err && env->col >= 0)
+	{
+		openfile_write_str(&(env->stderr), "at line ", 0);
+		openfile_write_nbr(&(env->stderr), env->line, 0);
+		openfile_write_str(&(env->stderr), ", column ", 0);
+		openfile_write_nbr(&(env->stderr), env->col, 1);
+	}
 	return (env->err);
 }

@@ -12,7 +12,7 @@
 
 #include "ft.h"
 
-static int		ft_tnrvfs(int c)
+static int		ft_isspace(int c)
 {
 	if (c == '\t' || c == '\n' || c == '\r' || c == '\v' || c == '\f'
 			|| c == ' ')
@@ -27,7 +27,7 @@ int				ft_atoi(char *str)
 
 	convert = 0;
 	neg = 0;
-	while (ft_tnrvfs(*str))
+	while (ft_isspace(*str))
 		str++;
 	if (*str == '-')
 	{

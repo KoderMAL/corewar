@@ -14,10 +14,6 @@
 #include "asm.h"
 #include "util/cqueue.h"
 
-/*
-** duplicates an argument
-*/
-
 t_argument	*arg_from_cqueue(t_cqueue *cqueue)
 {
 	t_argument	*argument;
@@ -34,6 +30,10 @@ t_argument	*arg_from_cqueue(t_cqueue *cqueue)
 	argument->label = NULL;
 	return (argument);
 }
+
+/*
+** duplicates an argument
+*/
 
 t_argument	*argument_dup(t_argument *argument)
 {

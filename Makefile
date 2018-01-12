@@ -1,7 +1,7 @@
 NAME = asm
 CC = gcc
 ifeq ($(DEBUG),yes)
-	CFLAGS = -Wall -Wextra -g -O0 -fsanitize=address
+	CFLAGS = -Wall -Wextra -g -O0
 else
 	CFLAGS = -Ofast -march=native -Wall -Wextra
 endif

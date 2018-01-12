@@ -17,9 +17,6 @@
 
 static void		env_initialization(t_env *env)
 {
-	int			i;
-
-	i = 0;
 	openfile_init(&(env->stdout), STDOUT_FILENO);
 	openfile_init(&(env->stderr), STDERR_FILENO);
 	env->header = 1;
@@ -43,7 +40,6 @@ static void		env_clean(t_env *env)
 	cqueue_delete(&(env->characters));
 	pqueue_delete(&(env->labels));
 	pqueue_delete(&(env->instructions));
-//	pqueue_delete(&(env->instruction.arguments));
 }
 
 static int		parse_char(t_env *env, char c)
@@ -85,7 +81,7 @@ static void		parse(t_env *env)
 	if (env->err)
 		return ;
 	if (!find_labels(env))
-		err(env, "label not found\n", 0);
+		err(env, "label not found", -1);
 }
 
 int				main(int ac, char **av)
@@ -99,7 +95,7 @@ int				main(int ac, char **av)
 		openfile_write_str(&(env.stdout), "Usage: ", 0);
 		openfile_write_str(&(env.stdout), av[0], 0);
 		openfile_write_str(&(env.stdout), " file.s", 1);
-		err(&env, "", 0);
+		err(&env, "", -1);
 	}
 	fd = -1;
 	if (env.err == 0 && (fd = open(av[1], O_RDONLY)) < 2)

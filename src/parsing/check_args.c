@@ -29,7 +29,7 @@ void			check_value(t_env *env, char *name)
 	while (name[i])
 	{
 		if (!ft_isdigit(name[i]) || i > 11)
-			err(env, "syntax error while parsing argument\n", 0);
+			err(env, "syntax error while parsing argument", i);
 		i++;
 	}
 }
@@ -90,13 +90,13 @@ void			check_argument(t_argument *arg, t_env *env)
 	else if (arg->type == T_REG)
 	{
 		if (arg->value > 99 || arg->value < 0)
-			err(env, "reg value overflow\n", 0);
+			err(env, "reg value overflow", 0);
 	}
 	else if (arg->type == T_IND)
 		check_value(env, arg->name);
 	else if (arg->type == T_DIR)
 		check_value(env, arg->name + 1);
 	else
-		err(env, "error while checking argument type\n", 0);
+		err(env, "error while checking argument type", 0);
 //	free(arg->name);
 }
