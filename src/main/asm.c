@@ -19,6 +19,7 @@ static void		env_initialization(t_env *env)
 {
 	openfile_init(&(env->stdout), STDOUT_FILENO);
 	openfile_init(&(env->stderr), STDERR_FILENO);
+	crc32_init(&(env->hash_env));
 	env->header = 1;
 	env->state = &state_start;
 	env->line = 0;

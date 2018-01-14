@@ -18,6 +18,7 @@
 # include "util/cqueue.h"
 # include "util/pqueue.h"
 # include "ft/ft.h"
+# include "hash/crc32.h"
 
 typedef struct		s_label
 {
@@ -47,6 +48,7 @@ typedef struct		s_env
 	t_openfile		input;
 	t_openfile		stdout;
 	t_openfile		stderr;
+	t_hash_env		hash_env;
 	int				line;
 	int				col;
 	int				err;
