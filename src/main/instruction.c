@@ -27,7 +27,6 @@ void			instruction_init(t_env *env)
 		env->instruction.is_lab = 0;
 		env->op = NULL;
 	}
-//	(&(env->instruction.arguments));
 }
 
 /*

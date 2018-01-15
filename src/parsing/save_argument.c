@@ -72,7 +72,7 @@ static t_argument	*init_arg(t_env *env)
 	else if (arg->name[0] == ':')
 		arg_save(arg, T_LAB);
 	else
-		err(env, "error while parsing arg\n", env->characters.len);
+		err(env, "error while parsing arg", env->characters.len);
 	return (arg);
 }
 
