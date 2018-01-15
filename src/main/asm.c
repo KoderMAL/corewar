@@ -6,7 +6,7 @@
 /*   By: alalaoui <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/04 15:49:30 by alalaoui          #+#    #+#             */
-/*   Updated: 2018/01/15 17:40:56 by dhadley          ###   ########.fr       */
+/*   Updated: 2018/01/15 18:30:44 by dhadley          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,10 +106,8 @@ int				main(int ac, char **av)
 	char *tmp;
 	tmp = (char *)malloc(sizeof(char) * ft_strlen(av[1]) + 3);
 	ft_strcpy(tmp, av[1]);
-	tmp[ft_strlen(av[1])] = 'c';
-	tmp[ft_strlen(av[1] + 1)] = 'o';
-	tmp[ft_strlen(av[1]) + 2] = 'r';
-	tmp[ft_strlen(av[1]) + 3] = '\0';
+	tmp[ft_strlen(av[1]) - 1] = 'c';
+	tmp[ft_strlen(av[1])] = '\0';
 	env.file_name = tmp;
 
 
@@ -119,7 +117,8 @@ int				main(int ac, char **av)
 		parse(&env);
 	if (fd >= 2)
 		close(fd);
-//	create_champion(&env);
+	assemble(&env);
+	init_cor(&env);
 	env_clean(&env);
 	return (0);
 }

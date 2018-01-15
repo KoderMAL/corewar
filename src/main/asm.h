@@ -6,7 +6,7 @@
 /*   By: alalaoui <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/04 16:36:08 by alalaoui          #+#    #+#             */
-/*   Updated: 2018/01/15 17:40:39 by dhadley          ###   ########.fr       */
+/*   Updated: 2018/01/15 17:57:22 by dhadley          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,5 +105,16 @@ t_instruction		*instruction_dup(t_instruction *instruction);
 
 int					find_label(t_argument *arg, t_pqueue *labels);
 void				check_argument(t_argument *arg, t_env *env);
+
+/*
+** from make_cor.c
+*/
+
+void				init_cor(t_env *env);
+
+//from space
+
+void				assemble(t_env *env);
+
 
 #endif

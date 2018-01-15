@@ -6,7 +6,7 @@
 /*   By: dhadley <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/07 17:28:49 by dhadley           #+#    #+#             */
-/*   Updated: 2018/01/15 15:37:58 by dhadley          ###   ########.fr       */
+/*   Updated: 2018/01/15 17:44:03 by dhadley          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ void	first_pass(unsigned char *champ, t_pqueue instructions, t_pqueue *gaps)
 	while (i < instructions.len)
 	{
 		if (LC > CHAMP_MAX_SIZE)
+			;
 			//return error (size of champion is too big);
 		if (((t_instruction *)elem->p)->is_lab == false)
 		{

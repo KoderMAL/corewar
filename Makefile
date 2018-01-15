@@ -6,7 +6,7 @@ else
 	CFLAGS = -Ofast -march=native -Wall -Wextra
 endif
 
-SRC_MAIN = asm.c error.c op.c label.c argument.c instruction.c
+SRC_MAIN = asm.c error.c op.c label.c argument.c instruction.c make_cor.c
 SRC_FT = ft_strlen.c ft_isprint.c ft_strchr.c ft_atoi.c ft_strcmp.c ft_isdigit.c\
 		 ft_strcpy.c ft_memset.c
 SRC_UTIL = cqueue.c cqueue_ft.c pqueue.c

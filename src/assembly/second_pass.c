@@ -6,7 +6,7 @@
 /*   By: dhadley <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/11 19:05:21 by dhadley           #+#    #+#             */
-/*   Updated: 2018/01/15 12:08:10 by dhadley          ###   ########.fr       */
+/*   Updated: 2018/01/15 17:47:22 by dhadley          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,16 +17,18 @@ void	second_pass(unsigned char *champ, t_pqueue gaps)
 	int		i;
 	int		value;
 	int		LC;
-	t_gap	*tmp;
+	t_pqueue_elem	*tmp;
+	t_gap	*gap;
 
 	i = 0;
 	LC = 0;
-	tmp = gaps->first->p;
+	tmp = gaps.first;
 	while (i < gaps.len)
 	{
-		LC = tmp.location;
-		value = tmp->label.location - tmp.location;
-		if (tmp.size == DIR_SIZE)
+		gap = tmp->p;
+		LC = gap->location;
+		value = gap->label->location - gap->location;
+		if (gap->size == DIR_SIZE)
 			encode_4_bytes(champ, &LC, value);
 		else
 			encode_2_bytes(champ, &LC, value);
