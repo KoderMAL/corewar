@@ -6,7 +6,7 @@
 /*   By: alalaoui <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/04 15:49:30 by alalaoui          #+#    #+#             */
-/*   Updated: 2018/01/11 18:15:41 by alalaoui         ###   ########.fr       */
+/*   Updated: 2018/01/15 17:33:42 by alalaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,6 @@ static void		env_clean(t_env *env)
 	cqueue_delete(&(env->characters));
 	pqueue_delete(&(env->labels));
 	pqueue_delete(&(env->instructions));
-//	pqueue_delete(&(env->instruction.arguments));
 }
 
 static int		parse_char(t_env *env, char c)

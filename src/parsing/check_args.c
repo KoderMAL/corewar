@@ -6,7 +6,7 @@
 /*   By: alalaoui <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/09 17:32:19 by alalaoui          #+#    #+#             */
-/*   Updated: 2018/01/11 19:16:14 by alalaoui         ###   ########.fr       */
+/*   Updated: 2018/01/15 17:30:46 by alalaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 #include <stdlib.h>
 
 /*
-** Fonction de verification de conformite des arguments,
-** prend un t_argument.
-** Appelle err() si il y a une anomalie.
-*/
+ ** Fonction de verification de conformite des arguments,
+ ** prend un t_argument.
+ ** Appelle err() si il y a une anomalie.
+ */
 
 void			check_value(t_env *env, char *name)
 {
@@ -48,11 +48,17 @@ int				find_labels(t_env *env)
 	{
 		j = 0;
 		tmp = inst->p;
-		while (j++ < tmp->len)
+		if (tmp->is_lab == 0)
 		{
-			arg = &tmp->arguments[j];
-			if (!find_label(arg, &env->labels))
-				return (0);
+			while (j < tmp->len)
+			{
+				arg = tmp->arguments[j++];
+				if (arg->type == T_LAB)
+				{
+					if (!find_label(arg, &env->labels))
+						return (0);
+				}
+			}
 		}
 		inst = inst->next;
 	}
@@ -69,7 +75,7 @@ int				find_label(t_argument *arg, t_pqueue *labels)
 	tmp = labels->first;
 	while (i++ < labels->len)
 	{
-		lab = (t_label*)tmp->p;
+		lab = (t_label*)(tmp->p);
 		if (ft_strcmp(arg->name + 2, lab->name) == 0)
 		{
 			arg->label = tmp->p;
@@ -84,8 +90,8 @@ void			check_argument(t_argument *arg, t_env *env)
 {
 	if (arg->type == T_LAB && arg->lab_type == T_DIR)
 	{
-//		if (env->labels.first == NULL)
-//			err(env, "no labels found\n", 0);
+		//		if (env->labels.first == NULL)
+		//			err(env, "no labels found\n", 0);
 	}
 	else if (arg->type == T_REG)
 	{
@@ -98,5 +104,5 @@ void			check_argument(t_argument *arg, t_env *env)
 		check_value(env, arg->name + 1);
 	else
 		err(env, "error while checking argument type\n", 0);
-//	free(arg->name);
+	//	free(arg->name);
 }

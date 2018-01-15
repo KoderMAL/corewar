@@ -6,7 +6,7 @@
 /*   By: alalaoui <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/02 15:46:03 by alalaoui          #+#    #+#             */
-/*   Updated: 2018/01/11 18:43:16 by alalaoui         ###   ########.fr       */
+/*   Updated: 2018/01/15 17:27:33 by alalaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,5 +87,5 @@ void				save_argument(t_env *env)
 	if (env->instruction.len >= env->instruction.op->n_arg)
 		err(env, "Too many arguments!", 0);
 	else
-		env->instruction.arguments[env->instruction.len++] = *arg;
+		env->instruction.arguments[env->instruction.len++] = arg;
 }
