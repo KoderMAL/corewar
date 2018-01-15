@@ -1,3 +1,5 @@
 /asm
 /.vscode
 Resources/*
+/test
+/.vscode

@@ -6,7 +6,7 @@
 /*   By: alalaoui <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/06 13:49:27 by alalaoui          #+#    #+#             */
-/*   Updated: 2017/12/06 15:41:28 by alalaoui         ###   ########.fr       */
+/*   Updated: 2018/01/10 16:35:05 by alalaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ int			pqueue_push(t_pqueue *pqueue, void *p)
 	element->p = p;
 	element->next = NULL;
 	if (pqueue->len == 0)
-   		pqueue->first = element;
+		pqueue->first = element;
 	else
 		pqueue->last->next = element;
 	pqueue->last = element;

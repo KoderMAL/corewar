@@ -6,7 +6,7 @@
 /*   By: zaz <marvin@42.fr>                         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/10/04 11:33:27 by zaz               #+#    #+#             */
-/*   Updated: 2018/01/10 18:50:59 by dhadley          ###   ########.fr       */
+/*   Updated: 2018/01/15 10:37:07 by dhadley          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@
 */
 
 # define IND_SIZE				2
-# define REG_SIZE				1
-# define DIR_SIZE				4
+# define REG_SIZE				4
+# define DIR_SIZE				REG_SIZE
 
 # define REG_CODE				1
 # define DIR_CODE				2
@@ -86,3 +86,4 @@ extern const char	*g_comment_cmd;
 extern const char	*g_label_chars;
 
 #endif
+>>>>>>> master

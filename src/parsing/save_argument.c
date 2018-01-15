@@ -6,7 +6,7 @@
 /*   By: alalaoui <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/02 15:46:03 by alalaoui          #+#    #+#             */
-/*   Updated: 2018/01/04 14:40:34 by alalaoui         ###   ########.fr       */
+/*   Updated: 2018/01/11 18:43:16 by alalaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,51 +21,71 @@
 ** argument_dup.
 */
 
-static void			arg_save(t_env *env, t_argument *arg, int type)
+static void			arg_save(t_argument *arg, int type)
 {
 	char			*tmp;
 
 	arg->type = type;
-	if (type == T_LAB)
-		arg->name = cqueue_join(&(env->characters));
+	if (type == T_LAB && arg->name[0] == '%' &&
+			arg->name[1] ==':')
+		arg->lab_type = T_DIR;
+	else if (type == T_LAB && arg->name[0] == ':')
+		arg->lab_type = T_IND;
 	else
 	{
-		arg->name = cqueue_join(&(env->characters));
 		tmp = arg->name;
-		type == T_DIR ?	tmp++ : 0;
+		type == T_DIR ? tmp++ : 0;
 		arg->value = ft_atoi(tmp);
 	}
+}
+
+static int			check_ind(t_argument *argument)
+{
+	int				i;
+
+	i = 0;
+	if (argument->name[0] == '-')
+		i++;
+	while (argument->name[i])
+	{
+		if (!ft_isdigit(argument->name[i]))
+			return (0);
+	}
+	return (1);
 }
 
 static t_argument	*init_arg(t_env *env)
 {
 	t_argument	*arg;
 
-	arg = (t_argument*)malloc(sizeof(t_argument));
-	arg->type = 0;
-	arg->value = 0;
-	arg->name = NULL;
-	arg->label = NULL;
-	if (env->characters.first->c == ':')
-		arg_save(env, arg, T_DIR);
-	else if (env->characters.first->c == 'r')
-		arg_save(env, arg, T_REG);
-	else if (env->characters.first->c == '%' &&
-			env->characters.first->next->c == ':')
-		arg_save(env, arg, T_LAB);
-	else if (env->characters.first->c == '%')
-		arg_save(env, arg, T_IND);
+	if ((arg = arg_from_cqueue(&(env->characters))) == NULL)
+		return (NULL);
+	if (arg->name[0] == 'r')
+		arg_save(arg, T_REG);
+	else if (arg->name[0] == '%' &&
+			arg->name[1] == ':')
+		arg_save(arg, T_LAB);
+	else if (arg->name[0] == '%')
+		arg_save(arg, T_DIR);
+	else if (arg->name[0] == ':' || check_ind(arg))
+		arg_save(arg, T_IND);
+	else if (arg->name[0] == ':')
+		arg_save(arg, T_LAB);
 	else
-		err(env, "error while parsing arg\n", env->characters.len);
+		err(env, "error while parsing arg", env->characters.len);
 	return (arg);
 }
 
-void		save_argument(t_env *env)
+void				save_argument(t_env *env)
 {
 	t_argument *arg;
-	
+
 	arg = init_arg(env);
 	!env->err ? check_argument(arg, env) : 0;
-	!env->err ? pqueue_push(&(env->instruction.arguments), arg) :
-		pqueue_delete(&(env->instruction.arguments));
+	if (env->err)
+		return ;
+	if (env->instruction.len >= env->instruction.op->n_arg)
+		err(env, "Too many arguments!", 0);
+	else
+		env->instruction.arguments[env->instruction.len++] = *arg;
 }

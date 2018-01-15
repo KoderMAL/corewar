@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cqueue.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alalaoui <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: stoupin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/12/06 13:50:22 by alalaoui          #+#    #+#             */
-/*   Updated: 2017/12/19 16:31:50 by alalaoui         ###   ########.fr       */
+/*   Created: 2018/01/10 16:21:55 by stoupin           #+#    #+#             */
+/*   Updated: 2018/01/10 16:22:59 by stoupin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 typedef struct	s_cqueue_elem
 {
-	char				c;
+	char					c;
 	struct s_cqueue_elem	*next;
 }				t_cqueue_elem;
 

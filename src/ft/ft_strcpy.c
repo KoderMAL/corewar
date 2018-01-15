@@ -1,26 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft.h                                               :+:      :+:    :+:   */
+/*   ft_strcpy.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: alalaoui <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/12/04 16:36:08 by alalaoui          #+#    #+#             */
-/*   Updated: 2018/01/11 14:13:09 by alalaoui         ###   ########.fr       */
+/*   Created: 2017/04/12 20:52:44 by alalaoui          #+#    #+#             */
+/*   Updated: 2018/01/11 14:12:41 by alalaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_H
-# define FT_H
+#include "ft.h"
 
-# include <string.h>
+/*
+** On initialise une memoire result pour garder l'adresse du premier element
+*/
 
-size_t	ft_strlen(const char *s);
-int		ft_isprint(int c);
-char	*ft_strchr(const char *s, int c);
-int		ft_atoi(char *str);
-int		ft_isdigit(int c);
-int		ft_strcmp(const char *s1, const char *s2);
-char	*ft_strcpy(char *dst, const char *src);
+char		*ft_strcpy(char *dst, const char *src)
+{
+	char	*result;
 
-#endif
+	result = dst;
+	while (*src != '\0')
+		*dst++ = *src++;
+	*dst = '\0';
+	return (result);
+}

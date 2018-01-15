@@ -6,7 +6,7 @@
 /*   By: alalaoui <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/04 15:49:30 by alalaoui          #+#    #+#             */
-/*   Updated: 2017/12/08 18:46:10 by alalaoui         ###   ########.fr       */
+/*   Updated: 2018/01/11 18:15:41 by alalaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ static void		env_initialization(t_env *env)
 {
 	openfile_init(&(env->stdout), STDOUT_FILENO);
 	openfile_init(&(env->stderr), STDERR_FILENO);
+	crc32_init(&(env->hash_env));
 	env->header = 1;
 	env->state = &state_start;
 	env->line = 0;
@@ -30,7 +31,6 @@ static void		env_initialization(t_env *env)
 	env->op = NULL;
 	pqueue_init(&(env->labels));
 	pqueue_init(&(env->instructions));
-	pqueue_init(&(env->instruction.arguments));
 }
 
 static void		env_clean(t_env *env)
@@ -41,7 +41,6 @@ static void		env_clean(t_env *env)
 	cqueue_delete(&(env->characters));
 	pqueue_delete(&(env->labels));
 	pqueue_delete(&(env->instructions));
-	pqueue_delete(&(env->instruction.arguments));
 }
 
 static int		parse_char(t_env *env, char c)
@@ -80,6 +79,10 @@ static void		parse(t_env *env)
 			break ;
 		parse_char(env, c);
 	}
+	if (env->err)
+		return ;
+	if (!find_labels(env))
+		err(env, "label not found", -1);
 }
 
 int				main(int ac, char **av)
@@ -93,7 +96,7 @@ int				main(int ac, char **av)
 		openfile_write_str(&(env.stdout), "Usage: ", 0);
 		openfile_write_str(&(env.stdout), av[0], 0);
 		openfile_write_str(&(env.stdout), " file.s", 1);
-		err(&env, "", 0);
+		err(&env, "", -1);
 	}
 	fd = -1;
 	if (env.err == 0 && (fd = open(av[1], O_RDONLY)) < 2)
