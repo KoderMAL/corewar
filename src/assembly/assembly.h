@@ -6,12 +6,14 @@
 /*   By: dhadley <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/08 15:10:38 by dhadley           #+#    #+#             */
-/*   Updated: 2018/01/11 19:17:24 by dhadley          ###   ########.fr       */
+/*   Updated: 2018/01/15 11:54:44 by dhadley          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef ASSEMBLY_H
 # define ASSEMBLY_H
+
+#include "main/asm.h"
 
 /*
 ** from assemble.c
@@ -42,30 +44,15 @@ void	store_gap(int *LC, t_pqueue *gaps, t_argument *arg, int has_idx);
 ** from encode_bytes.c
 */
 
-unsigned char	*encode_4_bytes(int value);
-unsigned char	*encode_2_bytes(int value);
+void			encode_1_byte(unsigned char *champ, int *LC, int value);
+void			encode_2_byte(unsigned char *champ, int *LC, int value);
+void			encode_4_byte(unsigned char *champ, int *LC, int value);
 unsigned char	encode_param_byte(t_pqueue args);
 
 /*
-** conversion functions
+** assemble_op.c
 */
 
-void	assemble_live(char *champ, int *LC, t_pqueue *gaps, t_pqueue args);
-void	assemble_ld(char *champ, int *LC, t_pqueue *gaps, t_pqueue args);
-void	assemble_st(char *champ, int *LC, t_pqueue *gaps, t_pqueue args);
-void	assemble_add(char *champ, int *LC, t_pqueue *gaps, t_pqueue args);
-void	assemble_sub(char *champ, int *LC, t_pqueue *gaps, t_pqueue args);
-void	assemble_and(char *champ, int *LC, t_pqueue *gaps, t_pqueue args);
-void	assemble_or(char *champ, int *LC, t_pqueue *gaps, t_pqueue args);
-void	assemble_xor(char *champ, int *LC, t_pqueue *gaps, t_pqueue args);
-void	assemble_zjump(char *champ, int *LC, t_pqueue *gaps, t_pqueue args);
-void	assemble_ldi(char *champ, int *LC, t_pqueue *gaps, t_pqueue args);
-void	assemble_sti(char *champ, int *LC, t_pqueue *gaps, t_pqueue args);
-void	assemble_fork(char *champ, int *LC, t_pqueue *gaps, t_pqueue args);
-void	assemble_lld(char *champ, int *LC, t_pqueue *gaps, t_pqueue args);
-void	assemble_lldi(char *champ, int *LC, t_pqueue *gaps, t_pqueue args);
-void	assemble_lfork(char *champ, int *LC, t_pqueue *gaps, t_pqueue args);
-void	assemble_aff(char *champ, int *LC, t_pqueue *gaps, t_pqueue args);
-
+void	assemble_op(unsigned char *champ, int *LC, t_pqueue *gaps, t_pqueue args, t_instruction *instruction);
 
 #endif
