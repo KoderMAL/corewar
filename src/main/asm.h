@@ -6,7 +6,7 @@
 /*   By: alalaoui <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/04 16:36:08 by alalaoui          #+#    #+#             */
-/*   Updated: 2018/01/15 10:40:33 by dhadley          ###   ########.fr       */
+/*   Updated: 2018/01/15 12:03:58 by dhadley          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,14 @@
 # include "util/pqueue.h"
 # include "ft/ft.h"
 # include "hash/crc32.h"
+# include <stdbool.h>
 
 typedef struct		s_label
 {
 	char			*name;
 	bool			is_lab;
+	int				len; //is it used?
+	size_t			instruction_number; //is it used?
 	int				location;
 }					t_label;
 
@@ -63,6 +66,7 @@ typedef struct		s_env
 	int				err;
 	char			*err_msg;
 	int				header;
+	char			*file_name;
 	char			name[PROG_NAME_LENGTH];
 	char			comment[COMMENT_LENGTH];
 	unsigned char	champion[CHAMP_MAX_SIZE];
@@ -104,4 +108,3 @@ int					find_label(t_argument *arg, t_pqueue *labels);
 void				check_argument(t_argument *arg, t_env *env);
 
 #endif
->>>>>>> master
