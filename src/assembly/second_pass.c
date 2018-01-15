@@ -6,13 +6,13 @@
 /*   By: dhadley <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/11 19:05:21 by dhadley           #+#    #+#             */
-/*   Updated: 2018/01/15 11:59:19 by dhadley          ###   ########.fr       */
+/*   Updated: 2018/01/15 12:08:10 by dhadley          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "assembly.h"
 
-void	second_pass(char *champ, t_pqueue gaps)
+void	second_pass(unsigned char *champ, t_pqueue gaps)
 {
 	int		i;
 	int		value;
