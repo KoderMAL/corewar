@@ -6,7 +6,7 @@
 /*   By: alalaoui <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/04 16:36:08 by alalaoui          #+#    #+#             */
-/*   Updated: 2018/01/15 15:37:56 by dhadley          ###   ########.fr       */
+/*   Updated: 2018/01/15 17:40:39 by dhadley          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@ typedef struct		s_label
 	bool			is_lab;
 	char			*name;
 	int				len; //is it used?
-	size_t			instruction_number; //is it used?
 	int				location;
 }					t_label;
 
@@ -90,9 +89,9 @@ int					err_display(t_env *env);
 ** from label.c
 */
 
-t_label				*label_from_cqueue(t_cqueue *cqueue, int instruction_number);
+t_label				*label_from_cqueue(t_cqueue *cqueue);
 t_argument			*arg_from_cqueue(t_cqueue *cqueue);
-
+t_label				*label_dup(t_label *label);
 /*
 ** from instruction.c
 */
