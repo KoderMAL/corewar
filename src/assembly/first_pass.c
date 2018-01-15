@@ -6,7 +6,7 @@
 /*   By: dhadley <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/07 17:28:49 by dhadley           #+#    #+#             */
-/*   Updated: 2018/01/15 12:17:34 by dhadley          ###   ########.fr       */
+/*   Updated: 2018/01/15 15:37:58 by dhadley          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 //make size of champion a bit bigger and change to unsigned char;
 
-void	first_pass(unsigned char	*champ, t_pqueue instructions, t_pqueue *gaps)
+void	first_pass(unsigned char *champ, t_pqueue instructions, t_pqueue *gaps)
 {
 	int	LC;
 	int i;
@@ -28,13 +28,13 @@ void	first_pass(unsigned char	*champ, t_pqueue instructions, t_pqueue *gaps)
 	{
 		if (LC > CHAMP_MAX_SIZE)
 			//return error (size of champion is too big);
-		if (elem->p->is_lab == false)
+		if (((t_instruction *)elem->p)->is_lab == false)
 		{
-			assemble_op(champ, &LC, gaps, elem->p->arguments, elem->p);
+			assemble_op(champ, &LC, gaps, elem->p);
 		}
 		else
 		{
-			store_label(LC, elem->p);
+			store_label(LC, (t_label *)elem->p);
 		}
 		elem = elem->next;
 		i++;

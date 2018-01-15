@@ -6,7 +6,7 @@
 /*   By: dhadley <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/08 15:10:38 by dhadley           #+#    #+#             */
-/*   Updated: 2018/01/15 12:07:48 by dhadley          ###   ########.fr       */
+/*   Updated: 2018/01/15 13:40:32 by dhadley          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void	second_pass(unsigned char *champ, t_pqueue gaps);
 ** from store_locations.c
 */ 
 
-void	store_label(int LC, t_label label);
+void	store_label(int LC, t_label *label);
 void	store_gap(int *LC, t_pqueue *gaps, t_argument *arg, int has_idx);
 
 /*
