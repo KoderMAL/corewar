@@ -6,7 +6,7 @@
 /*   By: alalaoui <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/04 16:36:08 by alalaoui          #+#    #+#             */
-/*   Updated: 2018/01/15 15:39:27 by alalaoui         ###   ########.fr       */
+/*   Updated: 2018/01/16 16:27:16 by alalaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,12 @@ typedef struct		s_env
 
 int					err(t_env *env, char *s, int col_back);
 int					err_display(t_env *env);
+
+/*
+** from argument.c
+*/
+
+t_argument			*argument_dup(t_argument *argument);
 
 /*
 ** from label.c
