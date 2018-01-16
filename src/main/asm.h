@@ -6,7 +6,7 @@
 /*   By: alalaoui <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/04 16:36:08 by alalaoui          #+#    #+#             */
-/*   Updated: 2018/01/16 16:27:16 by alalaoui         ###   ########.fr       */
+/*   Updated: 2018/01/16 17:32:40 by alalaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,7 @@ int					err_display(t_env *env);
 */
 
 t_argument			*argument_dup(t_argument *argument);
+void				free_args(t_pqueue *instructions);
 
 /*
 ** from label.c

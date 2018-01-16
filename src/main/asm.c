@@ -6,7 +6,7 @@
 /*   By: alalaoui <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/04 15:49:30 by alalaoui          #+#    #+#             */
-/*   Updated: 2018/01/16 16:31:09 by alalaoui         ###   ########.fr       */
+/*   Updated: 2018/01/16 17:33:43 by alalaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,11 +35,15 @@ static void		env_initialization(t_env *env)
 
 static void		env_clean(t_env *env)
 {
+	int			i;
+
+	i = 0;
 	err_display(env);
 	openfile_flush(&(env->stdout));
 	openfile_flush(&(env->stderr));
 	cqueue_delete(&(env->characters));
 	pqueue_delete(&(env->labels));
+	free_args(&env->instructions);
 	pqueue_delete(&(env->instructions));
 }
 
@@ -84,8 +88,8 @@ static void		parse(t_env *env)
 	if (!find_labels(env))
 		err(env, "label not found", -1);
 }
+//A SUPPRIMER AVANT PUSH
 /*
- * A SUPPRIMER AVANT PUSH
 static void		print_champ(t_pqueue *instructions)
 {
 	t_pqueue_elem	*tmp;
@@ -141,7 +145,6 @@ int				main(int ac, char **av)
 		parse(&env);
 	if (fd >= 2)
 		close(fd);
-	print_champ(&env.instructions);
 	//	create_champion(&env);
 	env_clean(&env);
 	return (0);

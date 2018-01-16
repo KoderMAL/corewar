@@ -6,7 +6,7 @@
 /*   By: alalaoui <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/11 13:16:44 by alalaoui          #+#    #+#             */
-/*   Updated: 2018/01/15 17:31:05 by alalaoui         ###   ########.fr       */
+/*   Updated: 2018/01/16 17:33:05 by alalaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,4 +50,37 @@ t_argument	*argument_dup(t_argument *argument)
 	new_argument->value = argument->value;
 	new_argument->label = argument->label;
 	return (new_argument);
+}
+
+/*
+** free all args at the end
+*/
+
+void	free_args(t_pqueue *instructions)
+{
+	t_pqueue_elem	*tmp;
+	t_instruction	*inst;
+	t_label			*lab;
+	int				i;
+	int				j;
+
+	i = 0;
+	tmp = instructions->first;
+	while (i++ < instructions->len)
+	{
+		inst = tmp->p;
+		lab = tmp->p;
+		if (inst->is_lab)
+			;
+		else
+		{
+			j = 0;
+			while (j < inst->len)
+			{
+				free(inst->arguments[j]);
+				j++;
+			}
+		}
+		tmp = tmp->next;
+	}
 }
