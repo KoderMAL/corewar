@@ -6,7 +6,7 @@
 /*   By: alalaoui <alalaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/16 14:30:57 by alalaoui          #+#    #+#             */
-/*   Updated: 2018/01/17 18:46:03 by alalaoui         ###   ########.fr       */
+/*   Updated: 2018/01/17 18:53:05 by alalaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,6 @@ int		main(int ac, char **av)
 	vm_initialiszation(&vm, ac);
 	while (i < MAX_PLAYERS)
 		load_champion(vm, ac, av + i, &i);
-			
+	
 	return (0);
 }
