@@ -6,7 +6,7 @@
 /*   By: stoupin <stoupin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/04 17:48:23 by alalaoui          #+#    #+#             */
-/*   Updated: 2018/01/17 11:34:53 by stoupin          ###   ########.fr       */
+/*   Updated: 2018/01/17 11:47:41 by stoupin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,29 +16,23 @@
 static int		check_types(t_instruction *instruction)
 {
 	int				i;
-	int				j;
 	t_argument		*arg;
 
 	i = 0;
-	j = 0;
 	while (instruction->op->arg_type[i])
 	{
-		while (j < instruction->len)
+		arg = instruction->arguments[i];
+		if (arg->type == T_LAB)
 		{
-			arg = instruction->arguments[j];
-			if (arg->type == T_LAB)
-			{
-				if ((arg->lab_type | instruction->op->arg_type[i])
-						!= instruction->op->arg_type[i])
-					return (-1);
-			}
-			else
-			{
-				if ((arg->type | instruction->op->arg_type[i])
-						!= instruction->op->arg_type[i])
-					return (-1);
-			}
-			j++;
+			if ((arg->lab_type | instruction->op->arg_type[i])
+					!= instruction->op->arg_type[i])
+				return (-1);
+		}
+		else
+		{
+			if ((arg->type | instruction->op->arg_type[i])
+					!= instruction->op->arg_type[i])
+				return (-1);
 		}
 		i++;
 	}
