@@ -6,7 +6,7 @@
 /*   By: stoupin <stoupin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/02 15:46:03 by alalaoui          #+#    #+#             */
-/*   Updated: 2018/01/17 13:46:58 by stoupin          ###   ########.fr       */
+/*   Updated: 2018/01/17 15:14:29 by stoupin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,10 @@ static void	arg_save(t_argument *arg, int type)
 	char			*tmp;
 
 	arg->type = type;
-	if (type == T_LAB && arg->name[0] == '%' &&
-			arg->name[1] == ':')
+	if (type == T_LAB && arg->name[0] == DIRECT_CHAR &&
+			arg->name[1] == LABEL_CHAR)
 		arg->lab_type = T_DIR;
-	else if (type == T_LAB && arg->name[0] == ':')
+	else if (type == T_LAB && arg->name[0] == LABEL_CHAR)
 		arg->lab_type = T_IND;
 	else
 	{
@@ -56,14 +56,14 @@ static void	init_arg(t_env *env, t_argument *arg)
 	}
 	if (arg->name[0] == 'r')
 		arg_save(arg, T_REG);
-	else if (arg->name[0] == '%' &&
-			arg->name[1] == ':')
+	else if (arg->name[0] == DIRECT_CHAR &&
+			arg->name[1] == LABEL_CHAR)
 		arg_save(arg, T_LAB);
-	else if (arg->name[0] == '%')
+	else if (arg->name[0] == DIRECT_CHAR)
 		arg_save(arg, T_DIR);
-	else if (arg->name[0] == ':' || check_ind(arg))
+	else if (arg->name[0] == LABEL_CHAR || check_ind(arg))
 		arg_save(arg, T_IND);
-	else if (arg->name[0] == ':')
+	else if (arg->name[0] == LABEL_CHAR)
 		arg_save(arg, T_LAB);
 	else
 		err(env, "error while parsing arg", env->characters.len);
