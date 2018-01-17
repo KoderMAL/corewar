@@ -6,7 +6,7 @@
 /*   By: dhadley <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/15 10:53:17 by dhadley           #+#    #+#             */
-/*   Updated: 2018/01/16 16:15:03 by dhadley          ###   ########.fr       */
+/*   Updated: 2018/01/17 18:39:54 by dhadley          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,9 +44,9 @@ void	init_cor(t_env *env)
 		write(fd, "\0", 1);
 		write_magic(fd);
 		write_prog_name(fd, env);
-		write(fd, "\0\0\0\0\0\0\n", 7);
+		write(fd, "\0\0\0\0\0\0\0\v", 8);
 		write_comment(fd, env);
-		write(fd, "\0\0\0\0\0", 5);
+		write(fd, "\0\0\0\0", 4);
 		write(fd, env->champion, env->prog_size);
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: stoupin <stoupin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/04 16:36:08 by alalaoui          #+#    #+#             */
-/*   Updated: 2018/01/17 15:56:40 by dhadley          ###   ########.fr       */
+/*   Updated: 2018/01/17 18:51:53 by dhadley          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ typedef struct		s_gap
 {
 	char			*name;
 	int				location;
+	int				command_location;
 	int				size;
 	t_label			*label;
 }					t_gap;
