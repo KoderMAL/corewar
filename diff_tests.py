@@ -27,6 +27,10 @@ def compile_champ(asm, champ, suffix):
 	os.rename(result_file_name, result_file_name + suffix)
 	return False, bytearray(result_data), result_file_name + suffix
 
+def hexdump(file_name, offset):
+	subprocess.call(['hexdump', '-C', '-s {}'.format(offset), '-n 48', '-v', file_name])
+
+
 champs = list_champs()
 for champ in champs:
 	print(champ)
@@ -53,10 +57,10 @@ for champ in champs:
 			if my_byte != zaz_byte:
 				print('difference at byte {:x}: {:02x} instead of {:02x}'.format(i, my_byte, zaz_byte))
 				print('')
-				offset = max(i - i % 16 - 32, 0)
+				offset = max(i - i % 16 - 16, 0)
 				print('zaz\'s .cor:')
-				subprocess.call(['hexdump', '-C', '-s {}'.format(offset), zaz_file])
+				hexdump(zaz_file, offset)
 				print('')
 				print('our .cor:')
-				subprocess.call(['hexdump', '-C', '-s {}'.format(offset), my_file])
+				hexdump(my_file, offset)
 				sys.exit(1)
