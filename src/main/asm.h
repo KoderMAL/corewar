@@ -6,7 +6,7 @@
 /*   By: stoupin <stoupin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/04 16:36:08 by alalaoui          #+#    #+#             */
-/*   Updated: 2018/01/17 13:48:53 by dhadley          ###   ########.fr       */
+/*   Updated: 2018/01/17 15:56:40 by dhadley          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ typedef struct		s_instruction
 	bool			is_lab;
 	const t_op		*op;
 	int				len;
-	t_argument		arguments[4];
+	t_argument		arguments[MAX_ARGS_NUMBER];
 }					t_instruction;
 
 typedef struct		s_env

@@ -6,7 +6,7 @@
 /*   By: stoupin <stoupin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/10 16:34:49 by stoupin           #+#    #+#             */
-/*   Updated: 2018/01/17 13:24:34 by stoupin          ###   ########.fr       */
+/*   Updated: 2018/01/17 13:46:08 by stoupin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 ** initializes an instruction
 */
 
-void			instruction_init(t_env *env)
+void	instruction_init(t_env *env)
 {
 	if (env->op)
 	{
@@ -33,7 +33,7 @@ void			instruction_init(t_env *env)
 ** moves an instruction
 */
 
-void		instruction_move(t_instruction *src, t_instruction *dest)
+void	instruction_move(t_instruction *src, t_instruction *dest)
 {
 	int				i;
 
@@ -54,7 +54,7 @@ void		instruction_move(t_instruction *src, t_instruction *dest)
 ** clean an instruction
 */
 
-void		instruction_clean(t_instruction *instruction)
+void	instruction_clean(t_instruction *instruction)
 {
 	int	j;
 

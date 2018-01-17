@@ -6,7 +6,7 @@
 /*   By: stoupin <stoupin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/04 17:48:23 by alalaoui          #+#    #+#             */
-/*   Updated: 2018/01/17 13:23:57 by stoupin          ###   ########.fr       */
+/*   Updated: 2018/01/17 14:02:58 by stoupin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,9 +58,7 @@ static int		check_instruction(t_instruction *instruction)
 void			save_instruction(t_env *env)
 {
 	t_instruction	*new;
-	int				i;
 
-	i = 0;
 	new = NULL;
 	if (check_instruction(&env->instruction) == -1)
 		err(env, "invalid instruction format", 0);
@@ -71,11 +69,5 @@ void			save_instruction(t_env *env)
 			err(env, "memory error", -1);
 		instruction_move(&env->instruction, new);
 		pqueue_push(&env->instructions, new);
-		while (i < env->instruction.len)
-		{
-			//free(env->instruction.arguments[i]);
-			i++;
-		}
-		env->instruction.len = 0;
 	}
 }

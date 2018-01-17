@@ -3,3 +3,4 @@
 Resources/*
 /test
 /.vscode
+/__pycache__

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   argument.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: stoupin <stoupin@student.42.fr>            +#+  +:+       +#+        */
+/*   By: alalaoui <alalaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/11 13:16:44 by alalaoui          #+#    #+#             */
-/*   Updated: 2018/01/17 13:25:57 by stoupin          ###   ########.fr       */
+/*   Updated: 2018/01/17 15:53:36 by alalaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,12 @@ int			arg_from_cqueue(t_cqueue *cqueue, t_argument *argument)
 {
 	argument->type = 0;
 	argument->lab_type = 0;
-	argument->value = 0;
 	argument->label = NULL;
 	argument->name = malloc(sizeof(char) * (cqueue->len + 1));
 	if (argument->name == NULL)
 		return (1);
 	ft_cqueue_move(argument->name, cqueue);
+	argument->value = ft_atoi(argument->name + 1);
 	return (0);
 }
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   asm.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: stoupin <stoupin@student.42.fr>            +#+  +:+       +#+        */
+/*   By: alalaoui <alalaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/04 15:49:30 by alalaoui          #+#    #+#             */
-/*   Updated: 2018/01/17 13:48:37 by dhadley          ###   ########.fr       */
+/*   Updated: 2018/01/17 15:56:29 by dhadley          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,17 +62,13 @@ static int		parse_char(t_env *env, char c)
 	if (c == '\t')
 	{
 		env->col += 3;
-		openfile_write_str(&(env->stdout), "    ", 0);
 	}
 	else if (c == '\n')
 	{
 		env->col = 0;
 		env->line++;
-		openfile_write_char(&(env->stdout), '\n');
 	}
-	else if (ft_isprint(c))
-		openfile_write_char((&env->stdout), c);
-	else
+	else if (!ft_isprint(c))
 		return (err(env, "non-printable character", 0));
 	(env->state)(env, c);
 	return (0);
@@ -92,6 +88,8 @@ static void		parse(t_env *env)
 			break ;
 		parse_char(env, c);
 	}
+	if (env->instructions.len == 0)
+		err(env, "no instruction!", 0);
 	if (env->err)
 		return ;
 	if (!find_labels(env))
@@ -169,5 +167,5 @@ int				main(int ac, char **av)
 //	print_champ(&env.instructions);
 	//	create_champion(&env);
 	env_clean(&env);
-	return (0);
+	return (env.err);
 }
