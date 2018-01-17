@@ -28,7 +28,7 @@ def compile_champ(asm, champ):
 	result_file_name = os.path.splitext(champ_cpy)[0] + '.cor'
 	with open(result_file_name, 'rb') as f:
 		result_data = f.read()
-	return result_data
+	return bytearray(result_data)
 
 class TestAsm(TestCase):
 	def test(self):
@@ -36,16 +36,22 @@ class TestAsm(TestCase):
 		for champ in champs:
 			print(champ)
 			try:
-				compile_champ(ZAZ_ASM, champ)
+				my_result_data = compile_champ(MY_ASM, champ)
 				my_error = False
 			except CompilationError:
 				my_error = True
 				my_result_data = b''
 			try:
-				compile_champ(ZAZ_ASM, champ)
+				zaz_result_data = compile_champ(ZAZ_ASM, champ)
 				zaz_error = False
 			except CompilationError:
 				zaz_error = True
 				zaz_result_data = b''
-			self.assertEqual(my_error, zaz_error)
-			self.assertEqual(my_result_data, zaz_result_data)
+			my_len = len(my_result_data)
+			zaz_len = len(zaz_result_data)
+			self.assertEqual(my_error, zaz_error, 'error error')
+			self.assertEqual(my_len, zaz_len, 'wrong length: {} instead of {}'.format(my_len, zaz_len))
+			for i in range(my_len):
+				my_byte = my_result_data[i]
+				zaz_byte = zaz_result_data[i]
+				self.assertEqual(my_byte, zaz_byte,	'difference at byte {}: {} instead of {}'.format(i, my_byte, zaz_byte))
