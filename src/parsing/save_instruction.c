@@ -6,7 +6,7 @@
 /*   By: stoupin <stoupin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/04 17:48:23 by alalaoui          #+#    #+#             */
-/*   Updated: 2018/01/17 11:47:41 by stoupin          ###   ########.fr       */
+/*   Updated: 2018/01/17 13:23:57 by stoupin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static int		check_types(t_instruction *instruction)
 	i = 0;
 	while (instruction->op->arg_type[i])
 	{
-		arg = instruction->arguments[i];
+		arg = &(instruction->arguments[i]);
 		if (arg->type == T_LAB)
 		{
 			if ((arg->lab_type | instruction->op->arg_type[i])
@@ -66,12 +66,16 @@ void			save_instruction(t_env *env)
 		err(env, "invalid instruction format", 0);
 	else
 	{
-		new = instruction_dup(&env->instruction);
+		new = (t_instruction*)malloc(sizeof(t_instruction));
+		if (new == NULL)
+			err(env, "memory error", -1);
+		instruction_move(&env->instruction, new);
 		pqueue_push(&env->instructions, new);
 		while (i < env->instruction.len)
 		{
-			free(env->instruction.arguments[i]);
+			//free(env->instruction.arguments[i]);
 			i++;
 		}
+		env->instruction.len = 0;
 	}
 }

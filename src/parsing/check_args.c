@@ -6,7 +6,7 @@
 /*   By: stoupin <stoupin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/09 17:32:19 by alalaoui          #+#    #+#             */
-/*   Updated: 2018/01/17 11:31:45 by stoupin          ###   ########.fr       */
+/*   Updated: 2018/01/17 11:58:21 by stoupin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ int				find_labels(t_env *env)
 		if (tmp->is_lab == 0)
 			while (j < tmp->len)
 			{
-				arg = tmp->arguments[j++];
+				arg = &(tmp->arguments[j++]);
 				if (arg->type == T_LAB)
 				{
 					if (!find_label(arg, &env->labels))

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   instruction.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: stoupin <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: stoupin <stoupin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/10 16:34:49 by stoupin           #+#    #+#             */
-/*   Updated: 2018/01/16 17:29:23 by alalaoui         ###   ########.fr       */
+/*   Updated: 2018/01/17 13:24:34 by stoupin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@
 
 /*
 ** initializes an instruction
-** instruction->arguments must have been initialized with pqueue_init first!
 */
 
 void			instruction_init(t_env *env)
@@ -31,25 +30,38 @@ void			instruction_init(t_env *env)
 }
 
 /*
-** duplicates an instruction
+** moves an instruction
 */
 
-t_instruction	*instruction_dup(t_instruction *instruction)
+void		instruction_move(t_instruction *src, t_instruction *dest)
 {
-	t_instruction	*new_instruction;
 	int				i;
 
 	i = 0;
-	new_instruction = (t_instruction*)malloc(sizeof(t_instruction));
-	if (new_instruction == NULL)
-		return (NULL);
-	new_instruction->op = instruction->op;
-	new_instruction->len = instruction->len;
-	new_instruction->is_lab = instruction->is_lab;
-	while (i < instruction->len)
+	dest->op = src->op;
+	dest->len = src->len;
+	dest->is_lab = src->is_lab;
+	while (i < src->len)
 	{
-		new_instruction->arguments[i] = argument_dup(instruction->arguments[i]);
+		dest->arguments[i] = src->arguments[i];
 		i++;
 	}
-	return (new_instruction);
+	src->op = NULL;
+	src->len = 0;
+}
+
+/*
+** clean an instruction
+*/
+
+void		instruction_clean(t_instruction *instruction)
+{
+	int	j;
+
+	j = 0;
+	while (j < instruction->len)
+	{
+		argument_clean(&(instruction->arguments[j]));
+		j++;
+	}
 }
