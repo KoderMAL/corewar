@@ -6,19 +6,20 @@
 /*   By: dhadley <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/11 17:45:35 by dhadley           #+#    #+#             */
-/*   Updated: 2018/01/17 14:10:40 by dhadley          ###   ########.fr       */
+/*   Updated: 2018/01/17 18:55:02 by dhadley          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "assembly.h"
 #include <stdlib.h>
 
-void	store_gap(int *LC, t_pqueue *gaps, t_argument arg, int has_idx)
+void	store_gap(int *LC, t_pqueue *gaps, t_argument arg, int has_idx, int gapLC)
 {
 	t_gap	*gap;
 	
 	gap = (t_gap *)malloc(sizeof(t_gap)); //protect malloc;
 	gap->location = *LC;
+	gap->command_location = gapLC;
 	if (arg.lab_type == T_IND || has_idx)
 	{
 		gap->size = IND_SIZE;

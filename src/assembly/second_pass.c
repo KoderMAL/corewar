@@ -6,7 +6,7 @@
 /*   By: dhadley <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/11 19:05:21 by dhadley           #+#    #+#             */
-/*   Updated: 2018/01/15 17:47:22 by dhadley          ###   ########.fr       */
+/*   Updated: 2018/01/17 18:54:59 by dhadley          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	second_pass(unsigned char *champ, t_pqueue gaps)
 	{
 		gap = tmp->p;
 		LC = gap->location;
-		value = gap->label->location - gap->location;
+		value = gap->label->location - (gap->command_location - 1);
 		if (gap->size == DIR_SIZE)
 			encode_4_bytes(champ, &LC, value);
 		else

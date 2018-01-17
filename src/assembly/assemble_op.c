@@ -6,7 +6,7 @@
 /*   By: dhadley <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/10 18:39:49 by dhadley           #+#    #+#             */
-/*   Updated: 2018/01/17 15:55:11 by dhadley          ###   ########.fr       */
+/*   Updated: 2018/01/17 18:48:19 by dhadley          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,19 +15,17 @@
 void	assemble_op(unsigned char *champ, int *LC, t_pqueue *gaps, t_instruction *instruction)
 {
 	int		i;
+	int		gapLC;
 
 	i = 0;
-	if (instruction->arguments[i].type == T_DIR)
-	{
-		printf("pour le label avec l'opcode %d, je suis un T_DIR\n", instruction->op->opcode);
-	}
+	gapLC = *LC;
 	champ[(*LC)++] = instruction->op->opcode;
 	if (instruction->op->has_pcode)
 		champ[(*LC)++] = encode_param_byte(instruction);
 	while (i < instruction->len)
 	{
 		if (instruction->arguments[i].type == T_LAB)
-			store_gap(LC, gaps, instruction->arguments[i], instruction->op->has_idx);
+			store_gap(LC, gaps, instruction->arguments[i], instruction->op->has_idx, gapLC);
 		else if (instruction->arguments[i].type == T_DIR)
 		{
 			if (instruction->op->has_idx)
