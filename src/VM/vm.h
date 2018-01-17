@@ -6,7 +6,7 @@
 /*   By: alalaoui <alalaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/16 14:44:18 by alalaoui          #+#    #+#             */
-/*   Updated: 2018/01/17 15:18:28 by alalaoui         ###   ########.fr       */
+/*   Updated: 2018/01/17 18:20:57 by alalaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,12 +28,12 @@ typedef struct		s_thread
 
 typedef struct		s_champ
 {
+	t_openfile	file;
 	char		name[CHAMP_MAX_SIZE];
 }					t_champ
 
 typedef struct		s_vm
 {
-	t_openfile		openfile;
 	t_champ			champs_fd[4];
 	char			map[MEM_SIZE];
 	t_pqueue		threads;
@@ -42,6 +42,13 @@ typedef struct		s_vm
 	char			*err_msg;
 }					t_vm;
 
-void 	fill_map();
+void 				fill_map();
+
+/*
+** error.c
+*/
+
+void				err2(t_vm *vm. char *err_msg);
+void				err2_display(t_vm *vm);
 
 #endif
