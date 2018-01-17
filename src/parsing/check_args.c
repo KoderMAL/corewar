@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_args.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alalaoui <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: stoupin <stoupin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/09 17:32:19 by alalaoui          #+#    #+#             */
-/*   Updated: 2018/01/15 17:30:46 by alalaoui         ###   ########.fr       */
+/*   Updated: 2018/01/17 11:31:45 by stoupin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 #include <stdlib.h>
 
 /*
- ** Fonction de verification de conformite des arguments,
- ** prend un t_argument.
- ** Appelle err() si il y a une anomalie.
- */
+** Fonction de verification de conformite des arguments,
+** prend un t_argument.
+** Appelle err() si il y a une anomalie.
+*/
 
 void			check_value(t_env *env, char *name)
 {
@@ -49,7 +49,6 @@ int				find_labels(t_env *env)
 		j = 0;
 		tmp = inst->p;
 		if (tmp->is_lab == 0)
-		{
 			while (j < tmp->len)
 			{
 				arg = tmp->arguments[j++];
@@ -59,7 +58,6 @@ int				find_labels(t_env *env)
 						return (0);
 				}
 			}
-		}
 		inst = inst->next;
 	}
 	return (1);

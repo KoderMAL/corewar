@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   save_argument.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alalaoui <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: stoupin <stoupin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/02 15:46:03 by alalaoui          #+#    #+#             */
-/*   Updated: 2018/01/15 17:27:33 by alalaoui         ###   ########.fr       */
+/*   Updated: 2018/01/17 11:34:37 by stoupin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ static void			arg_save(t_argument *arg, int type)
 
 	arg->type = type;
 	if (type == T_LAB && arg->name[0] == '%' &&
-			arg->name[1] ==':')
+			arg->name[1] == ':')
 		arg->lab_type = T_DIR;
 	else if (type == T_LAB && arg->name[0] == ':')
 		arg->lab_type = T_IND;

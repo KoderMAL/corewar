@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   tests_assert.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: stoupin <stoupin@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/01/16 11:46:41 by stoupin           #+#    #+#             */
+/*   Updated: 2018/01/17 11:37:01 by stoupin          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include <stdlib.h>
 #include "ft/ft.h"
 #include "io/openfile.h"
@@ -36,7 +48,8 @@ void	tests_assert_equal_int(t_tests_env *env, int a, int b, char *err_msg)
 		tests_assert_ok(env);
 	else
 	{
-		openfile_write_str(&env->stderr, "The following integers whould be equal: ", 0);
+		openfile_write_str(&env->stderr,
+							"The following integers whould be equal: ", 0);
 		openfile_write_nbr(&env->stderr, a, 0);
 		openfile_write_str(&env->stderr, " and ", 0);
 		openfile_write_nbr(&env->stderr, b, 1);
@@ -44,13 +57,15 @@ void	tests_assert_equal_int(t_tests_env *env, int a, int b, char *err_msg)
 	}
 }
 
-void	tests_assert_equal_str(t_tests_env *env, char *a, char *b, char *err_msg)
+void	tests_assert_equal_str(t_tests_env *env, char *a, char *b,
+								char *err_msg)
 {
 	if (ft_strcmp(a, b) == 0)
 		tests_assert_ok(env);
 	else
 	{
-		openfile_write_str(&env->stderr, "The following strings whould be equal: \"", 0);
+		openfile_write_str(&env->stderr,
+							"The following strings whould be equal: \"", 0);
 		openfile_write_str(&env->stderr, a, 0);
 		openfile_write_str(&env->stderr, "\" and \"", 0);
 		openfile_write_str(&env->stderr, b, 0);

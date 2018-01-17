@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   asm.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alalaoui <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: stoupin <stoupin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/04 15:49:30 by alalaoui          #+#    #+#             */
-/*   Updated: 2018/01/16 17:33:43 by alalaoui         ###   ########.fr       */
+/*   Updated: 2018/01/17 11:30:19 by stoupin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,7 @@ static void		parse(t_env *env)
 	if (!find_labels(env))
 		err(env, "label not found", -1);
 }
+
 //A SUPPRIMER AVANT PUSH
 /*
 static void		print_champ(t_pqueue *instructions)
