@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alalaoui <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: stoupin <stoupin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/05 16:19:23 by alalaoui          #+#    #+#             */
-/*   Updated: 2018/01/10 16:34:39 by stoupin          ###   ########.fr       */
+/*   Updated: 2018/01/17 14:50:43 by stoupin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,9 @@ int		err_display(t_env *env)
 		if (env->col >= 0)
 		{
 			openfile_write_str(&(env->stderr), "at line ", 0);
-			openfile_write_nbr(&(env->stderr), env->line, 0);
+			openfile_write_nbr(&(env->stderr), env->line + 1, 0);
 			openfile_write_str(&(env->stderr), ", column ", 0);
-			openfile_write_nbr(&(env->stderr), env->col, 1);
+			openfile_write_nbr(&(env->stderr), env->col + 1, 1);
 		}
 	}
 	return (env->err);

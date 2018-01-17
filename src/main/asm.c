@@ -6,7 +6,7 @@
 /*   By: stoupin <stoupin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/04 15:49:30 by alalaoui          #+#    #+#             */
-/*   Updated: 2018/01/17 14:42:19 by stoupin          ###   ########.fr       */
+/*   Updated: 2018/01/17 14:50:15 by stoupin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,8 @@ static void		parse(t_env *env)
 			break ;
 		parse_char(env, c);
 	}
+	if (env->instructions.len == 0)
+		err(env, "no instruction!", 0);
 	if (env->err)
 		return ;
 	if (!find_labels(env))
