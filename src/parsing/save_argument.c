@@ -6,7 +6,7 @@
 /*   By: stoupin <stoupin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/02 15:46:03 by alalaoui          #+#    #+#             */
-/*   Updated: 2018/01/17 13:33:28 by stoupin          ###   ########.fr       */
+/*   Updated: 2018/01/17 13:42:45 by stoupin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,11 +81,12 @@ void				save_argument(t_env *env)
 	t_argument arg;
 
 	init_arg(env, &arg);
-	!env->err ? check_argument(&arg, env) : 0;
-	if (env->err)
-		return ;
+	if (env->err == 0)
+		check_argument(&arg, env);
 	if (env->instruction.len >= env->instruction.op->n_arg)
-		err(env, "Too many arguments!", 0);
-	else
+		err(env, "Too many arguments!", ft_strlen(arg.name) - 1);
+	if (env->err == 0)
 		env->instruction.arguments[env->instruction.len++] = arg;
+	if (env->err == 0)
+		free(arg.name);
 }

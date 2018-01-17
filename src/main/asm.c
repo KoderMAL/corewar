@@ -6,7 +6,7 @@
 /*   By: stoupin <stoupin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/04 15:49:30 by alalaoui          #+#    #+#             */
-/*   Updated: 2018/01/17 13:27:34 by stoupin          ###   ########.fr       */
+/*   Updated: 2018/01/17 13:35:07 by stoupin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,14 +36,12 @@ static void		env_initialization(t_env *env)
 static void		env_clean(t_env *env)
 {
 	t_pqueue_elem	*elem;
-	int				i;
 
 	err_display(env);
 	openfile_flush(&(env->stdout));
 	openfile_flush(&(env->stderr));
 	cqueue_delete(&(env->characters));
 	pqueue_delete(&(env->labels));
-	i = 0;
 	elem = env->instructions.first;
 	while (elem)
 	{
