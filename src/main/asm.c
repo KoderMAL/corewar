@@ -6,7 +6,7 @@
 /*   By: stoupin <stoupin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/04 15:49:30 by alalaoui          #+#    #+#             */
-/*   Updated: 2018/01/17 13:35:07 by stoupin          ###   ########.fr       */
+/*   Updated: 2018/01/17 14:42:19 by stoupin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,17 +61,13 @@ static int		parse_char(t_env *env, char c)
 	if (c == '\t')
 	{
 		env->col += 3;
-		openfile_write_str(&(env->stdout), "    ", 0);
 	}
 	else if (c == '\n')
 	{
 		env->col = 0;
 		env->line++;
-		openfile_write_char(&(env->stdout), '\n');
 	}
-	else if (ft_isprint(c))
-		openfile_write_char((&env->stdout), c);
-	else
+	else if (!ft_isprint(c))
 		return (err(env, "non-printable character", 0));
 	(env->state)(env, c);
 	return (0);
