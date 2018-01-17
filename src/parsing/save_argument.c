@@ -6,7 +6,7 @@
 /*   By: stoupin <stoupin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/02 15:46:03 by alalaoui          #+#    #+#             */
-/*   Updated: 2018/01/17 13:42:45 by stoupin          ###   ########.fr       */
+/*   Updated: 2018/01/17 13:44:06 by stoupin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,6 @@ void				save_argument(t_env *env)
 		err(env, "Too many arguments!", ft_strlen(arg.name) - 1);
 	if (env->err == 0)
 		env->instruction.arguments[env->instruction.len++] = arg;
-	if (env->err == 0)
+	if (env->err != 0)
 		free(arg.name);
 }
