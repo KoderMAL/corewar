@@ -6,7 +6,7 @@
 /*   By: stoupin <stoupin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/04 16:36:08 by alalaoui          #+#    #+#             */
-/*   Updated: 2018/01/17 15:12:50 by stoupin          ###   ########.fr       */
+/*   Updated: 2018/01/17 15:56:40 by dhadley          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,14 +19,23 @@
 # include "util/pqueue.h"
 # include "ft/ft.h"
 # include "hash/crc32.h"
+# include <stdbool.h>
 
 typedef struct		s_label
 {
-	int				is_lab;
+	bool			is_lab;
 	char			*name;
-	size_t			len;
+	int				len; //is it used?
 	int				location;
 }					t_label;
+
+typedef struct		s_gap
+{
+	char			*name;
+	int				location;
+	int				size;
+	t_label			*label;
+}					t_gap;
 
 typedef struct		s_argument
 {
@@ -39,7 +48,7 @@ typedef struct		s_argument
 
 typedef struct		s_instruction
 {
-	int				is_lab;
+	bool			is_lab;
 	const t_op		*op;
 	int				len;
 	t_argument		arguments[MAX_ARGS_NUMBER];
@@ -56,8 +65,11 @@ typedef struct		s_env
 	int				err;
 	char			*err_msg;
 	int				header;
+	char			*file_name;
 	char			name[PROG_NAME_LENGTH];
 	char			comment[COMMENT_LENGTH];
+	unsigned char	champion[CHAMP_MAX_SIZE];
+	int				prog_size;
 	void			(*state)(struct s_env *env, char c);
 	t_cqueue		characters;
 	size_t			pos;
@@ -102,5 +114,16 @@ void				instruction_clean(t_instruction *instruction);
 
 int					find_label(t_argument *arg, t_pqueue *labels);
 void				check_argument(t_argument *arg, t_env *env);
+
+/*
+** from make_cor.c
+*/
+
+void				init_cor(t_env *env);
+
+//from space
+
+void				assemble(t_env *env);
+
 
 #endif

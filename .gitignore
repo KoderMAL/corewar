@@ -1,4 +1,6 @@
 /asm
+/.vscode
+Resources/*
 /test
 /.vscode
 /__pycache__
