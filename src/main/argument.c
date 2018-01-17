@@ -60,7 +60,6 @@ void	free_args(t_pqueue *instructions)
 {
 	t_pqueue_elem	*tmp;
 	t_instruction	*inst;
-	t_label			*lab;
 	int				i;
 	int				j;
 
@@ -69,7 +68,6 @@ void	free_args(t_pqueue *instructions)
 	while (i++ < instructions->len)
 	{
 		inst = tmp->p;
-		lab = tmp->p;
 		if (inst->is_lab)
 			;
 		else

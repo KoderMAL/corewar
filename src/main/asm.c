@@ -35,9 +35,6 @@ static void		env_initialization(t_env *env)
 
 static void		env_clean(t_env *env)
 {
-	int			i;
-
-	i = 0;
 	err_display(env);
 	openfile_flush(&(env->stdout));
 	openfile_flush(&(env->stderr));

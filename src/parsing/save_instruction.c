@@ -24,11 +24,9 @@ static int		check_types(t_instruction *instruction)
 	int				i;
 	int				j;
 	t_argument		*arg;
-	int				lab_type;
 
 	i = 0;
 	j = 0;
-	lab_type = 0;
 	while (instruction->op->arg_type[i])
 	{
 		arg = instruction->arguments[j];
