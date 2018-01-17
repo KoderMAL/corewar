@@ -50,6 +50,7 @@ static int			check_ind(t_argument *argument)
 	{
 		if (!ft_isdigit(argument->name[i]))
 			return (0);
+		i++;
 	}
 	return (1);
 }
