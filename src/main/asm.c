@@ -6,7 +6,7 @@
 /*   By: stoupin <stoupin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/04 15:49:30 by alalaoui          #+#    #+#             */
-/*   Updated: 2018/01/17 14:50:15 by stoupin          ###   ########.fr       */
+/*   Updated: 2018/01/17 15:00:22 by stoupin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -154,5 +154,5 @@ int				main(int ac, char **av)
 		close(fd);
 	//	create_champion(&env);
 	env_clean(&env);
-	return (0);
+	return (env.err);
 }
