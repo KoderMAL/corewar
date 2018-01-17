@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   argument.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alalaoui <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: stoupin <stoupin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/11 13:16:44 by alalaoui          #+#    #+#             */
-/*   Updated: 2018/01/15 17:31:05 by alalaoui         ###   ########.fr       */
+/*   Updated: 2018/01/17 13:25:57 by stoupin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,40 +14,25 @@
 #include "asm.h"
 #include "util/cqueue.h"
 
-t_argument	*arg_from_cqueue(t_cqueue *cqueue)
+int			arg_from_cqueue(t_cqueue *cqueue, t_argument *argument)
 {
-	t_argument	*argument;
-
-	argument = (t_argument*)malloc(sizeof(t_argument) +
-			sizeof(char) * (cqueue->len + 1));
-	if (argument == NULL)
-		return (NULL);
-	argument->name = (char*)argument + sizeof(t_argument);
-	ft_cqueue_move(argument->name, cqueue);
 	argument->type = 0;
 	argument->lab_type = 0;
 	argument->value = 0;
 	argument->label = NULL;
-	return (argument);
+	argument->name = malloc(sizeof(char) * (cqueue->len + 1));
+	if (argument->name == NULL)
+		return (1);
+	ft_cqueue_move(argument->name, cqueue);
+	return (0);
 }
 
 /*
-** duplicates an argument
+** clean an argument
 */
 
-t_argument	*argument_dup(t_argument *argument)
+void		argument_clean(t_argument *argument)
 {
-	t_argument	*new_argument;
-
-	new_argument = (t_argument*)malloc(sizeof(t_argument) + 
-			sizeof(char) * (ft_strlen(argument->name) + 1));
-	if (new_argument == NULL)
-		return (NULL);
-	new_argument->name = (char*)new_argument + sizeof(t_argument);
-	ft_strcpy(new_argument->name,argument->name);
-	new_argument->type = argument->type;
-	new_argument->lab_type = argument->lab_type;
-	new_argument->value = argument->value;
-	new_argument->label = argument->label;
-	return (new_argument);
+	if (argument->name != NULL)
+		free(argument->name);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   asm.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alalaoui <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: stoupin <stoupin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/04 15:49:30 by alalaoui          #+#    #+#             */
-/*   Updated: 2018/01/16 16:34:30 by dhadley          ###   ########.fr       */
+/*   Updated: 2018/01/17 13:48:37 by dhadley          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,11 +36,23 @@ static void		env_initialization(t_env *env)
 
 static void		env_clean(t_env *env)
 {
+	t_pqueue_elem	*elem;
+
 	err_display(env);
 	openfile_flush(&(env->stdout));
 	openfile_flush(&(env->stderr));
 	cqueue_delete(&(env->characters));
 	pqueue_delete(&(env->labels));
+	elem = env->instructions.first;
+	while (elem)
+	{
+		if (((t_instruction*)(elem->p))->is_lab)
+			;
+		else
+			instruction_clean((t_instruction*)elem->p);
+		elem = elem->next;
+	}
+	instruction_clean(&(env->instruction));
 	pqueue_delete(&(env->instructions));
 }
 
@@ -85,8 +97,9 @@ static void		parse(t_env *env)
 	if (!find_labels(env))
 		err(env, "label not found", -1);
 }
+
+//A SUPPRIMER AVANT PUSH
 /*
- * A SUPPRIMER AVANT PUSH
 static void		print_champ(t_pqueue *instructions)
 {
 	t_pqueue_elem	*tmp;
@@ -154,6 +167,7 @@ int				main(int ac, char **av)
 	assemble(&env);
 	init_cor(&env);
 //	print_champ(&env.instructions);
+	//	create_champion(&env);
 	env_clean(&env);
 	return (0);
 }

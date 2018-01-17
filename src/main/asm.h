@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   asm.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alalaoui <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: stoupin <stoupin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/04 16:36:08 by alalaoui          #+#    #+#             */
-/*   Updated: 2018/01/16 16:33:41 by dhadley          ###   ########.fr       */
+/*   Updated: 2018/01/17 13:48:53 by dhadley          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ typedef struct		s_instruction
 	bool			is_lab;
 	const t_op		*op;
 	int				len;
-	t_argument		*arguments[4];
+	t_argument		arguments[4];
 }					t_instruction;
 
 typedef struct		s_env
@@ -90,21 +90,23 @@ int					err_display(t_env *env);
 ** from argument.c
 */
 
-t_argument			*argument_dup(t_argument *argument);
+int					arg_from_cqueue(t_cqueue *cqueue, t_argument *argument);
+void				argument_clean(t_argument *argument);
 
 /*
 ** from label.c
 */
 
 t_label				*label_from_cqueue(t_cqueue *cqueue);
-t_argument			*arg_from_cqueue(t_cqueue *cqueue);
 t_label				*label_dup(t_label *label);
+
 /*
 ** from instruction.c
 */
 
 void				instruction_init(t_env *env);
-t_instruction		*instruction_dup(t_instruction *instruction);
+void				instruction_move(t_instruction *src, t_instruction *dest);
+void				instruction_clean(t_instruction *instruction);
 
 /*
 ** from check_args.c

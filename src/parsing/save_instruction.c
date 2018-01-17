@@ -3,41 +3,30 @@
 /*                                                        :::      ::::::::   */
 /*   save_instruction.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alalaoui <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: stoupin <stoupin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/04 17:48:23 by alalaoui          #+#    #+#             */
-/*   Updated: 2018/01/15 16:07:31 by alalaoui         ###   ########.fr       */
+/*   Updated: 2018/01/17 13:23:57 by stoupin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "main/asm.h"
 #include <stdlib.h>
-/*
-** Cette fonction doit prendre env->instruction,
-** controler que l'instruction est correcte
-** puis l'ajouter a env->instructions a l'aide de
-** instruction_dup
-*/
 
 static int		check_types(t_instruction *instruction)
 {
 	int				i;
-	int				j;
 	t_argument		*arg;
-	int				lab_type;
 
 	i = 0;
-	j = 0;
-	lab_type = 0;
 	while (instruction->op->arg_type[i])
 	{
-		arg = instruction->arguments[j];
+		arg = &(instruction->arguments[i]);
 		if (arg->type == T_LAB)
 		{
 			if ((arg->lab_type | instruction->op->arg_type[i])
 					!= instruction->op->arg_type[i])
 				return (-1);
-
 		}
 		else
 		{
@@ -46,7 +35,6 @@ static int		check_types(t_instruction *instruction)
 				return (-1);
 		}
 		i++;
-		j++;
 	}
 	return (1);
 }
@@ -60,9 +48,16 @@ static int		check_instruction(t_instruction *instruction)
 	return (1);
 }
 
+/*
+** Cette fonction doit prendre env->instruction,
+** controler que l'instruction est correcte
+** puis l'ajouter a env->instructions a l'aide de
+** instruction_dup
+*/
+
 void			save_instruction(t_env *env)
 {
-	t_instruction 	*new;
+	t_instruction	*new;
 	int				i;
 
 	i = 0;
@@ -71,12 +66,16 @@ void			save_instruction(t_env *env)
 		err(env, "invalid instruction format", 0);
 	else
 	{
-		new = instruction_dup(&env->instruction);
+		new = (t_instruction*)malloc(sizeof(t_instruction));
+		if (new == NULL)
+			err(env, "memory error", -1);
+		instruction_move(&env->instruction, new);
 		pqueue_push(&env->instructions, new);
 		while (i < env->instruction.len)
 		{
-			free(env->instruction.arguments[i]);
+			//free(env->instruction.arguments[i]);
 			i++;
 		}
+		env->instruction.len = 0;
 	}
 }
