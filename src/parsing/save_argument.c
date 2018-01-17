@@ -6,7 +6,7 @@
 /*   By: stoupin <stoupin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/02 15:46:03 by alalaoui          #+#    #+#             */
-/*   Updated: 2018/01/17 15:57:11 by alalaoui         ###   ########.fr       */
+/*   Updated: 2018/01/17 15:58:06 by alalaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static void	arg_save(t_argument *arg, int type)
 	else
 	{
 		tmp = arg->name;
-		if (type == T_DIR || T_REG)
+		if (type == T_DIR || type == T_REG)
 			tmp++;
 		arg->value = ft_atoi(tmp);
 	}
