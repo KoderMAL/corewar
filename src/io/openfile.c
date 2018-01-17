@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   openfile.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alalaoui <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: alalaoui <alalaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/05 13:44:43 by alalaoui          #+#    #+#             */
-/*   Updated: 2018/01/15 10:51:57 by dhadley          ###   ########.fr       */
+/*   Updated: 2018/01/17 18:39:52 by alalaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@ int			openfile_read_char(t_openfile *of, char *c)
 	if (of->pos == of->buff_size)
 	{
 		of->buff_size = read(of->fd, of->buffer, BUFF_SIZE);
+		if (of->buff_size == -1)
+			return (-1);
 		of->pos = 0;
 		if (of->buff_size == 0)
 			return (0);

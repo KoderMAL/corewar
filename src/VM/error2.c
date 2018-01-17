@@ -1,35 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   thread.c                                           :+:      :+:    :+:   */
+/*   error2.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: alalaoui <alalaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/01/17 14:08:01 by alalaoui          #+#    #+#             */
-/*   Updated: 2018/01/17 18:48:12 by alalaoui         ###   ########.fr       */
+/*   Created: 2018/01/17 18:06:57 by alalaoui          #+#    #+#             */
+/*   Updated: 2018/01/17 18:17:30 by alalaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vm.h"
 
-t_thread		*create_thread(t_vm *vm)
+void		err2(t_vm *vm. char *err_msg)
 {
-	t_thread	new_thread;
-	
-	new_thread.carry = 0;
-	new_thread.reg1 = 0;
-	new_thread.reg2 = 0;
-	new_thread.reg3 = 0;
-	new_thread.location = 0;
-	return (new_thread);
+	vm->err = 1;
+	vm->err_msg = err_msg;
 }
 
-void			thread_init(t_vm *vm)
+void		err2_display(t_vm *vm)
 {
-	int			i;
-
-	i = 0;
-	while (i++ < vm->players)
-		pqueue_push(vm->threads, thread_create(vm));
-	
+	if (vm->err == 0)
+		return (1);
+	write(1, "Error: ", 7);
+	write (1, vm->err_msg, ft_strlen(vm->err_msg));
+	write(1, "\n", 1);
 }
