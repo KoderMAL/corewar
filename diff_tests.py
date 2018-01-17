@@ -1,8 +1,7 @@
 from unittest import TestCase
-import os, shutil, subprocess, difflib
+import os, shutil, subprocess
 
-#MY_ASM = './asm'
-MY_ASM = './Resources/asm'
+MY_ASM = './asm'
 ZAZ_ASM = './Resources/asm'
 COMPILE_DIR = '/tmp'
 
@@ -50,7 +49,6 @@ class TestAsm(TestCase):
 				zaz_result_data = b''
 			my_len = len(my_result_data)
 			zaz_len = len(zaz_result_data)
-			#if my_len > 100: my_result_data[42] += 1 # simulate error
 			self.assertEqual(my_error, zaz_error, 'error error')
 			self.assertEqual(my_len, zaz_len, 'wrong length: {} instead of {}'.format(my_len, zaz_len))
 			for i in range(my_len):
