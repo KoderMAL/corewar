@@ -3,21 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   save_instruction.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alalaoui <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: stoupin <stoupin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/04 17:48:23 by alalaoui          #+#    #+#             */
-/*   Updated: 2018/01/15 16:07:31 by alalaoui         ###   ########.fr       */
+/*   Updated: 2018/01/17 11:34:53 by stoupin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "main/asm.h"
 #include <stdlib.h>
-/*
-** Cette fonction doit prendre env->instruction,
-** controler que l'instruction est correcte
-** puis l'ajouter a env->instructions a l'aide de
-** instruction_dup
-*/
 
 static int		check_types(t_instruction *instruction)
 {
@@ -29,22 +23,24 @@ static int		check_types(t_instruction *instruction)
 	j = 0;
 	while (instruction->op->arg_type[i])
 	{
-		arg = instruction->arguments[j];
-		if (arg->type == T_LAB)
+		while (j < instruction->len)
 		{
-			if ((arg->lab_type | instruction->op->arg_type[i])
-					!= instruction->op->arg_type[i])
-				return (-1);
-
-		}
-		else
-		{
-			if ((arg->type | instruction->op->arg_type[i])
-					!= instruction->op->arg_type[i])
-				return (-1);
+			arg = instruction->arguments[j];
+			if (arg->type == T_LAB)
+			{
+				if ((arg->lab_type | instruction->op->arg_type[i])
+						!= instruction->op->arg_type[i])
+					return (-1);
+			}
+			else
+			{
+				if ((arg->type | instruction->op->arg_type[i])
+						!= instruction->op->arg_type[i])
+					return (-1);
+			}
+			j++;
 		}
 		i++;
-		j++;
 	}
 	return (1);
 }
@@ -58,9 +54,16 @@ static int		check_instruction(t_instruction *instruction)
 	return (1);
 }
 
+/*
+** Cette fonction doit prendre env->instruction,
+** controler que l'instruction est correcte
+** puis l'ajouter a env->instructions a l'aide de
+** instruction_dup
+*/
+
 void			save_instruction(t_env *env)
 {
-	t_instruction 	*new;
+	t_instruction	*new;
 	int				i;
 
 	i = 0;
