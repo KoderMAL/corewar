@@ -6,7 +6,7 @@
 /*   By: alalaoui <alalaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/04 15:49:30 by alalaoui          #+#    #+#             */
-/*   Updated: 2018/01/17 15:56:29 by dhadley          ###   ########.fr       */
+/*   Updated: 2018/01/17 16:19:05 by dhadley          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -151,8 +151,10 @@ int				main(int ac, char **av)
 	char *tmp;
 	tmp = (char *)malloc(sizeof(char) * ft_strlen(av[1]) + 3);
 	ft_strcpy(tmp, av[1]);
-	tmp[ft_strlen(av[1]) - 1] = 't';
-	tmp[ft_strlen(av[1])] = '\0';
+	tmp[ft_strlen(av[1]) - 1] = 'c';
+	tmp[ft_strlen(av[1])] = 'o';
+	tmp[ft_strlen(av[1]) + 1] = 'r';
+	tmp[ft_strlen(av[1]) + 2 ] = '\0';
 	env.file_name = tmp;
 
 
