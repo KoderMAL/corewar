@@ -6,7 +6,7 @@
 /*   By: dhadley <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/08 15:10:38 by dhadley           #+#    #+#             */
-/*   Updated: 2018/01/16 16:07:00 by dhadley          ###   ########.fr       */
+/*   Updated: 2018/01/17 14:11:18 by dhadley          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void	second_pass(unsigned char *champ, t_pqueue gaps);
 */ 
 
 void	store_label(int LC, t_label *label);
-void	store_gap(int *LC, t_pqueue *gaps, t_argument *arg, int has_idx);
+void	store_gap(int *LC, t_pqueue *gaps, t_argument arg, int has_idx);
 
 /*
 ** from encode_bytes.c

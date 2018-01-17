@@ -6,7 +6,7 @@
 /*   By: dhadley <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/09 15:26:53 by dhadley           #+#    #+#             */
-/*   Updated: 2018/01/16 15:39:07 by dhadley          ###   ########.fr       */
+/*   Updated: 2018/01/17 14:12:10 by dhadley          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,11 @@ unsigned char	encode_param_byte(t_instruction *instruction)
 	while (i < instruction->len)
 	{
 		param_byte <<= 2;
-		if (instruction->arguments[i]->type == T_REG)
+		if (instruction->arguments[i].type == T_REG)
 			param_byte |= REG_CODE;
-		if (instruction->arguments[i]->type == T_DIR || (instruction->arguments[i]->type == T_LAB && instruction->arguments[i]->lab_type == T_DIR))
+		if (instruction->arguments[i].type == T_DIR || (instruction->arguments[i].type == T_LAB && instruction->arguments[i].lab_type == T_DIR))
 			param_byte |= DIR_CODE;
-		if (instruction->arguments[i]->type == T_IND || (instruction->arguments[i]->type == T_LAB && instruction->arguments[i]->lab_type == T_IND)) // can remove lab_type check
+		if (instruction->arguments[i].type == T_IND || (instruction->arguments[i].type == T_LAB && instruction->arguments[i].lab_type == T_IND)) // can remove lab_type check
 			param_byte |= IND_CODE;
 		i++;
 	}
