@@ -17,7 +17,7 @@ SRC_PARSING = states_main.c states_header.c states_label.c states_instruction.c 
 SRC_TESTS = $(SRC_IO) $(SRC_FT) $(SRC_UTIL) \
 			tests.c tests_assert.c \
 			ft_atoi_test.c ft_strchr_test.c ft_test.c \
-			pqueue_test.c cqueue_test.c \
+			pqueue_test.c cqueue_test.c cqueue_test_2.c \
 			tests_main.c
 HEADERS = asm.h op.h ft.h openfile.h states.h cqueue.h pqueue.h crc32.h
 

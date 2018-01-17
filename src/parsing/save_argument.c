@@ -6,14 +6,14 @@
 /*   By: stoupin <stoupin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/02 15:46:03 by alalaoui          #+#    #+#             */
-/*   Updated: 2018/01/17 13:44:06 by stoupin          ###   ########.fr       */
+/*   Updated: 2018/01/17 13:46:58 by stoupin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "main/asm.h"
 #include <stdlib.h>
 
-static void			arg_save(t_argument *arg, int type)
+static void	arg_save(t_argument *arg, int type)
 {
 	char			*tmp;
 
@@ -31,7 +31,7 @@ static void			arg_save(t_argument *arg, int type)
 	}
 }
 
-static int			check_ind(t_argument *argument)
+static int	check_ind(t_argument *argument)
 {
 	int				i;
 
@@ -47,7 +47,7 @@ static int			check_ind(t_argument *argument)
 	return (1);
 }
 
-static void		init_arg(t_env *env, t_argument *arg)
+static void	init_arg(t_env *env, t_argument *arg)
 {
 	if ((arg_from_cqueue(&(env->characters), arg)) == 1)
 	{
@@ -76,7 +76,7 @@ static void		init_arg(t_env *env, t_argument *arg)
 ** ajoute a env->instruction.arguments
 */
 
-void				save_argument(t_env *env)
+void		save_argument(t_env *env)
 {
 	t_argument arg;
 

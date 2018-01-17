@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   pqueue_test.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: stoupin <stoupin@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/01/17 13:49:09 by stoupin           #+#    #+#             */
+/*   Updated: 2018/01/17 13:49:46 by stoupin          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include <stdlib.h>
 #include "tests/tests.h"
 #include "pqueue.h"
@@ -24,7 +36,8 @@ static void	pqueue_push_test(t_tests_env *env, t_pqueue *q, void *s1, void *s2)
 	tests_assert_equal_int(env, q->len, 2, "q->len == 2");
 	tests_assert_true(env, q->first->p == s1, "q->first->p == s1");
 	tests_assert_true(env, q->last->p == s2, "q->last->p == s2");
-	tests_assert_true(env, q->first->next == q->last, "q->first->next == q->last");
+	tests_assert_true(env, q->first->next == q->last,
+						"q->first->next == q->last");
 	tests_assert_true(env, q->last->next == NULL, "q->last->next == NULL");
 	tests_print(env, "\n");
 }
@@ -47,7 +60,6 @@ void		pqueue_test(t_tests_env *env)
 
 	s1 = malloc(42);
 	s2 = malloc(42);
-
 	tests_print(env, "Testing pqueue\n");
 	pqueue_init_test(env, &q);
 	pqueue_push_test(env, &q, s1, s2);
