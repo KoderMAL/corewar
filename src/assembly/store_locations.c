@@ -6,7 +6,7 @@
 /*   By: dhadley <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/11 17:45:35 by dhadley           #+#    #+#             */
-/*   Updated: 2018/01/17 18:55:02 by dhadley          ###   ########.fr       */
+/*   Updated: 2018/01/19 17:59:07 by dhadley          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,5 +39,6 @@ void	store_gap(int *LC, t_pqueue *gaps, t_argument arg, int has_idx, int gapLC)
 
 void	store_label(int LC, t_label *label)
 {
+	printf("label name = %s LC = %d\n", label->name, LC);
 	label->location = LC;
 }

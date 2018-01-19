@@ -6,7 +6,7 @@
 /*   By: alalaoui <alalaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/04 15:49:30 by alalaoui          #+#    #+#             */
-/*   Updated: 2018/01/17 16:19:05 by dhadley          ###   ########.fr       */
+/*   Updated: 2018/01/19 17:33:54 by dhadley          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -164,10 +164,14 @@ int				main(int ac, char **av)
 		parse(&env);
 	if (fd >= 2)
 		close(fd);
+printf("hello brothers\n");
 	assemble(&env);
+
+printf("hello brothers\n");
 	init_cor(&env);
 //	print_champ(&env.instructions);
 	//	create_champion(&env);
+printf("hello brothers\n");
 	env_clean(&env);
 	return (env.err);
 }

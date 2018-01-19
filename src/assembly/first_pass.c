@@ -6,7 +6,7 @@
 /*   By: dhadley <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/07 17:28:49 by dhadley           #+#    #+#             */
-/*   Updated: 2018/01/16 16:08:36 by dhadley          ###   ########.fr       */
+/*   Updated: 2018/01/19 16:58:59 by dhadley          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,6 @@ int	first_pass(unsigned char *champ, t_pqueue instructions, t_pqueue *gaps)
 		if (((t_instruction *)elem->p)->is_lab == false)
 		{
 			assemble_op(champ, &LC, gaps, elem->p);
-			printf("the LC is %d\n", LC);
 		}
 		else
 		{

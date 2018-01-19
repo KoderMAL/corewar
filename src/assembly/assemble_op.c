@@ -6,7 +6,7 @@
 /*   By: dhadley <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/10 18:39:49 by dhadley           #+#    #+#             */
-/*   Updated: 2018/01/17 18:48:19 by dhadley          ###   ########.fr       */
+/*   Updated: 2018/01/19 16:59:19 by dhadley          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,11 +37,9 @@ void	assemble_op(unsigned char *champ, int *LC, t_pqueue *gaps, t_instruction *i
 			encode_2_bytes(champ, LC, instruction->arguments[i].value);
 		else if (instruction->arguments[i].type == T_REG)
 		{
-		printf("\n\nThe arg value is %d and name %s\n\n", instruction->arguments[i].value, instruction->arguments[i].name);
 			encode_1_byte(champ, LC, instruction->arguments[i].value);
 		}
 			i++;
-		printf("inside assemble_op the LC is %d\n", *LC);
 	}	
 
 }
