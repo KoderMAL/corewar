@@ -28,12 +28,13 @@ HEADERS = vm.h asm.h op.h ft.h openfile.h states.h cqueue.h pqueue.h crc32.h ass
 SRC = $(SRC_MAIN) $(SRC_FT) $(SRC_IO) $(SRC_PARSING) $(SRC_UTIL) $(SRC_HASH) $(SRC_ASSEMBLY)
 OBJ_TMP = $(SRC:.c=.o)
 SRC2 = $(SRC_VM) $(SRC_IO) $(SRC_FT)
-OBJ2_TMP = $(SRC_VM:.c=.o)
+OBJ2_TMP = $(SRC2:.c=.o)
 
-VPATH = src/ft src/io src/main src/parsing src/util src/hash src/tests src/assembly
+VPATH = src/ft src/io src/main src/parsing src/util src/hash src/tests src/assembly src/VM
 IFLAGS = -Isrc
 OBJ_DIR = obj
 OBJ = $(addprefix $(OBJ_DIR)/, $(OBJ_TMP))
+OBJ2 = $(addprefix $(OBJ_DIR)/, $(OBJ2_TMP))
 
 OBJ_TMP_TESTS = $(SRC_TESTS:.c=.o)
 OBJ_TESTS = $(addprefix $(OBJ_DIR)/, $(OBJ_TMP_TESTS))
@@ -42,9 +43,6 @@ all : $(NAME) $(NAME2) graph
 
 $(NAME): $(OBJ)
 	$(CC) $(CFLAGS) -o $(NAME) $(OBJ)
-
-$(OBJ_DIR)/%.o: %.c $(HEADERS)
-	$(CC) -c $(CFLAGS) -o $@ $< $(IFLAGS)
 
 $(NAME2): $(OBJ2)
 	$(CC) $(CFLAGS) -o $(NAME2) $(OBJ)
@@ -65,8 +63,7 @@ clean:
 	rm -f $(OBJ) $(OBJ_TESTS)
 
 fclean: clean
-	rm -f $(NAME) test
-	rm -f $(NAME2) test
+	rm -f $(NAME) $(NAME2) test
 
 re: fclean all
 
