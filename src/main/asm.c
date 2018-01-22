@@ -6,7 +6,7 @@
 /*   By: alalaoui <alalaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/04 15:49:30 by alalaoui          #+#    #+#             */
-/*   Updated: 2018/01/22 15:39:43 by alalaoui         ###   ########.fr       */
+/*   Updated: 2018/01/22 15:55:46 by alalaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ static void		env_clean(t_env *env)
 	openfile_flush(&(env->stdout));
 	openfile_flush(&(env->stderr));
 	cqueue_delete(&(env->characters));
+	pqueue_clean(&(env->labels));
 	elem = env->instructions.first;
 	while (elem)
 	{
@@ -51,7 +52,6 @@ static void		env_clean(t_env *env)
 			instruction_clean((t_instruction*)elem->p);
 		elem = elem->next;
 	}
-//	pqueue_delete(&(env->labels));
 	instruction_clean(&(env->instruction));
 	pqueue_delete(&(env->instructions));
 }
