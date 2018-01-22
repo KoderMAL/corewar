@@ -6,7 +6,7 @@
 /*   By: stoupin <stoupin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/09 17:32:19 by alalaoui          #+#    #+#             */
-/*   Updated: 2018/01/17 11:58:21 by stoupin          ###   ########.fr       */
+/*   Updated: 2018/01/22 18:55:24 by alalaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,10 +86,8 @@ int				find_label(t_argument *arg, t_pqueue *labels)
 
 void			check_argument(t_argument *arg, t_env *env)
 {
-	if (arg->type == T_LAB && arg->lab_type == T_DIR)
+	if (arg->type == T_LAB && (arg->lab_type == T_DIR || arg->lab_type == T_IND))
 	{
-		//		if (env->labels.first == NULL)
-		//			err(env, "no labels found\n", 0);
 	}
 	else if (arg->type == T_REG)
 	{
