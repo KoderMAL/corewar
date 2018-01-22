@@ -6,7 +6,7 @@
 /*   By: alalaoui <alalaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/16 14:30:57 by alalaoui          #+#    #+#             */
-/*   Updated: 2018/01/22 17:18:06 by alalaoui         ###   ########.fr       */
+/*   Updated: 2018/01/22 17:38:03 by alalaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ static void vm_initialization(t_vm *vm, int ac /*,int fd[4]*/)
 	while (i < MEM_SIZE)
 		vm->map[i++] = 0;
 	thread_init(vm);
+	printf("CHECK\n");
 }
 
 static void vm_clean(t_vm *vm, int fd[MAX_ARGS_NUMBER])
@@ -74,7 +75,6 @@ int main(int ac, char **av)
 	int i;
 
 	i = 0;
-	printf("CHECK\n");
 	if (ac > MAX_ARGS_NUMBER)
 		err2(&vm, "Too many arguments");
 	else if (ac < 2)
