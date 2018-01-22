@@ -6,7 +6,7 @@
 /*   By: dhadley <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/11 19:05:21 by dhadley           #+#    #+#             */
-/*   Updated: 2018/01/19 17:53:44 by dhadley          ###   ########.fr       */
+/*   Updated: 2018/01/22 18:24:12 by dhadley          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	second_pass(unsigned char *champ, t_pqueue gaps)
 		gap = tmp->p;
 		LC = gap->location;
 		printf("The lable %s has the location value %d\n", gap->label->name, gap->label->location);
-		value = gap->label->location - (gap->command_location - 1);
+		value = gap->label->location - (gap->command_location);
 		if (gap->size == DIR_SIZE)
 			encode_4_bytes(champ, &LC, value);
 		else
