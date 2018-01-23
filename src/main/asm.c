@@ -6,7 +6,7 @@
 /*   By: alalaoui <alalaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/04 15:49:30 by alalaoui          #+#    #+#             */
-/*   Updated: 2018/01/23 14:53:29 by alalaoui         ###   ########.fr       */
+/*   Updated: 2018/01/23 15:24:38 by dhadley          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,9 +95,13 @@ static void		parse(t_env *env)
 		if (ret == -1)
 			err(env, "unable to read input", 1);
 		if (ret != 1)
+		{
+			printf("ret = %d\n", ret);
 			break ;
+		}
 		parse_char(env, c);
 	}
+	printf("env->err = %d et ret = %d\n", env->err, ret);
 	if (env->instructions.len == 0)
 		err(env, "no instruction!", 0);
 	if (env->err)
