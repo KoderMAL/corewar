@@ -6,7 +6,7 @@
 /*   By: alalaoui <alalaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/04 15:49:30 by alalaoui          #+#    #+#             */
-/*   Updated: 2018/01/23 14:44:12 by dhadley          ###   ########.fr       */
+/*   Updated: 2018/01/23 14:53:29 by alalaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@ static void		env_initialization(t_env *env)
 	env->header = 1;
 	env->state = &state_start;
 	env->line = 0;
+	env->name_check = 0;
+	env->comment_check = 0;
 	env->col = 0;
 	env->err = 0;
 	env->err_msg = NULL;
@@ -102,8 +104,8 @@ static void		parse(t_env *env)
 		return ;
 	if (!find_labels(env))
 		err(env, "label not found", -1);
-	if (ft_strlen(env->comment) == 0 || ft_strlen(env->name) == 0)
-		err(env, "comment or name empty", -1);
+	if (!env->name_check || !env->comment_check)
+		err(env, "name or comment not found", -1);
 }
 
 //A SUPPRIMER AVANT PUSH

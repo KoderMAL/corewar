@@ -6,7 +6,7 @@
 /*   By: stoupin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/10 16:29:05 by stoupin           #+#    #+#             */
-/*   Updated: 2018/01/10 16:29:07 by stoupin          ###   ########.fr       */
+/*   Updated: 2018/01/23 14:53:36 by alalaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,10 @@
 int		match_name(t_env *env)
 {
 	if (ft_cqueue_cmp(g_name_cmd, &(env->characters)) == 0)
+	{
+		env->name_check = 1;
 		return (1);
+	}
 	else
 		return (0);
 }
@@ -24,7 +27,10 @@ int		match_name(t_env *env)
 int		match_comment(t_env *env)
 {
 	if (ft_cqueue_cmp(g_comment_cmd, &(env->characters)) == 0)
+	{
+		env->comment_check = 1;
 		return (1);
+	}
 	else
 		return (0);
 }
