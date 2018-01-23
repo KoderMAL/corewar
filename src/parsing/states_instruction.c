@@ -6,7 +6,7 @@
 /*   By: alalaoui <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/02 15:46:07 by alalaoui          #+#    #+#             */
-/*   Updated: 2018/01/11 18:59:24 by alalaoui         ###   ########.fr       */
+/*   Updated: 2018/01/23 15:02:42 by alalaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void		state_pre_arg(t_env *env, char c)
 {
 	cqueue_delete(&(env->characters));
 	instruction_init(env);
-	if (c == '\n' || c == COMMENT_CHAR)
+	if (c == '\n' || c == COMMENT_CHAR || c == ';')
 	{
 		save_argument(env);
 		save_instruction(env);
@@ -55,7 +55,7 @@ void		state_arg(t_env *env, char c)
 		save_argument(env);
 		env->state = &state_pre_arg;
 	}
-	else if (c == COMMENT_CHAR || c == '\n')
+	else if (c == COMMENT_CHAR || c == '\n' || c == ';')
 	{
 		save_argument(env);
 		save_instruction(env);
@@ -74,7 +74,7 @@ void		state_post_arg(t_env *env, char c)
 		save_argument(env);
 		env->state = &state_pre_arg;
 	}
-	else if (c == COMMENT_CHAR || c == '\n')
+	else if (c == COMMENT_CHAR || c == '\n' || c == ';')
 	{
 		save_argument(env);
 		save_instruction(env);

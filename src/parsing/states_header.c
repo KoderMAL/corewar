@@ -6,7 +6,7 @@
 /*   By: stoupin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/10 16:29:05 by stoupin           #+#    #+#             */
-/*   Updated: 2018/01/23 14:53:36 by alalaoui         ###   ########.fr       */
+/*   Updated: 2018/01/23 15:01:45 by alalaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ void	state_eol(t_env *env, char c)
 		env->comment[env->pos] = '\0';
 	if (c == ' ' || c == '\t')
 		return ;
-	else if (c == COMMENT_CHAR)
+	else if (c == COMMENT_CHAR || c == ';')
 		env->state = &state_comment;
 	else if (c == '\n')
 		env->state = &state_start;
