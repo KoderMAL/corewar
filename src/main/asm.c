@@ -6,7 +6,7 @@
 /*   By: stoupin <stoupin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/04 15:49:30 by alalaoui          #+#    #+#             */
-/*   Updated: 2018/01/23 16:43:03 by stoupin          ###   ########.fr       */
+/*   Updated: 2018/01/23 17:55:44 by stoupin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,8 +69,6 @@ static void		env_clean(t_env *env)
 
 static int		parse_char(t_env *env, char c)
 {
-	if (env->state != &state_comment && !ft_isprint(c) && !ft_isspace(c))
-		return (err(env, "non-printable character", 0));
 	(env->state)(env, c);
 	if (env->err == 1)
 		return (env->err);
