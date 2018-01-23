@@ -6,7 +6,7 @@
 /*   By: dhadley <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/09 15:26:53 by dhadley           #+#    #+#             */
-/*   Updated: 2018/01/23 13:46:04 by dhadley          ###   ########.fr       */
+/*   Updated: 2018/01/23 14:11:37 by dhadley          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,17 +44,24 @@ void	encode_1_byte(unsigned char *champ, int *LC, int value)
 void	encode_2_bytes(unsigned char *champ, int *LC, int value)
 {
 
-	if (value < 0)
+	if (value < 0 && value > -255)
 	{
 		value = ~(-value);
 		value++;
 	}
-	champ[(*LC)++] = (value >> 8) & 255;
+	else if (value < -255)
+	{
+		value = ~(-value);
+		value++;
+	}
+	champ[(*LC)++] = ((value >> 8) & 255);
 	champ[(*LC)++] = (value & 255);
 }
 
 void	encode_4_bytes(unsigned char *champ, int *LC, int value)
 {
+//	if (value < -255)
+//		value++;
 	if (value < 0)
 	{
 		value = ~(-value);
@@ -64,5 +71,4 @@ void	encode_4_bytes(unsigned char *champ, int *LC, int value)
 	champ[(*LC)++] = ((value >> 16) & 255);
 	champ[(*LC)++] = ((value >> 8) & 255);
 	champ[(*LC)++] = (value & 255);
-	printf("inside encode 4 bytes the LC = %d \n", *LC);
 }

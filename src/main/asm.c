@@ -6,7 +6,7 @@
 /*   By: alalaoui <alalaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/04 15:49:30 by alalaoui          #+#    #+#             */
-/*   Updated: 2018/01/23 14:40:47 by alalaoui         ###   ########.fr       */
+/*   Updated: 2018/01/23 14:44:12 by dhadley          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -176,8 +176,6 @@ int				main(int ac, char **av)
 		close(fd);
 	assemble(&env);
 	init_cor(&env);
-//	print_champ(&env.instructions);
-	//	create_champion(&env);
 	env_clean(&env);
 	return (env.err);
 }

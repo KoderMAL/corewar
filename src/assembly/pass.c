@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pass.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: stoupin <stoupin@student.42.fr>            +#+  +:+       +#+        */
+/*   By: dhadley <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/01/07 17:28:49 by dhadley           #+#    #+#             */
-/*   Updated: 2018/01/23 12:43:53 by stoupin          ###   ########.fr       */
+/*   Created: 2018/01/23 14:10:35 by dhadley           #+#    #+#             */
+/*   Updated: 2018/01/23 14:21:56 by dhadley          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,6 @@ int	pass(t_env *env, t_pqueue instructions, t_pqueue *gaps, int pass)
 				assemble_op_fake(&LC, gaps, elem->p);
 			if (pass == 2)
 				assemble_op(env->champion, &LC, gaps, elem->p);
-			printf("the LC is %d\n", LC);
 		}
 		else if (pass == 1)
 			store_label(LC, (t_label *)elem->p);
