@@ -6,7 +6,7 @@
 /*   By: stoupin <stoupin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/05 16:33:13 by alalaoui          #+#    #+#             */
-/*   Updated: 2018/01/23 15:28:19 by stoupin          ###   ########.fr       */
+/*   Updated: 2018/01/23 15:48:14 by stoupin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	state_start(t_env *env, char c)
 	env->pos = 0;
 	if (c == '\n' || c == ' ' || c == '\t')
 		return ;
-	else if (c == COMMENT_CHAR)
+	else if (c == COMMENT_CHAR || c == ';')
 		env->state = &state_comment;
 	else
 	{

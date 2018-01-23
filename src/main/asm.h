@@ -6,20 +6,20 @@
 /*   By: stoupin <stoupin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/04 16:36:08 by alalaoui          #+#    #+#             */
-/*   Updated: 2018/01/23 15:16:26 by stoupin          ###   ########.fr       */
+/*   Updated: 2018/01/23 15:49:36 by stoupin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef ASM_H
 # define ASM_H
 
+# include <stdbool.h>
 # include "op.h"
 # include "io/openfile.h"
 # include "util/cqueue.h"
 # include "util/pqueue.h"
 # include "ft/ft.h"
 # include "hash/crc32.h"
-# include <stdbool.h>
 
 typedef struct		s_label
 {
@@ -68,6 +68,8 @@ typedef struct		s_env
 	int				err;
 	char			*err_msg;
 	int				header;
+	int				name_check;
+	int				comment_check;
 	char			*file_name;
 	char			name[PROG_NAME_LENGTH];
 	char			comment[COMMENT_LENGTH];
@@ -128,6 +130,5 @@ void				init_cor(t_env *env);
 //from space
 
 void				assemble(t_env *env);
-
 
 #endif

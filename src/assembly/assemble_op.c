@@ -6,7 +6,7 @@
 /*   By: stoupin <stoupin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/10 18:39:49 by dhadley           #+#    #+#             */
-/*   Updated: 2018/01/23 14:36:29 by stoupin          ###   ########.fr       */
+/*   Updated: 2018/01/23 15:54:07 by stoupin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,11 +52,12 @@ void	fill_gap(unsigned char *champion, int *LC, t_gap *gap)
 	int				value;
 
 		// check that *LC == gap->location
-		if (*LC != gap->location)
+/*		if (*LC != gap->location)
 		{
 			printf("ERROR: LC = %d, gap->location = %d\n", *LC, gap->location);
 			exit(1);
 		}
+*/
 		value = gap->label->location - gap->command_location;
 		if (gap->size == DIR_SIZE)
 			encode_4_bytes(champion, LC, value);
@@ -91,10 +92,7 @@ void	assemble_op(t_env *env, int *LC, t_pqueue *gaps, t_instruction *instruction
 		else if (instruction->arguments[i].type == T_IND)
 			encode_2_bytes(env->champion, LC, instruction->arguments[i].value);
 		else if (instruction->arguments[i].type == T_REG)
-		{
-			printf("\n\nThe arg value is %d and name %s\n\n", instruction->arguments[i].value, instruction->arguments[i].name);
 			encode_1_byte(env->champion, LC, instruction->arguments[i].value);
-		}
-		printf("inside assemble_op the LC is %d\n", *LC);
+		i++;
 	}	
 }

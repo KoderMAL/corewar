@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: stoupin <stoupin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/01/07 17:28:49 by dhadley           #+#    #+#             */
-/*   Updated: 2018/01/23 14:37:06 by stoupin          ###   ########.fr       */
+/*   Created: 2018/01/23 14:10:35 by dhadley           #+#    #+#             */
+/*   Updated: 2018/01/23 15:53:00 by stoupin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,6 @@ int	pass(t_env *env, t_pqueue instructions, t_pqueue *gaps, int pass)
 				return (0);
 			if (pass == 2)
 				assemble_op(env, &LC, gaps, elem->p);
-			printf("the LC is %d\n", LC);
 		}
 		else if (pass == 1)
 			store_label(LC, (t_label *)elem->p);

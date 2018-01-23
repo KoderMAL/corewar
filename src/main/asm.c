@@ -6,15 +6,15 @@
 /*   By: stoupin <stoupin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/04 15:49:30 by alalaoui          #+#    #+#             */
-/*   Updated: 2018/01/23 15:43:41 by stoupin          ###   ########.fr       */
+/*   Updated: 2018/01/23 15:50:57 by stoupin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
 #include <fcntl.h>
+#include <stdlib.h>
 #include "asm.h"
 #include "parsing/states.h"
-#include <stdlib.h>
 
 static void		env_initialization(t_env *env)
 {
@@ -24,6 +24,8 @@ static void		env_initialization(t_env *env)
 	env->header = 1;
 	env->state = &state_start;
 	env->line = 0;
+	env->name_check = 0;
+	env->comment_check = 0;
 	env->col = 0;
 	env->err = 0;
 	env->err_msg = NULL;
@@ -102,6 +104,8 @@ static void		parse(t_env *env)
 		err(env, "no instruction!", 0);
 	if (env->err == 0)
 		check_labels(env);
+	if (!env->name_check || !env->comment_check)
+		err(env, "name or comment not found", -1);
 }
 
 //A SUPPRIMER AVANT PUSH
@@ -174,8 +178,6 @@ int				main(int ac, char **av)
 		close(fd);
 	assemble(&env);
 	init_cor(&env);
-//	print_champ(&env.instructions);
-	//	create_champion(&env);
 	env_clean(&env);
 	return (env.err);
 }

@@ -1,7 +1,8 @@
 /asm
 /.vscode
-Resources/*
 /test
 /.vscode
 /__pycache__
 /asm.dSYM
+/obj
+/.DS_Store

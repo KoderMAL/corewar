@@ -6,7 +6,7 @@
 /*   By: stoupin <stoupin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/11 17:45:35 by dhadley           #+#    #+#             */
-/*   Updated: 2018/01/23 14:29:26 by stoupin          ###   ########.fr       */
+/*   Updated: 2018/01/23 15:51:43 by stoupin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,4 +40,5 @@ t_gap	*create_gap(int *LC, t_argument arg, int has_idx, int gapLC)
 void	store_label(int LC, t_label *label)
 {
 	label->location = LC;
+//	printf("label name = %s LC = %d\n", label->name, label->location);
 }
