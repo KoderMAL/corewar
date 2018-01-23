@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   make_cor.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dhadley <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: stoupin <stoupin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/15 10:53:17 by dhadley           #+#    #+#             */
-/*   Updated: 2018/01/19 17:43:19 by dhadley          ###   ########.fr       */
+/*   Updated: 2018/01/23 14:07:40 by dhadley          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	write_magic(int fd)
 	write(fd, magic, 3);
 }
 
-void	write_comment(int fd, t_env *env)
+void	write_comment (int fd, t_env *env)
 {
 	char	size[2];
 

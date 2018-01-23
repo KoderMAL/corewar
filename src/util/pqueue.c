@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pqueue.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alalaoui <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: stoupin <stoupin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/06 13:49:27 by alalaoui          #+#    #+#             */
-/*   Updated: 2018/01/22 15:50:02 by alalaoui         ###   ########.fr       */
+/*   Updated: 2018/01/23 12:48:25 by stoupin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,27 @@ int			pqueue_push(t_pqueue *pqueue, void *p)
 	pqueue->last = element;
 	pqueue->len++;
 	return (0);
+}
+
+/*
+** pops a pointer from the queue
+*/
+
+void		*pqueue_pop(t_pqueue *pqueue)
+{
+	t_pqueue_elem	*element;
+	void			*p;
+
+	if (pqueue->len == 0)
+		return (NULL);
+	element = pqueue->first;
+	pqueue->first = element->next;
+	if (pqueue->len == 1)
+		pqueue->last = NULL;
+	pqueue->len--;
+	p = element->p;
+	free(element);
+	return (p);
 }
 
 /*

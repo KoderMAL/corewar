@@ -6,7 +6,7 @@
 /*   By: dhadley <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/09 15:26:53 by dhadley           #+#    #+#             */
-/*   Updated: 2018/01/22 18:13:06 by dhadley          ###   ########.fr       */
+/*   Updated: 2018/01/23 14:11:37 by dhadley          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,6 @@ void	encode_1_byte(unsigned char *champ, int *LC, int value)
 
 void	encode_2_bytes(unsigned char *champ, int *LC, int value)
 {
-	short			short_value;
 
 	if (value < 0 && value > -255)
 	{
@@ -55,7 +54,6 @@ void	encode_2_bytes(unsigned char *champ, int *LC, int value)
 		value = ~(-value);
 		value++;
 	}
-//	short_value = (short)value;
 	champ[(*LC)++] = ((value >> 8) & 255);
 	champ[(*LC)++] = (value & 255);
 }

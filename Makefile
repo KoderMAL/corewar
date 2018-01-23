@@ -19,7 +19,7 @@ SRC_TESTS = $(SRC_IO) $(SRC_FT) $(SRC_UTIL) \
 			ft_atoi_test.c ft_strchr_test.c ft_test.c \
 			pqueue_test.c cqueue_test.c cqueue_test_2.c \
 			tests_main.c
-SRC_ASSEMBLY = assemble.c first_pass.c second_pass.c store_locations.c \
+SRC_ASSEMBLY = assemble.c pass.c store_locations.c \
 			   assemble_op.c encode_bytes.c
 HEADERS = asm.h op.h ft.h openfile.h states.h cqueue.h pqueue.h crc32.h assembly.h
 
