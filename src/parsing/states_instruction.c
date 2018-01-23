@@ -6,7 +6,7 @@
 /*   By: stoupin <stoupin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/02 15:46:07 by alalaoui          #+#    #+#             */
-/*   Updated: 2018/01/23 15:02:42 by alalaoui         ###   ########.fr       */
+/*   Updated: 2018/01/23 17:47:01 by stoupin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,8 @@ void		state_post_arg(t_env *env, char c)
 	else if (c == COMMENT_CHAR || c == '\n' || c == ';')
 	{
 		save_argument(env);
-		save_instruction(env);
+		if (env->err == 0)
+			save_instruction(env);
 		env->state = c == '\n' ? &state_start : &state_comment;
 	}
 }
