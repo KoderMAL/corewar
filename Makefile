@@ -1,4 +1,5 @@
 NAME = asm
+NAME2 = corewar
 CC = gcc
 ifeq ($(DEBUG),yes)
 	CFLAGS = -Wall -Wextra -g -O0
@@ -21,7 +22,8 @@ SRC_TESTS = $(SRC_IO) $(SRC_FT) $(SRC_UTIL) \
 			tests_main.c
 SRC_ASSEMBLY = assemble.c pass.c store_locations.c \
 			   assemble_op.c encode_bytes.c
-HEADERS = asm.h op.h ft.h openfile.h states.h cqueue.h pqueue.h crc32.h assembly.h
+HEADERS = vm.h asm.h op.h ft.h openfile.h states.h cqueue.h pqueue.h crc32.h assembly.h
+SRC_VM = error2.c thread.c vm.c\
 
 SRC = $(SRC_MAIN) $(SRC_FT) $(SRC_IO) $(SRC_PARSING) $(SRC_UTIL) $(SRC_HASH) $(SRC_ASSEMBLY)
 OBJ_TMP = $(SRC:.c=.o)
@@ -37,7 +39,7 @@ OBJ2 = $(addprefix $(OBJ_DIR)/, $(OBJ2_TMP))
 OBJ_TMP_TESTS = $(SRC_TESTS:.c=.o)
 	OBJ_TESTS = $(addprefix $(OBJ_DIR)/, $(OBJ_TMP_TESTS))
 
-all : $(NAME) graph
+all : $(NAME) $(NAME2) graph
 
 $(NAME): $(OBJ)
 	$(CC) $(CFLAGS) -o $(NAME) $(OBJ)
@@ -59,6 +61,7 @@ test: $(OBJ_TESTS)
 
 clean:
 	rm -f $(OBJ) $(OBJ_TESTS)
+	rm -f $(OBJ2) $(OBJ_TESTS)
 
 fclean: clean
 	rm -f $(NAME) $(NAME2) test
