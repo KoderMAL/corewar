@@ -6,7 +6,7 @@
 /*   By: stoupin <stoupin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/04 15:49:30 by alalaoui          #+#    #+#             */
-/*   Updated: 2018/01/23 13:59:26 by dhadley          ###   ########.fr       */
+/*   Updated: 2018/01/23 15:43:41 by stoupin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ static void		env_initialization(t_env *env)
 	env->pos = 0;
 	env->op = NULL;
 	pqueue_init(&(env->labels));
+	instruction_init(&(env->instruction), NULL);
 	pqueue_init(&(env->instructions));
 	ft_memset(env->name, '\0', PROG_NAME_LENGTH);
 	ft_memset(env->comment, '\0', COMMENT_LENGTH);
@@ -66,19 +67,20 @@ static void		env_clean(t_env *env)
 
 static int		parse_char(t_env *env, char c)
 {
-	env->col++;
+	if (env->state != &state_comment && !ft_isprint(c) && !ft_isspace(c))
+		return (err(env, "non-printable character", 0));
+	(env->state)(env, c);
+	if (env->err == 1)
+		return (env->err);
 	if (c == '\t')
-	{
-		env->col += 3;
-	}
+		env->col += 4 - (env->col % 4);
 	else if (c == '\n')
 	{
 		env->col = 0;
 		env->line++;
 	}
-	else if (!ft_isprint(c))
-		return (err(env, "non-printable character", 0));
-	(env->state)(env, c);
+	else
+		env->col++;
 	return (0);
 }
 
@@ -96,12 +98,10 @@ static void		parse(t_env *env)
 			break ;
 		parse_char(env, c);
 	}
-	if (env->instructions.len == 0)
+	if (env->err == 0 && env->instructions.len == 0)
 		err(env, "no instruction!", 0);
-	if (env->err)
-		return ;
-	if (!find_labels(env))
-		err(env, "label not found", -1);
+	if (env->err == 0)
+		check_labels(env);
 }
 
 //A SUPPRIMER AVANT PUSH

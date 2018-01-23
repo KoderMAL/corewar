@@ -9,7 +9,7 @@ endif
 
 SRC_MAIN = asm.c error.c op.c label.c argument.c instruction.c make_cor.c
 SRC_FT = ft_strlen.c ft_isprint.c ft_strchr.c ft_atoi.c ft_strcmp.c ft_isdigit.c\
-		 ft_strcpy.c ft_memset.c
+		 ft_strcpy.c ft_memset.c ft_isspace.c
 SRC_UTIL = cqueue.c cqueue_ft.c pqueue.c
 SRC_IO = openfile.c openfile_write.c
 SRC_HASH = crc32_init_0.c crc32_init_1.c crc32_init_2.c crc32_init.c crc32.c

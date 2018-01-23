@@ -6,7 +6,7 @@
 /*   By: stoupin <stoupin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/10 18:39:49 by dhadley           #+#    #+#             */
-/*   Updated: 2018/01/23 13:48:06 by dhadley          ###   ########.fr       */
+/*   Updated: 2018/01/23 14:36:29 by stoupin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,20 +14,24 @@
 #include "util/pqueue.h"
 #include "assembly.h"
 
-void	assemble_op_fake(int *LC, t_pqueue *gaps, t_instruction *instruction)
+int		assemble_op_fake(t_env *env, int *LC, t_pqueue *gaps, t_instruction *instruction)
 {
 	int		i;
 	int		gapLC;
 
-	i = 0;
 	gapLC = *LC;
 	(*LC)++;
 	if (instruction->op->has_pcode)
 		(*LC)++;
-	while (i < instruction->len)
+	i = -1;
+	while (++i < instruction->len)
 	{
 		if (instruction->arguments[i].type == T_LAB)
-			store_gap(LC, gaps, instruction->arguments[i], instruction->op->has_idx, gapLC);
+		{
+			if (pqueue_push(gaps, create_gap(LC, instruction->arguments[i],
+						instruction->op->has_idx, gapLC)))
+				return (err(env, "memory error", -1));
+		}
 		else if (instruction->arguments[i].type == T_DIR)
 		{
 			if (instruction->op->has_idx)
@@ -39,8 +43,8 @@ void	assemble_op_fake(int *LC, t_pqueue *gaps, t_instruction *instruction)
 			(*LC) += 2;
 		else if (instruction->arguments[i].type == T_REG)
 			(*LC)++;
-		i++;
-	}	
+	}
+	return (0);
 }
 
 void	fill_gap(unsigned char *champion, int *LC, t_gap *gap)
@@ -60,38 +64,37 @@ void	fill_gap(unsigned char *champion, int *LC, t_gap *gap)
 			encode_2_bytes(champion, LC, value);
 }
 
-void	assemble_op(unsigned char *champ, int *LC, t_pqueue *gaps, t_instruction *instruction)
+void	assemble_op(t_env *env, int *LC, t_pqueue *gaps, t_instruction *instruction)
 {
 	int		i;
 	t_gap	*gap;
 
-	i = 0;
-	champ[(*LC)++] = instruction->op->opcode;
+	env->champion[(*LC)++] = instruction->op->opcode;
 	if (instruction->op->has_pcode)
-		champ[(*LC)++] = encode_param_byte(instruction);
-	while (i < instruction->len)
+		env->champion[(*LC)++] = encode_param_byte(instruction);
+	i = -1;
+	while (++i < instruction->len)
 	{
 		if (instruction->arguments[i].type == T_LAB)
 		{
 			gap = pqueue_pop(gaps);
-			fill_gap(champ, LC, gap);
+			fill_gap(env->champion, LC, gap);
 			free(gap);
 		}
 		else if (instruction->arguments[i].type == T_DIR)
 		{
 			if (instruction->op->has_idx)
-				encode_2_bytes(champ, LC, instruction->arguments[i].value);
+				encode_2_bytes(env->champion, LC, instruction->arguments[i].value);
 			else
-				encode_4_bytes(champ, LC, instruction->arguments[i].value);
+				encode_4_bytes(env->champion, LC, instruction->arguments[i].value);
 		}
 		else if (instruction->arguments[i].type == T_IND)
-			encode_2_bytes(champ, LC, instruction->arguments[i].value);
+			encode_2_bytes(env->champion, LC, instruction->arguments[i].value);
 		else if (instruction->arguments[i].type == T_REG)
 		{
 			printf("\n\nThe arg value is %d and name %s\n\n", instruction->arguments[i].value, instruction->arguments[i].name);
-			encode_1_byte(champ, LC, instruction->arguments[i].value);
+			encode_1_byte(env->champion, LC, instruction->arguments[i].value);
 		}
-		i++;
 		printf("inside assemble_op the LC is %d\n", *LC);
 	}	
 }

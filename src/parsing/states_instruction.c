@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   states_instruction.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alalaoui <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: stoupin <stoupin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/02 15:46:07 by alalaoui          #+#    #+#             */
-/*   Updated: 2018/01/11 18:59:24 by alalaoui         ###   ########.fr       */
+/*   Updated: 2018/01/23 15:42:08 by stoupin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ const t_op	*match_instruction(t_env *env)
 void		state_pre_arg(t_env *env, char c)
 {
 	cqueue_delete(&(env->characters));
-	instruction_init(env);
 	if (c == '\n' || c == COMMENT_CHAR)
 	{
 		save_argument(env);

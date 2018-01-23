@@ -6,7 +6,7 @@
 /*   By: stoupin <stoupin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/02 15:46:03 by alalaoui          #+#    #+#             */
-/*   Updated: 2018/01/22 18:55:33 by alalaoui         ###   ########.fr       */
+/*   Updated: 2018/01/23 15:41:23 by stoupin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,8 @@ static void	init_arg(t_env *env, t_argument *arg)
 		arg_save(arg, T_IND);
 	else
 		err(env, "error while parsing arg", env->characters.len);
+	arg->line = env->line;
+	arg->col = env->col - ft_strlen(arg->name);
 }
 
 /*
@@ -84,10 +86,10 @@ void		save_argument(t_env *env)
 	init_arg(env, &arg);
 	if (env->err == 0)
 		check_argument(&arg, env);
-	if (env->instruction.len >= env->instruction.op->n_arg)
+	if (env->err == 0 && env->instruction.len >= env->instruction.op->n_arg)
 		err(env, "Too many arguments!", ft_strlen(arg.name) - 1);
 	if (env->err == 0)
 		env->instruction.arguments[env->instruction.len++] = arg;
-	if (env->err != 0)
+	if (env->err != 0 && arg.name)
 		free(arg.name);
 }

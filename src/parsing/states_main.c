@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   states.c                                           :+:      :+:    :+:   */
+/*   states_main.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alalaoui <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: stoupin <stoupin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/05 16:33:13 by alalaoui          #+#    #+#             */
-/*   Updated: 2018/01/10 13:25:49 by alalaoui         ###   ########.fr       */
+/*   Updated: 2018/01/23 15:28:19 by stoupin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,10 @@ void	state_command_label_instruction(t_env *env, char c)
 		if (match_name(env) || match_comment(env))
 			env->state = &state_pre_str;
 		else if ((env->op = match_instruction(env)))
+		{
+			instruction_init(&env->instruction, env->op);
 			env->state = &state_pre_arg;
+		}
 		else
 			err(env, "illegal instruction", env->characters.len);
 	}

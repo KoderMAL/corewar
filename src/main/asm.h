@@ -6,7 +6,7 @@
 /*   By: stoupin <stoupin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/04 16:36:08 by alalaoui          #+#    #+#             */
-/*   Updated: 2018/01/23 12:41:42 by stoupin          ###   ########.fr       */
+/*   Updated: 2018/01/23 15:16:26 by stoupin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,8 @@ typedef struct		s_argument
 	int				lab_type;
 	int				value;
 	t_label			*label;
+	int				line;
+	int				col;
 }					t_argument;
 
 typedef struct		s_instruction
@@ -105,7 +107,8 @@ t_label				*label_dup(t_label *label);
 ** from instruction.c
 */
 
-void				instruction_init(t_env *env);
+void				instruction_init(t_instruction *instruction,
+										const t_op *op);
 void				instruction_move(t_instruction *src, t_instruction *dest);
 void				instruction_clean(t_instruction *instruction);
 
