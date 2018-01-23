@@ -6,7 +6,7 @@
 /*   By: stoupin <stoupin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/08 14:26:46 by dhadley           #+#    #+#             */
-/*   Updated: 2018/01/23 12:42:17 by stoupin          ###   ########.fr       */
+/*   Updated: 2018/01/23 13:37:10 by stoupin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,4 +28,5 @@ void	assemble(t_env *env)
 	ft_memset(env->champion, '\0', env->prog_size);
 	if (env->err == 0)
 		pass(env, env->instructions, &gaps, 2);
+	pqueue_delete(&gaps);
 }
