@@ -7,6 +7,7 @@
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/09 17:32:19 by alalaoui          #+#    #+#             */
 /*   Updated: 2018/01/23 16:18:08 by stoupin          ###   ########.fr       */
+/*   Updated: 2018/01/23 17:58:03 by alalaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +31,7 @@ void			check_value(t_env *env, char *name)
 		if (!ft_isdigit(name[i]))
 		{
 			  err(env, "syntax error while parsing argument", i)
+			  err(env, "syntax error while parsing argument", i);
 			  break ;
 		};
 		i++;
