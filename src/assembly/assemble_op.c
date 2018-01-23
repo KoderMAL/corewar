@@ -6,7 +6,7 @@
 /*   By: stoupin <stoupin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/10 18:39:49 by dhadley           #+#    #+#             */
-/*   Updated: 2018/01/23 15:54:07 by stoupin          ###   ########.fr       */
+/*   Updated: 2018/01/23 17:32:21 by stoupin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,6 +93,5 @@ void	assemble_op(t_env *env, int *LC, t_pqueue *gaps, t_instruction *instruction
 			encode_2_bytes(env->champion, LC, instruction->arguments[i].value);
 		else if (instruction->arguments[i].type == T_REG)
 			encode_1_byte(env->champion, LC, instruction->arguments[i].value);
-		i++;
-	}	
+	}
 }

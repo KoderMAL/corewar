@@ -6,7 +6,7 @@
 /*   By: stoupin <stoupin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/15 10:53:17 by dhadley           #+#    #+#             */
-/*   Updated: 2018/01/23 16:25:36 by stoupin          ###   ########.fr       */
+/*   Updated: 2018/01/23 16:55:01 by stoupin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,4 +60,6 @@ void	write_cor(t_env *env)
 		openfile_write_buf(&of, (char*)env->champion, env->prog_size);
 		openfile_flush(&of);
 	}
+	else
+		err(env, "unable to write output file", -1);
 }
