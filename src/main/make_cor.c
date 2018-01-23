@@ -6,7 +6,7 @@
 /*   By: stoupin <stoupin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/15 10:53:17 by dhadley           #+#    #+#             */
-/*   Updated: 2018/01/23 11:41:54 by stoupin          ###   ########.fr       */
+/*   Updated: 2018/01/23 13:53:13 by dhadley          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,16 @@ void	write_magic(int fd)
 	write(fd, magic, 3);
 }
 
-void	write_comment(int fd, t_env *env)
+void	write_comment (int fd, t_env *env)
 {
+	char	size[2];
+
+	if (env->prog_size > 255)
+		size[0] = (env->prog_size >> 8);
+	else
+		size[0] = '\0';	
+	size[1] = (env->prog_size & 255);
+	write(fd, size, 2);
 	write(fd, env->comment, COMMENT_LENGTH);
 }
 
@@ -44,7 +52,7 @@ void	init_cor(t_env *env)
 		write(fd, "\0", 1);
 		write_magic(fd);
 		write_prog_name(fd, env);
-		write(fd, "\0\0\0\0\0\0\0\v", 8);
+		write(fd, "\0\0\0\0\0\0", 6);
 		write_comment(fd, env);
 		write(fd, "\0\0\0\0", 4);
 		write(fd, env->champion, env->prog_size);

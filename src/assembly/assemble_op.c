@@ -6,7 +6,7 @@
 /*   By: stoupin <stoupin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/10 18:39:49 by dhadley           #+#    #+#             */
-/*   Updated: 2018/01/23 12:52:46 by stoupin          ###   ########.fr       */
+/*   Updated: 2018/01/23 13:48:06 by dhadley          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ void	fill_gap(unsigned char *champion, int *LC, t_gap *gap)
 			printf("ERROR: LC = %d, gap->location = %d\n", *LC, gap->location);
 			exit(1);
 		}
-		value = gap->label->location - (gap->command_location - 1);
+		value = gap->label->location - gap->command_location;
 		if (gap->size == DIR_SIZE)
 			encode_4_bytes(champion, LC, value);
 		else
