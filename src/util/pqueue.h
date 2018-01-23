@@ -6,7 +6,7 @@
 /*   By: alalaoui <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/06 13:50:22 by alalaoui          #+#    #+#             */
-/*   Updated: 2017/12/19 16:31:50 by alalaoui         ###   ########.fr       */
+/*   Updated: 2018/01/22 15:50:28 by alalaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,5 +34,6 @@ typedef struct	s_pqueue
 void			pqueue_init(t_pqueue *pqueue);
 int				pqueue_push(t_pqueue *pqueue, void *p);
 void			pqueue_delete(t_pqueue *pqueue);
+void			pqueue_clean(t_pqueue *pqueue);
 
 #endif

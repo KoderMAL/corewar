@@ -25,7 +25,7 @@ HEADERS = asm.h op.h ft.h openfile.h states.h cqueue.h pqueue.h crc32.h assembly
 
 SRC = $(SRC_MAIN) $(SRC_FT) $(SRC_IO) $(SRC_PARSING) $(SRC_UTIL) $(SRC_HASH) $(SRC_ASSEMBLY)
 OBJ_TMP = $(SRC:.c=.o)
-SRC2 = $(SRC_VM) $(SRC_IO) $(SRC_FT)
+SRC2 = $(SRC_VM) $(SRC_IO) $(SRC_FT) $(SRC_UTIL)
 OBJ2_TMP = $(SRC2:.c=.o)
 
 VPATH = src/ft src/io src/main src/parsing src/util src/hash src/tests src/assembly src/VM
@@ -43,7 +43,7 @@ $(NAME): $(OBJ)
 	$(CC) $(CFLAGS) -o $(NAME) $(OBJ)
 
 $(NAME2): $(OBJ2)
-	$(CC) $(CFLAGS) -o $(NAME2) $(OBJ)
+	$(CC) $(CFLAGS) -o $(NAME2) $(OBJ2)
 
 $(OBJ_DIR)/%.o: %.c $(HEADERS)
 	$(CC) -c $(CFLAGS) -o $@ $< $(IFLAGS)

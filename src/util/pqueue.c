@@ -6,7 +6,7 @@
 /*   By: alalaoui <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/06 13:49:27 by alalaoui          #+#    #+#             */
-/*   Updated: 2018/01/10 16:35:05 by alalaoui         ###   ########.fr       */
+/*   Updated: 2018/01/22 15:50:02 by alalaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,23 @@ void		pqueue_delete(t_pqueue *pqueue)
 	{
 		elem_next = elem->next;
 		free(elem->p);
+		free(elem);
+		elem = elem_next;
+		pqueue->len--;
+	}
+	pqueue->first = NULL;
+	pqueue->last = NULL;
+}
+
+void		pqueue_clean(t_pqueue *pqueue)
+{
+	t_pqueue_elem	*elem;
+	t_pqueue_elem	*elem_next;
+
+	elem = pqueue->first;
+	while (pqueue->len > 0)
+	{
+		elem_next = elem->next;
 		free(elem);
 		elem = elem_next;
 		pqueue->len--;
