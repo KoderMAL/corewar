@@ -6,7 +6,7 @@
 /*   By: stoupin <stoupin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/09 17:32:19 by alalaoui          #+#    #+#             */
-/*   Updated: 2018/01/23 16:18:08 by stoupin          ###   ########.fr       */
+/*   Updated: 2018/01/23 17:53:06 by alalaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void			check_value(t_env *env, char *name)
 		i++;
 	while (name[i])
 	{
-		if (!ft_isdigit(name[i]) || i > 11)
+		if (!ft_isdigit(name[i])/* || i > 11*/)
 			err(env, "syntax error while parsing argument", i);
 		i++;
 	}

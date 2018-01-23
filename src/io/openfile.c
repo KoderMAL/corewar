@@ -6,7 +6,7 @@
 /*   By: stoupin <stoupin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/05 13:44:43 by alalaoui          #+#    #+#             */
-/*   Updated: 2018/01/23 16:26:34 by stoupin          ###   ########.fr       */
+/*   Updated: 2018/01/23 17:48:35 by alalaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void		openfile_write_char(t_openfile *of, char c)
 	if (of->pos == BUFF_SIZE)
 	{
 		ret = write(of->fd, of->buffer, BUFF_SIZE);
-		ret = ret;
+		(void)ret;
 		of->pos = 0;
 	}
 }
@@ -55,6 +55,6 @@ void		openfile_flush(t_openfile *of)
 	int	ret;
 
 	ret = write(of->fd, of->buffer, of->pos);
-	ret = ret;
+	(void)ret;
 	of->pos = 0;
 }
