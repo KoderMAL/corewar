@@ -6,7 +6,7 @@
 /*   By: stoupin <stoupin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/04 15:49:30 by alalaoui          #+#    #+#             */
-/*   Updated: 2018/01/23 15:50:57 by stoupin          ###   ########.fr       */
+/*   Updated: 2018/01/23 16:43:03 by stoupin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -176,8 +176,10 @@ int				main(int ac, char **av)
 		parse(&env);
 	if (fd >= 2)
 		close(fd);
-	assemble(&env);
-	init_cor(&env);
+	if (env.err == 0)
+		assemble(&env);
+	if (env.err == 0)
+		write_cor(&env);
 	env_clean(&env);
 	return (env.err);
 }

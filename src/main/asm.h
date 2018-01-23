@@ -6,7 +6,7 @@
 /*   By: stoupin <stoupin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/04 16:36:08 by alalaoui          #+#    #+#             */
-/*   Updated: 2018/01/23 15:49:36 by stoupin          ###   ########.fr       */
+/*   Updated: 2018/01/23 16:16:40 by stoupin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,7 +125,7 @@ void				check_argument(t_argument *arg, t_env *env);
 ** from make_cor.c
 */
 
-void				init_cor(t_env *env);
+void				write_cor(t_env *env);
 
 //from space
 
