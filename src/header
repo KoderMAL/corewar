@@ -1,0 +1,165 @@
+assembly/assemble.c:	env->prog_size = pass(env, env->instructions, &gaps, 1);
+assembly/assemble.c:	env->champion = (unsigned char*)malloc(sizeof(unsigned char) * env->prog_size);
+assembly/assemble.c:	if (env->champion == NULL)
+assembly/assemble.c:	ft_memset(env->champion, '\0', env->prog_size);
+assembly/assemble.c:	if (env->err == 0)
+assembly/assemble.c:		pass(env, env->instructions, &gaps, 2);
+assembly/pass.c:				assemble_op(env->champion, &LC, gaps, elem->p);
+hash/crc32.c:		crc32val = env->crc32_tab[(crc32val ^ s[i]) & 0xff] ^ (crc32val >> 8);
+hash/crc32_init.c:	crc32_init_000_024(env->crc32_tab);
+hash/crc32_init.c:	crc32_init_025_049(env->crc32_tab);
+hash/crc32_init.c:	crc32_init_050_074(env->crc32_tab);
+hash/crc32_init.c:	crc32_init_075_099(env->crc32_tab);
+hash/crc32_init.c:	crc32_init_100_124(env->crc32_tab);
+hash/crc32_init.c:	crc32_init_125_149(env->crc32_tab);
+hash/crc32_init.c:	crc32_init_150_174(env->crc32_tab);
+hash/crc32_init.c:	crc32_init_175_199(env->crc32_tab);
+hash/crc32_init.c:	crc32_init_200_224(env->crc32_tab);
+hash/crc32_init.c:	crc32_init_225_249(env->crc32_tab);
+hash/crc32_init.c:	crc32_init_250_255(env->crc32_tab);
+main/asm.c:	openfile_init(&(env->stdout), STDOUT_FILENO);
+main/asm.c:	openfile_init(&(env->stderr), STDERR_FILENO);
+main/asm.c:	crc32_init(&(env->hash_env));
+main/asm.c:	env->header = 1;
+main/asm.c:	env->state = &state_start;
+main/asm.c:	env->line = 0;
+main/asm.c:	env->col = 0;
+main/asm.c:	env->err = 0;
+main/asm.c:	env->err_msg = NULL;
+main/asm.c:	cqueue_init(&(env->characters));
+main/asm.c:	env->pos = 0;
+main/asm.c:	env->op = NULL;
+main/asm.c:	pqueue_init(&(env->labels));
+main/asm.c:	pqueue_init(&(env->instructions));
+main/asm.c:	ft_memset(env->name, '\0', PROG_NAME_LENGTH);
+main/asm.c:	ft_memset(env->comment, '\0', COMMENT_LENGTH);
+main/asm.c:	env->champion = NULL;
+main/asm.c:	env->file_name = NULL;
+main/asm.c:	openfile_flush(&(env->stdout));
+main/asm.c:	openfile_flush(&(env->stderr));
+main/asm.c:	cqueue_delete(&(env->characters));
+main/asm.c:	pqueue_clean(&(env->labels));
+main/asm.c:	elem = env->instructions.first;
+main/asm.c:	instruction_clean(&(env->instruction));
+main/asm.c:	pqueue_delete(&(env->instructions));
+main/asm.c:	if (env->champion)
+main/asm.c:		free(env->champion);
+main/asm.c:	if (env->file_name)
+main/asm.c:		free(env->file_name);
+main/asm.c:	env->col++;
+main/asm.c:		env->col += 3;
+main/asm.c:		env->col = 0;
+main/asm.c:		env->line++;
+main/asm.c:	(env->state)(env, c);
+main/asm.c:	while (env->err == 0)
+main/asm.c:		ret = openfile_read_char(&(env->input), &c);
+main/asm.c:	if (env->instructions.len == 0)
+main/asm.c:	if (env->err)
+main/asm.c:	//check if .s and save as .cor in env->file_name;
+main/error.c:	env->err = 1;
+main/error.c:	env->err_msg = s;
+main/error.c:		env->col = -1;
+main/error.c:		env->col -= col_back;
+main/error.c:	if (env->err && ft_strlen(env->err_msg) > 0)
+main/error.c:		openfile_write_str(&(env->stderr), "Error: ", 0);
+main/error.c:		openfile_write_str(&(env->stderr), env->err_msg, 1);
+main/error.c:		if (env->col >= 0)
+main/error.c:			openfile_write_str(&(env->stderr), "at line ", 0);
+main/error.c:			openfile_write_nbr(&(env->stderr), env->line + 1, 0);
+main/error.c:			openfile_write_str(&(env->stderr), ", column ", 0);
+main/error.c:			openfile_write_nbr(&(env->stderr), env->col + 1, 1);
+main/error.c:	return (env->err);
+main/instruction.c:	if (env->op)
+main/instruction.c:		env->instruction.op = env->op;
+main/instruction.c:		env->instruction.len = 0;
+main/instruction.c:		env->instruction.is_lab = 0;
+main/instruction.c:		env->op = NULL;
+main/make_cor.c:	if (env->prog_size > 255)
+main/make_cor.c:		size[0] = (env->prog_size >> 8);
+main/make_cor.c:	size[1] = (env->prog_size & 255);
+main/make_cor.c:	write(fd, env->comment, COMMENT_LENGTH);
+main/make_cor.c:	write(fd, env->name, PROG_NAME_LENGTH);
+main/make_cor.c:	fd = open(env->file_name, O_CREAT | O_WRONLY, S_IRWXU); //check mode and fd
+main/make_cor.c:		write(fd, env->champion, env->prog_size);
+parsing/check_args.c:	inst = env->instructions.first;
+parsing/check_args.c:	while (i++ < env->instructions.len)
+parsing/check_args.c:					if (!find_label(arg, &env->labels))
+parsing/save_argument.c:	if ((arg_from_cqueue(&(env->characters), arg)) == 1)
+parsing/save_argument.c:		err(env, "error while parsing arg", env->characters.len);
+parsing/save_argument.c:** env->characters et en remplir arg.
+parsing/save_argument.c:** ajoute a env->instruction.arguments
+parsing/save_argument.c:	if (env->err == 0)
+parsing/save_argument.c:	if (env->instruction.len >= env->instruction.op->n_arg)
+parsing/save_argument.c:	if (env->err == 0)
+parsing/save_argument.c:		env->instruction.arguments[env->instruction.len++] = arg;
+parsing/save_argument.c:	if (env->err != 0)
+parsing/save_instruction.c:** Cette fonction doit prendre env->instruction,
+parsing/save_instruction.c:** puis l'ajouter a env->instructions a l'aide de
+parsing/save_instruction.c:	if (check_instruction(&env->instruction) == -1)
+parsing/save_instruction.c:		instruction_move(&env->instruction, new);
+parsing/save_instruction.c:		pqueue_push(&env->instructions, new);
+parsing/save_label.c:				&(env->labels),
+parsing/save_label.c:				label_from_cqueue(&(env->characters)));
+parsing/save_label.c:			pqueue_push(&(env->instructions), env->labels.last->p);
+parsing/save_label.c:	env->header = 0;
+parsing/save_label.c:	env->state = &state_start;
+parsing/states_header.c:	if (ft_cqueue_cmp(g_name_cmd, &(env->characters)) == 0)
+parsing/states_header.c:	if (ft_cqueue_cmp(g_comment_cmd, &(env->characters)) == 0)
+parsing/states_header.c:		env->state = &state_str;
+parsing/states_header.c:		env->state = &state_eol;
+parsing/states_header.c:		if (env->pos == PROG_NAME_LENGTH)
+parsing/states_header.c:			env->name[env->pos++] = c;
+parsing/states_header.c:		if (env->pos == COMMENT_LENGTH)
+parsing/states_header.c:			env->comment[env->pos++] = c;
+parsing/states_header.c:		env->name[env->pos] = '\0';
+parsing/states_header.c:		env->comment[env->pos] = '\0';
+parsing/states_header.c:		env->state = &state_comment;
+parsing/states_header.c:		env->state = &state_start;
+parsing/states_instruction.c:		if (ft_cqueue_cmp(g_op_tab[i].name, &(env->characters)) == 0)
+parsing/states_instruction.c:	cqueue_delete(&(env->characters));
+parsing/states_instruction.c:		env->state = c == '\n' ? &state_start : &state_comment;
+parsing/states_instruction.c:		cqueue_push(&(env->characters), c);
+parsing/states_instruction.c:		env->state = &state_arg;
+parsing/states_instruction.c:		env->state = &state_post_arg;
+parsing/states_instruction.c:		env->state = &state_pre_arg;
+parsing/states_instruction.c:		env->state = c == '\n' ? &state_start : &state_comment;
+parsing/states_instruction.c:		cqueue_push(&(env->characters), c);
+parsing/states_instruction.c:		env->state = &state_pre_arg;
+parsing/states_instruction.c:		env->state = c == '\n' ? &state_start : &state_comment;
+parsing/states_label.c:	elem = env->characters.first;
+parsing/states_label.c:	while (i < env->characters.len && env->err == 0)
+parsing/states_label.c:			err(env, "incorrect character in label", i - env->characters.len);
+parsing/states_label.c:	if (env->err == 0)
+parsing/states_main.c:	cqueue_delete(&(env->characters));
+parsing/states_main.c:	env->pos = 0;
+parsing/states_main.c:		env->state = &state_comment;
+parsing/states_main.c:		cqueue_push(&(env->characters), c);
+parsing/states_main.c:		env->state = &state_command_label_instruction;
+parsing/states_main.c:		env->state = &state_start;
+parsing/states_main.c:			env->state = &state_str;
+parsing/states_main.c:			err(env, "illegal command", env->characters.len);
+parsing/states_main.c:			env->state = &state_pre_str;
+parsing/states_main.c:		else if ((env->op = match_instruction(env)))
+parsing/states_main.c:			env->state = &state_pre_arg;
+parsing/states_main.c:			err(env, "illegal instruction", env->characters.len);
+parsing/states_main.c:		cqueue_push(&(env->characters), c);
+tests/tests.c:	openfile_init(&(env->stdout), STDOUT_FILENO);
+tests/tests.c:	openfile_init(&(env->stderr), STDERR_FILENO);
+tests/tests.c:	openfile_flush(&(env->stdout));
+tests/tests.c:	openfile_flush(&(env->stderr));
+tests/tests.c:	openfile_write_char(&(env->stdout), '\n');
+tests/tests.c:	openfile_write_str(&(env->stdout), msg, 0);
+tests/tests_assert.c:	openfile_write_char(&(env->stdout), '.');
+tests/tests_assert.c:	openfile_write_char(&(env->stdout), 'F');
+tests/tests_assert.c:		openfile_write_str(&(env->stderr),
+tests/tests_assert.c:		openfile_write_str(&(env->stderr), err_msg, 1);
+tests/tests_assert.c:	openfile_write_char(&(env->stderr), '\n');
+tests/tests_assert.c:		openfile_write_str(&env->stderr,
+tests/tests_assert.c:		openfile_write_nbr(&env->stderr, a, 0);
+tests/tests_assert.c:		openfile_write_str(&env->stderr, " and ", 0);
+tests/tests_assert.c:		openfile_write_nbr(&env->stderr, b, 1);
+tests/tests_assert.c:		openfile_write_str(&env->stderr,
+tests/tests_assert.c:		openfile_write_str(&env->stderr, a, 0);
+tests/tests_assert.c:		openfile_write_str(&env->stderr, "\" and \"", 0);
+tests/tests_assert.c:		openfile_write_str(&env->stderr, b, 0);
+tests/tests_assert.c:		openfile_write_str(&env->stderr, "\"", 1);
