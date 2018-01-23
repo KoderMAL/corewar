@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   assembly.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dhadley <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: stoupin <stoupin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/08 15:10:38 by dhadley           #+#    #+#             */
-/*   Updated: 2018/01/17 18:51:15 by dhadley          ###   ########.fr       */
+/*   Updated: 2018/01/23 12:42:54 by stoupin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,16 +22,10 @@
 void	assemble(t_env *env);
 
 /*
-** from first_pass.c
+** from pass.c
 */
 
-int		first_pass(unsigned char *champ, t_pqueue instructions, t_pqueue *gaps);
-
-/*
-** from second_pass.c
-*/
-
-void	second_pass(unsigned char *champ, t_pqueue gaps);
+int		pass(t_env *env, t_pqueue instructions, t_pqueue *gaps, int pass);
 
 /*
 ** from store_locations.c
@@ -54,5 +48,6 @@ unsigned char	encode_param_byte(t_instruction *instruction);
 */
 
 void	assemble_op(unsigned char *champ, int *LC, t_pqueue *gaps, t_instruction *instruction);
+void	assemble_op_fake(int *LC, t_pqueue *gaps, t_instruction *instruction);
 
 #endif

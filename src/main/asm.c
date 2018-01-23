@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   asm.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alalaoui <alalaoui@student.42.fr>          +#+  +:+       +#+        */
+/*   By: stoupin <stoupin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/04 15:49:30 by alalaoui          #+#    #+#             */
-/*   Updated: 2018/01/22 15:55:46 by alalaoui         ###   ########.fr       */
+/*   Updated: 2018/01/23 12:50:56 by stoupin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,10 @@ static void		env_initialization(t_env *env)
 	env->op = NULL;
 	pqueue_init(&(env->labels));
 	pqueue_init(&(env->instructions));
+	ft_memset(env->name, '\0', PROG_NAME_LENGTH);
+	ft_memset(env->comment, '\0', COMMENT_LENGTH);
+	env->champion = NULL;
+	env->file_name = NULL;
 }
 
 static void		env_clean(t_env *env)
@@ -54,6 +58,10 @@ static void		env_clean(t_env *env)
 	}
 	instruction_clean(&(env->instruction));
 	pqueue_delete(&(env->instructions));
+	if (env->champion)
+		free(env->champion);
+	if (env->file_name)
+		free(env->file_name);
 }
 
 static int		parse_char(t_env *env, char c)
