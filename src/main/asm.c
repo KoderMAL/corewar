@@ -6,7 +6,7 @@
 /*   By: stoupin <stoupin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/04 15:49:30 by alalaoui          #+#    #+#             */
-/*   Updated: 2018/01/23 14:09:06 by dhadley          ###   ########.fr       */
+/*   Updated: 2018/01/23 14:20:34 by dhadley          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -172,14 +172,8 @@ int				main(int ac, char **av)
 		parse(&env);
 	if (fd >= 2)
 		close(fd);
-printf("hello brothers\n");
 	assemble(&env);
-
-printf("hello brothers\n");
 	init_cor(&env);
-//	print_champ(&env.instructions);
-	//	create_champion(&env);
-printf("hello brothers\n");
 	env_clean(&env);
 	return (env.err);
 }

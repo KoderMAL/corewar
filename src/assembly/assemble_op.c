@@ -6,7 +6,7 @@
 /*   By: stoupin <stoupin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/10 18:39:49 by dhadley           #+#    #+#             */
-/*   Updated: 2018/01/23 14:12:25 by dhadley          ###   ########.fr       */
+/*   Updated: 2018/01/23 14:22:37 by dhadley          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,11 +48,12 @@ void	fill_gap(unsigned char *champion, int *LC, t_gap *gap)
 	int				value;
 
 		// check that *LC == gap->location
-		if (*LC != gap->location)
+/*		if (*LC != gap->location)
 		{
 			printf("ERROR: LC = %d, gap->location = %d\n", *LC, gap->location);
 			exit(1);
 		}
+*/
 		value = gap->label->location - gap->command_location;
 		if (gap->size == DIR_SIZE)
 			encode_4_bytes(champion, LC, value);
@@ -87,11 +88,7 @@ void	assemble_op(unsigned char *champ, int *LC, t_pqueue *gaps, t_instruction *i
 		else if (instruction->arguments[i].type == T_IND)
 			encode_2_bytes(champ, LC, instruction->arguments[i].value);
 		else if (instruction->arguments[i].type == T_REG)
-		{
-			printf("\n\nThe arg value is %d and name %s\n\n", instruction->arguments[i].value, instruction->arguments[i].name);
 			encode_1_byte(champ, LC, instruction->arguments[i].value);
-		}
 		i++;
-		printf("inside assemble_op the LC is %d\n", *LC);
 	}	
 }
