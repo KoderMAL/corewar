@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   asm.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: stoupin <stoupin@student.42.fr>            +#+  +:+       +#+        */
+/*   By: alalaoui <alalaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/04 15:49:30 by alalaoui          #+#    #+#             */
-/*   Updated: 2018/01/23 13:59:26 by dhadley          ###   ########.fr       */
+/*   Updated: 2018/01/23 14:40:47 by alalaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,6 +102,8 @@ static void		parse(t_env *env)
 		return ;
 	if (!find_labels(env))
 		err(env, "label not found", -1);
+	if (ft_strlen(env->comment) == 0 || ft_strlen(env->name) == 0)
+		err(env, "comment or name empty", -1);
 }
 
 //A SUPPRIMER AVANT PUSH
