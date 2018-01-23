@@ -6,7 +6,7 @@
 /*   By: stoupin <stoupin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/09 17:32:19 by alalaoui          #+#    #+#             */
-/*   Updated: 2018/01/22 18:55:24 by alalaoui         ###   ########.fr       */
+/*   Updated: 2018/01/23 14:16:52 by alalaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,8 @@ int				find_label(t_argument *arg, t_pqueue *labels)
 	while (i++ < labels->len)
 	{
 		lab = (t_label*)(tmp->p);
-		if (ft_strcmp(arg->name + 2, lab->name) == 0)
+		if ((ft_strcmp(arg->name + 2, lab->name) == 0 && arg->lab_type == T_DIR) ||
+				(ft_strcmp(arg->name + 1, lab->name) == 0 && arg->lab_type == T_IND))
 		{
 			arg->label = tmp->p;
 			return (1);

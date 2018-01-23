@@ -4,7 +4,6 @@
 live:
 live %4
 zjmp %:live
-zjmp %:live
 
 # avec live %1
 #01 00 00 00 01 09 ff fb
