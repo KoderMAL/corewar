@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pqueue.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alalaoui <alalaoui@student.42.fr>          +#+  +:+       +#+        */
+/*   By: stoupin <stoupin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/06 13:49:27 by alalaoui          #+#    #+#             */
-/*   Updated: 2018/01/23 13:43:03 by alalaoui         ###   ########.fr       */
+/*   Updated: 2018/01/23 16:14:56 by stoupin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,6 @@ int			pqueue_push(t_pqueue *pqueue, void *p)
 		return (1);
 	element->p = p;
 	element->next = NULL;
-	printf("3CHECK3:%d\n", pqueue->len);
 	if (pqueue->len == 0)
 		pqueue->first = element;
 	else
