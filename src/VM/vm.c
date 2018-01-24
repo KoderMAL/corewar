@@ -6,7 +6,7 @@
 /*   By: alalaoui <alalaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/16 14:30:57 by alalaoui          #+#    #+#             */
-/*   Updated: 2018/01/23 18:32:10 by alalaoui         ###   ########.fr       */
+/*   Updated: 2018/01/24 12:47:17 by alalaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,7 @@ int main(int ac, char **av)
 	int i;
 
 	i = 0;
+	vm.err = 0;
 	if (ac > MAX_ARGS_NUMBER)
 		err2(&vm, "Too many arguments");
 	else if (ac < 2)
