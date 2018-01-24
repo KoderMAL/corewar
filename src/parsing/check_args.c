@@ -3,15 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   check_args.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: stoupin <stoupin@student.42.fr>            +#+  +:+       +#+        */
+/*   By: alalaoui <alalaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/09 17:32:19 by alalaoui          #+#    #+#             */
-/*   Updated: 2018/01/23 14:16:52 by alalaoui         ###   ########.fr       */
+/*   Updated: 2018/01/24 12:54:41 by alalaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+
 #include "main/asm.h"
-#include <stdlib.h>
 
 /*
 ** Fonction de verification de conformite des arguments,
@@ -28,13 +28,16 @@ void			check_value(t_env *env, char *name)
 		i++;
 	while (name[i])
 	{
-		if (!ft_isdigit(name[i]) || i > 11)
-			err(env, "syntax error while parsing argument", i);
+		if (!ft_isdigit(name[i]))
+		{
+			  err(env, "syntax error while parsing argument", i);
+			  break ;
+		};
 		i++;
 	}
 }
 
-int				find_labels(t_env *env)
+int				check_labels(t_env *env)
 {
 	t_argument		*arg;
 	t_pqueue_elem	*inst;
@@ -54,13 +57,15 @@ int				find_labels(t_env *env)
 				arg = &(tmp->arguments[j++]);
 				if (arg->type == T_LAB)
 				{
+					env->line = arg->line;
+					env->col = arg->col;
 					if (!find_label(arg, &env->labels))
-						return (0);
+						return (err(env, "label not found", 0));
 				}
 			}
 		inst = inst->next;
 	}
-	return (1);
+	return (0);
 }
 
 int				find_label(t_argument *arg, t_pqueue *labels)
@@ -74,8 +79,8 @@ int				find_label(t_argument *arg, t_pqueue *labels)
 	while (i++ < labels->len)
 	{
 		lab = (t_label*)(tmp->p);
-		if ((ft_strcmp(arg->name + 2, lab->name) == 0 && arg->lab_type == T_DIR) ||
-				(ft_strcmp(arg->name + 1, lab->name) == 0 && arg->lab_type == T_IND))
+		if ((arg->lab_type == T_DIR && ft_strcmp(arg->name + 2, lab->name) == 0) ||
+				(arg->lab_type == T_IND && ft_strcmp(arg->name + 1, lab->name) == 0))
 		{
 			arg->label = tmp->p;
 			return (1);
@@ -87,6 +92,8 @@ int				find_label(t_argument *arg, t_pqueue *labels)
 
 void			check_argument(t_argument *arg, t_env *env)
 {
+	env->line = arg->line;
+	env->col = arg->col;
 	if (arg->type == T_LAB && (arg->lab_type == T_DIR || arg->lab_type == T_IND))
 	{
 	}

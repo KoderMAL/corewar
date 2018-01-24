@@ -6,7 +6,7 @@
 /*   By: stoupin <stoupin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/04 17:48:23 by alalaoui          #+#    #+#             */
-/*   Updated: 2018/01/22 18:56:40 by alalaoui         ###   ########.fr       */
+/*   Updated: 2018/01/23 15:28:01 by stoupin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,4 +70,5 @@ void			save_instruction(t_env *env)
 		instruction_move(&env->instruction, new);
 		pqueue_push(&env->instructions, new);
 	}
+	instruction_init(&env->instruction, NULL);
 }

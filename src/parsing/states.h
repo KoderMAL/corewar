@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   states.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: stoupin <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: stoupin <stoupin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/10 16:31:44 by stoupin           #+#    #+#             */
-/*   Updated: 2018/01/10 16:31:45 by stoupin          ###   ########.fr       */
+/*   Updated: 2018/01/23 14:45:16 by stoupin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ void		save_instruction(t_env *env);
 ** check_arguments.c
 */
 
-int			find_labels(t_env *env);
+int			check_labels(t_env *env);
 void		check_value(t_env *env, char *name);
 
 #endif

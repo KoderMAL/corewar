@@ -40,11 +40,11 @@ for champ in champs:
 	zaz_len = len(zaz_result)
 	#if my_len > 100: my_result_data[42] += 1 # simulate error
 	if my_error and not zaz_error:
-		print('Our asm fails to compile but non zaz\'s:')
+		print('Our asm fails to compile but not zaz\'s:')
 		print(my_result)
 		sys.exit(1)
 	if zaz_error and not my_error:
-		print('Zaz\'s asm fails to compile but non ours:')
+		print('Zaz\'s asm fails to compile but not ours:')
 		print(zaz_result)
 		sys.exit(1)
 	if my_error == False and my_len != zaz_len:

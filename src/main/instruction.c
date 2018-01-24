@@ -6,7 +6,7 @@
 /*   By: stoupin <stoupin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/10 16:34:49 by stoupin           #+#    #+#             */
-/*   Updated: 2018/01/17 13:46:08 by stoupin          ###   ########.fr       */
+/*   Updated: 2018/01/23 15:16:03 by stoupin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,15 +18,11 @@
 ** initializes an instruction
 */
 
-void	instruction_init(t_env *env)
+void	instruction_init(t_instruction *instruction, const t_op *op)
 {
-	if (env->op)
-	{
-		env->instruction.op = env->op;
-		env->instruction.len = 0;
-		env->instruction.is_lab = 0;
-		env->op = NULL;
-	}
+	instruction->op = op;
+	instruction->len = 0;
+	instruction->is_lab = 0;
 }
 
 /*
@@ -64,4 +60,5 @@ void	instruction_clean(t_instruction *instruction)
 		argument_clean(&(instruction->arguments[j]));
 		j++;
 	}
+	instruction->len = 0;
 }

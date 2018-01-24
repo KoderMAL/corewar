@@ -6,18 +6,20 @@
 /*   By: stoupin <stoupin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/11 17:45:35 by dhadley           #+#    #+#             */
-/*   Updated: 2018/01/23 14:09:55 by dhadley          ###   ########.fr       */
+/*   Updated: 2018/01/23 15:51:43 by stoupin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "assembly.h"
 #include <stdlib.h>
+#include "assembly.h"
 
-void	store_gap(int *LC, t_pqueue *gaps, t_argument arg, int has_idx, int gapLC)
+t_gap	*create_gap(int *LC, t_argument arg, int has_idx, int gapLC)
 {
 	t_gap	*gap;
 	
 	gap = (t_gap *)malloc(sizeof(t_gap)); //protect malloc;
+	if (gap == NULL)
+		return (NULL);
 	gap->location = *LC;
 	gap->command_location = gapLC;
 	if (arg.lab_type == T_IND || has_idx)
@@ -32,10 +34,7 @@ void	store_gap(int *LC, t_pqueue *gaps, t_argument arg, int has_idx, int gapLC)
 	}
 	gap->name = arg.name;
 	gap->label = arg.label;
-//	printf("label name = %s and gap name = %s and gap->locatins = %d \n", arg.label->name, gap->name, gap->location);
-	if (pqueue_push(gaps, gap))
-		;
-		//return error;
+	return (gap);
 }
 
 void	store_label(int LC, t_label *label)

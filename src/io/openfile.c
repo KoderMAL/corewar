@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   openfile.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alalaoui <alalaoui@student.42.fr>          +#+  +:+       +#+        */
+/*   By: stoupin <stoupin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/05 13:44:43 by alalaoui          #+#    #+#             */
-/*   Updated: 2018/01/17 18:39:52 by alalaoui         ###   ########.fr       */
+/*   Updated: 2018/01/23 17:48:35 by alalaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,17 +38,23 @@ int			openfile_read_char(t_openfile *of, char *c)
 
 void		openfile_write_char(t_openfile *of, char c)
 {
+	int	ret;
+
 	of->buffer[of->pos] = c;
 	of->pos++;
 	if (of->pos == BUFF_SIZE)
 	{
-		write(of->fd, of->buffer, BUFF_SIZE);
+		ret = write(of->fd, of->buffer, BUFF_SIZE);
+		(void)ret;
 		of->pos = 0;
 	}
 }
 
 void		openfile_flush(t_openfile *of)
 {
-	write(of->fd, of->buffer, of->pos);
+	int	ret;
+
+	ret = write(of->fd, of->buffer, of->pos);
+	(void)ret;
 	of->pos = 0;
 }

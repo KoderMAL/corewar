@@ -6,11 +6,24 @@
 /*   By: stoupin <stoupin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/05 13:44:43 by stoupin           #+#    #+#             */
-/*   Updated: 2018/01/17 11:29:10 by stoupin          ###   ########.fr       */
+/*   Updated: 2018/01/23 16:23:27 by stoupin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdlib.h>
 #include "openfile.h"
+
+void		openfile_write_buf(t_openfile *of, char *buf, size_t len)
+{
+	size_t	i;
+
+	i = 0;
+	while (i < len)
+	{
+		openfile_write_char(of, *buf++);
+		i++;
+	}
+}
 
 void		openfile_write_str(t_openfile *of, char *s, int endl)
 {

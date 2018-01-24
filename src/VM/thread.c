@@ -6,7 +6,7 @@
 /*   By: alalaoui <alalaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/17 14:08:01 by alalaoui          #+#    #+#             */
-/*   Updated: 2018/01/23 13:53:11 by alalaoui         ###   ########.fr       */
+/*   Updated: 2018/01/23 18:23:39 by alalaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,5 +32,5 @@ void			thread_init(t_vm *vm)
 
 	i = 0;
 	while (i++ < vm->nb_champs)
-		pqueue_push(vm->threads, create_thread());
+		pqueue_push(&(vm->threads), create_thread());
 }

@@ -3,18 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   asm.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alalaoui <alalaoui@student.42.fr>          +#+  +:+       +#+        */
+/*   By: stoupin <stoupin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/04 15:49:30 by alalaoui          #+#    #+#             */
-/*   Updated: 2018/01/23 15:24:38 by dhadley          ###   ########.fr       */
+/*   Updated: 2018/01/24 15:17:45 by dhadley          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
 #include <fcntl.h>
+#include <stdlib.h>
 #include "asm.h"
 #include "parsing/states.h"
-#include <stdlib.h>
 
 static void		env_initialization(t_env *env)
 {
@@ -33,6 +33,7 @@ static void		env_initialization(t_env *env)
 	env->pos = 0;
 	env->op = NULL;
 	pqueue_init(&(env->labels));
+	instruction_init(&(env->instruction), NULL);
 	pqueue_init(&(env->instructions));
 	ft_memset(env->name, '\0', PROG_NAME_LENGTH);
 	ft_memset(env->comment, '\0', COMMENT_LENGTH);
@@ -68,19 +69,18 @@ static void		env_clean(t_env *env)
 
 static int		parse_char(t_env *env, char c)
 {
-	env->col++;
+	(env->state)(env, c);
+	if (env->err == 1)
+		return (env->err);
 	if (c == '\t')
-	{
-		env->col += 3;
-	}
+		env->col += 4 - (env->col % 4);
 	else if (c == '\n')
 	{
 		env->col = 0;
 		env->line++;
 	}
-	else if (!ft_isprint(c))
-		return (err(env, "non-printable character", 0));
-	(env->state)(env, c);
+	else
+		env->col++;
 	return (0);
 }
 
@@ -101,14 +101,11 @@ static void		parse(t_env *env)
 		}
 		parse_char(env, c);
 	}
-	printf("env->err = %d et ret = %d\n", env->err, ret);
-	if (env->instructions.len == 0)
+	if (env->err == 0 && env->instructions.len == 0)
 		err(env, "no instruction!", 0);
-	if (env->err)
-		return ;
-	if (!find_labels(env))
-		err(env, "label not found", -1);
-	if (!env->name_check || !env->comment_check)
+	if (env->err == 0)
+		check_labels(env);
+	if (env->err == 0 && (!env->name_check || !env->comment_check))
 		err(env, "name or comment not found", -1);
 }
 
@@ -180,8 +177,10 @@ int				main(int ac, char **av)
 		parse(&env);
 	if (fd >= 2)
 		close(fd);
-	assemble(&env);
-	init_cor(&env);
+	if (env.err == 0)
+		assemble(&env);
+	if (env.err == 0)
+		write_cor(&env);
 	env_clean(&env);
 	return (env.err);
 }

@@ -6,7 +6,7 @@
 /*   By: alalaoui <alalaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/16 14:44:18 by alalaoui          #+#    #+#             */
-/*   Updated: 2018/01/22 16:59:57 by alalaoui         ###   ########.fr       */
+/*   Updated: 2018/01/23 18:23:37 by alalaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ typedef struct		s_vm
 {
 	t_champ			champs_fd[4];
 	char			map[MEM_SIZE];
-	t_pqueue		*threads;
+	t_pqueue		threads;
 	int				nb_champs;
 	int				err;
 	char			*err_msg;
