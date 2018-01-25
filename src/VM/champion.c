@@ -6,13 +6,13 @@
 /*   By: alalaoui <alalaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/24 15:16:28 by alalaoui          #+#    #+#             */
-/*   Updated: 2018/01/24 16:18:30 by alalaoui         ###   ########.fr       */
+/*   Updated: 2018/01/25 11:49:54 by alalaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vm.h"
 
-void		parse_champion(t_vm *vm)
+void		parse_champion(t_vm *vm, int i)
 {
 	(void)vm;
 	//DHADLEY
@@ -48,7 +48,10 @@ void		load_champion(t_vm *vm, char **av, int *i, int fd[MAX_ARGS_NUMBER])
 	{
 		openfile_init(&(vm->champs_fd[*i].file), fd[*i]);
 		ft_memset(vm->champs_fd[*i].file.buffer, 0, BUFF_SIZE);
+		ft_memset(vm->champs_fd[*i].cor, 0, MAX_SIZE);
 	}
 	read_champion(vm, *i);
+	thread_init(vm, i);
+	parse_champion(vm, *i);
 	(*i)++;
 }
