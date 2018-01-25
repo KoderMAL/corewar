@@ -6,7 +6,7 @@
 /*   By: alalaoui <alalaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/16 14:30:57 by alalaoui          #+#    #+#             */
-/*   Updated: 2018/01/25 16:50:21 by alalaoui         ###   ########.fr       */
+/*   Updated: 2018/01/25 18:35:04 by alalaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ static void vm_clean(t_vm *vm, int fd[MAX_ARGS_NUMBER])
 
 	i = 0;
 	err2_display(vm);
+	pqueue_delete(&(vm->threads));
 	while (i < MAX_ARGS_NUMBER)
 		close(fd[i++]);
 }
@@ -54,8 +55,16 @@ int main(int ac, char **av)
 		while (i < vm.nb_champs)
 			load_champion(&vm, av, &i, fd);
 	}
-
-	//HEXDUMP maison
+	//fill map:
+	printf("map\n");
+	i = 0;
+	while (i < MEM_SIZE)
+	{
+		printf("%x", vm.map[i++]);
+		if (i % 64 == 0)
+			printf("\n");
+	}
+/*	//HEXDUMP maison
 	printf("hexdump\n");
 	i = 0;
 	while (i < MAX_SIZE)
@@ -66,7 +75,7 @@ int main(int ac, char **av)
 		printf("-");
 	}
 	printf("\ni=%d\n", i);
-	//HEXDUMP maison
+	//HEXDUMP maison*/
 	vm_clean(&vm, fd);
 	return (0);
 }
