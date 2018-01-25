@@ -6,20 +6,21 @@
 /*   By: alalaoui <alalaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/16 14:44:18 by alalaoui          #+#    #+#             */
-/*   Updated: 2018/01/23 18:23:37 by alalaoui         ###   ########.fr       */
+/*   Updated: 2018/01/24 16:44:50 by alalaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef VM_H
 # define VM_H
 
+#include <stdlib.h>
+#include <unistd.h>
+#include <fcntl.h>
 #include "main/op.h"
 #include "io/openfile.h"
 #include "ft/ft.h"
 #include "util/pqueue.h"
-#include <stdlib.h>
-#include <unistd.h>
-#include <fcntl.h>
+# define MAX_SIZE (PROG_NAME_LENGTH + COMMENT_LENGTH + CHAMP_MAX_SIZE + 3)
 
 typedef struct		s_thread
 {
@@ -33,14 +34,14 @@ typedef struct		s_thread
 typedef struct		s_champ
 {
 	t_openfile	file;
-	char		name[CHAMP_MAX_SIZE];
+	char		cor[MAX_SIZE];
+	t_pqueue		threads;
 }					t_champ;
 
 typedef struct		s_vm
 {
 	t_champ			champs_fd[4];
 	char			map[MEM_SIZE];
-	t_pqueue		threads;
 	int				nb_champs;
 	int				err;
 	char			*err_msg;
@@ -61,5 +62,14 @@ void				err2_display(t_vm *vm);
 
 t_thread			*create_thread();
 void				thread_init(t_vm *vm);
+
+/*
+** champion.c
+*/
+
+
+void				parse_champion(t_vm *vm);
+void				read_champion(t_vm *vm, int i);
+void				load_champion(t_vm *vm, char **av, int *i, int fd[MAX_ARGS_NUMBER]);
 
 #endif
