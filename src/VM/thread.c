@@ -6,7 +6,7 @@
 /*   By: alalaoui <alalaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/17 14:08:01 by alalaoui          #+#    #+#             */
-/*   Updated: 2018/01/25 13:33:57 by alalaoui         ###   ########.fr       */
+/*   Updated: 2018/01/25 13:35:07 by alalaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ t_thread		*create_thread()
 	if (new_thread == NULL)
 		return (NULL);
 	new_thread->carry = 0;
-	while (j < REG_NUMBER))
+	while (j < REG_NUMBER)
 		new_thread->r[j++] = 0;
 	//if option -n == 0
 		new_thread->r[0] = i++;

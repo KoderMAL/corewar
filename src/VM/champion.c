@@ -6,7 +6,7 @@
 /*   By: alalaoui <alalaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/24 15:16:28 by alalaoui          #+#    #+#             */
-/*   Updated: 2018/01/25 13:33:03 by alalaoui         ###   ########.fr       */
+/*   Updated: 2018/01/25 13:36:19 by alalaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 void		parse_champion(t_vm *vm, int i)
 {
-	void(vm);
-	void(i);
+	(void)(vm);
+	(void)(i);
 	//ft_strncpy();
 }
 
@@ -37,7 +37,6 @@ void		read_champion(t_vm *vm, int i)
 		if (pos >= MAX_SIZE)
 			err2(vm, "file too large");
 	}
-	parse_champion(vm);
 }
 
 void		load_champion(t_vm *vm, char **av, int *i, int fd[MAX_ARGS_NUMBER])
@@ -52,7 +51,6 @@ void		load_champion(t_vm *vm, char **av, int *i, int fd[MAX_ARGS_NUMBER])
 		ft_memset(vm->champs_fd[*i].cor, 0, MAX_SIZE);
 	}
 	read_champion(vm, *i);
-	thread_init(vm, i);
 	parse_champion(vm, *i);
 	(*i)++;
 }
