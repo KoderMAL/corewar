@@ -6,7 +6,7 @@
 /*   By: stoupin <stoupin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/04 15:49:30 by alalaoui          #+#    #+#             */
-/*   Updated: 2018/01/23 17:58:17 by stoupin          ###   ########.fr       */
+/*   Updated: 2018/01/24 15:17:45 by dhadley          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,10 @@ static void		parse(t_env *env)
 		if (ret == -1)
 			err(env, "unable to read input", 1);
 		if (ret != 1)
+		{
+			printf("ret = %d\n", ret);
 			break ;
+		}
 		parse_char(env, c);
 	}
 	if (env->err == 0 && env->instructions.len == 0)
