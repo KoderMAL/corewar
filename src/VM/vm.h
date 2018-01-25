@@ -6,7 +6,7 @@
 /*   By: alalaoui <alalaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/16 14:44:18 by alalaoui          #+#    #+#             */
-/*   Updated: 2018/01/25 13:34:08 by alalaoui         ###   ########.fr       */
+/*   Updated: 2018/01/25 14:27:22 by alalaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,12 +26,15 @@ typedef struct		s_thread
 {
 	int			carry;
 	int			r[REG_NUMBER];
+	int			cycles;
 	int			location;
 }					t_thread;
 
 typedef struct		s_champ
 {
 	t_openfile	file;
+	int			id;
+	int			size;
 	char		name[PROG_NAME_LENGTH];
 	char		comment[COMMENT_LENGTH];
 	char		cor[MAX_SIZE];
