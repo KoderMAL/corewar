@@ -6,7 +6,7 @@
 /*   By: alalaoui <alalaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/16 14:30:57 by alalaoui          #+#    #+#             */
-/*   Updated: 2018/01/24 16:22:21 by alalaoui         ###   ########.fr       */
+/*   Updated: 2018/01/25 13:33:49 by alalaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,9 @@ static void vm_initialization(t_vm *vm, int ac)
 	i = 0;
 	vm->nb_champs = ac - 1;
 	vm->err_msg = NULL;
-	pqueue_init(&(vm->threads));
 	while (i < MEM_SIZE)
 		vm->map[i++] = 0;
+	pqueue_init(&(vm->threads));
 	thread_init(vm);
 }
 
@@ -54,6 +54,7 @@ int main(int ac, char **av)
 		while (i < vm.nb_champs)
 			load_champion(&vm, av, &i, fd);
 	}
+
 	//HEXDUMP maison
 	printf("hexdump\n");
 	i = 0;

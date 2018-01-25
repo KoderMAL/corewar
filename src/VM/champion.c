@@ -6,16 +6,15 @@
 /*   By: alalaoui <alalaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/24 15:16:28 by alalaoui          #+#    #+#             */
-/*   Updated: 2018/01/24 16:18:30 by alalaoui         ###   ########.fr       */
+/*   Updated: 2018/01/25 15:02:37 by alalaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vm.h"
 
-void		parse_champion(t_vm *vm)
+void		parse_champion(t_vm *vm, int i)
 {
-	(void)vm;
-	//DHADLEY
+	ft_memcpy(vm->champs_fd[i].name, vm->champs_fd[i].cor, PROG_NAME_LENGTH);
 }
 
 void		read_champion(t_vm *vm, int i)
@@ -36,7 +35,6 @@ void		read_champion(t_vm *vm, int i)
 		if (pos >= MAX_SIZE)
 			err2(vm, "file too large");
 	}
-	parse_champion(vm);
 }
 
 void		load_champion(t_vm *vm, char **av, int *i, int fd[MAX_ARGS_NUMBER])
@@ -48,7 +46,11 @@ void		load_champion(t_vm *vm, char **av, int *i, int fd[MAX_ARGS_NUMBER])
 	{
 		openfile_init(&(vm->champs_fd[*i].file), fd[*i]);
 		ft_memset(vm->champs_fd[*i].file.buffer, 0, BUFF_SIZE);
+		ft_memset(vm->champs_fd[*i].cor, 0, MAX_SIZE);
+		ft_memset(vm->champs_fd[*i].name, 0, PROG_NAME_LENGTH);
+		ft_memset(vm->champs_fd[*i].comment, 0, COMMENT_LENGTH);
 	}
 	read_champion(vm, *i);
+	parse_champion(vm, *i);
 	(*i)++;
 }
