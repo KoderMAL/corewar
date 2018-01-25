@@ -6,7 +6,7 @@
 /*   By: alalaoui <alalaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/16 14:44:18 by alalaoui          #+#    #+#             */
-/*   Updated: 2018/01/25 14:27:22 by alalaoui         ###   ########.fr       */
+/*   Updated: 2018/01/25 16:33:07 by alalaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 #include "io/openfile.h"
 #include "ft/ft.h"
 #include "util/pqueue.h"
-# define MAX_SIZE (PROG_NAME_LENGTH + COMMENT_LENGTH + CHAMP_MAX_SIZE + 3)
+# define MAX_SIZE (PROG_NAME_LENGTH + COMMENT_LENGTH + CHAMP_MAX_SIZE + 14)
 
 typedef struct		s_thread
 {
@@ -34,7 +34,8 @@ typedef struct		s_champ
 {
 	t_openfile	file;
 	int			id;
-	int			size;
+	short		sizeb;
+	short		size;
 	char		name[PROG_NAME_LENGTH];
 	char		comment[COMMENT_LENGTH];
 	char		cor[MAX_SIZE];
