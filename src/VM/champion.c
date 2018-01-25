@@ -6,7 +6,7 @@
 /*   By: alalaoui <alalaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/24 15:16:28 by alalaoui          #+#    #+#             */
-/*   Updated: 2018/01/25 11:49:54 by alalaoui         ###   ########.fr       */
+/*   Updated: 2018/01/25 13:33:03 by alalaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,9 @@
 
 void		parse_champion(t_vm *vm, int i)
 {
-	(void)vm;
-	//DHADLEY
+	void(vm);
+	void(i);
+	//ft_strncpy();
 }
 
 void		read_champion(t_vm *vm, int i)

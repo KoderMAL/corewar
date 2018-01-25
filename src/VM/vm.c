@@ -6,7 +6,7 @@
 /*   By: alalaoui <alalaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/16 14:30:57 by alalaoui          #+#    #+#             */
-/*   Updated: 2018/01/25 11:50:16 by alalaoui         ###   ########.fr       */
+/*   Updated: 2018/01/25 13:33:49 by alalaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ static void vm_initialization(t_vm *vm, int ac)
 	vm->err_msg = NULL;
 	while (i < MEM_SIZE)
 		vm->map[i++] = 0;
+	pqueue_init(&(vm->threads));
+	thread_init(vm);
 }
 
 static void vm_clean(t_vm *vm, int fd[MAX_ARGS_NUMBER])

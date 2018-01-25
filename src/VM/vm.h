@@ -6,7 +6,7 @@
 /*   By: alalaoui <alalaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/16 14:44:18 by alalaoui          #+#    #+#             */
-/*   Updated: 2018/01/25 11:50:04 by alalaoui         ###   ########.fr       */
+/*   Updated: 2018/01/25 13:34:08 by alalaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,12 +35,12 @@ typedef struct		s_champ
 	char		name[PROG_NAME_LENGTH];
 	char		comment[COMMENT_LENGTH];
 	char		cor[MAX_SIZE];
-	t_pqueue		threads;
 }					t_champ;
 
 typedef struct		s_vm
 {
 	t_champ			champs_fd[4];
+	t_pqueue		threads;
 	char			map[MEM_SIZE];
 	int				nb_champs;
 	int				err;
@@ -61,7 +61,7 @@ void				err2_display(t_vm *vm);
 */
 
 t_thread			*create_thread();
-void				thread_init(t_vm *vm, int *i);
+void				thread_init(t_vm *vm);
 
 /*
 ** champion.c
