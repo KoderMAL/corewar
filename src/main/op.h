@@ -6,7 +6,7 @@
 /*   By: zaz <marvin@42.fr>                         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/10/04 11:33:27 by zaz               #+#    #+#             */
-/*   Updated: 2018/01/19 17:41:22 by dhadley          ###   ########.fr       */
+/*   Updated: 2018/01/25 11:20:58 by dhadley          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@
 */
 
 # define IND_SIZE				2
-# define REG_SIZE				1
-# define DIR_SIZE				4
+# define REG_SIZE				1 //dhadley watch out that size differs in asm and vm
+# define DIR_SIZE				4 //dhadley ^
 
 # define REG_CODE				1
 # define DIR_CODE				2
