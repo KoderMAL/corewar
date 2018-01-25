@@ -6,7 +6,7 @@
 /*   By: alalaoui <alalaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/16 14:44:18 by alalaoui          #+#    #+#             */
-/*   Updated: 2018/01/25 14:27:22 by alalaoui         ###   ########.fr       */
+/*   Updated: 2018/01/25 17:11:42 by dhadley          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,5 +74,11 @@ void				thread_init(t_vm *vm);
 void				parse_champion(t_vm *vm, int i);
 void				read_champion(t_vm *vm, int i);
 void				load_champion(t_vm *vm, char **av, int *i, int fd[MAX_ARGS_NUMBER]);
+
+/*
+** operations
+*/
+
+int					op_ld(t_vm *vm, t_thread PC);
 
 #endif
