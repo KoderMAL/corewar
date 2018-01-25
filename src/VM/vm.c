@@ -6,7 +6,7 @@
 /*   By: alalaoui <alalaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/16 14:30:57 by alalaoui          #+#    #+#             */
-/*   Updated: 2018/01/25 13:33:49 by alalaoui         ###   ########.fr       */
+/*   Updated: 2018/01/25 16:50:21 by alalaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ int main(int ac, char **av)
 	while (i < MAX_SIZE)
 	{
 		printf("%x", vm.champs_fd[0].cor[i++]);
-		if (i == (3 + PROG_NAME_LENGTH + COMMENT_LENGTH))
+		if (i == (16 + PROG_NAME_LENGTH + COMMENT_LENGTH))
 		{printf("\n*\n");}
 		printf("-");
 	}

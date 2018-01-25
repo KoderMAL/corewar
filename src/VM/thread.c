@@ -6,7 +6,7 @@
 /*   By: alalaoui <alalaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/17 14:08:01 by alalaoui          #+#    #+#             */
-/*   Updated: 2018/01/25 15:02:38 by alalaoui         ###   ########.fr       */
+/*   Updated: 2018/01/25 15:22:12 by alalaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 t_thread		*create_thread()
 {
 	t_thread	*new_thread;
-	static int	i = 1;
+	static int	i = -1;
 	int			j;
 
 	j = 0;
@@ -26,7 +26,7 @@ t_thread		*create_thread()
 	while (j < REG_NUMBER)
 		new_thread->r[j++] = 0;
 	//if option -n == 0
-		new_thread->r[0] = i++;
+		new_thread->r[0] = i--;
 	new_thread->location = 0;
 	return (new_thread);
 }
@@ -37,5 +37,5 @@ void			thread_init(t_vm *vm)
 
 	j = 0;
  	while (j++ < vm->nb_champs)
-		pqueue_push(&(vm->threads), create_thread());
+			pqueue_push(&(vm->threads), create_thread());
 }
