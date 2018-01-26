@@ -3,14 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   live.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lramirez <lramirez@student.42.fr>          +#+  +:+       +#+        */
+/*   By: alalaoui <alalaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/25 11:32:35 by lramirez          #+#    #+#             */
-/*   Updated: 2018/01/26 12:59:37 by lramirez         ###   ########.fr       */
+/*   Updated: 2018/01/26 17:29:36 by alalaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "op.h"
 #include "vm.h"
 
 // Déplace le PC pour le placer sur le T_DIR à récupérer.
@@ -19,19 +18,20 @@
 // Redéplace le PC à la suite du T_DIR.
 // Décrémente le process de 10 cycles (coût d'un live).
 
-void		live(t_vm *vm, t_thread process)
+void		live(t_vm *vm, t_thread *process)
 {
 	int		id;
+	int		player;
 
 	process->location = (process->location + 1) % MEM_SIZE;
 	id = vm->map[process->location] << 24 | vm->map[(process->location + 1) % MEM_SIZE] << 16 | vm->map[(process->location + 2) % MEM_SIZE] << 8 | vm->map[(process->location + 3) % MEM_SIZE];
 	player = 0;
-	while (player < vm->nbr_chmp)
+	while (player < vm->nb_champs)
 	{
-		if (id == vm->champs_fd[player]->id)
+		if (id == vm->champs_fd[player].id)
 		{
 			// noter que tel joueur a fait un live a tel cycle dans champ
-			ft_printf("un processus dit que le joueur %d(%s) est en vie\n", player + 1, vm->champs_fd[player]->name);
+			printf("un processus dit que le joueur %d(%s) est en vie\n", player + 1, vm->champs_fd[player].name);
 			break;
 		}
 		player++;
