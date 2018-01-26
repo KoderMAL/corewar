@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   live.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lararamirez <lararamirez@student.42.fr>    +#+  +:+       +#+        */
+/*   By: lramirez <lramirez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/25 11:32:35 by lramirez          #+#    #+#             */
-/*   Updated: 2018/01/26 09:51:16 by lararamirez      ###   ########.fr       */
+/*   Updated: 2018/01/26 12:59:37 by lramirez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,13 +23,14 @@ void		live(t_vm *vm, t_thread process)
 {
 	int		id;
 
-	process->location = (process->location + 4) % MEM_SIZE;
-	id = map[process->location] << 24 | map[(process->location + 1) % MEM_SIZE] << 16 | map[(process->location + 2) % MEM_SIZE] << 8 | map[(process->location + 3) % MEM_SIZE];
+	process->location = (process->location + 1) % MEM_SIZE;
+	id = vm->map[process->location] << 24 | vm->map[(process->location + 1) % MEM_SIZE] << 16 | vm->map[(process->location + 2) % MEM_SIZE] << 8 | vm->map[(process->location + 3) % MEM_SIZE];
 	player = 0;
 	while (player < vm->nbr_chmp)
 	{
 		if (id == vm->champs_fd[player]->id)
 		{
+			// noter que tel joueur a fait un live a tel cycle dans champ
 			ft_printf("un processus dit que le joueur %d(%s) est en vie\n", player + 1, vm->champs_fd[player]->name);
 			break;
 		}

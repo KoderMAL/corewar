@@ -6,7 +6,7 @@
 /*   By: stoupin <stoupin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/06 13:50:22 by alalaoui          #+#    #+#             */
-/*   Updated: 2018/01/23 12:48:04 by stoupin          ###   ########.fr       */
+/*   Updated: 2018/01/26 12:14:35 by stoupin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,5 +36,11 @@ int				pqueue_push(t_pqueue *pqueue, void *p);
 void			*pqueue_pop(t_pqueue *pqueue);
 void			pqueue_delete(t_pqueue *pqueue);
 void			pqueue_clean(t_pqueue *pqueue);
+
+/*
+** pqueue_fast_pass.c
+*/
+
+int				pqueue_push_front(t_pqueue *pqueue, void *p);
 
 #endif
