@@ -6,7 +6,7 @@
 /*   By: alalaoui <alalaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/16 14:44:18 by alalaoui          #+#    #+#             */
-/*   Updated: 2018/01/26 13:56:38 by alalaoui         ###   ########.fr       */
+/*   Updated: 2018/01/26 15:05:48 by alalaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@ typedef struct		s_vm
 	char			*err_msg;
 	unsigned int	option[2];
 	int				game_cycle;
+	const t_op		*op;
 }					t_vm;
 
 /*

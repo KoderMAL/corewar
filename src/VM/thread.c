@@ -6,7 +6,7 @@
 /*   By: alalaoui <alalaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/17 14:08:01 by alalaoui          #+#    #+#             */
-/*   Updated: 2018/01/26 13:59:41 by alalaoui         ###   ########.fr       */
+/*   Updated: 2018/01/26 14:18:35 by alalaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void			thread_init(t_vm *vm)
 			pqueue_push(&(vm->threads), create_thread(vm));
 }
 
-t_thread		*dup_thread(t_thread src_thread, int pc)
+t_thread		*dup_thread(t_thread *src_thread, int pc)
 {
 	t_thread	*new_thread;
 	int			j;
@@ -53,7 +53,7 @@ t_thread		*dup_thread(t_thread src_thread, int pc)
 	new_thread->carry = src_thread->carry;
 	j = -1;
 	while (++j < REG_NUMBER)
-		new_thread->r[j] = src_thread.r[j];
+		new_thread->r[j] = src_thread->r[j];
 	new_thread->countdown = -1;
 	new_thread->cycles = CYCLE_TO_DIE;
 	new_thread->location = pc;

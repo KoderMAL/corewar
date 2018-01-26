@@ -6,7 +6,7 @@
 /*   By: alalaoui <alalaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/16 14:30:57 by alalaoui          #+#    #+#             */
-/*   Updated: 2018/01/26 13:49:51 by alalaoui         ###   ########.fr       */
+/*   Updated: 2018/01/26 14:41:51 by alalaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ static void vm_initialization(t_vm *vm, int ac)
 	i = 0;
 	vm->nb_champs = ac - 1;
 	vm->err_msg = NULL;
+	vm->game_cycle = 0;
 	while (i < MEM_SIZE)
 		vm->map[i++] = 0;
 	pqueue_init(&(vm->threads));
@@ -51,23 +52,14 @@ int main(int ac, char **av)
 	if (ac - 1 > MAX_ARGS_NUMBER)
 		err2(&vm, "Too many arguments");
 	else if (ac < 2)
-		err2(&vm, "Usage: ./corewar [champ.cor] [...] (4 files maximum)");
+		err2(&vm, "Usage: ./corewar [-d N] [[-n N]champ.cor] ...)");
 	if (vm.err == 0)
 	{
 		vm_initialization(&vm, ac);
 		while (i < vm.nb_champs)
 			load_champion(&vm, av, &i, fd);
 	}
-	//fill map in:
-	printf("map\n");
-	i = 0;
-	while (i < MEM_SIZE)
-	{
-		printf("%0X ", vm.map[i++]);
-		if (i % 64 == 0)
-			printf("\n");
-	}
-	//fillmap out --
+	war(vm);
 	vm_clean(&vm, fd);
 	return (0);
 }
