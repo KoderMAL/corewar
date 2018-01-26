@@ -6,7 +6,7 @@
 /*   By: lramirez <lramirez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/26 11:18:58 by lramirez          #+#    #+#             */
-/*   Updated: 2018/01/26 12:04:13 by lramirez         ###   ########.fr       */
+/*   Updated: 2018/01/26 13:01:33 by lramirez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@ void		lfork(t_vm *vm, t_thread process)
 {
 	short	index;
 
-	process->location = (process->location + 4) % MEM_SIZE;
-	index = map[process->location] << 8 | map[(process->location + 1) % MEM_SIZE];
+	process->location = (process->location + 1) % MEM_SIZE;
+	index = vm->map[process->location] << 8 | vm->map[(process->location + 1) % MEM_SIZE];
 	pqueue_push(vm->threads, dup_thread(process, (process->location + index) % MEM_SIZE));
 	process->location = (process->location + 2) % MEM_SIZE;
 	process->cycles -= 1000;
