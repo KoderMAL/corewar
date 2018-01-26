@@ -6,7 +6,7 @@
 /*   By: alalaoui <alalaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/16 14:30:57 by alalaoui          #+#    #+#             */
-/*   Updated: 2018/01/26 11:48:13 by alalaoui         ###   ########.fr       */
+/*   Updated: 2018/01/26 11:55:07 by alalaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ static void vm_initialization(t_vm *vm, int ac)
 		vm->map[i++] = 0;
 	pqueue_init(&(vm->threads));
 	thread_init(vm);
+	draw_game_init(vm);
 }
 
 static void vm_clean(t_vm *vm, int fd[MAX_ARGS_NUMBER])
@@ -35,6 +36,7 @@ static void vm_clean(t_vm *vm, int fd[MAX_ARGS_NUMBER])
 	pqueue_delete(&(vm->threads));
 	while (i < MAX_ARGS_NUMBER)
 		close(fd[i++]);
+	draw_game_clean(vm);
 }
 
 int main(int ac, char **av)
