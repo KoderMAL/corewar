@@ -23,7 +23,7 @@ SRC_TESTS = $(SRC_IO) $(SRC_FT) $(SRC_UTIL) \
 SRC_ASSEMBLY = assemble.c pass.c store_locations.c \
 			   assemble_op.c encode_bytes.c
 HEADERS = vm.h asm.h op.h ft.h openfile.h states.h cqueue.h pqueue.h crc32.h assembly.h
-SRC_VM = error2.c thread.c vm.c champion.c draw_game.c dump.c cycle.c op.c\
+SRC_VM = error2.c thread.c vm.c champion.c draw_game.c dump.c cycle.c op2.c live.c\
 
 SRC = $(SRC_MAIN) $(SRC_FT) $(SRC_IO) $(SRC_PARSING) $(SRC_UTIL) $(SRC_HASH) $(SRC_ASSEMBLY)
 OBJ_TMP = $(SRC:.c=.o)

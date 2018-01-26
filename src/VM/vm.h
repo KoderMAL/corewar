@@ -6,7 +6,7 @@
 /*   By: alalaoui <alalaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/16 14:44:18 by alalaoui          #+#    #+#             */
-/*   Updated: 2018/01/26 18:17:52 by dhadley          ###   ########.fr       */
+/*   Updated: 2018/01/26 18:19:07 by dhadley          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,6 +93,7 @@ void				draw_game_clean(t_vm *vm);
 */
 
 int					op_ld(t_vm *vm, t_thread PC);
+void				live(t_vm *vm, t_thread *PC);
 
 /*
 ** dump.c
