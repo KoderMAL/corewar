@@ -6,7 +6,7 @@
 /*   By: alalaoui <alalaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/26 11:51:04 by dhadley           #+#    #+#             */
-/*   Updated: 2018/01/26 17:16:54 by alalaoui         ###   ########.fr       */
+/*   Updated: 2018/01/26 17:36:05 by alalaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,11 @@ const t_op		*find_opcode(int pc)
 	return (NULL);
 }
 
+static void		do_op(t_vm *vm, t_thread *pc)
+{
+	live(vm, pc);
+}
+
 static void		check_countdown(t_vm *vm)
 {
 	int				i;
@@ -44,7 +49,7 @@ static void		check_countdown(t_vm *vm)
 		pc = pq->p;
 		if (pc->countdown == -1)
 		{
-			if ((vm->op = find_opcode(vm->map[pc->location]) != NULL))
+			if ((vm->op = find_opcode(vm->map[pc->location])) != NULL)
 			{
 				pc->countdown = vm->op->n_cycles;
 				pc->location++;
@@ -54,7 +59,8 @@ static void		check_countdown(t_vm *vm)
 		}
 		else if (pc->countdown == 0)
 		{
-			do_op(vm->op, pc);
+			printf("LIVE FOR TODAY:\n");
+			do_op(vm, pc);
 		}
 		else
 			pc->countdown--;
