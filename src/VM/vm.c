@@ -6,7 +6,7 @@
 /*   By: alalaoui <alalaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/16 14:30:57 by alalaoui          #+#    #+#             */
-/*   Updated: 2018/01/26 14:41:51 by alalaoui         ###   ########.fr       */
+/*   Updated: 2018/01/26 16:15:08 by alalaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ int main(int ac, char **av)
 		while (i < vm.nb_champs)
 			load_champion(&vm, av, &i, fd);
 	}
-	war(vm);
+	war(&vm);
 	vm_clean(&vm, fd);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: alalaoui <alalaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/26 12:00:20 by alalaoui          #+#    #+#             */
-/*   Updated: 2018/01/26 14:32:42 by alalaoui         ###   ########.fr       */
+/*   Updated: 2018/01/26 16:19:52 by alalaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,10 @@ void		parse_options(t_vm *vm, int *ac, char **av)
 	}
 	else
 		vm->option[0] = 0;
-	if (OPTION -N)
+	/*if (OPTION -N)
+	{
+		CODER OPTION -n
+	}*/
 }
 
 void		dump(t_vm *vm)

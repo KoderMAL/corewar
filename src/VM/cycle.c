@@ -6,7 +6,7 @@
 /*   By: alalaoui <alalaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/26 11:51:04 by dhadley           #+#    #+#             */
-/*   Updated: 2018/01/26 15:24:10 by alalaoui         ###   ########.fr       */
+/*   Updated: 2018/01/26 16:30:38 by alalaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static void	check_cycles(t_vm *vm)
 	(void)(vm);
 }
 
-static *t_op find_opcode(int pc);
+static const t_op *find_opcode(int pc)
 {
 	int	i;
 
@@ -30,22 +30,23 @@ static *t_op find_opcode(int pc);
 	}
 	return (NULL);
 }
-}
 
 static void	check_countdown(t_vm *vm)
 {
 	int			i;
 	t_thread	*pc;
+	t_pqueue	*pq;
 
 	i = 0;
-	pc = (t_thread*)(vm->threads->first.p);
+	pq = (t_thread*)(vm->threads.first);
+	pc = pq->p;
 	while (i < vm->threads.len)
 	{
 		if (pc->countdown == -1)
 		{
-			if ((vm->op = find_opcode((int)vm->map[pc->location]) != NULL) 
+			if ((vm->op = find_opcode((int)vm->map[pc->location]) != NULL))
 			{
-				pc->countdown = vm->op.n_cycles;
+				pc->countdown = vm->op->n_cycles;
 				pc->location++;
 			}
 			else
@@ -53,11 +54,11 @@ static void	check_countdown(t_vm *vm)
 		}
 		else if (pc->countdown == 0)
 		{
-			do_op(vm->op);
+			do_op(vm->op, pc);
 		}
 		else
 			pc->countdown--;
-		pc = pc->next;
+		pc = pq->next;
 	}
 }
 
