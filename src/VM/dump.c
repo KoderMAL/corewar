@@ -6,7 +6,7 @@
 /*   By: alalaoui <alalaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/26 12:00:20 by alalaoui          #+#    #+#             */
-/*   Updated: 2018/01/26 14:11:59 by alalaoui         ###   ########.fr       */
+/*   Updated: 2018/01/26 16:19:52 by alalaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,12 @@ void		parse_options(t_vm *vm, int *ac, char **av)
 		vm->option[1] = ft_atoi(av[2]);
 		*ac = *ac - 2;
 	}
+	else
+		vm->option[0] = 0;
+	/*if (OPTION -N)
+	{
+		CODER OPTION -n
+	}*/
 }
 
 void		dump(t_vm *vm)
@@ -27,7 +33,7 @@ void		dump(t_vm *vm)
 	int		i;
 
 	i = 0;
-	if (vm->option[0] = 1)
+	if (vm->option[0] == 1)
 	{
 		if (vm->game_cycle == vm->option[1])
 		{
@@ -37,6 +43,7 @@ void		dump(t_vm *vm)
 				if (i % 64 == 0)
 					write(1, "\n", 1);
 			}
+			exit(0);
 		}
 	}
 }

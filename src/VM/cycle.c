@@ -3,30 +3,82 @@
 /*                                                        :::      ::::::::   */
 /*   cycle.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dhadley <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: alalaoui <alalaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/26 11:51:04 by dhadley           #+#    #+#             */
-/*   Updated: 2018/01/26 12:23:23 by dhadley          ###   ########.fr       */
+/*   Updated: 2018/01/26 17:16:54 by alalaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-/*
-** Pseudocode for each cycle **
+#include "vm.h"
 
+static void		check_cycles(t_vm *vm)
+{	
+	(void)(vm);
+}
 
-ft_cycles(params)
+const t_op		*find_opcode(int pc)
 {
-	while (game_cycle < INT_MAX)
+	int	i;
+
+	i = 0;
+	while (g_op_tab[i].opcode != 0)
 	{
-		ft_check_stuff(t_vm vm, game_cycle);
-		ft_check_countdown(t_vm vm);
-		game_cycle++;
+		if (g_op_tab[i].opcode == pc)
+			return (&(g_op_tab[i]));
+		i++;
+	}
+	return (NULL);
+}
+
+static void		check_countdown(t_vm *vm)
+{
+	int				i;
+	t_thread		*pc;
+	t_pqueue_elem	*pq;
+
+	i = 0;
+	pq = (vm->threads.first);
+	while (i < vm->threads.len)
+	{
+		pc = pq->p;
+		if (pc->countdown == -1)
+		{
+			if ((vm->op = find_opcode(vm->map[pc->location]) != NULL))
+			{
+				pc->countdown = vm->op->n_cycles;
+				pc->location++;
+			}
+			else
+				pc->location++;
+		}
+		else if (pc->countdown == 0)
+		{
+			do_op(vm->op, pc);
+		}
+		else
+			pc->countdown--;
+		pq = pq->next;
 	}
 }
 
+void		war(t_vm *vm)
+{
+	while (vm->game_cycle < INT_MAX)
+	{
+		check_cycles(vm);
+		check_countdown(vm);
+		dump(vm);
+		vm->game_cycle++;
+	}
+}
+
+/*
+** Pseudocode for each cycle **
+*
 --------------
 
-ft_check_stuff(t_vm *vm, cycles)
+ft_check_cycles(t_vm *vm, cycles)
 {
 	//check if delta--
 	for each threads
@@ -34,31 +86,4 @@ ft_check_stuff(t_vm *vm, cycles)
 		//check if thread is dead (and pop)
 }
  
---------------
-
-ft_check_countdown(t_vm *vm)
-{
-	while (threads)
-	{
-		if (thread->countdown == -1)
-		{
-			if (map[thread->location] == opcode)
-				{
-					thread->countdown = opcode->cycles;
-					thread->location++;
-				}
-			else
-				thread->location++;
-		}
-		else if (thread->countdown == 0)
-		{
-			do_op(opcode);
-		}
-		else
-			thread->countdown--;
-		thread = thread->next;
-	}
-}
-
-**
-**
+--------------*/
