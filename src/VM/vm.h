@@ -6,7 +6,7 @@
 /*   By: alalaoui <alalaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/16 14:44:18 by alalaoui          #+#    #+#             */
-/*   Updated: 2018/01/25 18:07:52 by alalaoui         ###   ########.fr       */
+/*   Updated: 2018/01/26 12:26:00 by alalaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ typedef struct		s_vm
 	int				nb_champs;
 	int				err;
 	char			*err_msg;
+	unsigned int	option[2];
 }					t_vm;
 
 void 				fill_map();
@@ -76,5 +77,13 @@ void				parse_champion(t_vm *vm, int i);
 void				read_champion(t_vm *vm, int i);
 void				load_champion(t_vm *vm, char **av, int *i, int fd[MAX_ARGS_NUMBER]);
 void				fill_map(t_vm *vm, int i);
+
+/*
+** draw_game.c
+*/
+
+void		draw_game_init(t_vm *vm);
+void		draw_game(t_vm *vm);
+void		draw_game_clean(t_vm *vm);
 
 #endif
