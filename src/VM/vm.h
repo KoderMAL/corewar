@@ -6,7 +6,7 @@
 /*   By: alalaoui <alalaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/16 14:44:18 by alalaoui          #+#    #+#             */
-/*   Updated: 2018/01/26 16:15:40 by alalaoui         ###   ########.fr       */
+/*   Updated: 2018/01/26 17:17:53 by alalaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,11 @@
 #include "ft/ft.h"
 #include "util/pqueue.h"
 # define MAX_SIZE (PROG_NAME_LENGTH + COMMENT_LENGTH + CHAMP_MAX_SIZE + 14)
-
+# define INT_MAX 2147483647
 typedef struct		s_thread
 {
 	int			carry;
-	int			r[REG_NUMBER];
+	int			r[REG_NUMBER + 1];
 	int			cycles;
 	int			location;
 	int			countdown;
@@ -45,7 +45,7 @@ typedef struct		s_champ
 
 typedef struct		s_vm
 {
-	t_champ			champs_fd[4];
+	t_champ			champs_fd[MAX_PLAYERS];
 	t_pqueue		threads;
 	char			map[MEM_SIZE];
 	int				nb_champs;
@@ -95,9 +95,17 @@ void				draw_game_clean(t_vm *vm);
 int					op_ld(t_vm *vm, t_thread PC);
 
 /*
+** dump.c
+*/
+
+void				parse_options(t_vm *vm, int *ac, char **av);
+void				dump(t_vm *vm);
+
+/*
 ** cycle.c
 */
 
 void				war(t_vm *vm);
+const t_op			*find_opcode(int pc);
 
 #endif

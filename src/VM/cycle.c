@@ -6,18 +6,18 @@
 /*   By: alalaoui <alalaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/26 11:51:04 by dhadley           #+#    #+#             */
-/*   Updated: 2018/01/26 16:30:38 by alalaoui         ###   ########.fr       */
+/*   Updated: 2018/01/26 17:16:54 by alalaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vm.h"
 
-static void	check_cycles(t_vm *vm)
+static void		check_cycles(t_vm *vm)
 {	
 	(void)(vm);
 }
 
-static const t_op *find_opcode(int pc)
+const t_op		*find_opcode(int pc)
 {
 	int	i;
 
@@ -31,20 +31,20 @@ static const t_op *find_opcode(int pc)
 	return (NULL);
 }
 
-static void	check_countdown(t_vm *vm)
+static void		check_countdown(t_vm *vm)
 {
-	int			i;
-	t_thread	*pc;
-	t_pqueue	*pq;
+	int				i;
+	t_thread		*pc;
+	t_pqueue_elem	*pq;
 
 	i = 0;
-	pq = (t_thread*)(vm->threads.first);
-	pc = pq->p;
+	pq = (vm->threads.first);
 	while (i < vm->threads.len)
 	{
+		pc = pq->p;
 		if (pc->countdown == -1)
 		{
-			if ((vm->op = find_opcode((int)vm->map[pc->location]) != NULL))
+			if ((vm->op = find_opcode(vm->map[pc->location]) != NULL))
 			{
 				pc->countdown = vm->op->n_cycles;
 				pc->location++;
@@ -58,7 +58,7 @@ static void	check_countdown(t_vm *vm)
 		}
 		else
 			pc->countdown--;
-		pc = pq->next;
+		pq = pq->next;
 	}
 }
 
@@ -75,7 +75,7 @@ void		war(t_vm *vm)
 
 /*
 ** Pseudocode for each cycle **
-/*
+*
 --------------
 
 ft_check_cycles(t_vm *vm, cycles)
@@ -86,4 +86,4 @@ ft_check_cycles(t_vm *vm, cycles)
 		//check if thread is dead (and pop)
 }
  
---------------
+--------------*/
