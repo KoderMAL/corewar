@@ -6,7 +6,7 @@
 /*   By: lramirez <lramirez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/26 13:10:50 by lramirez          #+#    #+#             */
-/*   Updated: 2018/01/26 13:19:45 by lramirez         ###   ########.fr       */
+/*   Updated: 2018/01/26 17:44:28 by lramirez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,11 @@
 
 void		aff(t_vm *vm, t_thread process)
 {
-	char	reg;
+	char	reg_nbr;
+	char	val_reg;
 
-	reg = (vm->map[(process->location + 2) % MEM_SIZE]) % 256;
-	write(1, &reg, 1);
+	reg_nbr = vm->map[(process->location + 2) % MEM_SIZE];
+	if (reg_nbr <= REG_NUMBER)
+		write(1, &(process->r[reg_nbr] % 256), 1);
 	process->cycles -= 2;
 }

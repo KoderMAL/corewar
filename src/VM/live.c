@@ -13,7 +13,7 @@
 #include "vm.h"
 
 // Déplace le PC pour le placer sur le T_DIR à récupérer.
-// Récupère le T_DIR sur 4 octets (int).
+// Récupère le T_DIR sur 4 octets.
 // Essaie de faire correspondre l'id récupéré avec un joueur - le cas échéant, print un live de ce joueur.
 // Redéplace le PC à la suite du T_DIR.
 // Décrémente le process de 10 cycles (coût d'un live).
