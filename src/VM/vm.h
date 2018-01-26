@@ -6,7 +6,7 @@
 /*   By: alalaoui <alalaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/16 14:44:18 by alalaoui          #+#    #+#             */
-/*   Updated: 2018/01/26 15:10:34 by dhadley          ###   ########.fr       */
+/*   Updated: 2018/01/26 15:11:27 by dhadley          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,10 +51,9 @@ typedef struct		s_vm
 	int				nb_champs;
 	int				err;
 	char			*err_msg;
+	unsigned int	option[2];
 	int				game_cycle;
 }					t_vm;
-
-void 				fill_map();
 
 /*
 ** error.c
@@ -67,7 +66,7 @@ void				err2_display(t_vm *vm);
 ** thread.c
 */
 
-t_thread			*create_thread();
+t_thread			*create_thread(t_vm *vm);
 void				thread_init(t_vm *vm);
 
 /*
@@ -79,6 +78,14 @@ void				parse_champion(t_vm *vm, int i);
 void				read_champion(t_vm *vm, int i);
 void				load_champion(t_vm *vm, char **av, int *i, int fd[MAX_ARGS_NUMBER]);
 void				fill_map(t_vm *vm, int i);
+
+/*
+** draw_game.c
+*/
+
+void		draw_game_init(t_vm *vm);
+void		draw_game(t_vm *vm);
+void		draw_game_clean(t_vm *vm);
 
 /*
 ** operations

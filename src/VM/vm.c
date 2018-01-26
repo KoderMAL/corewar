@@ -6,7 +6,7 @@
 /*   By: alalaoui <alalaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/16 14:30:57 by alalaoui          #+#    #+#             */
-/*   Updated: 2018/01/26 11:55:07 by alalaoui         ###   ########.fr       */
+/*   Updated: 2018/01/26 13:49:51 by alalaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,38 +47,27 @@ int main(int ac, char **av)
 
 	i = 0;
 	vm.err = 0;
+	parse_options(vm, &ac, av);
 	if (ac - 1 > MAX_ARGS_NUMBER)
 		err2(&vm, "Too many arguments");
 	else if (ac < 2)
 		err2(&vm, "Usage: ./corewar [champ.cor] [...] (4 files maximum)");
-	printf("ac:%d-MAX%d\n", ac, MAX_ARGS_NUMBER);
 	if (vm.err == 0)
 	{
 		vm_initialization(&vm, ac);
 		while (i < vm.nb_champs)
 			load_champion(&vm, av, &i, fd);
 	}
-	//fill map:
+	//fill map in:
 	printf("map\n");
 	i = 0;
 	while (i < MEM_SIZE)
 	{
-		printf("%0x ", vm.map[i++]);
+		printf("%0X ", vm.map[i++]);
 		if (i % 64 == 0)
 			printf("\n");
 	}
-/*	//HEXDUMP maison
-	printf("hexdump\n");
-	i = 0;
-	while (i < MAX_SIZE)
-	{
-		printf("%x", vm.champs_fd[0].cor[i++]);
-		if (i == (16 + PROG_NAME_LENGTH + COMMENT_LENGTH))
-		{printf("\n*\n");}
-		printf("-");
-	}
-	printf("\ni=%d\n", i);
-	//HEXDUMP maison*/
+	//fillmap out --
 	vm_clean(&vm, fd);
 	return (0);
 }
