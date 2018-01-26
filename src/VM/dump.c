@@ -6,7 +6,7 @@
 /*   By: alalaoui <alalaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/26 12:00:20 by alalaoui          #+#    #+#             */
-/*   Updated: 2018/01/26 13:50:46 by alalaoui         ###   ########.fr       */
+/*   Updated: 2018/01/26 14:11:59 by alalaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void		dump(t_vm *vm)
 	i = 0;
 	if (vm->option[0] = 1)
 	{
-		if (i == vm->option[])
+		if (vm->game_cycle == vm->option[1])
 		{
 			while (i < MEM_SIZE)
 			{
