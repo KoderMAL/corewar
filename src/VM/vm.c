@@ -6,7 +6,7 @@
 /*   By: alalaoui <alalaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/16 14:30:57 by alalaoui          #+#    #+#             */
-/*   Updated: 2018/01/25 18:35:04 by alalaoui         ###   ########.fr       */
+/*   Updated: 2018/01/26 11:03:47 by alalaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ int main(int ac, char **av)
 	i = 0;
 	while (i < MEM_SIZE)
 	{
-		printf("%x", vm.map[i++]);
+		printf("%0x ", vm.map[i++]);
 		if (i % 64 == 0)
 			printf("\n");
 	}
