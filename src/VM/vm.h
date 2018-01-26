@@ -6,7 +6,7 @@
 /*   By: alalaoui <alalaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/16 14:44:18 by alalaoui          #+#    #+#             */
-/*   Updated: 2018/01/25 17:11:42 by dhadley          ###   ########.fr       */
+/*   Updated: 2018/01/26 12:23:25 by dhadley          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ typedef struct		s_thread
 	int			r[REG_NUMBER];
 	int			cycles;
 	int			location;
+	int			countdown;
 }					t_thread;
 
 typedef struct		s_champ
@@ -38,6 +39,7 @@ typedef struct		s_champ
 	char		name[PROG_NAME_LENGTH];
 	char		comment[COMMENT_LENGTH];
 	char		cor[MAX_SIZE];
+
 }					t_champ;
 
 typedef struct		s_vm
@@ -48,6 +50,7 @@ typedef struct		s_vm
 	int				nb_champs;
 	int				err;
 	char			*err_msg;
+	int				game_cycle;
 }					t_vm;
 
 void 				fill_map();
