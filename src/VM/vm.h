@@ -6,7 +6,7 @@
 /*   By: alalaoui <alalaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/16 14:44:18 by alalaoui          #+#    #+#             */
-/*   Updated: 2018/01/25 18:07:52 by alalaoui         ###   ########.fr       */
+/*   Updated: 2018/01/26 13:56:38 by alalaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,8 +55,6 @@ typedef struct		s_vm
 	int				game_cycle;
 }					t_vm;
 
-void 				fill_map();
-
 /*
 ** error.c
 */
@@ -68,7 +66,7 @@ void				err2_display(t_vm *vm);
 ** thread.c
 */
 
-t_thread			*create_thread();
+t_thread			*create_thread(t_vm *vm);
 void				thread_init(t_vm *vm);
 
 /*
