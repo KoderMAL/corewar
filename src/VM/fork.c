@@ -6,7 +6,7 @@
 /*   By: lramirez <lramirez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/26 11:24:05 by lramirez          #+#    #+#             */
-/*   Updated: 2018/01/26 13:01:33 by lramirez         ###   ########.fr       */
+/*   Updated: 2018/01/26 14:51:54 by lramirez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 // Déplace le PC du process d'origine à la fin du short récupéré.
 // Décrémente le process d'origine de 800 cycles (coût d'un fork).
 
-void		lfork(t_vm *vm, t_thread process)
+void		fork(t_vm *vm, t_thread process)
 {
 	short	index;
 
