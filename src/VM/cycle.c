@@ -6,7 +6,7 @@
 /*   By: alalaoui <alalaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/26 11:51:04 by dhadley           #+#    #+#             */
-/*   Updated: 2018/01/26 17:47:08 by alalaoui         ###   ########.fr       */
+/*   Updated: 2018/01/26 18:42:00 by alalaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,9 @@ const t_op		*find_opcode(int pc)
 
 static void		do_op(t_vm *vm, t_thread *pc)
 {
-	printf("LIVE FOR TODAY:\n");
+//	printf("LIVE FOR TODAY:\n");
 	live(vm, pc);
+//	up_ld(vm, pc)
 	printf("out\n");
 }
 
@@ -63,10 +64,12 @@ static void		check_countdown(t_vm *vm)
 		else if (pc->countdown == 0)
 		{
 			do_op(vm, pc);
-			pq = pq->next;
+			pc->countdown = -1;
 		}
 		else
 			pc->countdown--;
+		pq = pq->next;
+		i++;
 	}
 }
 

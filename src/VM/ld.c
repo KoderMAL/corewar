@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ld.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dhadley <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: alalaoui <alalaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/25 16:50:31 by dhadley           #+#    #+#             */
-/*   Updated: 2018/01/26 18:18:00 by dhadley          ###   ########.fr       */
+/*   Updated: 2018/01/26 18:46:17 by alalaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ int	op_ld(t_vm *vm, t_thread *PC)
 		tmp_ind = recup_param(vm, (PC->location + 2) % MEM_SIZE, 2);
 		param1 = recup_param(vm, (PC->location + tmp_ind) % MEM_SIZE, REG_SIZE);
 		param2 = recup_param(vm, (PC->location + 2 + 2) % MEM_SIZE, 1);
-		if (param2 > REG_MUMBER || param2 < 1)
+		if (param2 > REG_NUMBER || param2 < 1)
 			param2 = 0;
 		PC->r[param2] = param1;
 		PC->location = (PC->location + 1 + 1 + 2 + 1) % MEM_SIZE;
