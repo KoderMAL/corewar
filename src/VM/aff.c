@@ -6,7 +6,7 @@
 /*   By: lramirez <lramirez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/26 13:10:50 by lramirez          #+#    #+#             */
-/*   Updated: 2018/01/26 17:44:28 by lramirez         ###   ########.fr       */
+/*   Updated: 2018/01/27 11:44:56 by lramirez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 // Affiche le contenu en ascii.
 // Décrémente le process de 2 cycles (coût d'un aff).
 
-void		aff(t_vm *vm, t_thread process)
+void		op_aff(t_vm *vm, t_thread process)
 {
 	char	reg_nbr;
 	char	val_reg;

@@ -6,7 +6,7 @@
 /*   By: lramirez <lramirez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/26 13:06:48 by lramirez          #+#    #+#             */
-/*   Updated: 2018/01/26 17:27:00 by lramirez         ###   ########.fr       */
+/*   Updated: 2018/01/27 11:45:06 by lramirez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,6 @@ void		sub(t_vm *vm, t_thread process)
 	char	r1;
 	char	r2;
 	char	r3;
-	int		val_r1;
-	int		val_r2;
 	
 	r1 = vm->map[(process->location + 1) % MEM_SIZE];
 	r2 = vm->map[(process->location + 2) % MEM_SIZE];
