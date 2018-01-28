@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   live.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alalaoui <alalaoui@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lramirez <lramirez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/25 11:32:35 by lramirez          #+#    #+#             */
-/*   Updated: 2018/01/26 17:49:17 by alalaoui         ###   ########.fr       */
+/*   Updated: 2018/01/27 11:44:56 by lramirez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,10 @@
 // Déplace le PC pour le placer sur le T_DIR à récupérer.
 // Récupère le T_DIR sur 4 octets.
 // Essaie de faire correspondre l'id récupéré avec un joueur - le cas échéant, print un live de ce joueur.
-// Redéplace le PC à la suite du T_DIR.
+// Déplace le PC à la suite du T_DIR récupéré.
 // Décrémente le process de 10 cycles (coût d'un live).
 
-void		live(t_vm *vm, t_thread *process)
+void		op_live(t_vm *vm, t_thread *process)
 {
 	int		id;
 	int		player;

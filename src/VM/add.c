@@ -6,7 +6,7 @@
 /*   By: lramirez <lramirez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/26 12:10:18 by lramirez          #+#    #+#             */
-/*   Updated: 2018/01/26 17:26:05 by lramirez         ###   ########.fr       */
+/*   Updated: 2018/01/27 11:44:56 by lramirez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,13 +20,11 @@
 // Si non, met le carry à 0 et déplace le PC d'1 octet.
 // Dans les deux cas, décrémente le process de 10 cycles (coût d'un add).
 
-void		add(t_vm *vm, t_thread process)
+void		op_add(t_vm *vm, t_thread process)
 {
 	char	r1;
 	char	r2;
 	char	r3;
-	int		val_r1;
-	int		val_r2;
 	
 	r1 = vm->map[(process->location + 1) % MEM_SIZE];
 	r2 = vm->map[(process->location + 2) % MEM_SIZE];
