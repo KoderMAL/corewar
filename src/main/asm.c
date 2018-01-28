@@ -6,7 +6,7 @@
 /*   By: stoupin <stoupin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/04 15:49:30 by alalaoui          #+#    #+#             */
-/*   Updated: 2018/01/24 15:17:45 by dhadley          ###   ########.fr       */
+/*   Updated: 2018/01/28 19:48:40 by stoupin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@ static void		env_initialization(t_env *env)
 {
 	openfile_init(&(env->stdout), STDOUT_FILENO);
 	openfile_init(&(env->stderr), STDERR_FILENO);
-	crc32_init(&(env->hash_env));
 	env->header = 1;
 	env->state = &state_start;
 	env->line = 0;
