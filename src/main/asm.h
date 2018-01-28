@@ -6,7 +6,7 @@
 /*   By: stoupin <stoupin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/04 16:36:08 by alalaoui          #+#    #+#             */
-/*   Updated: 2018/01/23 16:16:40 by stoupin          ###   ########.fr       */
+/*   Updated: 2018/01/28 19:49:01 by stoupin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@
 # include "util/cqueue.h"
 # include "util/pqueue.h"
 # include "ft/ft.h"
-# include "hash/crc32.h"
 
 typedef struct		s_label
 {
@@ -62,7 +61,6 @@ typedef struct		s_env
 	t_openfile		input;
 	t_openfile		stdout;
 	t_openfile		stderr;
-	t_hash_env		hash_env;
 	int				line;
 	int				col;
 	int				err;
