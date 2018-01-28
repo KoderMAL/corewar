@@ -6,11 +6,11 @@
 /*   By: stoupin <stoupin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/04 17:48:23 by alalaoui          #+#    #+#             */
-/*   Updated: 2018/01/23 15:28:01 by stoupin          ###   ########.fr       */
+/*   Updated: 2018/01/28 20:04:32 by stoupin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "main/asm.h"
+#include "asm/asm.h"
 #include <stdlib.h>
 
 static int		check_types(t_instruction *instruction)

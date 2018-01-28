@@ -6,11 +6,11 @@
 /*   By: stoupin <stoupin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/05 16:33:13 by alalaoui          #+#    #+#             */
-/*   Updated: 2018/01/23 15:48:14 by stoupin          ###   ########.fr       */
+/*   Updated: 2018/01/28 20:03:44 by stoupin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "main/asm.h"
+#include "asm/asm.h"
 #include "states.h"
 
 void	state_start(t_env *env, char c)

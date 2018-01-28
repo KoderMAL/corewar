@@ -6,11 +6,11 @@
 /*   By: stoupin <stoupin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/02 15:46:07 by alalaoui          #+#    #+#             */
-/*   Updated: 2018/01/23 17:47:01 by stoupin          ###   ########.fr       */
+/*   Updated: 2018/01/28 20:04:18 by stoupin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "main/asm.h"
+#include "asm/asm.h"
 #include "states.h"
 
 const t_op	*match_instruction(t_env *env)

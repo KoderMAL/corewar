@@ -3,15 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   vm.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alalaoui <alalaoui@student.42.fr>          +#+  +:+       +#+        */
+/*   By: stoupin <stoupin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/16 14:30:57 by alalaoui          #+#    #+#             */
-/*   Updated: 2018/01/28 17:46:57 by alalaoui         ###   ########.fr       */
+/*   Updated: 2018/01/28 20:05:31 by stoupin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vm.h"
-#include "main/op.h"
+#include "asm/op.h"
 #include <stdio.h> //A SUPPRIMER
 static void vm_initialization(t_vm *vm, int ac)
 {

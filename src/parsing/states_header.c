@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   states_header.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: stoupin <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: stoupin <stoupin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/10 16:29:05 by stoupin           #+#    #+#             */
-/*   Updated: 2018/01/23 15:01:45 by alalaoui         ###   ########.fr       */
+/*   Updated: 2018/01/28 20:03:50 by stoupin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "main/asm.h"
+#include "asm/asm.h"
 #include "states.h"
 
 int		match_name(t_env *env)

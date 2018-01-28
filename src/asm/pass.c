@@ -6,12 +6,12 @@
 /*   By: stoupin <stoupin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/23 14:10:35 by dhadley           #+#    #+#             */
-/*   Updated: 2018/01/23 15:53:00 by stoupin          ###   ########.fr       */
+/*   Updated: 2018/01/28 20:05:05 by stoupin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "assembly.h"
-#include "main/op.h"
+#include "op.h"
 
 int	pass(t_env *env, t_pqueue instructions, t_pqueue *gaps, int pass)
 {

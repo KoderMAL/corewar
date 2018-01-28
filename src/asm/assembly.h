@@ -6,14 +6,14 @@
 /*   By: stoupin <stoupin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/08 15:10:38 by dhadley           #+#    #+#             */
-/*   Updated: 2018/01/23 14:36:53 by stoupin          ###   ########.fr       */
+/*   Updated: 2018/01/28 20:04:55 by stoupin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef ASSEMBLY_H
 # define ASSEMBLY_H
 
-#include "main/asm.h"
+#include "asm.h"
 
 /*
 ** from assemble.c
