@@ -30,7 +30,7 @@ OBJ_TMP = $(SRC:.c=.o)
 SRC2 = $(SRC_VM) $(SRC_IO) $(SRC_FT) $(SRC_UTIL)
 OBJ2_TMP = $(SRC2:.c=.o)
 
-VPATH = src/ft src/io src/main src/parsing src/util src/hash src/tests src/assembly src/VM
+VPATH = src/ft src/io src/main src/parsing src/util src/tests src/assembly src/VM
 IFLAGS = -Isrc
 OBJ_DIR = obj
 OBJ = $(addprefix $(OBJ_DIR)/, $(OBJ_TMP))
