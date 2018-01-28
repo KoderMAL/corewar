@@ -3,14 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   zjmp.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lramirez <lramirez@student.42.fr>          +#+  +:+       +#+        */
+/*   By: alalaoui <alalaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/25 17:58:09 by lramirez          #+#    #+#             */
-/*   Updated: 2018/01/27 11:44:56 by lramirez         ###   ########.fr       */
+/*   Updated: 2018/01/28 16:36:02 by alalaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "op.h"
 #include "vm.h"
 
 // Déplace le PC pour le placer sur le T_DIR à récupérer.
@@ -19,7 +18,7 @@
 // Si carry à 0, déplace le PC à la fin du T_DIR récupéré.
 // Décrémente le process de 20 cycles (coût d'un zjmp).
 
-void		op_zjmp(t_vm *vm, t_thread process)
+void		op_zjmp(t_vm *vm, t_thread *process)
 {
 	short	index;
 

@@ -3,14 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   and.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lramirez <lramirez@student.42.fr>          +#+  +:+       +#+        */
+/*   By: alalaoui <alalaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/26 14:39:27 by lramirez          #+#    #+#             */
-/*   Updated: 2018/01/27 13:55:41 by lramirez         ###   ########.fr       */
+/*   Updated: 2018/01/28 18:53:41 by alalaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "op.h"
 #include "vm.h"
 
 // op_and détermine le type du premier paramètre (T_DIR, T_IND ou T_REG).
@@ -20,7 +19,7 @@
 // Place le résultat de [param_1 & param_2] dans param_3.
 // Met le carry à 1 et décrémente le process de 6 cycles (coût d'un and).
 
-int		op_and_exit(t_thread pc)
+static int		op_and_exit(t_thread *pc)
 {
 		pc->carry = 0;
 		pc->cycles -= 6;
@@ -28,7 +27,7 @@ int		op_and_exit(t_thread pc)
 		return (0);
 }
 
-int		op_and_reg(t_vm *vm, t_thread pc)
+static int		op_and_reg(t_vm *vm, t_thread *pc)
 {
 	int		param_1;
 	int		param_2;
@@ -67,7 +66,7 @@ int		op_and_reg(t_vm *vm, t_thread pc)
 	return (1);
 }
 
-int		op_and_ind(t_vm *vm, t_thread pc)
+static int		op_and_ind(t_vm *vm, t_thread *pc)
 {
 	int		param_1;
 	int		param_2;
@@ -104,7 +103,7 @@ int		op_and_ind(t_vm *vm, t_thread pc)
 	return (1);
 }
 
-int		op_and_dir(t_vm *vm, t_thread pc)
+static int		op_and_dir(t_vm *vm, t_thread *pc)
 {
 	int		param_1;
 	int		param_2;
@@ -141,15 +140,15 @@ int		op_and_dir(t_vm *vm, t_thread pc)
 	return (1);
 }
 
-int		op_and(t_vm *vm, t_thread pc)
+int		op_and(t_vm *vm, t_thread *pc)
 {
    	pc->location = (pc->location + 1) % MEM_SIZE;
 	if (check_params(vm->map[pc->location], 1) == DIR_CODE)
-		return (op_and_dir(vm, pc->location));
+		return (op_and_dir(vm, pc));
 	else if (check_params(vm->map[pc->location], 1) == IND_CODE)
-		return (op_and_ind(vm, pc->location));
+		return (op_and_ind(vm, pc));
 	else if (check_params(vm->map[pc->location], 1) == REG_CODE)
-		return (op_and_reg(vm, pc->location));
+		return (op_and_reg(vm, pc));
 	else
 		return (op_and_exit(pc));
 }

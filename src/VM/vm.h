@@ -6,7 +6,7 @@
 /*   By: alalaoui <alalaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/16 14:44:18 by alalaoui          #+#    #+#             */
-/*   Updated: 2018/01/26 18:19:07 by dhadley          ###   ########.fr       */
+/*   Updated: 2018/01/28 18:37:34 by alalaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 #include "io/openfile.h"
 #include "ft/ft.h"
 #include "util/pqueue.h"
+# define ABS(X)	((X > 0) ? X : -(X))
 # define MAX_SIZE (PROG_NAME_LENGTH + COMMENT_LENGTH + CHAMP_MAX_SIZE + 14)
 # define INT_MAX 2147483647
 typedef struct		s_thread
@@ -47,7 +48,7 @@ typedef struct		s_vm
 {
 	t_champ			champs_fd[MAX_PLAYERS];
 	t_pqueue		threads;
-	char			map[MEM_SIZE];
+	unsigned char	map[MEM_SIZE];
 	int				nb_champs;
 	int				err;
 	char			*err_msg;
@@ -69,6 +70,7 @@ void				err2_display(t_vm *vm);
 
 t_thread			*create_thread(t_vm *vm);
 void				thread_init(t_vm *vm);
+t_thread			*dup_thread(t_thread *src_thread, int pc);
 
 /*
 ** champion.c
@@ -92,8 +94,21 @@ void				draw_game_clean(t_vm *vm);
 ** operations
 */
 
-int					op_ld(t_vm *vm, t_thread PC);
-void				live(t_vm *vm, t_thread *PC);
+void				op_live(t_vm *vm, t_thread *PC);
+void				op_zjmp(t_vm *vm, t_thread *process);
+void				op_fork(t_vm *vm, t_thread *process);
+int					op_ld(t_vm *vm, t_thread *PC);
+void				op_aff(t_vm *vm, t_thread *process);
+void				op_add(t_vm *vm, t_thread *process);
+void				op_sub(t_vm *vm, t_thread *process);
+int					op_and(t_vm *vm, t_thread *pc);
+
+/*
+** params.c
+*/
+
+int					check_params(unsigned char byte, int number);
+int					recup_param(t_vm *vm, int location, int size);
 
 /*
 ** dump.c

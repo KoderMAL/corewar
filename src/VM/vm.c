@@ -6,7 +6,7 @@
 /*   By: alalaoui <alalaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/16 14:30:57 by alalaoui          #+#    #+#             */
-/*   Updated: 2018/01/28 12:49:06 by alalaoui         ###   ########.fr       */
+/*   Updated: 2018/01/28 17:46:57 by alalaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ static void vm_initialization(t_vm *vm, int ac)
 
 	i = 0;
 	vm->nb_champs = ac - 1;
+	vm->op = NULL;
 	vm->err_msg = NULL;
 	vm->game_cycle = 0;
 	while (i < MEM_SIZE)

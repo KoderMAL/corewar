@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   live.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lramirez <lramirez@student.42.fr>          +#+  +:+       +#+        */
+/*   By: alalaoui <alalaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/25 11:32:35 by lramirez          #+#    #+#             */
-/*   Updated: 2018/01/27 11:44:56 by lramirez         ###   ########.fr       */
+/*   Updated: 2018/01/28 17:54:50 by alalaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,12 @@ void		op_live(t_vm *vm, t_thread *process)
 	int		player;
 
 	process->location = (process->location + 1) % MEM_SIZE;
-	id = vm->map[process->location] << 24 | vm->map[(process->location + 1) % MEM_SIZE] << 16 | vm->map[(process->location + 2) % MEM_SIZE] << 8 | vm->map[(process->location + 3) % MEM_SIZE];
+	printf("premier octet: %d\n", vm->map[process->location]);
+	printf("deuxieme octet: %d\n", vm->map[(process->location + 1) % MEM_SIZE]);
+	printf("troisieme octet: %d\n", vm->map[(process->location + 2) % MEM_SIZE]);
+	printf("quatrieme octet: %d\n", vm->map[(process->location+ 3) % MEM_SIZE]);
+id = vm->map[process->location] << 24 | vm->map[(process->location + 1) % MEM_SIZE] << 16 | vm->map[(process->location + 2) % MEM_SIZE] << 8 | vm->map[(process->location + 3) % MEM_SIZE];
+	printf("champion id:%d\n", id);
 	player = 0;
 	while (player < vm->nb_champs)
 	{

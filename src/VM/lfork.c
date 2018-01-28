@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lfork.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lramirez <lramirez@student.42.fr>          +#+  +:+       +#+        */
+/*   By: alalaoui <alalaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/26 11:18:58 by lramirez          #+#    #+#             */
-/*   Updated: 2018/01/27 11:44:56 by lramirez         ###   ########.fr       */
+/*   Updated: 2018/01/28 16:48:23 by alalaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void		op_lfork(t_vm *vm, t_thread process)
 
 	process->location = (process->location + 1) % MEM_SIZE;
 	index = vm->map[process->location] << 8 | vm->map[(process->location + 1) % MEM_SIZE];
-	pqueue_push(vm->threads, dup_thread(process, (process->location + index) % MEM_SIZE));
+	pqueue_push(&(vm->threads), dup_thread(process, (process->location + index) % MEM_SIZE));
 	process->location = (process->location + 2) % MEM_SIZE;
 	process->cycles -= 1000;
 }

@@ -6,7 +6,7 @@
 /*   By: alalaoui <alalaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/24 15:16:28 by alalaoui          #+#    #+#             */
-/*   Updated: 2018/01/25 18:37:34 by alalaoui         ###   ########.fr       */
+/*   Updated: 2018/01/28 18:32:04 by alalaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void		fill_map(t_vm *vm, int i)
 void		parse_champion(t_vm *vm, int i)
 {
 	ft_memcpy(vm->champs_fd[i].name, (vm->champs_fd[i].cor + 4), PROG_NAME_LENGTH);
-	vm->champs_fd[i].sizeb = vm->champs_fd[i].cor[10 + PROG_NAME_LENGTH] << 8 | vm->champs_fd[i].cor[11+ PROG_NAME_LENGTH];
+	vm->champs_fd[i].sizeb = vm->champs_fd[i].cor[10 + PROG_NAME_LENGTH] << 8 | vm->champs_fd[i].cor[11 + PROG_NAME_LENGTH];
 	if (vm->champs_fd[i].sizeb != vm->champs_fd[i].size)
 		err2(vm, "A champion has a code size that differ from its header");
 }
@@ -42,7 +42,7 @@ void		read_champion(t_vm *vm, int i)
 			err2(vm, "unable to read input");
 		if (ret != 1)
 			break;
-		vm->champs_fd[i].cor[pos++] = c;
+		vm->champs_fd[i].cor[pos++] = (unsigned char)c;
 		if (pos >= MAX_SIZE)
 			err2(vm, "file too large");
 	}
@@ -51,7 +51,8 @@ void		read_champion(t_vm *vm, int i)
 
 void		load_champion(t_vm *vm, char **av, int *i, int fd[MAX_ARGS_NUMBER])
 {
-	if (vm->err == 0 && (fd[*i] = open(av[(*i) + 1], O_RDONLY)) < 2)
+	static int id = -1;
+	if (vm->err == 0 && (fd[*i] = open(av[(*i + (vm->option[0] * 2)) + 1], O_RDONLY)) < 2)
 		err2(vm, "Unable to open input file");
 	printf("\nFD:%d\n", fd[*i]);
 	if (vm->err == 0)
@@ -61,9 +62,12 @@ void		load_champion(t_vm *vm, char **av, int *i, int fd[MAX_ARGS_NUMBER])
 		ft_memset(vm->champs_fd[*i].cor, 0, MAX_SIZE);
 		ft_memset(vm->champs_fd[*i].name, 0, PROG_NAME_LENGTH);
 		ft_memset(vm->champs_fd[*i].comment, 0, COMMENT_LENGTH);
+		vm->champs_fd[*i].id = id;
+		id--;
 	}
 	read_champion(vm, *i);
 	parse_champion(vm, *i);
+	printf("champion id:%d\nchampname:%s\n", vm->champs_fd[*i].id, vm->champs_fd[*i].name);
 	fill_map(vm, *i);
 	(*i)++;
 }

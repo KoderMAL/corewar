@@ -6,7 +6,7 @@
 /*   By: alalaoui <alalaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/25 16:50:31 by dhadley           #+#    #+#             */
-/*   Updated: 2018/01/26 18:46:17 by alalaoui         ###   ########.fr       */
+/*   Updated: 2018/01/28 17:50:59 by alalaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,5 +45,5 @@ int	op_ld(t_vm *vm, t_thread *PC)
 		PC->location = (PC->location + 1 + 1 + 2 + 1) % MEM_SIZE;
 		return (1);
 	}
-	return (0)
+	return (0);
 }

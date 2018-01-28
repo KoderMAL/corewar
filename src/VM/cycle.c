@@ -6,7 +6,7 @@
 /*   By: alalaoui <alalaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/26 11:51:04 by dhadley           #+#    #+#             */
-/*   Updated: 2018/01/28 13:48:41 by alalaoui         ###   ########.fr       */
+/*   Updated: 2018/01/28 18:36:01 by alalaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,19 +22,33 @@ const t_op		*find_opcode(int pc)
 	int	i;
 
 	i = 0;
+	printf("in:PC%d\n", pc);
 	while (g_op_tab[i].opcode != 0)
 	{
 		if (g_op_tab[i].opcode == pc)
 			return (&(g_op_tab[i]));
 		i++;
 	}
+	printf("OUT\n");
 	return (NULL);
 }
 
 static void		do_op(t_vm *vm, t_thread *pc)
 {
-	op_live(vm, pc);
-//	up_ld(vm, pc)
+//	op_live(vm, pc);
+//  op_zjmp(vm, pc);
+// 	op_fork(vm, pc);
+//	op_aff(vm, pc);
+	if (vm->op->opcode == 2)
+		op_ld(vm, pc);
+	else if (vm->op->opcode == 16)
+		op_aff(vm, pc);
+	else if (vm->op->opcode == 4)
+		op_add(vm, pc);
+	else if (vm->op->opcode == 5)
+		op_sub(vm, pc);
+	else if (vm->op->opcode == 6)
+		op_and(vm, pc);
 }
 
 static void		check_countdown(t_vm *vm)
@@ -51,13 +65,15 @@ static void		check_countdown(t_vm *vm)
 	printf("pc->countdown=%d\n", pc->countdown);
 		if (pc->countdown == -1)
 		{
+			printf("PC LOCATION DANS MAP:%d\n", pc->location);
 			if ((vm->op = find_opcode(vm->map[pc->location])) != NULL)
 			{
+				printf("OPNAME:%s\n", vm->op->name);
+				printf("OPcode:%d\n", vm->op->opcode);
 				pc->countdown = vm->op->n_cycles;
-				pc->location++;
 			}
 			else
-				pc->location++;
+				pc->location = (pc->location + 1) % MEM_SIZE;
 		}
 		else if (pc->countdown == 0)
 		{
