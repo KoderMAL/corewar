@@ -6,7 +6,7 @@
 /*   By: alalaoui <alalaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/16 14:30:57 by alalaoui          #+#    #+#             */
-/*   Updated: 2018/01/26 16:56:22 by alalaoui         ###   ########.fr       */
+/*   Updated: 2018/01/28 12:49:06 by alalaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,13 +48,13 @@ int main(int ac, char **av)
 
 	i = 0;
 	vm.err = 0;
-	parse_options(&vm, &ac, av);
 	if (ac - 1 > MAX_ARGS_NUMBER)
 		err2(&vm, "Too many arguments");
-	else if (ac < 2)
+	if (ac < 2)
 		err2(&vm, "Usage: ./corewar [-d N] [[-n N]champ.cor] ...)");
 	if (vm.err == 0)
 	{
+		parse_options(&vm, &ac, av);
 		vm_initialization(&vm, ac);
 		while (i < vm.nb_champs)
 			load_champion(&vm, av, &i, fd);

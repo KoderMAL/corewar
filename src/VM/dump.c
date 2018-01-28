@@ -6,7 +6,7 @@
 /*   By: alalaoui <alalaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/26 12:00:20 by alalaoui          #+#    #+#             */
-/*   Updated: 2018/01/26 18:42:38 by alalaoui         ###   ########.fr       */
+/*   Updated: 2018/01/28 13:42:36 by alalaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,18 +33,18 @@ void		dump(t_vm *vm)
 	int		i;
 
 	i = 0;
-	if (vm->option[0] == 1)
+	if (vm->option[0] == 0)
 	{
-		if (vm->game_cycle == vm->option[1])
-		{
+//		if (vm->game_cycle == vm->option[1])
+//		{
 			while (i < MEM_SIZE)
 			{
-				printf("%x ", vm->map[i++]);
-				if (i % 64 == 0)
-					write(1, "\n", 1);
+				printf("%x ", vm->map[i]);
 				i++;
+				if (i % 64 == 0)
+					{printf("\n");}
 			}
-			exit(0);
-		}
+			sleep(1);
+//		}
 	}
 }

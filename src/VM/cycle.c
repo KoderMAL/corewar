@@ -6,7 +6,7 @@
 /*   By: alalaoui <alalaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/26 11:51:04 by dhadley           #+#    #+#             */
-/*   Updated: 2018/01/26 18:42:00 by alalaoui         ###   ########.fr       */
+/*   Updated: 2018/01/28 12:51:36 by alalaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ static void		check_countdown(t_vm *vm)
 	while (i < vm->threads.len)
 	{
 		pc = pq->p;
-	printf("pc->countdown%d\n", pc->countdown);
+	printf("pc->countdown=%d\n", pc->countdown);
 		if (pc->countdown == -1)
 		{
 			if ((vm->op = find_opcode(vm->map[pc->location])) != NULL)
@@ -77,6 +77,7 @@ void		war(t_vm *vm)
 {
 	while (vm->game_cycle < INT_MAX)
 	{
+		printf("\n---CYCLE++---\n");
 		check_cycles(vm);
 		check_countdown(vm);
 		dump(vm);
