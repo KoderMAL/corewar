@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cycle.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: stoupin <stoupin@student.42.fr>            +#+  +:+       +#+        */
+/*   By: alalaoui <alalaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/26 11:51:04 by dhadley           #+#    #+#             */
-/*   Updated: 2018/01/29 10:58:46 by alalaoui         ###   ########.fr       */
+/*   Updated: 2018/01/29 14:26:23 by alalaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,29 +23,21 @@ const t_op		*find_opcode(int pc)
 	int	i;
 
 	i = 0;
-	printf("in:PC%d\n", pc);
 	while (g_op_tab[i].opcode != 0)
 	{
 		if (g_op_tab[i].opcode == pc)
 			return (&(g_op_tab[i]));
 		i++;
 	}
-	printf("OUT\n");
 	return (NULL);
 }
 
 static void		do_op(t_vm *vm, t_thread *pc)
 {
-//	op_live(vm, pc);
-//  op_zjmp(vm, pc);
-// 	op_fork(vm, pc);
-//	op_aff(vm, pc);
 	if (vm->op->opcode == 1)
 		op_live(vm, pc);
-	if (vm->op->opcode == 2)
+	else if (vm->op->opcode == 2)
 		op_ld(vm, pc);
-	else if (vm->op->opcode == 16)
-		op_aff(vm, pc);
 	else if (vm->op->opcode == 4)
 		op_add(vm, pc);
 	else if (vm->op->opcode == 5)
@@ -54,6 +46,10 @@ static void		do_op(t_vm *vm, t_thread *pc)
 		op_and(vm, pc);
 	else if (vm->op->opcode == 9)
 		op_zjmp(vm, pc);
+	else if (vm->op->code == 12)
+	 	op_fork(vm, pc);
+	else if (vm->op->opcode == 16)
+		op_aff(vm, pc);
 }
 
 static void		check_countdown(t_vm *vm)

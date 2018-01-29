@@ -6,7 +6,7 @@
 /*   By: lramirez <lramirez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/26 14:39:27 by lramirez          #+#    #+#             */
-/*   Updated: 2018/01/29 10:31:02 by lramirez         ###   ########.fr       */
+/*   Updated: 2018/01/29 15:05:18 by lramirez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ int		op_xor_reg(t_vm *vm, t_thread *pc)
 	}
 	else if (check_params(vm->map[pc->location], 2) == IND_CODE)
 	{
-		param_2 = vm->map[(pc->location + (recup_param(vm, (pc->location + 2) % MEM_SIZE, 2) % IDX_MOD)) % MEM_SIZE];
+		param_2 = vm->map[(pc->location - 1 + (recup_param(vm, (pc->location + 2) % MEM_SIZE, 2) % IDX_MOD)) % MEM_SIZE];
 		reg = recup_param(vm, (pc->location + 4) % MEM_SIZE, 1);
 		pc->location = (pc->location + 5) % MEM_SIZE;
 	}
@@ -81,7 +81,7 @@ int		op_xor_ind(t_vm *vm, t_thread *pc)
 	}
 	else if (check_params(vm->map[pc->location], 2) == IND_CODE)
 	{
-		param_2 = vm->map[(pc->location + (recup_param(vm, (pc->location + 3) % MEM_SIZE, 2) % IDX_MOD)) % MEM_SIZE];
+		param_2 = vm->map[(pc->location - 1 + (recup_param(vm, (pc->location + 3) % MEM_SIZE, 2) % IDX_MOD)) % MEM_SIZE];
 		reg = recup_param(vm, (pc->location + 5) % MEM_SIZE, 1);
 		pc->location = (pc->location + 6) % MEM_SIZE;
 	}
@@ -118,7 +118,7 @@ int		op_xor_dir(t_vm *vm, t_thread *pc)
 	}
 	else if (check_params(vm->map[pc->location], 2) == IND_CODE)
 	{
-		param_2 = vm->map[(pc->location + (recup_param(vm, (pc->location + 5) % MEM_SIZE, 2) % IDX_MOD)) % MEM_SIZE];
+		param_2 = vm->map[(pc->location - 1 + (recup_param(vm, (pc->location + 5) % MEM_SIZE, 2) % IDX_MOD)) % MEM_SIZE];
 		reg = recup_param(vm, (pc->location + 7) % MEM_SIZE, 1);
 		pc->location = (pc->location + 8) % MEM_SIZE;
 	}
