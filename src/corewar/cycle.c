@@ -6,10 +6,11 @@
 /*   By: stoupin <stoupin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/26 11:51:04 by dhadley           #+#    #+#             */
-/*   Updated: 2018/01/29 11:00:59 by stoupin          ###   ########.fr       */
+/*   Updated: 2018/01/29 10:58:46 by alalaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <limits.h>
 #include "vm.h"
 
 static void		check_cycles(t_vm *vm)
@@ -39,6 +40,8 @@ static void		do_op(t_vm *vm, t_thread *pc)
 //  op_zjmp(vm, pc);
 // 	op_fork(vm, pc);
 //	op_aff(vm, pc);
+	if (vm->op->opcode == 1)
+		op_live(vm, pc);
 	if (vm->op->opcode == 2)
 		op_ld(vm, pc);
 	else if (vm->op->opcode == 16)
@@ -49,6 +52,8 @@ static void		do_op(t_vm *vm, t_thread *pc)
 		op_sub(vm, pc);
 	else if (vm->op->opcode == 6)
 		op_and(vm, pc);
+	else if (vm->op->opcode == 9)
+		op_zjmp(vm, pc);
 }
 
 static void		check_countdown(t_vm *vm)
@@ -87,10 +92,10 @@ static void		check_countdown(t_vm *vm)
 	}
 }
 
-void		war_cyle(t_vm *vm)
+void		war_cycle(t_vm *vm)
 {
-	if (vm->game_cycle < INT_MAX || vm->err != 0)
-		vm_clean(&vm);
+	if (vm->game_cycle == INT_MAX || vm->err != 0)
+		vm_clean(vm);
 	printf("\n---CYCLE++---\n");
 	check_cycles(vm);
 	check_countdown(vm);

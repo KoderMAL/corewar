@@ -6,7 +6,7 @@
 /*   By: stoupin <stoupin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/26 23:04:41 by stoupin           #+#    #+#             */
-/*   Updated: 2018/01/28 18:57:12 by stoupin          ###   ########.fr       */
+/*   Updated: 2018/01/29 11:48:36 by stoupin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int		font_err(t_font *font, char *msg)
 	return (1);
 }
 
-int		font_load(t_font *font, char *file_name)
+int		font_load(t_font *font, const char *file_name)
 {
 	int	fd;
 	int	ret;

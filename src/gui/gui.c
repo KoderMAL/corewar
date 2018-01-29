@@ -6,7 +6,7 @@
 /*   By: stoupin <stoupin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/29 09:48:12 by stoupin           #+#    #+#             */
-/*   Updated: 2018/01/29 10:17:02 by stoupin          ###   ########.fr       */
+/*   Updated: 2018/01/29 11:40:29 by stoupin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,22 +43,11 @@ int		gui_init(t_gui *gui, int width, int height, char *title)
 	if (gui->image == NULL)
 		return (gui_err(gui, "image address retrieval failed"));
 	clear_image(gui->image, gui->screen_size, (t_pix)(unsigned int)0);
-	gui->font = (t_font*)malloc(sizeof(t_font));
-	if (gui->font == NULL)
-		return (gui_err(gui, "font allocation failed"));
-	font_load(gui->font, "fonts/font_large.bin");
-	if (gui->font->err)
-		return(gui_err(gui, gui->font->err_msg));
 	return (0);
 }
 
 void	gui_clean(t_gui *gui)
 {
-	if (gui->font)
-	{
-		font_clean(gui->font);
-		free(gui->font);
-	}
 	if (gui->image_ptr != NULL)
 		mlx_destroy_image(gui->mlx_ptr, gui->image_ptr);
 	if (gui->mlx_win != NULL)

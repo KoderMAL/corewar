@@ -7,7 +7,7 @@ ifeq ($(UNAME_S),Linux)
 	MLX = lib/minilibx_linux
 	LDFLAGS = -L $(MLX) -lmlx -L/usr/include/../lib -lXext -lX11 -lm -lbsd
 	ifeq ($(DEBUG),yes)
-		CFLAGS = -Wall -Wextra -std=c99 -g -O0 -fsanitize=address -I./$(MLX) -DLINUX
+		CFLAGS = -Wall -Wextra -std=c99 -g -O0 -I./$(MLX) -DLINUX
 	else
 		CFLAGS = -Ofast -march=native -fomit-frame-pointer -Wall -Wextra -std=c99 -I./$(MLX) -DLINUX
 	endif
@@ -32,14 +32,14 @@ SRC_PARSING = states_main.c states_header.c states_label.c states_instruction.c 
 			  save_label.c save_argument.c save_instruction.c check_args.c
 SRC_COREWAR = error2.c thread.c vm.c champion.c draw_game.c dump.c cycle.c op.c \
 				live.c zjmp.c fork.c aff.c ld.c params.c add.c sub.c and.c
-SRC_GUI = font.c font_cursor.c gui_hooks.c gui.c
+SRC_GUI = font.c font_cursor.c gui.c gui_hooks.c fonts.c
 SRC_TESTS = $(SRC_IO) $(SRC_FT) $(SRC_UTIL) \
 			tests.c tests_assert.c \
 			ft_atoi_test.c ft_strchr_test.c ft_test.c \
 			pqueue_test.c cqueue_test.c cqueue_test_2.c \
 			tests_main.c
 HEADERS = vm.h asm.h op.h ft.h openfile.h states.h cqueue.h pqueue.h assembly.h \
-			font.h gui.h
+			font.h gui.h gui_corewar.h
 
 SRC = $(SRC_FT) $(SRC_IO) $(SRC_PARSING) $(SRC_UTIL) $(SRC_ASM)
 OBJ_TMP = $(SRC:.c=.o)

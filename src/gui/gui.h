@@ -6,7 +6,7 @@
 /*   By: stoupin <stoupin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/26 21:43:22 by stoupin           #+#    #+#             */
-/*   Updated: 2018/01/29 10:16:35 by stoupin          ###   ########.fr       */
+/*   Updated: 2018/01/29 11:49:45 by stoupin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,6 @@ typedef struct			s_gui
 	t_pix			*image;
 	int				err;
 	char			*err_msg;
-	struct s_font	*font;
 }						t_gui;
 
 /*
