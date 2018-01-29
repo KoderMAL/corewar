@@ -6,7 +6,7 @@
 /*   By: lramirez <lramirez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/26 14:39:27 by lramirez          #+#    #+#             */
-/*   Updated: 2018/01/29 10:12:10 by lramirez         ###   ########.fr       */
+/*   Updated: 2018/01/29 12:29:49 by lramirez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,6 +109,7 @@ static int		op_and_dir(t_vm *vm, t_thread *pc)
 	int		param_2;
 	int		reg;
 
+	printf("check params returns = %d\n", check_params(vm->map[pc->location], 2));
 	param_1 = recup_param(vm, (pc->location + 1) % MEM_SIZE, 4);
 	if (check_params(vm->map[pc->location], 2) == DIR_CODE)
 	{
