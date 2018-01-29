@@ -6,7 +6,7 @@
 /*   By: stoupin <stoupin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/16 14:30:57 by alalaoui          #+#    #+#             */
-/*   Updated: 2018/01/29 11:46:33 by stoupin          ###   ########.fr       */
+/*   Updated: 2018/01/29 11:59:01 by stoupin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ int		main(int ac, char **av)
 
 	i = 0;
 	vm.err = 0;
-	vm.draw_game = 1;
+	vm.draw_game = 0;
 	if (ac - 1 > MAX_ARGS_NUMBER)
 		err2(&vm, "Too many arguments");
 	if (ac < 2)
