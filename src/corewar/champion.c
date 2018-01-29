@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   champion.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: stoupin <stoupin@student.42.fr>            +#+  +:+       +#+        */
+/*   By: alalaoui <alalaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/24 15:16:28 by alalaoui          #+#    #+#             */
-/*   Updated: 2018/01/29 09:45:00 by stoupin          ###   ########.fr       */
+/*   Updated: 2018/01/29 11:52:49 by alalaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,9 @@ void		read_champion(t_vm *vm, int i)
 void		load_champion(t_vm *vm, char **av, int *i, int fd[MAX_ARGS_NUMBER])
 {
 	static int id = -1;
-	if (vm->err == 0 && (fd[*i] = open(av[(*i + (vm->option[0] * 2)) + 1], O_RDONLY)) < 2)
+	if (vm->err == 0 && vm->draw_game == 1 && (fd[*i] = open(av[*i + 2], O_RDONLY)) < 2)
+		err2(vm, "Unable to open input file");
+	else if (vm->err == 0 && vm->draw_game == 0 && (fd[*i] = open(av[(*i + (vm->option[0] * 2)) + 1], O_RDONLY)) < 2)
 		err2(vm, "Unable to open input file");
 	printf("\nFD:%d\n", fd[*i]);
 	if (vm->err == 0)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   dump.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: stoupin <stoupin@student.42.fr>            +#+  +:+       +#+        */
+/*   By: alalaoui <alalaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/26 12:00:20 by alalaoui          #+#    #+#             */
-/*   Updated: 2018/01/29 10:14:13 by stoupin          ###   ########.fr       */
+/*   Updated: 2018/01/29 11:47:27 by alalaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,15 @@
 
 void		parse_options(t_vm *vm, int *ac, char **av)
 {
-	if (ft_strcmp(av[1], "-d") == 0 && ft_str_isdigit(av[2]))
+	if (ft_strcmp(av[1], "-visual") == 0)
+	{
+		if (*ac < 3)
+			exit(-1);
+		vm->draw_game = 1;
+		*ac = *ac - 1;
+		return ;
+	}
+	else if (ft_strcmp(av[1], "-d") == 0 && ft_str_isdigit(av[2]))
 	{
 		if ((*ac) < 4)
 			exit(-1);
@@ -27,7 +35,6 @@ void		parse_options(t_vm *vm, int *ac, char **av)
 	}
 	else
 		vm->option[0] = 0;
-	vm->draw_game = 1;
 	/*if (OPTION -N)
 	{
 		CODER OPTION -n

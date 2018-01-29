@@ -6,7 +6,7 @@
 /*   By: stoupin <stoupin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/26 11:51:04 by dhadley           #+#    #+#             */
-/*   Updated: 2018/01/29 11:38:53 by stoupin          ###   ########.fr       */
+/*   Updated: 2018/01/29 10:58:46 by alalaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,8 @@ static void		do_op(t_vm *vm, t_thread *pc)
 //  op_zjmp(vm, pc);
 // 	op_fork(vm, pc);
 //	op_aff(vm, pc);
+	if (vm->op->opcode == 1)
+		op_live(vm, pc);
 	if (vm->op->opcode == 2)
 		op_ld(vm, pc);
 	else if (vm->op->opcode == 16)
@@ -50,6 +52,8 @@ static void		do_op(t_vm *vm, t_thread *pc)
 		op_sub(vm, pc);
 	else if (vm->op->opcode == 6)
 		op_and(vm, pc);
+	else if (vm->op->opcode == 9)
+		op_zjmp(vm, pc);
 }
 
 static void		check_countdown(t_vm *vm)
