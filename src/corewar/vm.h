@@ -17,10 +17,10 @@
 # include "io/openfile.h"
 # include "util/pqueue.h"
 # include "gui/gui.h"
+# include "gui/font.h"
 
 # define ABS(X)	((X > 0) ? X : -(X))
 # define MAX_SIZE (PROG_NAME_LENGTH + COMMENT_LENGTH + CHAMP_MAX_SIZE + 14)
-# define INT_MAX 2147483647
 
 typedef struct		s_thread
 {
@@ -56,6 +56,7 @@ typedef struct		s_vm
 	const t_op		*op;
 	int				draw_game;
 	t_gui			gui;
+	t_font			fonts[3];
 }					t_vm;
 
 /*
@@ -95,7 +96,7 @@ void				fill_map(t_vm *vm, int i);
 */
 
 int					draw_game_init(t_vm *vm);
-void				draw_game(t_vm *vm);
+void				draw_game_loop(t_vm *vm);
 void				draw_game_clean(t_vm *vm);
 
 /*

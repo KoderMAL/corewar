@@ -10,6 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <limits.h>
 #include "vm.h"
 
 static void		check_cycles(t_vm *vm)
@@ -91,10 +92,10 @@ static void		check_countdown(t_vm *vm)
 	}
 }
 
-void		war_cyle(t_vm *vm)
+void		war_cycle(t_vm *vm)
 {
-	if (vm->game_cycle < INT_MAX || vm->err != 0)
-		vm_clean(&vm);
+	if (vm->game_cycle == INT_MAX || vm->err != 0)
+		vm_clean(vm);
 	printf("\n---CYCLE++---\n");
 	check_cycles(vm);
 	check_countdown(vm);
