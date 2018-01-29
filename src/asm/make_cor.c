@@ -6,11 +6,12 @@
 /*   By: stoupin <stoupin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/15 10:53:17 by dhadley           #+#    #+#             */
-/*   Updated: 2018/01/23 16:55:01 by stoupin          ###   ########.fr       */
+/*   Updated: 2018/01/29 09:29:41 by stoupin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <fcntl.h>
+#include <sys/stat.h>
 #include "io/openfile.h"
 #include "asm.h"
 

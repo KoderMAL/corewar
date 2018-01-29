@@ -6,23 +6,22 @@
 /*   By: stoupin <stoupin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/16 14:44:18 by alalaoui          #+#    #+#             */
-/*   Updated: 2018/01/28 20:05:18 by stoupin          ###   ########.fr       */
+/*   Updated: 2018/01/29 10:12:16 by stoupin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef VM_H
 # define VM_H
 
-#include <stdlib.h>
-#include <unistd.h>
-#include <fcntl.h>
-#include "asm/op.h"
-#include "io/openfile.h"
-#include "ft/ft.h"
-#include "util/pqueue.h"
+# include "asm/op.h"
+# include "io/openfile.h"
+# include "util/pqueue.h"
+# include "gui/gui.h"
+
 # define ABS(X)	((X > 0) ? X : -(X))
 # define MAX_SIZE (PROG_NAME_LENGTH + COMMENT_LENGTH + CHAMP_MAX_SIZE + 14)
 # define INT_MAX 2147483647
+
 typedef struct		s_thread
 {
 	int			carry;
@@ -55,13 +54,22 @@ typedef struct		s_vm
 	int				option[2];
 	int				game_cycle;
 	const t_op		*op;
+	int				draw_game;
+	t_gui			gui;
 }					t_vm;
+
+/*
+** vm.c
+*/
+
+void				vm_init(t_vm *vm, int ac);
+void				vm_clean(t_vm *vm);
 
 /*
 ** error.c
 */
 
-void				err2(t_vm *vm, char *err_msg);
+int					err2(t_vm *vm, char *err_msg);
 void				err2_display(t_vm *vm);
 
 /*
@@ -86,7 +94,7 @@ void				fill_map(t_vm *vm, int i);
 ** draw_game.c
 */
 
-void				draw_game_init(t_vm *vm);
+int					draw_game_init(t_vm *vm);
 void				draw_game(t_vm *vm);
 void				draw_game_clean(t_vm *vm);
 

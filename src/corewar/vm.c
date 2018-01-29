@@ -6,14 +6,15 @@
 /*   By: stoupin <stoupin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/16 14:30:57 by alalaoui          #+#    #+#             */
-/*   Updated: 2018/01/28 20:05:31 by stoupin          ###   ########.fr       */
+/*   Updated: 2018/01/29 10:07:06 by stoupin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <unistd.h>
 #include "vm.h"
 #include "asm/op.h"
-#include <stdio.h> //A SUPPRIMER
-static void vm_initialization(t_vm *vm, int ac)
+
+void	vm_init(t_vm *vm, int ac)
 {
 	int i;
 
@@ -26,10 +27,11 @@ static void vm_initialization(t_vm *vm, int ac)
 		vm->map[i++] = 0;
 	pqueue_init(&(vm->threads));
 	thread_init(vm);
-	draw_game_init(vm);
+	if (vm->draw_game)
+		draw_game_init(vm);
 }
 
-static void vm_clean(t_vm *vm, int fd[MAX_ARGS_NUMBER])
+void	vm_clean(t_vm *vm)
 {
 	int i;
 
@@ -37,11 +39,12 @@ static void vm_clean(t_vm *vm, int fd[MAX_ARGS_NUMBER])
 	err2_display(vm);
 	pqueue_delete(&(vm->threads));
 	while (i < MAX_ARGS_NUMBER)
-		close(fd[i++]);
-	draw_game_clean(vm);
+		close(vm->champs_fd[i++].file.fd);
+	if (vm->draw_game)
+		draw_game_clean(vm);
 }
 
-int main(int ac, char **av)
+int		main(int ac, char **av)
 {
 	t_vm vm;
 	int fd[MAX_ARGS_NUMBER];
@@ -56,11 +59,11 @@ int main(int ac, char **av)
 	if (vm.err == 0)
 	{
 		parse_options(&vm, &ac, av);
-		vm_initialization(&vm, ac);
+		vm_init(&vm, ac);
 		while (i < vm.nb_champs)
 			load_champion(&vm, av, &i, fd);
 	}
 	war(&vm);
-	vm_clean(&vm, fd);
+	vm_clean(&vm);
 	return (0);
 }

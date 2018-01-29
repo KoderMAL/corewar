@@ -3,13 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   dump.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alalaoui <alalaoui@student.42.fr>          +#+  +:+       +#+        */
+/*   By: stoupin <stoupin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/26 12:00:20 by alalaoui          #+#    #+#             */
-/*   Updated: 2018/01/28 18:50:02 by alalaoui         ###   ########.fr       */
+/*   Updated: 2018/01/29 10:14:13 by stoupin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "ft/ft.h"
 #include "vm.h"
 
 void		parse_options(t_vm *vm, int *ac, char **av)
@@ -26,6 +27,7 @@ void		parse_options(t_vm *vm, int *ac, char **av)
 	}
 	else
 		vm->option[0] = 0;
+	vm->draw_game = 1;
 	/*if (OPTION -N)
 	{
 		CODER OPTION -n

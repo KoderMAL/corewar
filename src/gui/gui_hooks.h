@@ -1,31 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error2.c                                           :+:      :+:    :+:   */
+/*   gui_hooks.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: stoupin <stoupin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/01/17 18:06:57 by alalaoui          #+#    #+#             */
-/*   Updated: 2018/01/29 10:12:09 by stoupin          ###   ########.fr       */
+/*   Created: 2018/01/29 09:58:14 by stoupin           #+#    #+#             */
+/*   Updated: 2018/01/29 10:01:56 by stoupin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
-#include "ft/ft.h"
-#include "vm.h"
+#ifndef GUI_HOOKS_H
+# define GUI_HOOKS_H
 
-int			err2(t_vm *vm, char *err_msg)
-{
-	vm->err = 1;
-	vm->err_msg = err_msg;
-	return (vm->err);
-}
+/*
+** This header is separated from gui.h to avoid circular include
+** between vm.h and gui.h
+*/
 
-void		err2_display(t_vm *vm)
-{
-	if (vm->err == 0)
-		return ;
-	write(2, "Error: ", 7);
-	write (2, vm->err_msg, ft_strlen(vm->err_msg));
-	write(2, "\n", 1);
-}
+# include "corewar/vm.h"
+# include "gui.h"
+
+/*
+** gui_hooks.c
+*/
+
+int						gui_close(t_vm *vm);
+int						gui_key_pressed(int key, t_vm *vm);
+int						gui_redraw(t_vm *vm);
+void					gui_init_hooks(t_vm *vm);
+
+#endif
