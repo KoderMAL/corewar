@@ -6,7 +6,7 @@
 /*   By: alalaoui <alalaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/24 15:16:28 by alalaoui          #+#    #+#             */
-/*   Updated: 2018/01/29 15:01:50 by alalaoui         ###   ########.fr       */
+/*   Updated: 2018/01/29 17:03:39 by alalaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,10 +58,10 @@ void		load_champion(t_vm *vm, char **av, int *i, int fd[MAX_ARGS_NUMBER])
 	int		n;
 	
 	n = 0;
+	if ((n = parse_number(vm, av, i)) == 0)
+		err2(vm, "Player cant take a null number")
 	if (vm->draw_game == 1) 
 	{
-		if ((n = parse_number(vm, av, i)) != 0)
-			
 		if (vm->err == 0 && (fd[*i] = open(av[*i + 2], O_RDONLY)) < 2)
 			err2(vm, "Unable to open input file");
 	}
@@ -83,6 +83,8 @@ void		load_champion(t_vm *vm, char **av, int *i, int fd[MAX_ARGS_NUMBER])
 			vm->champs_fd[*i].id = id;
 			id--;
 		}
+		else 
+  		    vm->champs_fd[*i].id = n; 
 		read_champion(vm, *i);
 		parse_champion(vm, *i);
 		fill_map(vm, *i);
