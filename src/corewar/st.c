@@ -6,7 +6,7 @@
 /*   By: dhadley <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/29 15:23:39 by dhadley           #+#    #+#             */
-/*   Updated: 2018/01/29 15:53:24 by dhadley          ###   ########.fr       */
+/*   Updated: 2018/01/29 17:53:19 by dhadley          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,7 @@ int	op_st(t_vm *vm, t_thread *PC)
 			vm->map[(PC->location + 2 + (tmp % IDX_MOD)) % MEM_SIZE] = ((param1 >> 8) & 255);
 			vm->map[(PC->location + 3 + (tmp % IDX_MOD)) % MEM_SIZE] = (param1 & 255);
 			PC->location = (PC->location + 1 + 2 + 2) % IDX_MOD;
+			return (1);
 		}
 		else
 			return (0);
