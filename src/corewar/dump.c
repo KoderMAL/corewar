@@ -6,7 +6,7 @@
 /*   By: alalaoui <alalaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/26 12:00:20 by alalaoui          #+#    #+#             */
-/*   Updated: 2018/01/29 11:47:27 by alalaoui         ###   ########.fr       */
+/*   Updated: 2018/01/29 12:03:05 by alalaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 void		parse_options(t_vm *vm, int *ac, char **av)
 {
+		vm->draw_game = 0;
 	if (ft_strcmp(av[1], "-visual") == 0)
 	{
 		vm->draw_game = 1;
