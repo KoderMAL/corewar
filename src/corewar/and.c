@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   and.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alalaoui <alalaoui@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lramirez <lramirez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/26 14:39:27 by lramirez          #+#    #+#             */
-/*   Updated: 2018/01/28 18:53:41 by alalaoui         ###   ########.fr       */
+/*   Updated: 2018/01/29 10:12:10 by lramirez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ static int		op_and_reg(t_vm *vm, t_thread *pc)
 	}
 	else if (check_params(vm->map[pc->location], 2) == IND_CODE)
 	{
-		param_2 = vm->map[recup_param(vm, (pc->location + 2) % MEM_SIZE, 2)];
+		param_2 = vm->map[(pc->location + (recup_param(vm, (pc->location + 2) % MEM_SIZE, 2) % IDX_MOD)) % MEM_SIZE];
 		reg = recup_param(vm, (pc->location + 4) % MEM_SIZE, 1);
 		pc->location = (pc->location + 5) % MEM_SIZE;
 	}
@@ -72,7 +72,7 @@ static int		op_and_ind(t_vm *vm, t_thread *pc)
 	int		param_2;
 	int		reg;
 
-	param_1 = vm->map[recup_param(vm, (pc->location + 1) % MEM_SIZE, 2)];
+	param_1 = vm->map[(pc->location + (recup_param(vm, (pc->location + 1) % MEM_SIZE, 2) % IDX_MOD)) % MEM_SIZE];
 	if (check_params(vm->map[pc->location], 2) == DIR_CODE)
 	{
 		param_2 = recup_param(vm, (pc->location + 3) % MEM_SIZE, 4);
@@ -81,7 +81,7 @@ static int		op_and_ind(t_vm *vm, t_thread *pc)
 	}
 	else if (check_params(vm->map[pc->location], 2) == IND_CODE)
 	{
-		param_2 = vm->map[recup_param(vm, (pc->location + 3) % MEM_SIZE, 2)];
+		param_2 = vm->map[(pc->location + (recup_param(vm, (pc->location + 3) % MEM_SIZE, 2) % IDX_MOD)) % MEM_SIZE];
 		reg = recup_param(vm, (pc->location + 5) % MEM_SIZE, 1);
 		pc->location = (pc->location + 6) % MEM_SIZE;
 	}
@@ -118,7 +118,7 @@ static int		op_and_dir(t_vm *vm, t_thread *pc)
 	}
 	else if (check_params(vm->map[pc->location], 2) == IND_CODE)
 	{
-		param_2 = vm->map[recup_param(vm, (pc->location + 5) % MEM_SIZE, 2)];
+		param_2 = vm->map[(pc->location + (recup_param(vm, (pc->location + 5) % MEM_SIZE, 2) % IDX_MOD)) % MEM_SIZE];
 		reg = recup_param(vm, (pc->location + 7) % MEM_SIZE, 1);
 		pc->location = (pc->location + 8) % MEM_SIZE;
 	}
