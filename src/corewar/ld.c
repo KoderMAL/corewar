@@ -6,7 +6,7 @@
 /*   By: alalaoui <alalaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/25 16:50:31 by dhadley           #+#    #+#             */
-/*   Updated: 2018/01/28 17:50:59 by alalaoui         ###   ########.fr       */
+/*   Updated: 2018/01/29 11:15:24 by dhadley          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,9 @@ Cette instruction prend 2 paramètres, le deuxième est forcément un registr
 Elle load la valeur du premier paramètre dans le registre. Cette opération modifie le carry.
 ld 34,r3 charge les REG_SIZE octets à partir de l’adresse (PC + (34 % IDX_MOD)) dans le registre r3.
 */
+
+//need to modify the carry
+//need to take off cycles from the PC cycle to die
 
 int	op_ld(t_vm *vm, t_thread *PC)
 {
@@ -37,7 +40,7 @@ int	op_ld(t_vm *vm, t_thread *PC)
 	else if (check_params(vm->map[(PC->location + 1) % MEM_SIZE], 1) == IND_CODE)
 	{
 		tmp_ind = recup_param(vm, (PC->location + 2) % MEM_SIZE, 2);
-		param1 = recup_param(vm, (PC->location + tmp_ind) % MEM_SIZE, REG_SIZE);
+		param1 = recup_param(vm, (PC->location + (tmp_ind % IDX_MOD)) % MEM_SIZE, REG_SIZE);
 		param2 = recup_param(vm, (PC->location + 2 + 2) % MEM_SIZE, 1);
 		if (param2 > REG_NUMBER || param2 < 1)
 			param2 = 0;
