@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   vm.h                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: stoupin <stoupin@student.42.fr>            +#+  +:+       +#+        */
+/*   By: lramirez <lramirez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/16 14:44:18 by alalaoui          #+#    #+#             */
-/*   Updated: 2018/01/28 20:05:18 by stoupin          ###   ########.fr       */
+/*   Updated: 2018/01/29 10:34:22 by lramirez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,6 +102,8 @@ void				op_aff(t_vm *vm, t_thread *process);
 void				op_add(t_vm *vm, t_thread *process);
 void				op_sub(t_vm *vm, t_thread *process);
 int					op_and(t_vm *vm, t_thread *pc);
+// int					op_or(t_vm *vm, t_thread *pc);
+// int					op_xor(t_vm *vm, t_thread *pc);
 
 /*
 ** params.c
