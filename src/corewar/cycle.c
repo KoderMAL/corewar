@@ -6,7 +6,7 @@
 /*   By: alalaoui <alalaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/26 11:51:04 by dhadley           #+#    #+#             */
-/*   Updated: 2018/01/29 14:26:23 by alalaoui         ###   ########.fr       */
+/*   Updated: 2018/01/29 17:03:09 by alalaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ static void		do_op(t_vm *vm, t_thread *pc)
 		op_and(vm, pc);
 	else if (vm->op->opcode == 9)
 		op_zjmp(vm, pc);
-	else if (vm->op->code == 12)
+	else if (vm->op->opcode == 12)
 	 	op_fork(vm, pc);
 	else if (vm->op->opcode == 16)
 		op_aff(vm, pc);
