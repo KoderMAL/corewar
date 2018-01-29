@@ -6,10 +6,11 @@
 /*   By: stoupin <stoupin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/26 11:51:04 by dhadley           #+#    #+#             */
-/*   Updated: 2018/01/29 11:00:59 by stoupin          ###   ########.fr       */
+/*   Updated: 2018/01/29 11:38:53 by stoupin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <limits.h>
 #include "vm.h"
 
 static void		check_cycles(t_vm *vm)
@@ -87,10 +88,10 @@ static void		check_countdown(t_vm *vm)
 	}
 }
 
-void		war_cyle(t_vm *vm)
+void		war_cycle(t_vm *vm)
 {
-	if (vm->game_cycle < INT_MAX || vm->err != 0)
-		vm_clean(&vm);
+	if (vm->game_cycle == INT_MAX || vm->err != 0)
+		vm_clean(vm);
 	printf("\n---CYCLE++---\n");
 	check_cycles(vm);
 	check_countdown(vm);
