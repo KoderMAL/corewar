@@ -1,1 +1,3 @@
 /Makefile.gen
+/*.o
+/mlx-test

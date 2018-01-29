@@ -131,7 +131,7 @@ void				dump(t_vm *vm);
 ** cycle.c
 */
 
-void				war(t_vm *vm);
+void				war_cycle(t_vm *vm);
 const t_op			*find_opcode(int pc);
 
 #endif

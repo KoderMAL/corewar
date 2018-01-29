@@ -6,7 +6,7 @@
 /*   By: stoupin <stoupin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/16 14:30:57 by alalaoui          #+#    #+#             */
-/*   Updated: 2018/01/29 10:07:06 by stoupin          ###   ########.fr       */
+/*   Updated: 2018/01/29 11:00:30 by stoupin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ int		main(int ac, char **av)
 		while (i < vm.nb_champs)
 			load_champion(&vm, av, &i, fd);
 	}
-	war(&vm);
-	vm_clean(&vm);
+	while (1)
+		war_cyle(&vm);
 	return (0);
 }
