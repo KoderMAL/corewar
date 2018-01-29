@@ -17,8 +17,6 @@ void		parse_options(t_vm *vm, int *ac, char **av)
 {
 	if (ft_strcmp(av[1], "-visual") == 0)
 	{
-		if (*ac < 3)
-			exit(-1);
 		vm->draw_game = 1;
 		*ac = *ac - 1;
 		return ;
