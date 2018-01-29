@@ -6,7 +6,7 @@
 /*   By: lramirez <lramirez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/26 15:06:19 by dhadley           #+#    #+#             */
-/*   Updated: 2018/01/26 18:17:48 by dhadley          ###   ########.fr       */
+/*   Updated: 2018/01/29 14:24:11 by dhadley          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,11 @@ int	check_params(unsigned char byte, int number)
 	int shift;
 
 	shift = 8 - (number * 2);
-	if (((byte >> shift) & DIR_CODE) == DIR_CODE)
+	if (((byte >> shift) & 3) == DIR_CODE)
 		return (DIR_CODE);
-	if (((byte >> shift) & IND_CODE) == IND_CODE)
+	if (((byte >> shift) & 3) == IND_CODE)
 		return (IND_CODE);
-	if (((byte >> shift) & REG_CODE) == REG_CODE)
+	if (((byte >> shift) & 3) == REG_CODE)
 		return (REG_CODE);
 	return (0);	
 }
