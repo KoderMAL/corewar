@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   and.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lramirez <lramirez@student.42.fr>          +#+  +:+       +#+        */
+/*   By: alalaoui <alalaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/26 14:39:27 by lramirez          #+#    #+#             */
 /*   Updated: 2018/01/29 12:29:49 by lramirez         ###   ########.fr       */
@@ -72,6 +72,7 @@ static int		op_and_ind(t_vm *vm, t_thread *pc)
 	int		param_2;
 	int		reg;
 
+	printf("CHECK IND\n");
 	param_1 = vm->map[(pc->location + (recup_param(vm, (pc->location + 1) % MEM_SIZE, 2) % IDX_MOD)) % MEM_SIZE];
 	if (check_params(vm->map[pc->location], 2) == DIR_CODE)
 	{
