@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cycle.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alalaoui <alalaoui@student.42.fr>          +#+  +:+       +#+        */
+/*   By: stoupin <stoupin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/26 11:51:04 by dhadley           #+#    #+#             */
-/*   Updated: 2018/01/28 18:36:01 by alalaoui         ###   ########.fr       */
+/*   Updated: 2018/01/29 11:00:59 by stoupin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,16 +87,15 @@ static void		check_countdown(t_vm *vm)
 	}
 }
 
-void		war(t_vm *vm)
+void		war_cyle(t_vm *vm)
 {
-	while (vm->game_cycle < INT_MAX)
-	{
-		printf("\n---CYCLE++---\n");
-		check_cycles(vm);
-		check_countdown(vm);
-		dump(vm);
-		vm->game_cycle++;
-	}
+	if (vm->game_cycle < INT_MAX || vm->err != 0)
+		vm_clean(&vm);
+	printf("\n---CYCLE++---\n");
+	check_cycles(vm);
+	check_countdown(vm);
+	dump(vm);
+	vm->game_cycle++;
 }
 
 /*
