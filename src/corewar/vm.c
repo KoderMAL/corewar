@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   vm.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: stoupin <stoupin@student.42.fr>            +#+  +:+       +#+        */
+/*   By: alalaoui <alalaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/16 14:30:57 by alalaoui          #+#    #+#             */
-/*   Updated: 2018/01/29 11:59:01 by stoupin          ###   ########.fr       */
+/*   Updated: 2018/01/29 14:04:10 by alalaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,15 +57,16 @@ int		main(int ac, char **av)
 	vm.draw_game = 0;
 	if (ac - 1 > MAX_ARGS_NUMBER)
 		err2(&vm, "Too many arguments");
-	if (ac < 2)
-		write(1, "Usage: ./corewar [-d N] [[-n N]champ.cor] ...)\n", 47);
+	else if (ac < 2)
+		err2(&vm, "Usage: ./corewar [-d N] [-visual] [[-n N]champ.cor] ...");
 	else if (vm.err == 0)
 		parse_options(&vm, &ac, av);
 	if (vm.err == 0)
 		vm_init(&vm, ac);
 	if (vm.err == 0)
-		while (i < vm.nb_champs)
+		while (i < vm.nb_champs && vm.err == 0)
 			load_champion(&vm, av, &i, fd);
+	printf("\nERR=%d\n", vm.err);
 	if (vm.err == 0)
 	{
 		if (vm.draw_game)

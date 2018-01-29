@@ -126,6 +126,7 @@ int					recup_param(t_vm *vm, int location, int size);
 */
 
 void				parse_options(t_vm *vm, int *ac, char **av);
+int					parse_number(t_vm *vm, char **av, int *i);
 void				dump(t_vm *vm);
 
 /*

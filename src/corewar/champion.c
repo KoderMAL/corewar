@@ -6,7 +6,7 @@
 /*   By: alalaoui <alalaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/24 15:16:28 by alalaoui          #+#    #+#             */
-/*   Updated: 2018/01/29 12:04:28 by alalaoui         ###   ########.fr       */
+/*   Updated: 2018/01/29 15:01:50 by alalaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,8 +55,13 @@ void		read_champion(t_vm *vm, int i)
 void		load_champion(t_vm *vm, char **av, int *i, int fd[MAX_ARGS_NUMBER])
 {
 	static int id = -1;
+	int		n;
+	
+	n = 0;
 	if (vm->draw_game == 1) 
 	{
+		if ((n = parse_number(vm, av, i)) != 0)
+			
 		if (vm->err == 0 && (fd[*i] = open(av[*i + 2], O_RDONLY)) < 2)
 			err2(vm, "Unable to open input file");
 	}
@@ -73,12 +78,15 @@ void		load_champion(t_vm *vm, char **av, int *i, int fd[MAX_ARGS_NUMBER])
 		ft_memset(vm->champs_fd[*i].cor, 0, MAX_SIZE);
 		ft_memset(vm->champs_fd[*i].name, 0, PROG_NAME_LENGTH);
 		ft_memset(vm->champs_fd[*i].comment, 0, COMMENT_LENGTH);
-		vm->champs_fd[*i].id = id;
-		id--;
+		if (n == 0)
+		{
+			vm->champs_fd[*i].id = id;
+			id--;
+		}
+		read_champion(vm, *i);
+		parse_champion(vm, *i);
+		fill_map(vm, *i);
+		(*i)++;
 	}
-	read_champion(vm, *i);
-	parse_champion(vm, *i);
 	printf("champion id:%d\nchampname:%s\n", vm->champs_fd[*i].id, vm->champs_fd[*i].name);
-	fill_map(vm, *i);
-	(*i)++;
 }
