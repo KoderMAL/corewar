@@ -6,7 +6,7 @@
 /*   By: lramirez <lramirez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/26 14:39:27 by lramirez          #+#    #+#             */
-/*   Updated: 2018/01/29 15:00:55 by lramirez         ###   ########.fr       */
+/*   Updated: 2018/01/29 15:33:56 by lramirez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ int		op_or_ind(t_vm *vm, t_thread *pc)
 	int		param_2;
 	int		reg;
 
-	param_1 = vm->map[(pc->location + (recup_param(vm, (pc->location + 1) % MEM_SIZE, 2) % IDX_MOD)) % MEM_SIZE];
+	param_1 = vm->map[(pc->location - 1 + (recup_param(vm, (pc->location + 1) % MEM_SIZE, 2) % IDX_MOD)) % MEM_SIZE];
 	if (check_params(vm->map[pc->location], 2) == DIR_CODE)
 	{
 		param_2 = recup_param(vm, (pc->location + 3) % MEM_SIZE, 4);
