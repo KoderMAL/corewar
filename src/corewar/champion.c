@@ -6,7 +6,7 @@
 /*   By: alalaoui <alalaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/24 15:16:28 by alalaoui          #+#    #+#             */
-/*   Updated: 2018/01/30 16:00:31 by alalaoui         ###   ########.fr       */
+/*   Updated: 2018/01/30 18:18:10 by alalaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,20 +52,26 @@ void read_champion(t_vm *vm, int i)
 	vm->champs_fd[i].size = (pos - PROG_NAME_LENGTH - COMMENT_LENGTH - 16);
 }
 
-void open_champ(t_vm *vm, char **av, int *i, int fd[MAX_ARGS_NUMBER])
+static void open_champ(t_vm *vm, char **av, int i, int fd[MAX_ARGS_NUMBER])
 {
-	if (vm->draw_game == 1)
-		{
-			printf("ARG:%s\n", av[*i + 2]);
-			if (vm->err == 0 && (fd[*i] = open(av[*i + 2], O_RDONLY)) < 2)
-				err2(vm, "Unable to open input file");
-		}
-		else
-		{
-			printf("ARG:%s\n", av[(*i + (vm->option[0] * 2)) + 1]);
-			if (vm->err == 0 && (fd[*i] = open(av[(*i + (vm->option[0] * 2)) + 1], O_RDONLY)) < 2)
-				err2(vm, "Unable to open input file");
-		}
+/*	if (vm->draw_game == 1)
+	{
+		printf("ARG:%s\n", av[i + 2]);
+		if (vm->err == 0 && (fd[i] = open(av[i + 2], O_RDONLY)) < 2)
+			err2(vm, "Unable to open input file");
+	}
+	else if (vm->cycle_to_dump != -1)
+	{
+		printf("ARG:%s\n", av[i + 2 + 1]);
+		if (vm->err == 0 && (fd[i] = open(av[i + 2 + 1], O_RDONLY)) < 2)
+			err2(vm, "Unable to open input file");
+	}
+	else
+	{*/
+		printf("ARG:%s\n", av[i]);
+		if (vm->err == 0 && (fd[i] = open(av[(*i + vm->d + vm->v + n)], O_RDONLY)) < 2)
+			err2(vm, "Unable to open input file");
+	//}
 }
 
 void load_champion(t_vm *vm, char **av, int *i, int fd[MAX_ARGS_NUMBER])
@@ -73,11 +79,9 @@ void load_champion(t_vm *vm, char **av, int *i, int fd[MAX_ARGS_NUMBER])
 	static int id = -1;
 	int n;
 
-	n = 0;
-	if ((n = parse_number(vm, av, i)) == 0)
-		open_champ(vm, av, i, fd);
-	else
-		 open_champ(vm, av, i + 2, fd);
+	n = check_option(av, *i);
+	printf("WHERE AM I:%s || i =%d\n", av[(*i + vm->d + vm->v + n)], *i);
+	open_champ(vm, av, (*i + vm->d + vm->v + n), fd);
 	printf("\nFD:%d\n", fd[*i]);
 	if (vm->err == 0)
 	{
@@ -89,15 +93,18 @@ void load_champion(t_vm *vm, char **av, int *i, int fd[MAX_ARGS_NUMBER])
 		if (n == 0)
 		{
 			vm->champs_fd[*i].id = id;
+			pqueue_push(&(vm->threads), create_thread(vm, id));
 			id--;
 		}
 		else
+		{
 			vm->champs_fd[*i].id = vm->champ_n[*i];
-		pqueue_push(&(vm->threads), create_thread(vm, n));
+			pqueue_push(&(vm->threads), create_thread(vm, vm->champ_n[*i]));
+		}
 		read_champion(vm, *i);
 		parse_champion(vm, *i);
 		fill_map(vm, *i);
-		(n == 0) ? (*i)++ :(*i = (*i) + 2);
+		(*i)++;
 	}
 	printf("champion id:%d\nchampname:%s\n", vm->champs_fd[*i].id, vm->champs_fd[*i].name);
 }

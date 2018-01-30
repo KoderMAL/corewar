@@ -6,7 +6,7 @@
 /*   By: alalaoui <alalaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/30 14:31:43 by alalaoui          #+#    #+#             */
-/*   Updated: 2018/01/30 16:46:40 by alalaoui         ###   ########.fr       */
+/*   Updated: 2018/01/30 18:17:04 by alalaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static void		add_champion(t_vm *vm, int n, char *av)
 {
-	if (ft_strlen(av) > 5)
+	if (ft_strlen(av) > 4)
 	{
 		if (av[ft_strlen(av) - 1] == 'r' && av[ft_strlen(av) - 2] == 'o' && av[ft_strlen(av) - 3] == 'c' && av[ft_strlen(av) - 4] == '.')
 			vm->nb_champs++;
@@ -25,6 +25,14 @@ static void		add_champion(t_vm *vm, int n, char *av)
 	}
 	else
 		err2(vm, "invalid file input");
+}
+
+int				check_option(char **av, int i)
+{
+	if (ft_strcmp(av[i], "-n") == 0)
+		return (2);
+	else
+		return (0);
 }
 
 int 			parse_args(t_vm *vm, int ac, char **av)
@@ -56,7 +64,8 @@ int 			parse_args(t_vm *vm, int ac, char **av)
 		{
 			if (ft_str_isdigit(av[i]))
 			{
-				vm->cycle_to_dump = ft_atoi(av[i]);
+				if ((vm->cycle_to_dump = ft_atoi(av[i])) < 0)
+					err2(vm, "Negative dump (I cant send you back in time)");
 				state = S_START;
 			}
 			else

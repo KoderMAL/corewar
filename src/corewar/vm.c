@@ -6,7 +6,7 @@
 /*   By: alalaoui <alalaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/16 14:30:57 by alalaoui          #+#    #+#             */
-/*   Updated: 2018/01/30 16:44:13 by alalaoui         ###   ########.fr       */
+/*   Updated: 2018/01/30 18:13:51 by alalaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,12 @@ void vm_init(t_vm *vm)
 }
 void vm_start(t_vm *vm)
 {
+	vm->err = 0;
+	vm->v = 0;
+	vm->d = 0;
+	vm->draw_game = 0;
 	vm->nb_champs = 0;
-	ft_memset(vm->champ_n, 0, MEM_SIZE);
+	ft_memset(vm->champ_n, 0, 4);
 	if (vm->draw_game)
 		draw_game_init(vm);
 }
@@ -48,15 +52,19 @@ void vm_clean(t_vm *vm)
 	exit(1);
 }
 
-static int check_arguments(t_vm *vm, int ac)
+static void check_exit(t_vm *vm, int ac)
 {
+	if (vm->nb_champs == 0)
+		err2(vm, "Usage : ./corewar [-d N | -visual] [[-n N] champ.cor] ...");
 	if (vm->err)
 	{
-	//	err2(vm, "Usage: ./corewar [-d N] [-visual] [[-n N] champ.cor] ...");
 		err2_display(vm);
 		exit(-1);
 	}
-	return (vm->err);
+	if (vm->cycle_to_dump != -1)
+		vm->d = 2;
+	else if (vm->draw_game == 1)
+		vm->v = 1;
 }
 
 int main(int ac, char **av)
@@ -66,10 +74,9 @@ int main(int ac, char **av)
 	int i;
 
 	i = 0;
-	vm.err = 0;
-	vm.draw_game = 0;
-	if (parse_args(&vm, ac, av) == 0 && check_arguments(&vm, ac) == 0)
-		parse_options(&vm, &ac, av);
+	vm_start(&vm);
+	if (parse_args(&vm, ac, av) == 0)
+		check_exit(&vm, ac);
 	if (vm.err == 0)
 		vm_init(&vm);
 	if (vm.err == 0)

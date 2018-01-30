@@ -56,8 +56,9 @@ typedef struct		s_vm
 	int				champ_n[4];
 	int				cycle_to_dump;
 	char			*err_msg;
-	int				option[2];
 	int				game_cycle;
+	int				v;
+	int				d;
 	const t_op		*op;
 	int				draw_game;
 	t_gui			gui;
@@ -84,6 +85,7 @@ void				vm_clean(t_vm *vm);
 */
 
 int 				parse_args(t_vm *vm, int ac, char **av);
+int					check_option(char **av, int i);
 
 /*
 ** error.c
