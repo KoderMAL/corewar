@@ -43,6 +43,8 @@ typedef struct		s_champ
 
 }					t_champ;
 
+# define N_FONTS 4
+
 typedef struct		s_vm
 {
 	t_champ			champs_fd[MAX_PLAYERS];
@@ -57,7 +59,7 @@ typedef struct		s_vm
 	const t_op		*op;
 	int				draw_game;
 	t_gui			gui;
-	t_font			fonts[3];
+	t_font			fonts[N_FONTS];
 }					t_vm;
 
 /*
