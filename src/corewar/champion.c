@@ -6,7 +6,7 @@
 /*   By: alalaoui <alalaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/24 15:16:28 by alalaoui          #+#    #+#             */
-/*   Updated: 2018/01/29 18:49:01 by alalaoui         ###   ########.fr       */
+/*   Updated: 2018/01/30 16:00:31 by alalaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,7 @@ void load_champion(t_vm *vm, char **av, int *i, int fd[MAX_ARGS_NUMBER])
 			id--;
 		}
 		else
-			vm->champs_fd[*i].id = n;
+			vm->champs_fd[*i].id = vm->champ_n[*i];
 		pqueue_push(&(vm->threads), create_thread(vm, n));
 		read_champion(vm, *i);
 		parse_champion(vm, *i);

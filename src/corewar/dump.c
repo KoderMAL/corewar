@@ -6,7 +6,7 @@
 /*   By: alalaoui <alalaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/26 12:00:20 by alalaoui          #+#    #+#             */
-/*   Updated: 2018/01/29 18:38:54 by alalaoui         ###   ########.fr       */
+/*   Updated: 2018/01/30 16:33:44 by alalaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ int			parse_number(t_vm *vm, char **av, int *i)
 	int		n;
 
 	n = 0;
-	if (vm->draw_game == 1 && *i + 2 <= vm->ac)
+	if (vm->draw_game == 1)
 	{
 		if (ft_strcmp(av[*i + 2], "-n") == 0 && ft_str_isdigit(av[*i + 3]))
 		{
@@ -55,7 +55,7 @@ int			parse_number(t_vm *vm, char **av, int *i)
 				err2(vm, "Player cant take a null number");
 		}
 	}
-	else if (*i + 2 <= vm->ac)
+	else
 	{
 		if (ft_strcmp(av[*i + (vm->option[0] * 2 ) + 1], "-n") == 0 &&
 		ft_str_isdigit(av[*i + (vm->option[0] * 2 ) + 2]))

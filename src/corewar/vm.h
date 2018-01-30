@@ -18,6 +18,7 @@
 # include "util/pqueue.h"
 # include "gui/gui.h"
 # include "gui/font.h"
+# include "ft/ft.h"
 
 # define ABS(X)	((X > 0) ? X : -(X))
 # define MAX_SIZE (PROG_NAME_LENGTH + COMMENT_LENGTH + CHAMP_MAX_SIZE + 14)
@@ -52,7 +53,8 @@ typedef struct		s_vm
 	unsigned char	map[MEM_SIZE];
 	int				nb_champs;
 	int				err;
-	int				ac;
+	int				champ_n[4];
+	int				cycle_to_dump;
 	char			*err_msg;
 	int				option[2];
 	int				game_cycle;
@@ -62,12 +64,26 @@ typedef struct		s_vm
 	t_font			fonts[N_FONTS];
 }					t_vm;
 
+typedef enum e_state
+{
+	S_START,
+	S_D,
+	S_N,
+	S_CHAMP
+}			t_state;
+
 /*
 ** vm.c
 */
 
-void				vm_init(t_vm *vm, int ac);
+void				vm_init(t_vm *vm);
 void				vm_clean(t_vm *vm);
+
+/*
+** parse_args.c
+*/
+
+int 				parse_args(t_vm *vm, int ac, char **av);
 
 /*
 ** error.c
@@ -81,7 +97,6 @@ void				err2_display(t_vm *vm);
 */
 
 t_thread			*create_thread(t_vm *vm, int n);
-//void				thread_init(t_vm *vm);
 t_thread			*dup_thread(t_thread *src_thread, int pc);
 
 /*
