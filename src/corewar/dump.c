@@ -6,7 +6,7 @@
 /*   By: alalaoui <alalaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/26 12:00:20 by alalaoui          #+#    #+#             */
-/*   Updated: 2018/01/31 12:21:42 by dhadley          ###   ########.fr       */
+/*   Updated: 2018/01/31 13:44:45 by dhadley          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,18 +23,18 @@ static void	write_map(t_vm *vm)
 
 	i = 0;
 	j = 0;
-	while (i < MEM_SIZE * 3)
+	while (i < MEM_SIZE)
 	{
 		byte = vm->map[i];
 		converted[j] = digits[byte / 16];
-		converted[j + 1] = digit[byte % 16]
+		converted[j + 1] = digits[byte % 16];
 		j += 2;
-		if (j % 64 == 0)
+		i++;
+		if (i % 64 == 0)
 			converted[j] = '\n';
 		else
 			converted[j] = ' ';
 		j++;
-		i++;
 	}
 	write(1, converted, MEM_SIZE * 3);
 }
@@ -49,7 +49,6 @@ void		dump(t_vm *vm)
 		if (vm->game_cycle == vm->cycle_to_dump)
 		{
 			write_map(vm);
-		}
 			exit(1);
 		}
 	}
