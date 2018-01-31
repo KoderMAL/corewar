@@ -6,13 +6,11 @@
 /*   By: alalaoui <alalaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/24 15:16:28 by alalaoui          #+#    #+#             */
-/*   Updated: 2018/01/31 14:32:52 by alalaoui         ###   ########.fr       */
+/*   Updated: 2018/01/31 14:55:12 by alalaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
 #include <fcntl.h>
-#include "ft/ft.h"
 #include "vm.h"
 
 void fill_map(t_vm *vm, int i)
