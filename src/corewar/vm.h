@@ -13,6 +13,7 @@
 #ifndef VM_H
 # define VM_H
 
+# include <unistd.h>
 # include "asm/op.h"
 # include "io/openfile.h"
 # include "util/pqueue.h"
@@ -59,6 +60,7 @@ typedef struct		s_vm
 	int				game_cycle;
 	int				v;
 	int				d;
+	int				n;
 	const t_op		*op;
 	int				draw_game;
 	t_gui			gui;

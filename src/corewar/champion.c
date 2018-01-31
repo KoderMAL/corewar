@@ -6,7 +6,7 @@
 /*   By: alalaoui <alalaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/24 15:16:28 by alalaoui          #+#    #+#             */
-/*   Updated: 2018/01/31 13:28:26 by alalaoui         ###   ########.fr       */
+/*   Updated: 2018/01/31 14:23:49 by alalaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ void parse_champion(t_vm *vm, int i)
 {
 	ft_memcpy(vm->champs_fd[i].name, (vm->champs_fd[i].cor + 4), PROG_NAME_LENGTH);
 	vm->champs_fd[i].sizeb = vm->champs_fd[i].cor[10 + PROG_NAME_LENGTH] << 8 | vm->champs_fd[i].cor[11 + PROG_NAME_LENGTH];
+	printf("i=%d ||TRY CHAMPION:%s\n",i,  vm->champs_fd[i].name);
 	if (vm->champs_fd[i].sizeb != vm->champs_fd[i].size)
 		err2(vm, "A champion has a code size that differ from its header");
 }
@@ -59,7 +60,7 @@ static void open_champ(t_vm *vm, char **av, int i, int *fd)
 		{
 			if ((*fd = open(av[i + 1], O_RDONLY)) < 2)
 				err2(vm, "Unable to open input file");
-	printf("\nFD1:%d\n", fd);
+	printf("\nFD1:%d\n", *fd);
 		}
 }
 
@@ -68,19 +69,12 @@ void load_champion(t_vm *vm, char **av, int *i, int fd[MAX_ARGS_NUMBER])
 	static int id = -1;
 	int n;
 
+	vm->n += check_option(vm, *i);
 	n = check_option(vm, *i);
-	printf("D %d || V %d || N %d || i = %d\n",  vm->d , vm->v, n, *i);
-	printf("WHERE AM I:%s || i =%d\n", av[(*i + vm->d + vm->v + n) + 1], *i);
-	open_champ(vm, av, ((*i) + vm->d + vm->v + n), &fd[*i]);
-	printf("ERR:%d\n", vm->err);
-	printf("\nFD:%d\n", fd[*i]);
+	open_champ(vm, av, ((*i) + vm->d + vm->v + vm->n), &fd[*i]);
 	if (vm->err == 0)
 	{
 		openfile_init(&(vm->champs_fd[*i].file), fd[*i]);
-		ft_memset(vm->champs_fd[*i].file.buffer, 0, BUFF_SIZE);
-		ft_memset(vm->champs_fd[*i].cor, 0, MAX_SIZE);
-		ft_memset(vm->champs_fd[*i].name, 0, PROG_NAME_LENGTH);
-		ft_memset(vm->champs_fd[*i].comment, 0, COMMENT_LENGTH);
 		if (n == 0)
 		{
 			vm->champs_fd[*i].id = id;
@@ -97,6 +91,4 @@ void load_champion(t_vm *vm, char **av, int *i, int fd[MAX_ARGS_NUMBER])
 		fill_map(vm, *i);
 		(*i)++;
 	}
-	printf("champion id:%d\nchampname:%s\n", vm->champs_fd[*i].id, vm->champs_fd[*i].name);
-	sleep(4);
 }

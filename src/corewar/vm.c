@@ -6,7 +6,7 @@
 /*   By: alalaoui <alalaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/16 14:30:57 by alalaoui          #+#    #+#             */
-/*   Updated: 2018/01/31 12:33:35 by alalaoui         ###   ########.fr       */
+/*   Updated: 2018/01/31 14:28:55 by alalaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,13 @@ void vm_init(t_vm *vm)
 {
 	int i;
 
-	i = 0;
+	i = -1;
 	vm->op = NULL;
 	vm->err_msg = NULL;
 	vm->game_cycle = 0;
 	ft_memset(vm->map, 0, MEM_SIZE);
-	pqueue_init(&(vm->threads));
+	while (++i < MAX_PLAYERS)
+		ft_memset(&(vm->champs_fd[i]), 0, sizeof(t_champ));
 }
 void vm_start(t_vm *vm)
 {
@@ -32,9 +33,11 @@ void vm_start(t_vm *vm)
 	vm->cycle_to_dump = -1;
 	vm->v = 0;
 	vm->d = 0;
+	vm->n = 0;
 	vm->draw_game = 0;
 	vm->nb_champs = 0;
 	ft_memset(vm->champ_n, -1, 4);
+	pqueue_init(&(vm->threads));
 	if (vm->draw_game)
 		draw_game_init(vm);
 }
@@ -75,7 +78,7 @@ int main(int ac, char **av)
 
 	i = 0;
 	vm_start(&vm);
-	ft_memset(fd, -1, MAX_ARGS_NUMBER);
+	ft_memset(fd, 0, MAX_ARGS_NUMBER);
 	if (parse_args(&vm, ac, av) == 0)
 		check_exit(&vm);
 	if (vm.err == 0)
