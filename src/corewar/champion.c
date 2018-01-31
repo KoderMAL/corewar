@@ -6,7 +6,7 @@
 /*   By: alalaoui <alalaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/24 15:16:28 by alalaoui          #+#    #+#             */
-/*   Updated: 2018/01/31 12:17:00 by alalaoui         ###   ########.fr       */
+/*   Updated: 2018/01/31 12:24:00 by alalaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,5 +98,5 @@ void load_champion(t_vm *vm, char **av, int *i, int fd[MAX_ARGS_NUMBER])
 		(*i)++;
 	}
 	printf("champion id:%d\nchampname:%s\n", vm->champs_fd[*i].id, vm->champs_fd[*i].name);
-	sleep(4);
+//	sleep(4);
 }
