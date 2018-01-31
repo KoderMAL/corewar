@@ -6,7 +6,7 @@
 /*   By: alalaoui <alalaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/30 14:31:43 by alalaoui          #+#    #+#             */
-/*   Updated: 2018/01/30 18:17:04 by alalaoui         ###   ########.fr       */
+/*   Updated: 2018/01/31 11:58:29 by alalaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,10 @@ static void		add_champion(t_vm *vm, int n, char *av)
 		err2(vm, "invalid file input");
 }
 
-int				check_option(char **av, int i)
+int				check_option(t_vm *vm, char **av, int i)
 {
-	if (ft_strcmp(av[i], "-n") == 0)
+	printf("champ_n[i]:%d\n", vm->champ_n[i]);
+	if (vm->champ_n[i] != -1)
 		return (2);
 	else
 		return (0);
@@ -40,7 +41,9 @@ int 			parse_args(t_vm *vm, int ac, char **av)
 	t_state state;
 	int 	n;
 	int 	i;
+	int 	c;
 
+	c = 0;
 	n = -1;
 	i = 1;
 	state = S_START;
@@ -57,6 +60,7 @@ int 			parse_args(t_vm *vm, int ac, char **av)
 			else
 			{
 				add_champion(vm, n, av[i]);
+				vm->champ_n[c++] = n;
 				n = -1;
 			}
 		}
@@ -84,6 +88,7 @@ int 			parse_args(t_vm *vm, int ac, char **av)
 		else if (state == S_CHAMP)
 		{
 				add_champion(vm, n, av[i]);
+				vm->champ_n[c++] = n;
 				n = -1;
 				state = S_START;
 		}

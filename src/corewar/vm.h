@@ -85,7 +85,7 @@ void				vm_clean(t_vm *vm);
 */
 
 int 				parse_args(t_vm *vm, int ac, char **av);
-int					check_option(char **av, int i);
+int					check_option(t_vm *vm, char **av, int i);
 
 /*
 ** error.c

@@ -6,7 +6,7 @@
 /*   By: alalaoui <alalaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/16 14:30:57 by alalaoui          #+#    #+#             */
-/*   Updated: 2018/01/30 18:13:51 by alalaoui         ###   ########.fr       */
+/*   Updated: 2018/01/31 12:08:38 by alalaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,11 +30,12 @@ void vm_init(t_vm *vm)
 void vm_start(t_vm *vm)
 {
 	vm->err = 0;
+	vm->cycle_to_dump = -1;
 	vm->v = 0;
 	vm->d = 0;
 	vm->draw_game = 0;
 	vm->nb_champs = 0;
-	ft_memset(vm->champ_n, 0, 4);
+	ft_memset(vm->champ_n, -1, 4);
 	if (vm->draw_game)
 		draw_game_init(vm);
 }
@@ -52,7 +53,7 @@ void vm_clean(t_vm *vm)
 	exit(1);
 }
 
-static void check_exit(t_vm *vm, int ac)
+static void check_exit(t_vm *vm)
 {
 	if (vm->nb_champs == 0)
 		err2(vm, "Usage : ./corewar [-d N | -visual] [[-n N] champ.cor] ...");
@@ -75,8 +76,9 @@ int main(int ac, char **av)
 
 	i = 0;
 	vm_start(&vm);
+	ft_memset(fd, -1, MAX_ARGS_NUMBER);
 	if (parse_args(&vm, ac, av) == 0)
-		check_exit(&vm, ac);
+		check_exit(&vm);
 	if (vm.err == 0)
 		vm_init(&vm);
 	if (vm.err == 0)
