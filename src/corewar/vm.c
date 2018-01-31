@@ -6,7 +6,7 @@
 /*   By: alalaoui <alalaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/16 14:30:57 by alalaoui          #+#    #+#             */
-/*   Updated: 2018/01/31 12:08:38 by alalaoui         ###   ########.fr       */
+/*   Updated: 2018/01/31 12:33:35 by alalaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ void vm_init(t_vm *vm)
 	vm->op = NULL;
 	vm->err_msg = NULL;
 	vm->game_cycle = 0;
-	vm->cycle_to_dump = -1;
 	ft_memset(vm->map, 0, MEM_SIZE);
 	pqueue_init(&(vm->threads));
 }
