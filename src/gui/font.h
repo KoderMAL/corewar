@@ -6,14 +6,14 @@
 /*   By: stoupin <stoupin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/26 23:02:28 by stoupin           #+#    #+#             */
-/*   Updated: 2018/01/29 11:48:23 by stoupin          ###   ########.fr       */
+/*   Updated: 2018/01/30 16:45:16 by stoupin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FONT_H
 # define FONT_H
 
-#include "gui.h"
+# include "gui.h"
 
 typedef struct	s_font
 {

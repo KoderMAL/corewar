@@ -6,7 +6,7 @@
 /*   By: stoupin <stoupin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/26 11:51:36 by alalaoui          #+#    #+#             */
-/*   Updated: 2018/01/30 16:39:17 by stoupin          ###   ########.fr       */
+/*   Updated: 2018/01/31 15:24:03 by stoupin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ void		draw_map(t_vm *vm, t_font_cursor *fc)
 	}
 }
 
-void		draw_game_loop(t_vm *vm)
+int		draw_game_loop(t_vm *vm)
 {
 	t_font_cursor	fc;
 
@@ -67,6 +67,7 @@ void		draw_game_loop(t_vm *vm)
 	fc.font = &(vm->fonts[3]);
 	draw_map(vm, &fc);
 	mlx_put_image_to_window(vm->gui.mlx_ptr, vm->gui.mlx_win, vm->gui.image_ptr, 0, 0);
+	return (0);
 }
 
 void		draw_game_clean(t_vm *vm)

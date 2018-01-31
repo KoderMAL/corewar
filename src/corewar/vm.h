@@ -118,7 +118,7 @@ void				fill_map(t_vm *vm, int i);
 */
 
 int					draw_game_init(t_vm *vm);
-void				draw_game_loop(t_vm *vm);
+int					draw_game_loop(t_vm *vm);
 void				draw_game_clean(t_vm *vm);
 
 /*
