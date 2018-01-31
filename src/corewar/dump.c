@@ -6,7 +6,7 @@
 /*   By: alalaoui <alalaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/26 12:00:20 by alalaoui          #+#    #+#             */
-/*   Updated: 2018/01/31 13:44:45 by dhadley          ###   ########.fr       */
+/*   Updated: 2018/01/31 17:26:27 by dhadley          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static void	write_map(t_vm *vm)
 {
 	char				converted[MEM_SIZE * 3];
 	unsigned char		byte;
-	static const char	digits[16] = "0123456789ABCDEF";
+	static const char	digits[16] = "0123456789abcdef";
 	int					i;
 	int					j;
 

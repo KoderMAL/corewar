@@ -6,7 +6,7 @@
 /*   By: stoupin <stoupin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/29 09:48:12 by stoupin           #+#    #+#             */
-/*   Updated: 2018/01/29 11:40:29 by stoupin          ###   ########.fr       */
+/*   Updated: 2018/01/30 16:45:47 by stoupin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int		gui_init(t_gui *gui, int width, int height, char *title)
 	gui->err_msg = NULL;
 	gui->screen_size = (t_coord){width, height};
 	gui->mlx_ptr = mlx_init();
-	if (gui->mlx_ptr ==  NULL)
+	if (gui->mlx_ptr == NULL)
 		return (gui_err(gui, "mlx initialization failed"));
 	gui->mlx_win = mlx_new_window(gui->mlx_ptr, width, height, title);
 	if (gui->mlx_win == NULL)

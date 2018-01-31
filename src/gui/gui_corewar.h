@@ -6,12 +6,12 @@
 /*   By: stoupin <stoupin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/29 09:58:14 by stoupin           #+#    #+#             */
-/*   Updated: 2018/01/29 11:45:39 by stoupin          ###   ########.fr       */
+/*   Updated: 2018/01/30 16:46:02 by stoupin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GUI_HOOKS_H
-# define GUI_HOOKS_H
+#ifndef GUI_COREWAR_H
+# define GUI_COREWAR_H
 
 # include "corewar/vm.h"
 # include "gui.h"
