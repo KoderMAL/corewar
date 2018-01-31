@@ -6,7 +6,7 @@
 /*   By: stoupin <stoupin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/16 14:30:57 by alalaoui          #+#    #+#             */
-/*   Updated: 2018/01/31 15:27:46 by stoupin          ###   ########.fr       */
+/*   Updated: 2018/01/31 15:00:42 by alalaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,8 @@ static void check_exit(t_vm *vm)
 		vm->d = 2;
 	else if (vm->draw_game == 1)
 		vm->v = 1;
+	if (vm->draw_game != 0 && vm->d != 0)
+		err2(vm, "Please use either -d N dump or -visual option");
 }
 
 int main(int ac, char **av)
@@ -77,6 +79,7 @@ int main(int ac, char **av)
 	vm_init(&vm);
 	if (vm.err == 0 && parse_args(&vm, ac, av) == 0)
 		check_exit(&vm);
+	check_exit(&vm);
 	if (vm.err == 0)
 		vm_start(&vm);
 	if (vm.err == 0)
