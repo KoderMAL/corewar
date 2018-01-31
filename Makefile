@@ -5,7 +5,7 @@ CC = gcc
 UNAME_S := $(shell uname -s)
 ifeq ($(UNAME_S),Linux)
 	MLX = lib/minilibx_linux
-	LDFLAGS = -L $(MLX) -lmlx -L/usr/include/../lib -lXext -lX11 -lm -lbsd
+	LDFLAGS = -L $(MLX) -lmlx -L/usr/include/../lib -lXext -lX11 -lm -lbsd 
 	ifeq ($(DEBUG),yes)
 		CFLAGS = -Wall -Wextra -std=c99 -g -O0 -I./$(MLX) -DLINUX
 	else
@@ -16,9 +16,9 @@ ifeq ($(UNAME_S),Darwin)
 	MLX = lib/minilibx_elcapitan
 	LDFLAGS = -framework openGL -framework AppKit $(MLX)/libmlx.a
 	ifeq ($(DEBUG),yes)
-		CFLAGS = -Wall -Wextra -std=c99 -g -O0 -fsanitize=address
+		CFLAGS = -Wall -Wextra -std=c99 -g -O0 -I./$(MLX) -fsanitize=address
 	else
-		CFLAGS = -Ofast -fomit-frame-pointer -Wall -Wextra -std=c99
+		CFLAGS = -Ofast -fomit-frame-pointer -Wall -Wextra -std=c99 -I./$(MLX)
 	endif
 endif
 
