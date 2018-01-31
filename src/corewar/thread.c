@@ -6,7 +6,7 @@
 /*   By: alalaoui <alalaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/17 14:08:01 by alalaoui          #+#    #+#             */
-/*   Updated: 2018/01/31 14:12:34 by alalaoui         ###   ########.fr       */
+/*   Updated: 2018/01/31 14:33:07 by alalaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@ t_thread		*create_thread(t_vm *vm, int n)
 	while (j < REG_NUMBER + 1)
 		new_thread->r[j++] = 0;
 	new_thread->r[1] = n;
-	printf("INT N= %d\n", n);
 	new_thread->countdown = -1;
 	new_thread->cycles = CYCLE_TO_DIE;
 	new_thread->location = (ABS(i) - 1) * (MEM_SIZE / vm->nb_champs);

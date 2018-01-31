@@ -6,7 +6,7 @@
 /*   By: alalaoui <alalaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/24 15:16:28 by alalaoui          #+#    #+#             */
-/*   Updated: 2018/01/31 14:23:49 by alalaoui         ###   ########.fr       */
+/*   Updated: 2018/01/31 14:32:52 by alalaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@
 
 void fill_map(t_vm *vm, int i)
 {
-	printf("SIZE:%d\n", vm->champs_fd[i].sizeb);
 	ft_memcpy(&(vm->map[i * (MEM_SIZE / vm->nb_champs)]),
 			  &(vm->champs_fd[i].cor[16 + PROG_NAME_LENGTH + COMMENT_LENGTH]),
 			  vm->champs_fd[i].size);
@@ -27,7 +26,6 @@ void parse_champion(t_vm *vm, int i)
 {
 	ft_memcpy(vm->champs_fd[i].name, (vm->champs_fd[i].cor + 4), PROG_NAME_LENGTH);
 	vm->champs_fd[i].sizeb = vm->champs_fd[i].cor[10 + PROG_NAME_LENGTH] << 8 | vm->champs_fd[i].cor[11 + PROG_NAME_LENGTH];
-	printf("i=%d ||TRY CHAMPION:%s\n",i,  vm->champs_fd[i].name);
 	if (vm->champs_fd[i].sizeb != vm->champs_fd[i].size)
 		err2(vm, "A champion has a code size that differ from its header");
 }
@@ -55,12 +53,10 @@ void read_champion(t_vm *vm, int i)
 
 static void open_champ(t_vm *vm, char **av, int i, int *fd)
 {
-	printf("ARG:%s\n", av[i + 1] );
 		if (vm->err == 0)
 		{
 			if ((*fd = open(av[i + 1], O_RDONLY)) < 2)
 				err2(vm, "Unable to open input file");
-	printf("\nFD1:%d\n", *fd);
 		}
 }
 

@@ -6,7 +6,7 @@
 /*   By: alalaoui <alalaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/16 14:30:57 by alalaoui          #+#    #+#             */
-/*   Updated: 2018/01/31 14:28:55 by alalaoui         ###   ########.fr       */
+/*   Updated: 2018/01/31 14:32:37 by alalaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,6 @@ int main(int ac, char **av)
 	if (vm.err == 0)
 		while (i < vm.nb_champs && vm.err == 0)
 			load_champion(&vm, av, &i, fd);
-	printf("\nERR=%d\n", vm.err);
 	if (vm.err == 0)
 	{
 		if (vm.draw_game)
