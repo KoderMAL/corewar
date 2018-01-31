@@ -6,7 +6,7 @@
 /*   By: alalaoui <alalaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/26 11:51:04 by dhadley           #+#    #+#             */
-/*   Updated: 2018/01/29 17:03:09 by alalaoui         ###   ########.fr       */
+/*   Updated: 2018/01/30 17:57:19 by alalaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,6 +90,7 @@ static void		check_countdown(t_vm *vm)
 
 void		war_cycle(t_vm *vm)
 {
+	sleep(5);
 	if (vm->game_cycle == INT_MAX || vm->err != 0)
 		vm_clean(vm);
 	printf("\n---CYCLE++---\n");

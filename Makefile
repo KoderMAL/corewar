@@ -30,7 +30,7 @@ SRC_UTIL = cqueue.c cqueue_ft.c pqueue.c pqueue_fast_pass.c
 SRC_IO = openfile.c openfile_write.c
 SRC_PARSING = states_main.c states_header.c states_label.c states_instruction.c \
 			  save_label.c save_argument.c save_instruction.c check_args.c
-SRC_COREWAR = error2.c thread.c vm.c champion.c draw_game.c dump.c cycle.c op.c \
+SRC_COREWAR = parse_args.c error2.c thread.c vm.c champion.c draw_game.c dump.c cycle.c op.c \
 				live.c zjmp.c fork.c aff.c ld.c params.c add.c sub.c and.c
 SRC_GUI = font.c font_cursor.c gui.c gui_hooks.c fonts.c
 SRC_TESTS = $(SRC_IO) $(SRC_FT) $(SRC_UTIL) \
