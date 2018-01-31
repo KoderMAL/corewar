@@ -6,7 +6,7 @@
 /*   By: alalaoui <alalaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/30 14:31:43 by alalaoui          #+#    #+#             */
-/*   Updated: 2018/01/31 12:34:06 by alalaoui         ###   ########.fr       */
+/*   Updated: 2018/01/31 13:28:11 by alalaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,8 @@ static void		add_champion(t_vm *vm, int n, char *av)
 		err2(vm, "invalid file input");
 }
 
-int				check_option(t_vm *vm, char **av, int i)
+int				check_option(t_vm *vm, int i)
 {
-	printf("champ_n[i]:%d\n", vm->champ_n[i]);
 	if (vm->champ_n[i] != -1)
 		return (2);
 	else

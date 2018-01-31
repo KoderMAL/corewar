@@ -6,7 +6,7 @@
 /*   By: alalaoui <alalaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/24 15:16:28 by alalaoui          #+#    #+#             */
-/*   Updated: 2018/01/31 12:24:00 by alalaoui         ###   ########.fr       */
+/*   Updated: 2018/01/31 13:28:26 by alalaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ void load_champion(t_vm *vm, char **av, int *i, int fd[MAX_ARGS_NUMBER])
 	static int id = -1;
 	int n;
 
-	n = check_option(vm, av, *i);
+	n = check_option(vm, *i);
 	printf("D %d || V %d || N %d || i = %d\n",  vm->d , vm->v, n, *i);
 	printf("WHERE AM I:%s || i =%d\n", av[(*i + vm->d + vm->v + n) + 1], *i);
 	open_champ(vm, av, ((*i) + vm->d + vm->v + n), &fd[*i]);
@@ -98,5 +98,5 @@ void load_champion(t_vm *vm, char **av, int *i, int fd[MAX_ARGS_NUMBER])
 		(*i)++;
 	}
 	printf("champion id:%d\nchampname:%s\n", vm->champs_fd[*i].id, vm->champs_fd[*i].name);
-//	sleep(4);
+	sleep(4);
 }

@@ -6,7 +6,7 @@
 /*   By: alalaoui <alalaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/26 12:00:20 by alalaoui          #+#    #+#             */
-/*   Updated: 2018/01/31 12:34:13 by alalaoui         ###   ########.fr       */
+/*   Updated: 2018/01/31 13:32:14 by alalaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,9 @@ void		dump(t_vm *vm)
 	if (vm->cycle_to_dump != -1)
 	{
 		if (vm->game_cycle == vm->cycle_to_dump)
+		{
 			write_map(vm);
-		exit(1);
+			exit(1);
+		}
 	}
 }
