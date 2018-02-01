@@ -57,7 +57,7 @@ void vm_clean(t_vm *vm)
 	exit(1);
 }
 
-static void check_exit(t_vm *vm)
+static void check_exit(t_vm *vm, int ac)
 {
 	if (vm->cycle_to_dump != -1)
 		vm->d = 2;
@@ -65,6 +65,8 @@ static void check_exit(t_vm *vm)
 		vm->v = 1;
 	if (vm->draw_game != 0 && vm->d != 0)
 		err2(vm, "Please use either -d N dump or -visual option");
+	if (ac < 2)
+		err2(vm, "Usage : needs at list one champion");
 }
 
 int main(int ac, char **av)
@@ -78,8 +80,8 @@ int main(int ac, char **av)
 	ft_memset(fd, 0, MAX_ARGS_NUMBER);
 	vm_init(&vm);
 	if (vm.err == 0 && parse_args(&vm, ac, av) == 0)
-		check_exit(&vm);
-	check_exit(&vm);
+		check_exit(&vm, ac);
+	check_exit(&vm, ac);
 	if (vm.err == 0)
 		vm_start(&vm);
 	if (vm.err == 0)

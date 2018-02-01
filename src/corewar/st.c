@@ -53,7 +53,7 @@ int	op_st(t_vm *vm, t_thread *PC)
 			tmp = recup_param(vm, (PC->location + 1 + 2), 2);
 			if (param1 < 0)
 			{
-				param1 = ~(-value);
+// undeclared identifier	param1 = ~(-value);
 				param1++;
 			}
 			vm->map[(PC->location + (tmp % IDX_MOD)) % MEM_SIZE] = (param1 >> 24);

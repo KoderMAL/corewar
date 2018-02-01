@@ -38,16 +38,32 @@ static void		do_op(t_vm *vm, t_thread *pc)
 		op_live(vm, pc);
 	else if (vm->op->opcode == 2)
 		op_ld(vm, pc);
+	else if (vm->op->opcode == 3)
+		op_st(vm, pc);
 	else if (vm->op->opcode == 4)
 		op_add(vm, pc);
 	else if (vm->op->opcode == 5)
 		op_sub(vm, pc);
 	else if (vm->op->opcode == 6)
 		op_and(vm, pc);
+	else if (vm->op->opcode == 7)
+		op_or(vm, pc);
+	else if (vm->op->opcode == 8)
+		op_xor(vm, pc);
 	else if (vm->op->opcode == 9)
 		op_zjmp(vm, pc);
+	else if (vm->op->opcode == 10)
+		op_ldi(vm, pc);
+	else if (vm->op->opcode == 11)
+		op_sti(vm, pc);
 	else if (vm->op->opcode == 12)
 	 	op_fork(vm, pc);
+	else if (vm->op->opcode == 13)
+		op_lld(vm, pc);
+	else if (vm->op->opcode == 14)
+		op_lldi(vm, pc);
+	else if (vm->op->opcode == 15)
+	 	op_lfork(vm, pc);
 	else if (vm->op->opcode == 16)
 		op_aff(vm, pc);
 }
@@ -95,7 +111,6 @@ void		war_cycle(t_vm *vm)
 	printf("\n---CYCLE++---\n");
 	check_cycles(vm);
 	check_countdown(vm);
-	printf("CHECK\n");
 	dump(vm);
 	vm->game_cycle++;
 }

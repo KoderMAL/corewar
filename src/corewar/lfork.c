@@ -10,7 +10,6 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "op.h"
 #include "vm.h"
 
 // Récupère le T_DIR sur 2 octets.
@@ -18,7 +17,7 @@
 // Déplace le PC du process d'origine à la fin du T_DIR récupéré.
 // Décrémente le process d'origine de 1000 cycles (coût d'un lfork).
 
-void		op_lfork(t_vm *vm, t_thread process)
+void		op_lfork(t_vm *vm, t_thread *process)
 {
 	short	index;
 

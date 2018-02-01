@@ -126,15 +126,21 @@ void				draw_game_clean(t_vm *vm);
 */
 
 void				op_live(t_vm *vm, t_thread *PC);
-void				op_zjmp(t_vm *vm, t_thread *process);
-void				op_fork(t_vm *vm, t_thread *process);
-int					op_ld(t_vm *vm, t_thread *PC);
-void				op_aff(t_vm *vm, t_thread *process);
+int				op_ld(t_vm *vm, t_thread *PC);
+int				op_st(t_vm *vm, t_thread *PC);
 void				op_add(t_vm *vm, t_thread *process);
 void				op_sub(t_vm *vm, t_thread *process);
-int					op_and(t_vm *vm, t_thread *pc);
-// int					op_or(t_vm *vm, t_thread *pc);
-// int					op_xor(t_vm *vm, t_thread *pc);
+int				op_and(t_vm *vm, t_thread *pc);
+int				op_or(t_vm *vm, t_thread *pc);
+int				op_xor(t_vm *vm, t_thread *pc);
+void				op_zjmp(t_vm *vm, t_thread *process);
+int				op_ldi(t_vm *vm, t_thread *process);
+int				op_sti(t_vm *vm, t_thread *process);
+void				op_fork(t_vm *vm, t_thread *process);
+int				op_lld(t_vm *vm, t_thread *process);
+int				op_lldi(t_vm *vm, t_thread *process);
+void				op_lfork(t_vm *vm, t_thread *process);
+void				op_aff(t_vm *vm, t_thread *process);
 
 /*
 ** params.c

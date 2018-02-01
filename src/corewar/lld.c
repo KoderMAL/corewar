@@ -17,6 +17,8 @@
 	ld 34,r3 charge les REG_SIZE octets à partir de l’adresse (PC + (34 % IDX_MOD)) dans le registre r3.
 */
 
+#include "vm.h"
+
 //need to modify the carry
 //need to take off cycles from the PC cycle to die
 
