@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   or.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lramirez <lramirez@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lararamirez <lararamirez@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/26 14:39:27 by lramirez          #+#    #+#             */
-/*   Updated: 2018/01/29 15:33:56 by lramirez         ###   ########.fr       */
+/*   Updated: 2018/02/05 14:41:30 by lararamirez      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -144,11 +144,11 @@ int		op_or(t_vm *vm, t_thread *pc)
 {
    	pc->location = (pc->location + 1) % MEM_SIZE;
 	if (check_params(vm->map[pc->location], 1) == DIR_CODE)
-		return (op_or_dir(vm, pc->location));
+		return (op_or_dir(vm, pc));
 	else if (check_params(vm->map[pc->location], 1) == IND_CODE)
-		return (op_or_ind(vm, pc->location));
+		return (op_or_ind(vm, pc));
 	else if (check_params(vm->map[pc->location], 1) == REG_CODE)
-		return (op_or_reg(vm, pc->location));
+		return (op_or_reg(vm, pc));
 	else
 		return (op_or_exit(pc));
 }
