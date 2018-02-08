@@ -1,7 +1,7 @@
 import os, shutil, subprocess, sys
 
 MY_ASM = './asm'
-ZAZ_ASM = './Resources/asm'
+ZAZ_ASM = './resources/asm'
 COMPILE_DIR = '/tmp'
 
 def list_champs():

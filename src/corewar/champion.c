@@ -6,7 +6,7 @@
 /*   By: stoupin <stoupin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/24 15:16:28 by alalaoui          #+#    #+#             */
-/*   Updated: 2018/02/08 18:50:00 by stoupin          ###   ########.fr       */
+/*   Updated: 2018/02/08 19:17:51 by stoupin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,8 @@ static int	read_buffers(t_vm *vm, t_champ *champ, t_openfile *of)
 	champ->name[ret] = 0;
 	if (openfile_read_buf(of, &(champ->size_bytecode), 8, 1) < 8)
 		return (err2(vm, "unable to read program size"));
+	if (champ->size_bytecode > CHAMP_MAX_SIZE)
+		return (err2(vm, "champion too big"));
 	if ((champ->bytecode = (char*)malloc(champ->size_bytecode)) == NULL)
 		return (err2(vm, "champion too big for memory"));
 	ret = openfile_read_buf(of, champ->comment, COMMENT_LENGTH, 0);

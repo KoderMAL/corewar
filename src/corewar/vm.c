@@ -6,7 +6,7 @@
 /*   By: stoupin <stoupin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/16 14:30:57 by alalaoui          #+#    #+#             */
-/*   Updated: 2018/02/08 19:04:15 by stoupin          ###   ########.fr       */
+/*   Updated: 2018/02/08 19:19:35 by stoupin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ void		vm_clean(t_vm *vm)
 		draw_game_clean(vm);
 	openfile_flush(&(vm->stdout));
 	openfile_flush(&(vm->stderr));
-	exit(1);
+	exit(vm->err);
 }
 
 int			main(int argc, char **argv)
@@ -88,5 +88,5 @@ int			main(int argc, char **argv)
 				war_cycle(&vm);
 	}
 	vm_clean(&vm);
-	return (0);
+	return (vm.err);
 }
