@@ -6,7 +6,7 @@
 /*   By: stoupin <stoupin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/04 16:36:08 by alalaoui          #+#    #+#             */
-/*   Updated: 2018/01/23 16:24:54 by stoupin          ###   ########.fr       */
+/*   Updated: 2018/02/08 18:39:55 by stoupin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,17 @@ void				openfile_flush(t_openfile *of);
 ** openfile_write.c
 */
 
-void				openfile_write_buf(t_openfile *of, char *buf, size_t len);
+void				openfile_write_buf(t_openfile *of, char *buf, size_t len,
+										int reverse);
 void				openfile_write_str(t_openfile *fd, char *str, int endl);
 void				openfile_write_nbr(t_openfile *fd, int nbr, int endl);
+
+/*
+** openfile_read.c
+*/
+
+int					openfile_read_buf(t_openfile *of, void *dest, int len,
+										int reverse);
+int					openfile_skip(t_openfile *of, int len);
 
 #endif

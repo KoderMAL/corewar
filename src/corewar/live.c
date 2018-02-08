@@ -6,7 +6,7 @@
 /*   By: stoupin <stoupin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/25 11:32:35 by lramirez          #+#    #+#             */
-/*   Updated: 2018/02/08 12:20:48 by stoupin          ###   ########.fr       */
+/*   Updated: 2018/02/08 18:01:56 by stoupin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,22 +27,22 @@ int	op_live(t_vm *vm, t_thread *process)
 	int		player;
 
 	process->location = (process->location + 1) % MEM_SIZE;
-	printf("premier octet: %d\n", vm->map[process->location]); //
-	printf("deuxieme octet: %d\n", vm->map[(process->location + 1) % MEM_SIZE]); //
-	printf("troisieme octet: %d\n", vm->map[(process->location + 2) % MEM_SIZE]); //
-	printf("quatrieme octet: %d\n", vm->map[(process->location + 3) % MEM_SIZE]); //
+	//printf("premier octet: %d\n", vm->map[process->location]); //
+	//printf("deuxieme octet: %d\n", vm->map[(process->location + 1) % MEM_SIZE]); //
+	//printf("troisieme octet: %d\n", vm->map[(process->location + 2) % MEM_SIZE]); //
+	//printf("quatrieme octet: %d\n", vm->map[(process->location + 3) % MEM_SIZE]); //
 	id = vm->map[process->location] << 24
 			| vm->map[(process->location + 1) % MEM_SIZE] << 16
 			| vm->map[(process->location + 2) % MEM_SIZE] << 8
 			| vm->map[(process->location + 3) % MEM_SIZE];
-	printf("champion id:%d\n", id); //
+	//printf("champion id:%d\n", id); //
 	player = 0;
-	while (player < vm->nb_champs)
+	while (player < vm->n_champs)
 	{
-		if (id == vm->champs_fd[player].id)
+		if (id == player)
 		{
 			// noter que tel joueur a fait un live a tel cycle dans champ
-			printf("un processus dit que le joueur %d(%s) est en vie\n", player + 1, vm->champs_fd[player].name); //
+			//printf("un processus dit que le joueur %d(%s) est en vie\n", player + 1, vm->champs_fd[player].name); //
 			break ;
 		}
 		player++;

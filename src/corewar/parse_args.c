@@ -6,36 +6,40 @@
 /*   By: stoupin <stoupin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/30 14:31:43 by alalaoui          #+#    #+#             */
-/*   Updated: 2018/02/08 12:30:28 by stoupin          ###   ########.fr       */
+/*   Updated: 2018/02/08 18:41:42 by stoupin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vm.h"
 
-static void		add_champion(t_vm *vm, int n, char *av)
+static int		find_available_slot(t_vm *vm)
 {
-	if (ft_strlen(av) > 4)
+	int	i;
+
+	i = 0;
+	while (i < MAX_PLAYERS)
 	{
-		if (av[ft_strlen(av) - 1] == 'r'
-			&& av[ft_strlen(av) - 2] == 'o'
-			&& av[ft_strlen(av) - 3] == 'c'
-			&& av[ft_strlen(av) - 4] == '.')
-			vm->nb_champs++;
-		else
-			err2(vm, "invalid input file");
-		if (n != -1)
-			vm->champ_n[vm->nb_champs - 1] = n;
+		if (vm->champs[i].loaded == 0)
+			return (i);
+		i++;
 	}
-	else
-		err2(vm, "invalid file input");
+	return (-1);
 }
 
-int				check_option(t_vm *vm, int i)
+static void		add_champion(t_vm *vm, int n, char *file_name)
 {
-	if (vm->champ_n[i] != -1)
-		return (2);
+	if (vm->n_champs >= MAX_PLAYERS)
+		err2(vm, "too many champions (maximum is 4)");
+	else if (ft_strlen(file_name) >= 4
+			&& ft_strcmp(file_name + ft_strlen(file_name) - 4, ".cor") == 0)
+	{
+		if (n == -1)
+			n = find_available_slot(vm);
+		champion_load(vm, &(vm->champs[n]), file_name);
+		vm->n_champs++;
+	}
 	else
-		return (0);
+		err2(vm, "file name must end with .cor");
 }
 
 int				parse_args(t_vm *vm, int ac, char **av)
@@ -43,9 +47,7 @@ int				parse_args(t_vm *vm, int ac, char **av)
 	t_state state;
 	int		n;
 	int		i;
-	int		c;
 
-	c = 0;
 	n = -1;
 	i = 1;
 	state = S_START;
@@ -62,7 +64,6 @@ int				parse_args(t_vm *vm, int ac, char **av)
 			else
 			{
 				add_champion(vm, n, av[i]);
-				vm->champ_n[c++] = n;
 				n = -1;
 			}
 		}
@@ -90,7 +91,6 @@ int				parse_args(t_vm *vm, int ac, char **av)
 		else if (state == S_CHAMP)
 		{
 			add_champion(vm, n, av[i]);
-			vm->champ_n[c++] = n;
 			n = -1;
 			state = S_START;
 		}

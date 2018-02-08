@@ -6,7 +6,7 @@
 /*   By: stoupin <stoupin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/08 14:12:51 by stoupin           #+#    #+#             */
-/*   Updated: 2018/02/08 14:14:27 by stoupin          ###   ########.fr       */
+/*   Updated: 2018/02/08 18:49:02 by stoupin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,13 +35,12 @@ typedef struct		s_thread
 
 typedef struct		s_champ
 {
-	t_openfile	file;
-	int			id;
-	short		sizeb;
-	short		size;
-	char		name[PROG_NAME_LENGTH];
-	char		comment[COMMENT_LENGTH];
-	char		cor[MAX_SIZE];
+	int			loaded;
+	size_t		size;
+	size_t		size_bytecode;
+	char		name[PROG_NAME_LENGTH + 1];
+	char		comment[COMMENT_LENGTH + 1];
+	char		*bytecode;
 
 }					t_champ;
 
@@ -49,22 +48,20 @@ typedef struct		s_champ
 
 typedef struct		s_vm
 {
-	t_champ			champs_fd[MAX_PLAYERS];
+	t_champ			champs[MAX_PLAYERS];
+	int				n_champs;
 	t_pqueue		threads;
 	unsigned char	map[MEM_SIZE];
-	int				nb_champs;
 	int				err;
-	int				champ_n[4];
 	int				cycle_to_dump;
 	char			*err_msg;
 	int				game_cycle;
-	int				v;
-	int				d;
-	int				n;
 	const t_op		*op;
 	int				draw_game;
 	t_gui			gui;
 	t_font			fonts[N_FONTS];
+	t_openfile		stdout;
+	t_openfile		stderr;
 }					t_vm;
 
 typedef enum		e_state
@@ -107,11 +104,8 @@ t_thread			*dup_thread(t_thread *src_thread, int pc);
 ** champion.c
 */
 
-void				parse_champion(t_vm *vm, int i);
-void				read_champion(t_vm *vm, int i);
-void				load_champion(t_vm *vm, char **av, int *i,
-									int fd[MAX_ARGS_NUMBER]);
-void				fill_map(t_vm *vm, int i);
+int					champion_load(t_vm *vm, t_champ *champ, char *file_name);
+void				champion_to_vm(t_vm *vm, int i_champ);
 
 /*
 ** draw_game.c

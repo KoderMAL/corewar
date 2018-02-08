@@ -6,7 +6,7 @@
 /*   By: stoupin <stoupin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/17 14:08:01 by alalaoui          #+#    #+#             */
-/*   Updated: 2018/02/08 14:10:34 by stoupin          ###   ########.fr       */
+/*   Updated: 2018/02/08 17:54:33 by stoupin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ t_thread		*create_thread(t_vm *vm, int n)
 	new_thread->r[1] = n;
 	new_thread->countdown = -1;
 	new_thread->cycles = CYCLE_TO_DIE;
-	new_thread->location = (ABS(i) - 1) * (MEM_SIZE / vm->nb_champs);
+	new_thread->location = (ABS(i) - 1) * (MEM_SIZE / vm->n_champs);
 	i--;
 	return (new_thread);
 }

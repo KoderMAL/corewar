@@ -6,7 +6,7 @@
 /*   By: stoupin <stoupin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/26 11:51:04 by dhadley           #+#    #+#             */
-/*   Updated: 2018/02/08 16:36:00 by stoupin          ###   ########.fr       */
+/*   Updated: 2018/02/08 16:38:13 by stoupin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,14 +76,14 @@ static void		check_countdown(t_vm *vm)
 	while (i < vm->threads.len)
 	{
 		pc = pq->p;
-		printf("pc->countdown=%d\n", pc->countdown); //
+		//printf("pc->countdown=%d\n", pc->countdown); //
 		if (pc->countdown == -1)
 		{
-			printf("PC LOCATION DANS MAP:%d\n", pc->location); //
+			//printf("PC LOCATION DANS MAP:%d\n", pc->location); //
 			if ((vm->op = find_opcode(vm->map[pc->location])) != NULL)
 			{
-				printf("OPNAME:%s\n", vm->op->name); //
-				printf("OPcode:%d\n", vm->op->opcode); //
+				//printf("OPNAME:%s\n", vm->op->name); //
+				//printf("OPcode:%d\n", vm->op->opcode); //
 				pc->countdown = vm->op->n_cycles;
 			}
 			else
@@ -105,7 +105,7 @@ void			war_cycle(t_vm *vm)
 {
 	if (vm->game_cycle == INT_MAX || vm->err != 0)
 		vm_clean(vm);
-	printf("\n---CYCLE++---\n"); //
+	//printf("\n---CYCLE++---\n"); //
 	check_cycles(vm);
 	check_countdown(vm);
 	dump(vm);

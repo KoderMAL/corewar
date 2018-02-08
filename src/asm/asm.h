@@ -6,7 +6,7 @@
 /*   By: stoupin <stoupin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/04 16:36:08 by alalaoui          #+#    #+#             */
-/*   Updated: 2018/02/08 11:22:45 by stoupin          ###   ########.fr       */
+/*   Updated: 2018/02/08 18:30:30 by stoupin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ typedef struct		s_env
 	char			name[PROG_NAME_LENGTH];
 	char			comment[COMMENT_LENGTH];
 	unsigned char	*champion;
-	int				prog_size;
+	size_t			prog_size;
 	void			(*state)(struct s_env *env, char c);
 	t_cqueue		characters;
 	size_t			pos;

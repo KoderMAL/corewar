@@ -6,7 +6,7 @@
 /*   By: stoupin <stoupin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/16 14:30:57 by alalaoui          #+#    #+#             */
-/*   Updated: 2018/02/08 16:33:25 by stoupin          ###   ########.fr       */
+/*   Updated: 2018/02/08 18:49:22 by stoupin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,23 +17,10 @@
 
 void		vm_init(t_vm *vm)
 {
-	int i;
-
-	i = -1;
-	vm->op = NULL;
-	vm->err_msg = NULL;
-	vm->game_cycle = 0;
-	ft_memset(vm->map, 0, MEM_SIZE);
-	while (++i < MAX_PLAYERS)
-		ft_memset(&(vm->champs_fd[i]), 0, sizeof(t_champ));
-	vm->err = 0;
+	ft_memset(vm, 0, sizeof(*vm));
+	openfile_init(&(vm->stdout), STDOUT_FILENO);
+	openfile_init(&(vm->stderr), STDERR_FILENO);
 	vm->cycle_to_dump = -1;
-	vm->v = 0;
-	vm->d = 0;
-	vm->n = 0;
-	vm->draw_game = 0;
-	vm->nb_champs = 0;
-	ft_memset(vm->champ_n, -1, 4);
 }
 
 void		vm_start(t_vm *vm)
@@ -50,43 +37,40 @@ void		vm_clean(t_vm *vm)
 	i = 0;
 	err2_display(vm);
 	pqueue_delete(&(vm->threads));
-	while (i < MAX_ARGS_NUMBER)
-		close(vm->champs_fd[i++].file.fd);
 	if (vm->draw_game)
 		draw_game_clean(vm);
+	openfile_flush(&(vm->stdout));
+	openfile_flush(&(vm->stderr));
 	exit(1);
 }
 
-static void	check_exit(t_vm *vm, int ac)
-{
-	if (vm->cycle_to_dump != -1)
-		vm->d = 2;
-	else if (vm->draw_game == 1)
-		vm->v = 1;
-	if (vm->draw_game != 0 && vm->d != 0)
-		err2(vm, "Please use either -d N dump or -visual option");
-	if (ac < 2)
-		err2(vm, "Usage : needs at least one champion");
-}
-
-int			main(int ac, char **av)
+int			main(int argc, char **argv)
 {
 	t_vm	vm;
-	int		fd[MAX_ARGS_NUMBER];
 	int		i;
 
-	i = 0;
-	vm_start(&vm);
-	ft_memset(fd, 0, MAX_ARGS_NUMBER);
 	vm_init(&vm);
-	if (vm.err == 0 && parse_args(&vm, ac, av) == 0)
-		check_exit(&vm, ac);
-	check_exit(&vm, ac);
+	parse_args(&vm, argc, argv);
 	if (vm.err == 0)
+	{
+		openfile_write_str(&(vm.stdout), "Introducing contestants...", 1);
+		i = 0;
+		while (i < vm.n_champs && vm.err == 0)
+		{
+			openfile_write_str(&(vm.stdout), "* Player ", 0);
+			openfile_write_nbr(&(vm.stdout), i + 1, 0);
+			openfile_write_str(&(vm.stdout), ", weighing ", 0);
+			openfile_write_nbr(&(vm.stdout), vm.champs[i].size_bytecode, 0);
+			openfile_write_str(&(vm.stdout), " bytes, \"", 0);
+			openfile_write_str(&(vm.stdout), vm.champs[i].name, 0);
+			openfile_write_str(&(vm.stdout), "\" (\"", 0);
+			openfile_write_str(&(vm.stdout), vm.champs[i].comment, 0);
+			openfile_write_str(&(vm.stdout), "\") !", 1);
+			champion_to_vm(&vm, i);
+			i++;
+		}
 		vm_start(&vm);
-	if (vm.err == 0)
-		while (i < vm.nb_champs && vm.err == 0)
-			load_champion(&vm, av, &i, fd);
+	}
 	if (vm.err == 0)
 	{
 		if (vm.draw_game)

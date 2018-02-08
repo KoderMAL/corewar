@@ -6,85 +6,90 @@
 /*   By: stoupin <stoupin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/24 15:16:28 by alalaoui          #+#    #+#             */
-/*   Updated: 2018/02/08 11:51:49 by stoupin          ###   ########.fr       */
+/*   Updated: 2018/02/08 18:50:00 by stoupin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <fcntl.h>
+#include <stdlib.h>
+#include "io/openfile.h"
 #include "vm.h"
 
-void		fill_map(t_vm *vm, int i)
+static int	check_magic(t_vm *vm, t_openfile *of)
 {
-	ft_memcpy(&(vm->map[i * (MEM_SIZE / vm->nb_champs)]),
-				&(vm->champs_fd[i].cor[16 + PROG_NAME_LENGTH + COMMENT_LENGTH]),
-				vm->champs_fd[i].size);
+	unsigned char	magic[4];
+	int				ret;
+
+	ret = openfile_read_buf(of, magic, 4, 0);
+	if (ret < 0)
+		return (err2(vm, "unable to read input file"));
+	if (ret < 4)
+		return (err2(vm, "input file too small"));
+	if (magic[0] == 0x00 && magic[1] == 0xea
+		&& magic[2] == 0x83 && magic[3] == 0xf3)
+		return (0);
+	return (err2(vm, "wrong magic number"));
 }
 
-void		parse_champion(t_vm *vm, int i)
+static int	read_buffers(t_vm *vm, t_champ *champ, t_openfile *of)
 {
-	ft_memcpy(vm->champs_fd[i].name, vm->champs_fd[i].cor + 4,
-				PROG_NAME_LENGTH);
-	vm->champs_fd[i].sizeb = vm->champs_fd[i].cor[10 + PROG_NAME_LENGTH] << 8
-								| vm->champs_fd[i].cor[11 + PROG_NAME_LENGTH];
-	if (vm->champs_fd[i].sizeb != vm->champs_fd[i].size)
-		err2(vm, "A champion has a code size that differ from its header");
+	int	ret;
+
+	ret = openfile_read_buf(of, champ->name, PROG_NAME_LENGTH, 0);
+	if (ret < PROG_NAME_LENGTH)
+		return (err2(vm, "unable to read program name"));
+	champ->name[ret] = 0;
+	if (openfile_read_buf(of, &(champ->size_bytecode), 8, 1) < 8)
+		return (err2(vm, "unable to read program size"));
+	if ((champ->bytecode = (char*)malloc(champ->size_bytecode)) == NULL)
+		return (err2(vm, "champion too big for memory"));
+	ret = openfile_read_buf(of, champ->comment, COMMENT_LENGTH, 0);
+	if (ret < COMMENT_LENGTH)
+		return (err2(vm, "unable to read program comment"));
+	champ->comment[ret] = 0;
+	if (openfile_skip(of, 4) < 4)
+		return (err2(vm, "error while reading input file"));
+	ret = openfile_read_buf(of, champ->bytecode, champ->size_bytecode, 0);
+	if (ret < (long long int)champ->size_bytecode)
+		return (err2(vm, "unable to read program bytecode"));
+	champ->size = champ->size_bytecode + 4 + PROG_NAME_LENGTH + COMMENT_LENGTH;
+	return (0);
 }
 
-void		read_champion(t_vm *vm, int i)
+int			champion_load(t_vm *vm, t_champ *champ, char *file_name)
 {
-	int		ret;
-	char	c;
-	int		pos;
+	int			fd;
+	t_openfile	of;
 
-	pos = 0;
-	while (vm->err == 0)
+	if ((fd = open(file_name, O_RDONLY)) < 2)
+		return (err2(vm, "unable to open input file"));
+	openfile_init(&of, fd);
+	if (check_magic(vm, &of))
 	{
-		ret = openfile_read_char(&(vm->champs_fd[i].file), &c);
-		if (ret == -1)
-			err2(vm, "unable to read input");
-		if (ret != 1)
-			break ;
-		vm->champs_fd[i].cor[pos++] = (unsigned char)c;
-		if (pos >= MAX_SIZE)
-			err2(vm, "file too large");
+		close(fd);
+		return (vm->err);
 	}
-	vm->champs_fd[i].size = (pos - PROG_NAME_LENGTH - COMMENT_LENGTH - 16);
-}
-
-static void	open_champ(t_vm *vm, char **av, int i, int *fd)
-{
-	if (vm->err == 0)
+	if (read_buffers(vm, champ, &of))
 	{
-		if ((*fd = open(av[i + 1], O_RDONLY)) < 2)
-			err2(vm, "Unable to open input file");
+		close(fd);
+		return (vm->err);
 	}
+	return (0);
 }
 
-void		load_champion(t_vm *vm, char **av, int *i, int fd[MAX_ARGS_NUMBER])
+void			champion_to_vm(t_vm *vm, int i_champ)
 {
-	static int	id = -1;
-	int			n;
+	t_champ	*champ;
+	size_t	i;
+	size_t	pos;
 
-	vm->n += check_option(vm, *i);
-	n = check_option(vm, *i);
-	open_champ(vm, av, ((*i) + vm->d + vm->v + vm->n), &fd[*i]);
-	if (vm->err == 0)
+	champ = &(vm->champs[i_champ]);
+	pos = i_champ * (MEM_SIZE / vm->n_champs);
+	i = 0;
+	while (i < champ->size_bytecode)
 	{
-		openfile_init(&(vm->champs_fd[*i].file), fd[*i]);
-		if (n == 0)
-		{
-			vm->champs_fd[*i].id = id;
-			pqueue_push(&(vm->threads), create_thread(vm, id));
-			id--;
-		}
-		else
-		{
-			vm->champs_fd[*i].id = vm->champ_n[*i];
-			pqueue_push(&(vm->threads), create_thread(vm, vm->champ_n[*i]));
-		}
-		read_champion(vm, *i);
-		parse_champion(vm, *i);
-		fill_map(vm, *i);
-		(*i)++;
+		vm->map[pos] = champ->bytecode[i];
+		pos = (pos + 1) % MEM_SIZE;
+		i++;
 	}
 }

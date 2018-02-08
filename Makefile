@@ -27,7 +27,7 @@ SRC_ASM = asm.c parse.c error.c op.c label.c argument.c instruction.c make_cor.c
 SRC_FT = ft_strlen.c ft_isprint.c ft_strchr.c ft_atoi.c ft_strcmp.c ft_isdigit.c \
 		 ft_strcpy.c ft_memset.c ft_isspace.c ft_memcpy.c
 SRC_UTIL = cqueue.c cqueue_ft.c pqueue.c pqueue_fast_pass.c
-SRC_IO = openfile.c openfile_write.c
+SRC_IO = openfile.c openfile_write.c openfile_read.c
 SRC_PARSING = states_main.c states_header.c states_label.c states_instruction.c \
 			  save_label.c save_argument.c save_instruction.c check_args.c
 SRC_COREWAR = parse_args.c error2.c thread.c vm.c champion.c draw_game.c dump.c cycle.c op.c \

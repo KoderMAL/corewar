@@ -6,7 +6,7 @@
 /*   By: stoupin <stoupin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/26 13:10:50 by lramirez          #+#    #+#             */
-/*   Updated: 2018/02/08 12:16:26 by stoupin          ###   ########.fr       */
+/*   Updated: 2018/02/08 16:44:08 by stoupin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int	op_aff(t_vm *vm, t_thread *process)
 	reg_nbr = vm->map[(process->location + 2) % MEM_SIZE];
 	display = process->r[reg_nbr] % 256;
 	if (reg_nbr <= REG_NUMBER)
-		write(1, &display, 1);
+		openfile_write_char(&(vm->stdout), (char)display);
 	process->cycles -= 2;
 	process->location = (process->location + 3) % MEM_SIZE;
 	return (1);
