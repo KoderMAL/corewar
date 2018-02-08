@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ldi_ind.c                                          :+:      :+:    :+:   */
+/*   ldi_dir.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dhadley <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/02/08 18:09:04 by dhadley           #+#    #+#             */
-/*   Updated: 2018/02/08 18:21:31 by dhadley          ###   ########.fr       */
+/*   Created: 2018/02/08 18:37:11 by dhadley           #+#    #+#             */
+/*   Updated: 2018/02/08 18:41:10 by dhadley          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,10 @@ static int	second_reg(t_vm *vm, t_thread *pc, int param1)
 
 static int	second_dir(t_vm *vm, t_thread *pc, int param1)
 {
+	int param2;
+	int sum;
+	int tmp;
+
 	param2 = recup_param(vm, (pc->location + 1 + 3) % MEM_SIZE, IND_SIZE);
 	sum = param1 + param2;
 	tmp = recup_param(vm, (pc->location + (sum % IDX_MOD)) % MEM_SIZE, REG_SIZE);
@@ -67,7 +71,7 @@ static int	second_dir(t_vm *vm, t_thread *pc, int param1)
 		return (0);
 }
 
-int	op_ldi_ind(t_vm *vm, t_thread *pc)
+int	op_ldi_dir(t_vm *vm, t_thread *pc)
 {
 	int param1;
 
@@ -78,6 +82,7 @@ int	op_ldi_ind(t_vm *vm, t_thread *pc)
 	}
 	else if (check_params(vm->map[(pc->location + 1) % MEM_SIZE], 2) == REG_CODE)
 	{
-		return (second_dir(vm, pc, param1));
+		return (second_reg(vm, pc, param1));
 	}
+	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: dhadley <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/08 18:11:23 by dhadley           #+#    #+#             */
-/*   Updated: 2018/02/08 18:25:46 by dhadley          ###   ########.fr       */
+/*   Updated: 2018/02/08 18:42:20 by dhadley          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@
  ** need to modify carry
  */
 
-static int	second_reg(t_vm *vm, t_tread *pc, int tmp, int param1)
+static int	second_reg(t_vm *vm, t_thread *pc, int tmp, int param1)
 {
 	int param2;
 	int sum;
@@ -48,7 +48,7 @@ static int	second_reg(t_vm *vm, t_tread *pc, int tmp, int param1)
 		return (0);
 }
 
-static int	second_dir(t_vm *vm, t_tread *pc, int tmp, int param1)
+static int	second_dir(t_vm *vm, t_thread *pc, int tmp, int param1)
 {
 	int param2;
 	int sum;
@@ -72,8 +72,6 @@ static int	second_dir(t_vm *vm, t_tread *pc, int tmp, int param1)
 int	op_ldi_reg(t_vm *vm, t_thread *pc)
 {
 	int param1;
-	int param2;
-	int sum;
 	int tmp;
 
 	tmp = recup_param(vm, (pc->location + 2) % MEM_SIZE, 1);
@@ -86,6 +84,7 @@ int	op_ldi_reg(t_vm *vm, t_thread *pc)
 	}
 	else if (check_params(vm->map[(pc->location + 1) % MEM_SIZE], 2) == REG_CODE)
 	{
-		return (second_dir(vm, pc, tmp, param1));
+		return (second_reg(vm, pc, tmp, param1));
 	}
+	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: stoupin <stoupin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/29 11:22:42 by dhadley           #+#    #+#             */
-/*   Updated: 2018/02/08 18:25:44 by dhadley          ###   ########.fr       */
+/*   Updated: 2018/02/08 18:37:44 by dhadley          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ int	op_ldi(t_vm *vm, t_thread *pc)
 		}
 		else if (check_params(vm->map[(pc->location + 1) % MEM_SIZE], 2) == REG_CODE)
 		{
-			return (second_reg(vm, pc, tmp, param1);
+			return (second_reg(vm, pc, tmp, param1));
 		}
 	}
 	//end of ind condition
