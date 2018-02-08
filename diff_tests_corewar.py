@@ -48,8 +48,8 @@ for champ in champs:
 	if error:
 		continue
 	for i in range(10):
-		zaz_error, zaz_output = get_dump(ZAZ_CW, champ, 0)
-		my_error, my_output = get_dump(MY_CW, champ, 0)
+		zaz_error, zaz_output = get_dump(ZAZ_CW, champ, i)
+		my_error, my_output = get_dump(MY_CW, champ, i)
 		if (zaz_error and not my_error) or (my_error and not zaz_error):
 			if zaz_error:
 				print zaz_output
@@ -63,5 +63,5 @@ for champ in champs:
 				f.write(zaz_output)
 			with open('/tmp/me', 'w') as f:
 				f.write(my_output)
-			print(subprocess.check_output(['diff', '/tmp/zaz', '/tmp/me']).decode('utf-8'))
+			print(subprocess.check_output(['/usr/bin/diff', '/tmp/zaz', '/tmp/me']).decode('utf-8'))
 			sys.exit(1)
