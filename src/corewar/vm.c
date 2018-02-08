@@ -6,7 +6,7 @@
 /*   By: stoupin <stoupin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/16 14:30:57 by alalaoui          #+#    #+#             */
-/*   Updated: 2018/02/08 14:11:06 by stoupin          ###   ########.fr       */
+/*   Updated: 2018/02/08 16:33:25 by stoupin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ static void	check_exit(t_vm *vm, int ac)
 	if (vm->draw_game != 0 && vm->d != 0)
 		err2(vm, "Please use either -d N dump or -visual option");
 	if (ac < 2)
-		err2(vm, "Usage : needs at list one champion");
+		err2(vm, "Usage : needs at least one champion");
 }
 
 int			main(int ac, char **av)

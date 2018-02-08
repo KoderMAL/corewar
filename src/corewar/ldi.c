@@ -6,7 +6,7 @@
 /*   By: stoupin <stoupin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/29 11:22:42 by dhadley           #+#    #+#             */
-/*   Updated: 2018/02/08 12:11:26 by stoupin          ###   ########.fr       */
+/*   Updated: 2018/02/08 16:22:07 by stoupin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int	op_ldi(t_vm *vm, t_thread *pc)
 	int	sum;
 	int	tmp;
 
-	//assuming that the PX->location should be on the opcode
+	//assuming that the pc->location should be on the opcode
 	if (check_params(vm->map[(pc->location + 1) % MEM_SIZE], 1) == IND_CODE)
 	{
 		tmp = recup_param(vm, (pc->location + 2) % MEM_SIZE, IND_SIZE);
