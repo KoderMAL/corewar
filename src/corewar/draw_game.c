@@ -6,17 +6,17 @@
 /*   By: stoupin <stoupin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/26 11:51:36 by alalaoui          #+#    #+#             */
-/*   Updated: 2018/01/31 15:24:03 by stoupin          ###   ########.fr       */
+/*   Updated: 2018/02/08 12:07:52 by stoupin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mlx.h"
 #include "vm.h"
-# include "gui/font.h"
+#include "gui/font.h"
 #include "gui/gui.h"
 #include "gui/gui_corewar.h"
 
-int	draw_game_init(t_vm *vm)
+int		draw_game_init(t_vm *vm)
 {
 	gui_init(&(vm->gui), 2400, 1080, "corewar");
 	if (vm->gui.err == 1)
@@ -28,7 +28,7 @@ int	draw_game_init(t_vm *vm)
 	return (0);
 }
 
-void		draw_map(t_vm *vm, t_font_cursor *fc)
+void	draw_map(t_vm *vm, t_font_cursor *fc)
 {
 	char				line[130];
 	t_coord				c;
@@ -70,7 +70,7 @@ int		draw_game_loop(t_vm *vm)
 	return (0);
 }
 
-void		draw_game_clean(t_vm *vm)
+void	draw_game_clean(t_vm *vm)
 {
 	gui_clean(&(vm->gui));
 	fonts_clean(vm);

@@ -6,7 +6,7 @@
 /*   By: stoupin <stoupin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/30 14:31:43 by alalaoui          #+#    #+#             */
-/*   Updated: 2018/01/31 15:03:29 by stoupin          ###   ########.fr       */
+/*   Updated: 2018/02/08 12:30:28 by stoupin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,10 @@ static void		add_champion(t_vm *vm, int n, char *av)
 {
 	if (ft_strlen(av) > 4)
 	{
-		if (av[ft_strlen(av) - 1] == 'r' && av[ft_strlen(av) - 2] == 'o' && av[ft_strlen(av) - 3] == 'c' && av[ft_strlen(av) - 4] == '.')
+		if (av[ft_strlen(av) - 1] == 'r'
+			&& av[ft_strlen(av) - 2] == 'o'
+			&& av[ft_strlen(av) - 3] == 'c'
+			&& av[ft_strlen(av) - 4] == '.')
 			vm->nb_champs++;
 		else
 			err2(vm, "invalid input file");
@@ -35,12 +38,12 @@ int				check_option(t_vm *vm, int i)
 		return (0);
 }
 
-int 			parse_args(t_vm *vm, int ac, char **av)
+int				parse_args(t_vm *vm, int ac, char **av)
 {
 	t_state state;
-	int 	n;
-	int 	i;
-	int 	c;
+	int		n;
+	int		i;
+	int		c;
 
 	c = 0;
 	n = -1;
@@ -55,7 +58,7 @@ int 			parse_args(t_vm *vm, int ac, char **av)
 			else if (ft_strcmp(av[i], "-visual") == 0)
 				vm->draw_game = 1;
 			else if (ft_strcmp(av[i], "-n") == 0)
-				state= S_N;
+				state = S_N;
 			else
 			{
 				add_champion(vm, n, av[i]);
@@ -86,10 +89,10 @@ int 			parse_args(t_vm *vm, int ac, char **av)
 		}
 		else if (state == S_CHAMP)
 		{
-				add_champion(vm, n, av[i]);
-				vm->champ_n[c++] = n;
-				n = -1;
-				state = S_START;
+			add_champion(vm, n, av[i]);
+			vm->champ_n[c++] = n;
+			n = -1;
+			state = S_START;
 		}
 		i++;
 	}

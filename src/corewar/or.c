@@ -3,28 +3,30 @@
 /*                                                        :::      ::::::::   */
 /*   or.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lararamirez <lararamirez@student.42.fr>    +#+  +:+       +#+        */
+/*   By: stoupin <stoupin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/26 14:39:27 by lramirez          #+#    #+#             */
-/*   Updated: 2018/02/05 14:41:30 by lararamirez      ###   ########.fr       */
+/*   Updated: 2018/02/08 12:25:29 by stoupin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vm.h"
 
-// op_or détermine le type du premier paramètre (T_DIR, T_IND ou T_REG).
-// Execute la fonction correspondante.
-// Chaque fonction récupère les paramètres un à un selon leur type.
-// Déplace le PC à la fin du dernier paramètre récupéré.
-// Place le résultat de [param_1 | param_2] dans param_3.
-// Met le carry à 1 et décrémente le process de 6 cycles (coût d'un or).
+/*
+** op_or détermine le type du premier paramètre (T_DIR, T_IND ou T_REG).
+** Execute la fonction correspondante.
+** Chaque fonction récupère les paramètres un à un selon leur type.
+** Déplace le PC à la fin du dernier paramètre récupéré.
+** Place le résultat de [param_1 | param_2] dans param_3.
+** Met le carry à 1 et décrémente le process de 6 cycles (coût d'un or).
+*/
 
 int		op_or_exit(t_thread *pc)
 {
-		pc->carry = 0;
-		pc->cycles -= 6;
-		pc->location = (pc->location + 1) % MEM_SIZE;
-		return (0);
+	pc->carry = 0;
+	pc->cycles -= 6;
+	pc->location = (pc->location + 1) % MEM_SIZE;
+	return (0);
 }
 
 int		op_or_reg(t_vm *vm, t_thread *pc)
@@ -142,12 +144,15 @@ int		op_or_dir(t_vm *vm, t_thread *pc)
 
 int		op_or(t_vm *vm, t_thread *pc)
 {
-   	pc->location = (pc->location + 1) % MEM_SIZE;
-	if (check_params(vm->map[pc->location], 1) == DIR_CODE)
+	int	param_type;
+
+	param_type = check_params(vm->map[pc->location], 1);
+	pc->location = (pc->location + 1) % MEM_SIZE;
+	if (param_type == DIR_CODE)
 		return (op_or_dir(vm, pc));
-	else if (check_params(vm->map[pc->location], 1) == IND_CODE)
+	else if (param_type == IND_CODE)
 		return (op_or_ind(vm, pc));
-	else if (check_params(vm->map[pc->location], 1) == REG_CODE)
+	else if (param_type == REG_CODE)
 		return (op_or_reg(vm, pc));
 	else
 		return (op_or_exit(pc));

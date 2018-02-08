@@ -3,18 +3,38 @@
 /*                                                        :::      ::::::::   */
 /*   cycle.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alalaoui <alalaoui@student.42.fr>          +#+  +:+       +#+        */
+/*   By: stoupin <stoupin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/26 11:51:04 by dhadley           #+#    #+#             */
-/*   Updated: 2018/01/31 11:57:24 by alalaoui         ###   ########.fr       */
+/*   Updated: 2018/02/08 12:06:59 by stoupin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <limits.h>
 #include "vm.h"
+#include "op_assoc.h"
+
+static const t_op_assoc	g_op_assoc[16] = {
+	{1, &op_live},
+	{2, &op_ld},
+	{3, &op_st},
+	{4, &op_add},
+	{5, &op_sub},
+	{6, &op_and},
+	{7, &op_or},
+	{8, &op_xor},
+	{9, &op_zjmp},
+	{10, &op_ldi},
+	{11, &op_sti},
+	{12, &op_fork},
+	{13, &op_lld},
+	{14, &op_lldi},
+	{15, &op_lfork},
+	{16, &op_aff}
+};
 
 static void		check_cycles(t_vm *vm)
-{	
+{
 	(void)(vm);
 }
 
@@ -34,38 +54,14 @@ const t_op		*find_opcode(int pc)
 
 static void		do_op(t_vm *vm, t_thread *pc)
 {
-	if (vm->op->opcode == 1)
-		op_live(vm, pc);
-	else if (vm->op->opcode == 2)
-		op_ld(vm, pc);
-	else if (vm->op->opcode == 3)
-		op_st(vm, pc);
-	else if (vm->op->opcode == 4)
-		op_add(vm, pc);
-	else if (vm->op->opcode == 5)
-		op_sub(vm, pc);
-	else if (vm->op->opcode == 6)
-		op_and(vm, pc);
-	else if (vm->op->opcode == 7)
-		op_or(vm, pc);
-	else if (vm->op->opcode == 8)
-		op_xor(vm, pc);
-	else if (vm->op->opcode == 9)
-		op_zjmp(vm, pc);
-	else if (vm->op->opcode == 10)
-		op_ldi(vm, pc);
-	else if (vm->op->opcode == 11)
-		op_sti(vm, pc);
-	else if (vm->op->opcode == 12)
-	 	op_fork(vm, pc);
-	else if (vm->op->opcode == 13)
-		op_lld(vm, pc);
-	else if (vm->op->opcode == 14)
-		op_lldi(vm, pc);
-	else if (vm->op->opcode == 15)
-	 	op_lfork(vm, pc);
-	else if (vm->op->opcode == 16)
-		op_aff(vm, pc);
+	int	i;
+
+	i = 1;
+	while (i < 16)
+	{
+		if (vm->op->opcode == g_op_assoc[i].opcode)
+			g_op_assoc[i].op_function(vm, pc);
+	}
 }
 
 static void		check_countdown(t_vm *vm)
@@ -79,14 +75,14 @@ static void		check_countdown(t_vm *vm)
 	while (i < vm->threads.len)
 	{
 		pc = pq->p;
-	printf("pc->countdown=%d\n", pc->countdown);
+		printf("pc->countdown=%d\n", pc->countdown); //
 		if (pc->countdown == -1)
 		{
-			printf("PC LOCATION DANS MAP:%d\n", pc->location);
+			printf("PC LOCATION DANS MAP:%d\n", pc->location); //
 			if ((vm->op = find_opcode(vm->map[pc->location])) != NULL)
 			{
-				printf("OPNAME:%s\n", vm->op->name);
-				printf("OPcode:%d\n", vm->op->opcode);
+				printf("OPNAME:%s\n", vm->op->name); //
+				printf("OPcode:%d\n", vm->op->opcode); //
 				pc->countdown = vm->op->n_cycles;
 			}
 			else
@@ -104,11 +100,11 @@ static void		check_countdown(t_vm *vm)
 	}
 }
 
-void		war_cycle(t_vm *vm)
+void			war_cycle(t_vm *vm)
 {
 	if (vm->game_cycle == INT_MAX || vm->err != 0)
 		vm_clean(vm);
-	printf("\n---CYCLE++---\n");
+	printf("\n---CYCLE++---\n"); //
 	check_cycles(vm);
 	check_countdown(vm);
 	dump(vm);
@@ -117,15 +113,14 @@ void		war_cycle(t_vm *vm)
 
 /*
 ** Pseudocode for each cycle **
-*
---------------
-
-ft_check_cycles(t_vm *vm, cycles)
-{
-	//check if delta--
-	for each threads
-		//check nbr lives stuff
-		//check if thread is dead (and pop)
-}
- 
---------------*/
+**
+** --------------
+**
+** ft_check_cycles(t_vm *vm, cycles)
+** {
+** 		//check if delta--
+** 		for each threads
+**		//check nbr lives stuff
+**		//check if thread is dead (and pop)
+** }
+*/

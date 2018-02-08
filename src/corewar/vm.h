@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   vm.h                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lramirez <lramirez@student.42.fr>          +#+  +:+       +#+        */
+/*   By: stoupin <stoupin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/01/16 14:44:18 by alalaoui          #+#    #+#             */
-/*   Updated: 2018/01/29 10:34:22 by lramirez         ###   ########.fr       */
+/*   Created: 2018/02/08 14:12:51 by stoupin           #+#    #+#             */
+/*   Updated: 2018/02/08 14:14:27 by stoupin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,13 +67,13 @@ typedef struct		s_vm
 	t_font			fonts[N_FONTS];
 }					t_vm;
 
-typedef enum e_state
+typedef enum		e_state
 {
 	S_START,
 	S_D,
 	S_N,
 	S_CHAMP
-}			t_state;
+}					t_state;
 
 /*
 ** vm.c
@@ -86,7 +86,7 @@ void				vm_clean(t_vm *vm);
 ** parse_args.c
 */
 
-int 				parse_args(t_vm *vm, int ac, char **av);
+int					parse_args(t_vm *vm, int ac, char **av);
 int					check_option(t_vm *vm, int i);
 
 /*
@@ -107,10 +107,10 @@ t_thread			*dup_thread(t_thread *src_thread, int pc);
 ** champion.c
 */
 
-
 void				parse_champion(t_vm *vm, int i);
 void				read_champion(t_vm *vm, int i);
-void				load_champion(t_vm *vm, char **av, int *i, int fd[MAX_ARGS_NUMBER]);
+void				load_champion(t_vm *vm, char **av, int *i,
+									int fd[MAX_ARGS_NUMBER]);
 void				fill_map(t_vm *vm, int i);
 
 /*
@@ -125,22 +125,22 @@ void				draw_game_clean(t_vm *vm);
 ** operations
 */
 
-void				op_live(t_vm *vm, t_thread *PC);
-int				op_ld(t_vm *vm, t_thread *PC);
-int				op_st(t_vm *vm, t_thread *PC);
-void				op_add(t_vm *vm, t_thread *process);
-void				op_sub(t_vm *vm, t_thread *process);
-int				op_and(t_vm *vm, t_thread *pc);
-int				op_or(t_vm *vm, t_thread *pc);
-int				op_xor(t_vm *vm, t_thread *pc);
-void				op_zjmp(t_vm *vm, t_thread *process);
-int				op_ldi(t_vm *vm, t_thread *process);
-int				op_sti(t_vm *vm, t_thread *process);
-void				op_fork(t_vm *vm, t_thread *process);
-int				op_lld(t_vm *vm, t_thread *process);
-int				op_lldi(t_vm *vm, t_thread *process);
-void				op_lfork(t_vm *vm, t_thread *process);
-void				op_aff(t_vm *vm, t_thread *process);
+int					op_live(t_vm *vm, t_thread *pc);
+int					op_ld(t_vm *vm, t_thread *pc);
+int					op_st(t_vm *vm, t_thread *pc);
+int					op_add(t_vm *vm, t_thread *process);
+int					op_sub(t_vm *vm, t_thread *process);
+int					op_and(t_vm *vm, t_thread *pc);
+int					op_or(t_vm *vm, t_thread *pc);
+int					op_xor(t_vm *vm, t_thread *pc);
+int					op_zjmp(t_vm *vm, t_thread *process);
+int					op_ldi(t_vm *vm, t_thread *process);
+int					op_sti(t_vm *vm, t_thread *process);
+int					op_fork(t_vm *vm, t_thread *process);
+int					op_lld(t_vm *vm, t_thread *process);
+int					op_lldi(t_vm *vm, t_thread *process);
+int					op_lfork(t_vm *vm, t_thread *process);
+int					op_aff(t_vm *vm, t_thread *process);
 
 /*
 ** params.c

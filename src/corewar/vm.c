@@ -6,7 +6,7 @@
 /*   By: stoupin <stoupin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/16 14:30:57 by alalaoui          #+#    #+#             */
-/*   Updated: 2018/01/31 15:00:42 by alalaoui         ###   ########.fr       */
+/*   Updated: 2018/02/08 14:11:06 by stoupin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 #include "vm.h"
 #include "ft/ft.h"
 
-void vm_init(t_vm *vm)
+void		vm_init(t_vm *vm)
 {
 	int i;
 
@@ -36,14 +36,14 @@ void vm_init(t_vm *vm)
 	ft_memset(vm->champ_n, -1, 4);
 }
 
-void vm_start(t_vm *vm)
+void		vm_start(t_vm *vm)
 {
 	pqueue_init(&(vm->threads));
 	if (vm->draw_game)
 		draw_game_init(vm);
 }
 
-void vm_clean(t_vm *vm)
+void		vm_clean(t_vm *vm)
 {
 	int i;
 
@@ -57,7 +57,7 @@ void vm_clean(t_vm *vm)
 	exit(1);
 }
 
-static void check_exit(t_vm *vm, int ac)
+static void	check_exit(t_vm *vm, int ac)
 {
 	if (vm->cycle_to_dump != -1)
 		vm->d = 2;
@@ -69,7 +69,7 @@ static void check_exit(t_vm *vm, int ac)
 		err2(vm, "Usage : needs at list one champion");
 }
 
-int main(int ac, char **av)
+int			main(int ac, char **av)
 {
 	t_vm	vm;
 	int		fd[MAX_ARGS_NUMBER];

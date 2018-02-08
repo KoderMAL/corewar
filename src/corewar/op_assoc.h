@@ -1,31 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error2.c                                           :+:      :+:    :+:   */
+/*   op_assoc.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: stoupin <stoupin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/01/17 18:06:57 by alalaoui          #+#    #+#             */
-/*   Updated: 2018/02/08 12:08:21 by stoupin          ###   ########.fr       */
+/*   Created: 2018/02/08 11:54:44 by stoupin           #+#    #+#             */
+/*   Updated: 2018/02/08 12:01:08 by stoupin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
-#include "ft/ft.h"
-#include "vm.h"
+#ifndef OP_ASSOC_H
+# define OP_ASSOC_H
 
-int			err2(t_vm *vm, char *err_msg)
-{
-	vm->err = 1;
-	vm->err_msg = err_msg;
-	return (vm->err);
-}
+# include "vm.h"
 
-void		err2_display(t_vm *vm)
+typedef	struct	s_op_assoc
 {
-	if (vm->err == 0)
-		return ;
-	write(2, "Error: ", 7);
-	write(2, vm->err_msg, ft_strlen(vm->err_msg));
-	write(2, "\n", 1);
-}
+	int		opcode;
+	int		(*op_function)(t_vm *vm, t_thread *process);
+}				t_op_assoc;
+
+#endif
