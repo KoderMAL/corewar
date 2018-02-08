@@ -6,7 +6,7 @@
 /*   By: stoupin <stoupin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/09 15:26:53 by dhadley           #+#    #+#             */
-/*   Updated: 2018/02/08 11:31:38 by stoupin          ###   ########.fr       */
+/*   Updated: 2018/02/08 15:02:26 by stoupin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ unsigned char	encode_param_byte(t_instruction *instruction)
 	{
 		param_byte <<= 2;
 		if (instruction->arguments[i].type == T_REG)
-			param_byte |= IND_CODE;
+			param_byte |= REG_CODE;
 		if (instruction->arguments[i].type == T_DIR ||
 			(instruction->arguments[i].type == T_LAB
 				&& instruction->arguments[i].lab_type == T_DIR))
