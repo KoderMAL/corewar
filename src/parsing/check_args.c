@@ -6,10 +6,9 @@
 /*   By: stoupin <stoupin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/09 17:32:19 by alalaoui          #+#    #+#             */
-/*   Updated: 2018/01/28 20:04:41 by stoupin          ###   ########.fr       */
+/*   Updated: 2018/02/08 11:40:27 by stoupin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #include "asm/asm.h"
 
@@ -30,9 +29,10 @@ void			check_value(t_env *env, char *name)
 	{
 		if (!ft_isdigit(name[i]))
 		{
-			  err(env, "syntax error while parsing argument", i);
-			  break ;
-		};
+			err(env, "syntax error while parsing argument",
+					ft_strlen(name) - i);
+			break ;
+		}
 		i++;
 	}
 }
@@ -41,7 +41,6 @@ int				check_labels(t_env *env)
 {
 	t_argument		*arg;
 	t_pqueue_elem	*inst;
-	t_instruction	*tmp;
 	int				i;
 	int				j;
 
@@ -50,11 +49,10 @@ int				check_labels(t_env *env)
 	while (i++ < env->instructions.len)
 	{
 		j = 0;
-		tmp = inst->p;
-		if (tmp->is_lab == 0)
-			while (j < tmp->len)
+		if (((t_instruction*)inst->p)->is_lab == 0)
+			while (j < ((t_instruction*)inst->p)->len)
 			{
-				arg = &(tmp->arguments[j++]);
+				arg = &(((t_instruction*)inst->p)->arguments[j++]);
 				if (arg->type == T_LAB)
 				{
 					env->line = arg->line;
@@ -79,8 +77,10 @@ int				find_label(t_argument *arg, t_pqueue *labels)
 	while (i++ < labels->len)
 	{
 		lab = (t_label*)(tmp->p);
-		if ((arg->lab_type == T_DIR && ft_strcmp(arg->name + 2, lab->name) == 0) ||
-				(arg->lab_type == T_IND && ft_strcmp(arg->name + 1, lab->name) == 0))
+		if ((arg->lab_type == T_DIR
+				&& ft_strcmp(arg->name + 2, lab->name) == 0)
+			|| (arg->lab_type == T_IND
+					&& ft_strcmp(arg->name + 1, lab->name) == 0))
 		{
 			arg->label = tmp->p;
 			return (1);
@@ -94,7 +94,8 @@ void			check_argument(t_argument *arg, t_env *env)
 {
 	env->line = arg->line;
 	env->col = arg->col;
-	if (arg->type == T_LAB && (arg->lab_type == T_DIR || arg->lab_type == T_IND))
+	if (arg->type == T_LAB
+		&& (arg->lab_type == T_DIR || arg->lab_type == T_IND))
 	{
 	}
 	else if (arg->type == T_REG)

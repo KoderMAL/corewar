@@ -6,7 +6,7 @@
 /*   By: stoupin <stoupin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/26 23:02:28 by stoupin           #+#    #+#             */
-/*   Updated: 2018/01/30 16:45:16 by stoupin          ###   ########.fr       */
+/*   Updated: 2018/02/08 11:44:10 by stoupin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,6 @@ typedef struct	s_font_cursor
 
 int				font_load(t_font *font, const char *file_name);
 void			font_clean(t_font *font);
-t_pix			font_get_pixel(t_font *font, int i_char, t_coord c);
 int				font_get_ichar(t_font *font, char c);
 
 /*
@@ -50,6 +49,7 @@ int				font_get_ichar(t_font *font, char c);
 
 void			font_cursor_init(t_font_cursor *fc, t_font *font,
 									t_coord c0, int inter_line);
+t_pix			font_get_pixel(t_font *font, int i_char, t_coord c);
 void			font_print_char(t_gui *gui, t_font *font,
 									t_coord c0, int i_char);
 void			font_cursor_print(t_gui *gui, t_font_cursor *fc, char *s);

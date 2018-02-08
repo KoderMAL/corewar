@@ -6,7 +6,7 @@
 /*   By: stoupin <stoupin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/15 10:53:17 by dhadley           #+#    #+#             */
-/*   Updated: 2018/01/29 09:29:41 by stoupin          ###   ########.fr       */
+/*   Updated: 2018/02/08 11:32:04 by stoupin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,14 +25,14 @@ void	write_magic(t_openfile *of)
 	openfile_write_buf(of, magic, 3);
 }
 
-void	write_comment (t_openfile *of, t_env *env)
+void	write_comment(t_openfile *of, t_env *env)
 {
 	char	size[2];
 
 	if (env->prog_size > 255)
 		size[0] = (env->prog_size >> 8);
 	else
-		size[0] = '\0';	
+		size[0] = '\0';
 	size[1] = (env->prog_size & 255);
 	openfile_write_buf(of, size, 2);
 	openfile_write_buf(of, env->comment, COMMENT_LENGTH);
@@ -48,7 +48,7 @@ void	write_cor(t_env *env)
 	int			fd;
 	t_openfile	of;
 
-	fd = open(env->file_name, O_CREAT | O_WRONLY, S_IRWXU); //check mode and fd
+	fd = open(env->file_name, O_CREAT | O_WRONLY, S_IRWXU);
 	if (fd > 1)
 	{
 		openfile_init(&of, fd);

@@ -6,7 +6,7 @@
 /*   By: stoupin <stoupin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/28 17:43:13 by stoupin           #+#    #+#             */
-/*   Updated: 2018/01/30 16:30:00 by stoupin          ###   ########.fr       */
+/*   Updated: 2018/02/08 11:44:00 by stoupin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,33 @@ void	font_cursor_init(t_font_cursor *fc, t_font *font, t_coord c0,
 	fc->c0 = c0;
 	fc->c = c0;
 	fc->inter_line = inter_line;
+}
+
+t_pix	font_get_pixel(t_font *font, int i_char, t_coord c)
+{
+	int				char_size;
+	int				pixel_size;
+	unsigned char	*p;
+	t_pix			pix;
+
+	pixel_size = (font->grayscale) ? 1 : 3;
+	char_size = font->char_width * font->char_height * pixel_size;
+	p = font->pixels + i_char * char_size
+		+ (c.y * font->char_width + c.x) * pixel_size;
+	if (font->grayscale == 0)
+	{
+		pix.c.r = *p++;
+		pix.c.g = *p++;
+		pix.c.b = *p++;
+	}
+	else
+	{
+		pix.c.r = *p;
+		pix.c.g = *p;
+		pix.c.b = *p;
+	}
+	pix.c.a = 0;
+	return (pix);
 }
 
 void	font_print_char(t_gui *gui, t_font *font, t_coord c0, int i_char)

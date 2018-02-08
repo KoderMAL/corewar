@@ -6,7 +6,7 @@
 /*   By: stoupin <stoupin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/04 16:36:08 by alalaoui          #+#    #+#             */
-/*   Updated: 2018/01/28 19:49:01 by stoupin          ###   ########.fr       */
+/*   Updated: 2018/02/08 11:22:45 by stoupin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@ typedef struct		s_label
 {
 	bool			is_lab;
 	char			*name;
-	int				len; //is it used?
 	int				location;
 }					t_label;
 
@@ -90,6 +89,12 @@ int					err(t_env *env, char *s, int col_back);
 int					err_display(t_env *env);
 
 /*
+** from parse.c
+*/
+
+void				parse_input(t_env *env);
+
+/*
 ** from argument.c
 */
 
@@ -125,7 +130,9 @@ void				check_argument(t_argument *arg, t_env *env);
 
 void				write_cor(t_env *env);
 
-//from space
+/*
+** from assemble.c
+*/
 
 void				assemble(t_env *env);
 

@@ -22,7 +22,7 @@ ifeq ($(UNAME_S),Darwin)
 	endif
 endif
 
-SRC_ASM = asm.c error.c op.c label.c argument.c instruction.c make_cor.c \
+SRC_ASM = asm.c parse.c error.c op.c label.c argument.c instruction.c make_cor.c \
 			assemble.c pass.c store_locations.c assemble_op.c encode_bytes.c
 SRC_FT = ft_strlen.c ft_isprint.c ft_strchr.c ft_atoi.c ft_strcmp.c ft_isdigit.c \
 		 ft_strcpy.c ft_memset.c ft_isspace.c ft_memcpy.c

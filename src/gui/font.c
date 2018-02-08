@@ -6,7 +6,7 @@
 /*   By: stoupin <stoupin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/26 23:04:41 by stoupin           #+#    #+#             */
-/*   Updated: 2018/01/30 16:49:49 by stoupin          ###   ########.fr       */
+/*   Updated: 2018/02/08 11:43:51 by stoupin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,26 +23,11 @@ int		font_err(t_font *font, char *msg)
 	return (1);
 }
 
-int		font_load(t_font *font, const char *file_name)
+int		font_load_arrays(t_font *font, int fd)
 {
-	int	fd;
-	int	ret;
 	int	size;
+	int	ret;
 
-	font->err = 0;
-	font->err_msg = NULL;
-	font->char_list = NULL;
-	font->pixels = NULL;
-	if ((fd = open(file_name, O_RDONLY)) < 0)
-		return (font_err(font, "unable to open font file"));
-	if ((ret = read(fd, &(font->char_count), 1)) != 1)
-		return (font_err(font, "error while reading font (1)"));
-	if ((ret = read(fd, &(font->char_width), 1)) != 1)
-		return (font_err(font, "error while reading font (2)"));
-	if ((ret = read(fd, &(font->char_height), 1)) != 1)
-		return (font_err(font, "error while reading font (3)"));
-	if ((ret = read(fd, &(font->grayscale), 1)) != 1)
-		return (font_err(font, "error while reading font (4)"));
 	font->char_list = (char*)malloc(sizeof(char) * font->char_count);
 	if (font->char_list == NULL)
 		return (font_err(font, "memory error (1)"));
@@ -59,6 +44,34 @@ int		font_load(t_font *font, const char *file_name)
 	return (0);
 }
 
+int		font_load(t_font *font, const char *file_name)
+{
+	int	fd;
+	int	ret;
+
+	font->err = 0;
+	font->err_msg = NULL;
+	font->char_list = NULL;
+	font->pixels = NULL;
+	if ((fd = open(file_name, O_RDONLY)) < 0)
+		return (font_err(font, "unable to open font file"));
+	if ((ret = read(fd, &(font->char_count), 1)) != 1)
+		return (font_err(font, "error while reading font (1)"));
+	if ((ret = read(fd, &(font->char_width), 1)) != 1)
+		return (font_err(font, "error while reading font (2)"));
+	if ((ret = read(fd, &(font->char_height), 1)) != 1)
+		return (font_err(font, "error while reading font (3)"));
+	if ((ret = read(fd, &(font->grayscale), 1)) != 1)
+		return (font_err(font, "error while reading font (4)"));
+	font_load_arrays(font, fd);
+	if (fd >= 0)
+	{
+		close(fd);
+		fd = 0;
+	}
+	return (0);
+}
+
 void	font_clean(t_font *font)
 {
 	font->char_count = 0;
@@ -66,33 +79,6 @@ void	font_clean(t_font *font)
 		free(font->char_list);
 	if (font->pixels)
 		free(font->pixels);
-}
-
-t_pix	font_get_pixel(t_font *font, int i_char, t_coord c)
-{
-	int				char_size;
-	int				pixel_size;
-	unsigned char	*p;
-	t_pix			pix;
-
-	pixel_size = (font->grayscale) ? 1 : 3;
-	char_size = font->char_width * font->char_height * pixel_size;
-	p = font->pixels + i_char * char_size
-		+ (c.y * font->char_width + c.x) * pixel_size;
-	if (font->grayscale == 0)
-	{
-		pix.c.r = *p++;
-		pix.c.g = *p++;
-		pix.c.b = *p++;
-	}
-	else
-	{
-		pix.c.r = *p;
-		pix.c.g = *p;
-		pix.c.b = *p;
-	}
-	pix.c.a = 0;
-	return (pix);
 }
 
 int		font_get_ichar(t_font *font, char c)

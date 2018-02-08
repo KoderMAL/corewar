@@ -6,7 +6,7 @@
 /*   By: stoupin <stoupin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/04 15:49:30 by alalaoui          #+#    #+#             */
-/*   Updated: 2018/01/28 19:48:40 by stoupin          ###   ########.fr       */
+/*   Updated: 2018/02/08 11:17:14 by stoupin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,114 +66,46 @@ static void		env_clean(t_env *env)
 		free(env->file_name);
 }
 
-static int		parse_char(t_env *env, char c)
+static void		print_usage(t_env *env, char **argv)
 {
-	(env->state)(env, c);
-	if (env->err == 1)
-		return (env->err);
-	if (c == '\t')
-		env->col += 4 - (env->col % 4);
-	else if (c == '\n')
-	{
-		env->col = 0;
-		env->line++;
-	}
-	else
-		env->col++;
+	openfile_write_str(&(env->stdout), "Usage: ", 0);
+	openfile_write_str(&(env->stdout), argv[0], 0);
+	openfile_write_str(&(env->stdout), " file.s", 1);
+	err(env, "", -1);
+}
+
+static int		set_cor_file_name(t_env *env, char *s_file_name)
+{
+	char	*cor_file_name;
+	size_t	len;
+
+	len = ft_strlen(s_file_name);
+	cor_file_name = (char *)malloc(sizeof(char) * len + 3);
+	if (cor_file_name == NULL)
+		return (err(env, "memory error", -1));
+	ft_strcpy(cor_file_name, s_file_name);
+	ft_strcpy(cor_file_name + len - 1, "cor");
+	env->file_name = cor_file_name;
 	return (0);
 }
 
-static void		parse(t_env *env)
-{
-	char	c;
-	int		ret;
-
-	while (env->err == 0)
-	{
-		ret = openfile_read_char(&(env->input), &c);
-		if (ret == -1)
-			err(env, "unable to read input", 1);
-		if (ret != 1)
-		{
-			printf("ret = %d\n", ret);
-			break ;
-		}
-		parse_char(env, c);
-	}
-	if (env->err == 0 && env->instructions.len == 0)
-		err(env, "no instruction!", 0);
-	if (env->err == 0)
-		check_labels(env);
-	if (env->err == 0 && (!env->name_check || !env->comment_check))
-		err(env, "name or comment not found", -1);
-}
-
-//A SUPPRIMER AVANT PUSH
-/*
-static void		print_champ(t_pqueue *instructions)
-{
-	t_pqueue_elem	*tmp;
-	t_instruction	*inst;
-	t_label			*lab;
-	int				i;
-	int				j;
-
-	i = 0;
-	tmp = instructions->first;
-	while (i++ < instructions->len)
-	{
-		inst = tmp->p;
-		lab = tmp->p;
-		if (inst->is_lab)
-		{	
-			printf("LABEL:%s\n", lab->name);
-
-		}
-		else
-		{
-			printf("INSTRUCTION:%s\n", inst->op->name);
-			j = 0;
-			while (j < inst->len)
-			{
-				printf("ARG-%d:%s\n", j, inst->arguments[j]->name);
-				j++;
-			}
-		}
-		tmp = tmp->next;
-	}
-}*/
-
-int				main(int ac, char **av)
+int				main(int argc, char **argv)
 {
 	t_env		env;
 	int			fd;
 
 	env_initialization(&env);
-	if (ac != 2 || av[1][0] == '\0')
-	{
-		openfile_write_str(&(env.stdout), "Usage: ", 0);
-		openfile_write_str(&(env.stdout), av[0], 0);
-		openfile_write_str(&(env.stdout), " file.s", 1);
-		err(&env, "", -1);
-	}
+	if (argc != 2 || argv[1][0] == '\0')
+		print_usage(&env, argv);
 	fd = -1;
-	if (env.err == 0 && (fd = open(av[1], O_RDONLY)) < 2)
+	if (env.err == 0 && (fd = open(argv[1], O_RDONLY)) < 2)
 		err(&env, "Unable to open input file", 1);
-	//check if .s and save as .cor in env->file_name;
-	char *tmp;
-	tmp = (char *)malloc(sizeof(char) * ft_strlen(av[1]) + 3);
-	ft_strcpy(tmp, av[1]);
-	tmp[ft_strlen(av[1]) - 1] = 'c';
-	tmp[ft_strlen(av[1])] = 'o';
-	tmp[ft_strlen(av[1]) + 1] = 'r';
-	tmp[ft_strlen(av[1]) + 2 ] = '\0';
-	env.file_name = tmp;
-
-
+	if (env.err == 0)
+		set_cor_file_name(&env, argv[1]);
 	if (env.err == 0)
 		openfile_init(&(env.input), fd);
 	if (env.err == 0)
-		parse(&env);
+		parse_input(&env);
 	if (fd >= 2)
 		close(fd);
 	if (env.err == 0)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   op.h                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alalaoui <alalaoui@student.42.fr>          +#+  +:+       +#+        */
+/*   By: stoupin <stoupin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/10/04 11:33:27 by zaz               #+#    #+#             */
-/*   Updated: 2018/01/26 18:18:52 by dhadley          ###   ########.fr       */
+/*   Updated: 2018/02/08 11:22:57 by stoupin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@
 */
 
 # define IND_SIZE				2
-# define REG_SIZE				4 //dhadley watch out that size differs in asm and vm
-# define DIR_SIZE				4 //dhadley ^
+# define REG_SIZE				4
+# define DIR_SIZE				4
 
 # define REG_CODE				1
 # define DIR_CODE				2
