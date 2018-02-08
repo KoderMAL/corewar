@@ -6,7 +6,7 @@
 /*   By: stoupin <stoupin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/26 11:51:04 by dhadley           #+#    #+#             */
-/*   Updated: 2018/02/08 12:06:59 by stoupin          ###   ########.fr       */
+/*   Updated: 2018/02/08 16:36:00 by stoupin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,7 @@ static void		do_op(t_vm *vm, t_thread *pc)
 	{
 		if (vm->op->opcode == g_op_assoc[i].opcode)
 			g_op_assoc[i].op_function(vm, pc);
+		i++;
 	}
 }
 
