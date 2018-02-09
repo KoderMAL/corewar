@@ -6,7 +6,7 @@
 /*   By: stoupin <stoupin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/08 14:12:51 by stoupin           #+#    #+#             */
-/*   Updated: 2018/02/09 16:48:47 by dhadley          ###   ########.fr       */
+/*   Updated: 2018/02/09 18:25:41 by dhadley          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -162,5 +162,12 @@ void				dump(t_vm *vm);
 
 void				war_cycle(t_vm *vm);
 const t_op			*find_opcode(int pc);
+
+/*
+** other
+*/
+
+int					op_exit(t_thread *pc, int cycles, bool carry);
+int					op_success(t_thread *pc, int cycles, int loc, bool carry);
 
 #endif

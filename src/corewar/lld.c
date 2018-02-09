@@ -6,9 +6,11 @@
 /*   By: stoupin <stoupin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/29 11:04:33 by dhadley           #+#    #+#             */
-/*   Updated: 2018/02/08 12:55:21 by stoupin          ###   ########.fr       */
+/*   Updated: 2018/02/09 18:16:12 by dhadley          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "vm.h"
 
 /*
 ** comme ld sans le %IDX_MOD Cette opération modifie le carry.
@@ -18,12 +20,7 @@
 ** modifie le carry.
 ** ld 34,r3 charge les REG_SIZE octets à partir de l’adresse
 ** (pc + (34 % IDX_MOD)) dans le registre r3.
-**
-** need to modify the carry
-** need to take off cycles from the pc cycle to die
 */
-
-#include "vm.h"
 
 static int	op_lld_dir(t_vm *vm, t_thread *pc)
 {
@@ -33,10 +30,9 @@ static int	op_lld_dir(t_vm *vm, t_thread *pc)
 	param1 = recup_param(vm, (pc->location + 2) % MEM_SIZE, 4);
 	param2 = recup_param(vm, (pc->location + 2 + 4) % MEM_SIZE, 1);
 	if (param2 > REG_NUMBER || param2 < 1)
-		param2 = 0;
+		return (op_exit(pc, 10, true));
 	pc->r[param2] = param1;
-	pc->location = (pc->location + 1 + 1 + 4 + 1) % MEM_SIZE;
-	return (1);
+	return (op_success(pc, 10, 1 + 1 + 4 + 1, true));
 }
 
 static int	op_lld_ind(t_vm *vm, t_thread *pc)
@@ -52,7 +48,7 @@ static int	op_lld_ind(t_vm *vm, t_thread *pc)
 		param2 = 0;
 	pc->r[param2] = param1;
 	pc->location = (pc->location + 1 + 1 + 2 + 1) % MEM_SIZE;
-	return (1);
+	return (op_success(pc, 10, 1 + 1 + 2 + 1, true));
 }
 
 int			op_lld(t_vm *vm, t_thread *pc)
@@ -64,5 +60,5 @@ int			op_lld(t_vm *vm, t_thread *pc)
 		return (op_lld_dir(vm, pc));
 	else if (param_type == IND_CODE)
 		return (op_lld_ind(vm, pc));
-	return (1);
+	return (op_exit(pc, 10, true));
 }
