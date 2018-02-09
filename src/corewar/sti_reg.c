@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sti.c                                              :+:      :+:    :+:   */
+/*   sti_reg.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: stoupin <stoupin@student.42.fr>            +#+  +:+       +#+        */
+/*   By: dhadley <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/01/29 16:26:43 by dhadley           #+#    #+#             */
-/*   Updated: 2018/02/09 16:58:09 by dhadley          ###   ########.fr       */
+/*   Created: 2018/02/09 16:38:42 by dhadley           #+#    #+#             */
+/*   Updated: 2018/02/09 16:58:11 by dhadley          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ static int	third_reg(t_vm *vm, t_thread *pc, int reg, int tmp, int param1)
 {
 	int param2;
 
-	tmp = recup_param(vm, (pc->location + 1 + 1 + 1 + 2) % MEM_SIZE, 1);
+	tmp = recup_param(vm, (pc->location + 1 + 1 + 1 + 1) % MEM_SIZE, 1);
 	if (tmp < 1 || tmp > REG_SIZE)
 		return (0);
 	param2 = pc->r[tmp];
@@ -45,16 +45,15 @@ static int	third_reg(t_vm *vm, t_thread *pc, int reg, int tmp, int param1)
 	vm->map[(pc->location + 1 + (tmp % IDX_MOD)) % MEM_SIZE] = ((reg >> 16) & 255);
 	vm->map[(pc->location + 2 + (tmp % IDX_MOD)) % MEM_SIZE] = ((reg >> 8) & 255);
 	vm->map[(pc->location + 3 + (tmp % IDX_MOD)) % MEM_SIZE] = (reg & 255);
-	pc->location = (pc->location + 1 + 1 + 1 + 2 + 1) % MEM_SIZE;
+	pc->location = (pc->location + 1 + 1 + 1 + 1 + 1) % MEM_SIZE;
 	return (1);
-
 }
 
 static int	third_dir(t_vm *vm, t_thread *pc, int reg, int tmp, int param1)
 {
 	int param2;
 
-	param2 = recup_param(vm, (pc->location + 1 + 1 + 1 + 2) % MEM_SIZE, 2);
+	param2 = recup_param(vm, (pc->location + 1 + 1 + 1 + 1) % MEM_SIZE, 2);
 	tmp = param1 + param2;
 	if (reg < 0)
 	{
@@ -65,44 +64,32 @@ static int	third_dir(t_vm *vm, t_thread *pc, int reg, int tmp, int param1)
 	vm->map[(pc->location + 1 + (tmp % IDX_MOD)) % MEM_SIZE] = ((reg >> 16) & 255);
 	vm->map[(pc->location + 2 + (tmp % IDX_MOD)) % MEM_SIZE] = ((reg >> 8) & 255);
 	vm->map[(pc->location + 3 + (tmp % IDX_MOD)) % MEM_SIZE] = (reg & 255);
-	pc->location = (pc->location + 1 + 1 + 1 + 2 + 2) % MEM_SIZE;
+	pc->location = (pc->location + 1 + 1 + 1 + 1 + 2) % MEM_SIZE;
 	return (1);
-
 }
 
-int	op_sti(t_vm *vm, t_thread *pc)
+int	op_sti_reg(t_vm *vm, t_thread *pc)
 {
 	int	reg;
 	int param1;
 	int tmp;
 
-	//assuming the pc->location should be on the opcode;
-	if (check_params(vm->map[(pc->location + 1) % MEM_SIZE], 1) == REG_CODE)
+	tmp = recup_param(vm, (pc->location + 2) % MEM_SIZE, 1);
+	if (tmp < 1 || tmp > REG_NUMBER)
+		return (0);
+	reg = pc->r[tmp];
+	tmp = recup_param(vm, (pc->location + 1 + 1 + 1) % MEM_SIZE, 1);
+	if (tmp < 1 || tmp > REG_NUMBER)
+		return (0);
+	param1 = pc->r[tmp];
+	if (check_params(vm->map[(pc->location + 1) % MEM_SIZE], 3) == DIR_CODE)
 	{
-		tmp = recup_param(vm, (pc->location + 2) % MEM_SIZE, 1);
-		if (tmp < 1 || tmp > REG_NUMBER)
-			return (0);
-		reg = pc->r[tmp];
-		//param2 = dir || ind
-		if (check_params(vm->map[(pc->location + 1) % MEM_SIZE], 2) == IND_CODE || check_params(vm->map[(pc->location + 1) % MEM_SIZE], 2) == DIR_CODE)
-		{
-			param1 = recup_param(vm, (pc->location + 1 + 1 + 1) % MEM_SIZE, 2);
-			if (check_params(vm->map[(pc->location + 1) % MEM_SIZE], 3) == DIR_CODE)
-			{
-				return (third_dir(vm, pc, reg, tmp, param1));
-			}
-			else if (check_params(vm->map[(pc->location + 1) % MEM_SIZE], 3) == REG_CODE)
-			{
-				return (third_reg(vm, pc, reg, tmp, param1));
-			}
-		}
-		//end p2 = dir || ind
-		//p2 = reg
-		else if (check_params(vm->map[(pc->location + 1) % MEM_SIZE], 2) == REG_CODE)
-		{
-			return (op_sti_reg(vm, pc));
-		}
-		//end p2 = reg
+		return (third_dir(vm, pc, reg, tmp, param1));
 	}
-	return (0);
+	else if (check_params(vm->map[(pc->location + 1) % MEM_SIZE], 3) == REG_CODE)
+	{
+		return (third_reg(vm, pc, reg, tmp, param1));
+	}
+	else
+		return (0);
 }

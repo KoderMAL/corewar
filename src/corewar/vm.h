@@ -6,7 +6,7 @@
 /*   By: stoupin <stoupin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/08 14:12:51 by stoupin           #+#    #+#             */
-/*   Updated: 2018/02/09 16:14:11 by dhadley          ###   ########.fr       */
+/*   Updated: 2018/02/09 16:48:47 by dhadley          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -132,6 +132,7 @@ int					op_ldi(t_vm *vm, t_thread *process);
 int					op_ldi_dir(t_vm *vm, t_thread *process);
 int					op_ldi_reg(t_vm *vm, t_thread *process);
 int					op_sti(t_vm *vm, t_thread *process);
+int					op_sti_reg(t_vm *vm, t_thread *process);
 int					op_fork(t_vm *vm, t_thread *process);
 int					op_lld(t_vm *vm, t_thread *process);
 int					op_lldi(t_vm *vm, t_thread *process);
