@@ -6,7 +6,7 @@
 /*   By: stoupin <stoupin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/25 16:50:31 by dhadley           #+#    #+#             */
-/*   Updated: 2018/02/08 18:25:52 by dhadley          ###   ########.fr       */
+/*   Updated: 2018/02/09 17:40:03 by dhadley          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,6 @@
 ** Cette opération modifie le carry.
 ** ld 34,r3 charge les REG_SIZE octets à partir de l’adresse
 ** (pc + (34 % IDX_MOD)) dans le registre r3.
-**
-** need to modify the carry
-** need to take off cycles from the pc cycle to die
 */
 
 static int	op_ld_dir(t_vm *vm, t_thread *pc)
@@ -32,10 +29,9 @@ static int	op_ld_dir(t_vm *vm, t_thread *pc)
 	param1 = recup_param(vm, (pc->location + 2) % MEM_SIZE, 4);
 	param2 = recup_param(vm, (pc->location + 2 + 4) % MEM_SIZE, 1);
 	if (param2 > REG_NUMBER || param2 < 1)
-		param2 = 0;
+		return (op_exit(pc, 5, true));
 	pc->r[param2] = param1;
-	pc->location = (pc->location + 1 + 1 + 4 + 1) % MEM_SIZE;
-	return (1);
+	return (op_success(pc, 5, 2 + 4 + 1, true));
 }
 
 static int	op_ld_ind(t_vm *vm, t_thread *pc)
@@ -49,10 +45,9 @@ static int	op_ld_ind(t_vm *vm, t_thread *pc)
 								% MEM_SIZE, REG_SIZE);
 	param2 = recup_param(vm, (pc->location + 2 + 2) % MEM_SIZE, 1);
 	if (param2 > REG_NUMBER || param2 < 1)
-		param2 = 0;
+		return (op_exit(pc, 5, true));
 	pc->r[param2] = param1;
-	pc->location = (pc->location + 1 + 1 + 2 + 1) % MEM_SIZE;
-	return (1);
+	return (op_success(pc, 5, 2 + 2 + 1, true));
 }
 
 int			op_ld(t_vm *vm, t_thread *pc)
@@ -64,5 +59,5 @@ int			op_ld(t_vm *vm, t_thread *pc)
 		return (op_ld_dir(vm, pc));
 	else if (param_type == IND_CODE)
 		return (op_ld_ind(vm, pc));
-	return (0);
+	return (op_exit(pc, 5, true));
 }
