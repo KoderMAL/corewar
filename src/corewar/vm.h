@@ -6,7 +6,7 @@
 /*   By: stoupin <stoupin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/08 14:12:51 by stoupin           #+#    #+#             */
-/*   Updated: 2018/02/09 18:25:41 by dhadley          ###   ########.fr       */
+/*   Updated: 2018/02/09 18:27:24 by dhadley          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define VM_H
 
 # include <unistd.h>
+# include <stdbool.h>
 # include "asm/op.h"
 # include "io/openfile.h"
 # include "util/pqueue.h"

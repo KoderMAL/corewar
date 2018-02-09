@@ -6,7 +6,7 @@
 /*   By: dhadley <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/09 17:03:46 by dhadley           #+#    #+#             */
-/*   Updated: 2018/02/09 18:25:39 by dhadley          ###   ########.fr       */
+/*   Updated: 2018/02/09 18:30:22 by dhadley          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	op_exit(t_thread *pc, int cycles, bool carry)
 {
 	if (carry == true)
 		pc->carry = 0;
-	pc->cycles -= num_cycles;
+	pc->cycles -= cycles;
 	pc->location = (pc->location + 1) % MEM_SIZE;
 	return (0);
 }

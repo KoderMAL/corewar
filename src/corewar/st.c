@@ -6,7 +6,7 @@
 /*   By: stoupin <stoupin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/29 15:23:39 by dhadley           #+#    #+#             */
-/*   Updated: 2018/02/09 17:39:38 by dhadley          ###   ########.fr       */
+/*   Updated: 2018/02/09 18:29:14 by dhadley          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,9 +70,6 @@ int			op_st(t_vm *vm, t_thread *pc)
 			return (op_st_reg(vm, pc, param1));
 		else if (param_type == IND_CODE)
 			return (op_st_ind(vm, pc, param1));
-		else
-			return (op_exit(pc, 5, false);
 	}
-	else
-		return (op_exit(pc, 5, false));
+	return (op_exit(pc, 5, false));
 }
