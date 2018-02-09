@@ -6,7 +6,7 @@
 /*   By: dhadley <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/08 18:11:23 by dhadley           #+#    #+#             */
-/*   Updated: 2018/02/08 18:42:20 by dhadley          ###   ########.fr       */
+/*   Updated: 2018/02/09 17:51:45 by dhadley          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,6 @@
  ** On lit REG_SIZE octet à l’adresse (pc + (S % IDX_MOD)) que l’on
  ** copie dans r1.
  ** Les paramètres 1 et 2 sont des index.
- **
- ** need to take off cycles
- ** need to modify carry
  */
 
 static int	second_reg(t_vm *vm, t_thread *pc, int tmp, int param1)
@@ -31,7 +28,7 @@ static int	second_reg(t_vm *vm, t_thread *pc, int tmp, int param1)
 
 	tmp = recup_param(vm, (pc->location + 1 + 2) % MEM_SIZE, 1);
 	if (tmp > REG_NUMBER || tmp < 1)
-		return (0);
+		return (op_exit(pc, 25, false));
 	param2 = pc->r[tmp];
 	sum = param1 + param2;
 	tmp = recup_param(vm, (pc->location + (sum % IDX_MOD)) % MEM_SIZE, REG_SIZE);
@@ -39,13 +36,12 @@ static int	second_reg(t_vm *vm, t_thread *pc, int tmp, int param1)
 	{
 		param1 = recup_param(vm, (pc->location + 1 + 2 + 1) % MEM_SIZE, 1);
 		if (param1 > REG_NUMBER || param1 < 1)
-			return (0);
+			return (op_exit(pc, 25, false));
 		pc->r[param1] = tmp;
 		pc->location = (pc->location + 1 + 2 + 1 + 1) % MEM_SIZE;
-		return (1);
+		return (op_success(pc, 25, 1 + 2 + 1 + 1, false));
 	}
-	else
-		return (0);
+	return (op_exit(pc, 25, false));
 }
 
 static int	second_dir(t_vm *vm, t_thread *pc, int tmp, int param1)
@@ -60,13 +56,11 @@ static int	second_dir(t_vm *vm, t_thread *pc, int tmp, int param1)
 	{
 		param1 = recup_param(vm, (pc->location + 1 + 2 + 2) % MEM_SIZE, 1);
 		if (param1 > REG_NUMBER || param1 < 1)
-			return (0);
+			return (op_exit(pc, 25, false));
 		pc->r[param1] = tmp;
-		pc->location = (pc->location + 1 + 2 + 2 + 1) % MEM_SIZE;
-		return (1);
+		return (op_success(pc, 25, 1 + 2 + 2 + 1, false));
 	}
-	else
-		return (0);
+	return (op_exit(pc, 25, false));
 }
 
 int	op_ldi_reg(t_vm *vm, t_thread *pc)
@@ -76,15 +70,11 @@ int	op_ldi_reg(t_vm *vm, t_thread *pc)
 
 	tmp = recup_param(vm, (pc->location + 2) % MEM_SIZE, 1);
 	if (tmp > REG_NUMBER || tmp < 1)
-		return (0);
+		return (op_exit(pc, 25, false));
 	param1 = pc->r[tmp];
 	if (check_params(vm->map[(pc->location + 1) % MEM_SIZE], 2) == DIR_CODE)
-	{
 		return (second_dir(vm, pc, tmp, param1));
-	}
 	else if (check_params(vm->map[(pc->location + 1) % MEM_SIZE], 2) == REG_CODE)
-	{
 		return (second_reg(vm, pc, tmp, param1));
-	}
-	return (0);
+	return (op_exit(pc, 25, false));
 }
