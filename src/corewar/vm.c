@@ -6,7 +6,7 @@
 /*   By: stoupin <stoupin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/16 14:30:57 by alalaoui          #+#    #+#             */
-/*   Updated: 2018/02/08 19:19:35 by stoupin          ###   ########.fr       */
+/*   Updated: 2018/02/09 14:40:45 by stoupin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,9 +40,6 @@ void		vm_start(t_vm *vm)
 
 void		vm_clean(t_vm *vm)
 {
-	int i;
-
-	i = 0;
 	err2_display(vm);
 	pqueue_delete(&(vm->threads));
 	if (vm->draw_game)

@@ -6,7 +6,7 @@
 /*   By: stoupin <stoupin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/26 12:00:20 by alalaoui          #+#    #+#             */
-/*   Updated: 2018/02/08 19:19:15 by stoupin          ###   ########.fr       */
+/*   Updated: 2018/02/09 14:40:53 by stoupin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,9 +50,6 @@ static void	write_map(t_vm *vm)
 
 void		dump(t_vm *vm)
 {
-	int		i;
-
-	i = 0;
 	if (vm->cycle_to_dump != -1)
 	{
 		if (vm->game_cycle == vm->cycle_to_dump)
