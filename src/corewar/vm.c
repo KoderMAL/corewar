@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   vm.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: stoupin <stoupin@student.42.fr>            +#+  +:+       +#+        */
+/*   By: alalaoui <alalaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/16 14:30:57 by alalaoui          #+#    #+#             */
-/*   Updated: 2018/02/12 18:03:56 by dhadley          ###   ########.fr       */
+/*   Updated: 2018/02/12 19:16:55 by alalaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,11 +31,11 @@ void		vm_start(t_vm *vm)
 	int	i;
 
 	pqueue_init(&(vm->threads));
-	i = 0;
-	while (i < vm->n_champs)
+	i = -1;
+	while (ABS(i) < vm->n_champs)
 	{
 		pqueue_push(&(vm->threads), create_thread(vm, i));
-		i++;
+		i--;
 	}
 	if (vm->draw_game)
 		draw_game_init(vm);
