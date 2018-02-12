@@ -6,7 +6,7 @@
 /*   By: stoupin <stoupin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/12 10:25:40 by alalaoui          #+#    #+#             */
-/*   Updated: 2018/01/30 16:43:54 by stoupin          ###   ########.fr       */
+/*   Updated: 2018/02/12 16:07:20 by stoupin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ int			ft_str_isdigit(char *s)
 	int		i;
 
 	i = 0;
+	if (s[0] == '-' || s[0] == '+')
+		i++;
 	while (s[i])
 	{
 		if (ft_isdigit(s[i]) == 0)
