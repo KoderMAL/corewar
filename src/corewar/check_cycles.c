@@ -6,13 +6,13 @@
 /*   By: dhadley <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/12 16:17:49 by dhadley           #+#    #+#             */
-/*   Updated: 2018/02/12 17:16:52 by dhadley          ###   ########.fr       */
+/*   Updated: 2018/02/12 17:55:27 by dhadley          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vm.h"
 
-static int	kill_process(t_vm *vm)
+static void kill_process(t_vm *vm)
 {
 	t_thead			*pc;
 	t_pqueue_elem	*pq;
