@@ -6,7 +6,7 @@
 /*   By: stoupin <stoupin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/26 11:51:04 by dhadley           #+#    #+#             */
-/*   Updated: 2018/02/08 16:38:13 by stoupin          ###   ########.fr       */
+/*   Updated: 2018/02/12 16:19:16 by dhadley          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,11 +32,6 @@ static const t_op_assoc	g_op_assoc[16] = {
 	{15, &op_lfork},
 	{16, &op_aff}
 };
-
-static void		check_cycles(t_vm *vm)
-{
-	(void)(vm);
-}
 
 const t_op		*find_opcode(int pc)
 {
@@ -111,17 +106,3 @@ void			war_cycle(t_vm *vm)
 	dump(vm);
 	vm->game_cycle++;
 }
-
-/*
-** Pseudocode for each cycle **
-**
-** --------------
-**
-** ft_check_cycles(t_vm *vm, cycles)
-** {
-** 		//check if delta--
-** 		for each threads
-**		//check nbr lives stuff
-**		//check if thread is dead (and pop)
-** }
-*/

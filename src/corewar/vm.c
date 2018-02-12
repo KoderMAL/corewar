@@ -6,7 +6,7 @@
 /*   By: stoupin <stoupin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/16 14:30:57 by alalaoui          #+#    #+#             */
-/*   Updated: 2018/02/09 14:40:45 by stoupin          ###   ########.fr       */
+/*   Updated: 2018/02/12 17:13:13 by dhadley          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,9 @@ void		vm_init(t_vm *vm)
 	openfile_init(&(vm->stdout), STDOUT_FILENO);
 	openfile_init(&(vm->stderr), STDERR_FILENO);
 	vm->cycle_to_dump = -1;
+	vm->cycle_to_die = 0;
+	vm->num_checkups = 0;
+	vm->num_lives = 0;
 }
 
 void		vm_start(t_vm *vm)

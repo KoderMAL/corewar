@@ -6,7 +6,7 @@
 /*   By: stoupin <stoupin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/08 14:12:51 by stoupin           #+#    #+#             */
-/*   Updated: 2018/02/09 18:27:24 by dhadley          ###   ########.fr       */
+/*   Updated: 2018/02/12 17:25:11 by dhadley          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ typedef struct		s_thread
 	int			cycles;
 	int			location;
 	int			countdown;
+	bool		alive;
 }					t_thread;
 
 typedef struct		s_champ
@@ -57,6 +58,9 @@ typedef struct		s_vm
 	int				cycle_to_dump;
 	char			*err_msg;
 	int				game_cycle;
+	int				num_lives;
+	int				cycle_to_die;
+	int				num_checkups;
 	const t_op		*op;
 	int				draw_game;
 	t_gui			gui;

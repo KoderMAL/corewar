@@ -1,0 +1,48 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   check_cycles.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: dhadley <marvin@42.fr>                     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/02/12 16:17:49 by dhadley           #+#    #+#             */
+/*   Updated: 2018/02/12 17:16:52 by dhadley          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "vm.h"
+
+static int	kill_process(t_vm *vm)
+{
+	t_thead			*pc;
+	t_pqueue_elem	*pq;
+	int				i;
+
+	i = 0;
+	pq = vm->threads.first;
+	while (i < vm->threads.len)
+	{
+		pc = pq->p;
+		if (pc->alive == true)
+			alive = false;
+		else
+			//pop PC;
+		pq = pq->next;
+		i++;
+	}
+}
+
+void	check_cycles(t_vm *vm)
+{
+	if (vm->game_cycle % vm->cycle_to_die == 0)
+	{
+		kill_process(vm);
+		if (vm->num_lives >= NBR_LIVE || vm->num_checkups == MAX_CHECKS)
+		{
+			vm->cycle_to_die -= CYCLE_DELTA;
+			vm->num_checkups = -1;
+		}
+		vm->num_checkups++;
+		vm->num_lives = 0;
+	}
+}
