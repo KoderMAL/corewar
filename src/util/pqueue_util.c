@@ -39,7 +39,7 @@ int		pqueue_push_front(t_pqueue *pqueue, void *p)
 ** remove an element from the queue
 */
 
-void	pqueue_remove(t_pqueue *pqueue, t_pqueue_elem *elem)
+void	*pqueue_remove(t_pqueue *pqueue, t_pqueue_elem *elem)
 {
 	void	*p;
 
