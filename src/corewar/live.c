@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   live.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: stoupin <stoupin@student.42.fr>            +#+  +:+       +#+        */
+/*   By: alalaoui <alalaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/25 11:32:35 by lramirez          #+#    #+#             */
-/*   Updated: 2018/02/08 18:01:56 by stoupin          ###   ########.fr       */
+/*   Updated: 2018/02/12 16:47:42 by alalaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ int	op_live(t_vm *vm, t_thread *process)
 		if (id == player)
 		{
 			// noter que tel joueur a fait un live a tel cycle dans champ
-			//printf("un processus dit que le joueur %d(%s) est en vie\n", player + 1, vm->champs_fd[player].name); //
+			//printf("un processus dit que le joueur %d(%s) est en vie\n", player + 1, vm->champs_fd[player].name);
 			break ;
 		}
 		player++;

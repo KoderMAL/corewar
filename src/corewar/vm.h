@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   vm.h                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: stoupin <stoupin@student.42.fr>            +#+  +:+       +#+        */
+/*   By: alalaoui <alalaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/08 14:12:51 by stoupin           #+#    #+#             */
-/*   Updated: 2018/02/12 17:27:12 by dhadley          ###   ########.fr       */
+/*   Updated: 2018/02/12 17:38:16 by alalaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -168,6 +168,12 @@ void				dump(t_vm *vm);
 
 void				war_cycle(t_vm *vm);
 const t_op			*find_opcode(int pc);
+
+/*
+** check_cycles.c
+*/
+
+void				check_cycles(t_vm *vm);
 
 /*
 ** other

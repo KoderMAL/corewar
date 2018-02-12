@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_cycles.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dhadley <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: alalaoui <alalaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/12 16:17:49 by dhadley           #+#    #+#             */
-/*   Updated: 2018/02/12 17:16:52 by dhadley          ###   ########.fr       */
+/*   Updated: 2018/02/12 17:39:27 by alalaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static int	kill_process(t_vm *vm)
 {
-	t_thead			*pc;
+	t_thread		*pc;
 	t_pqueue_elem	*pq;
 	int				i;
 
@@ -24,7 +24,7 @@ static int	kill_process(t_vm *vm)
 	{
 		pc = pq->p;
 		if (pc->alive == true)
-			alive = false;
+			pc->alive = false;
 		else
 			//pop PC;
 		pq = pq->next;
