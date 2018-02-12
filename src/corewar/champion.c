@@ -6,7 +6,7 @@
 /*   By: stoupin <stoupin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/24 15:16:28 by alalaoui          #+#    #+#             */
-/*   Updated: 2018/02/08 19:17:51 by stoupin          ###   ########.fr       */
+/*   Updated: 2018/02/12 15:46:48 by stoupin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,11 +58,12 @@ static int	read_buffers(t_vm *vm, t_champ *champ, t_openfile *of)
 	return (0);
 }
 
-int			champion_load(t_vm *vm, t_champ *champ, char *file_name)
+int			champion_load(t_vm *vm, t_champ *champ, int n, char *file_name)
 {
 	int			fd;
 	t_openfile	of;
 
+	champ->number = n;
 	if ((fd = open(file_name, O_RDONLY)) < 2)
 		return (err2(vm, "unable to open input file"));
 	openfile_init(&of, fd);

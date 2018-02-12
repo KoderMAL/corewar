@@ -6,49 +6,81 @@
 /*   By: stoupin <stoupin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/30 14:31:43 by alalaoui          #+#    #+#             */
-/*   Updated: 2018/02/08 18:41:42 by stoupin          ###   ########.fr       */
+/*   Updated: 2018/02/12 16:17:33 by stoupin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vm.h"
 
-static int		find_available_slot(t_vm *vm)
+/*
+** this function returns 1 if there is no player with number n
+*/
+
+static int		is_number_available(t_vm *vm, int n)
 {
 	int	i;
 
 	i = 0;
-	while (i < MAX_PLAYERS)
+	while (i < vm->n_champs)
 	{
-		if (vm->champs[i].loaded == 0)
-			return (i);
+		if (vm->champs[i].number == n)
+			return (0);
 		i++;
 	}
-	return (-1);
+	return (1);
 }
 
-static void		add_champion(t_vm *vm, int n, char *file_name)
+/*
+** this function finds the first available negative number
+*/
+
+static int		find_available_number(t_vm *vm)
+{
+	int	i;
+
+	i = -1;
+	while (1)
+	{
+		if (is_number_available(vm, i))
+			return (i);
+		i--;
+	}
+}
+
+static void		add_champion(t_vm *vm, int n_is_set, int n, char *file_name)
 {
 	if (vm->n_champs >= MAX_PLAYERS)
 		err2(vm, "too many champions (maximum is 4)");
 	else if (ft_strlen(file_name) >= 4
 			&& ft_strcmp(file_name + ft_strlen(file_name) - 4, ".cor") == 0)
 	{
-		if (n == -1)
-			n = find_available_slot(vm);
-		champion_load(vm, &(vm->champs[n]), file_name);
-		vm->n_champs++;
+		if (n_is_set)
+		{
+			if (!is_number_available(vm, n))
+				err2(vm, "too champions have the same number!");
+		}
+		else
+			n = find_available_number(vm);
 	}
 	else
-		err2(vm, "file name must end with .cor");
+		err2(vm, file_name[0] == '-' ? "unknown option"
+					: "file name must end with .cor");
+	if (vm->err == 0)
+	{
+		champion_load(vm, &(vm->champs[vm->n_champs]), n, file_name);
+		vm->n_champs++;
+	}
 }
 
 int				parse_args(t_vm *vm, int ac, char **av)
 {
 	t_state state;
 	int		n;
+	int		n_is_set;
 	int		i;
 
-	n = -1;
+	n = 0;
+	n_is_set = 0;
 	i = 1;
 	state = S_START;
 	while (i < ac && vm->err == 0)
@@ -63,8 +95,8 @@ int				parse_args(t_vm *vm, int ac, char **av)
 				state = S_N;
 			else
 			{
-				add_champion(vm, n, av[i]);
-				n = -1;
+				add_champion(vm, n_is_set, n, av[i]);
+				n_is_set = 0;
 			}
 		}
 		else if (state == S_D)
@@ -83,6 +115,7 @@ int				parse_args(t_vm *vm, int ac, char **av)
 			if (ft_str_isdigit(av[i]))
 			{
 				n = ft_atoi(av[i]);
+				n_is_set = 1;
 				state = S_CHAMP;
 			}
 			else
@@ -90,8 +123,8 @@ int				parse_args(t_vm *vm, int ac, char **av)
 		}
 		else if (state == S_CHAMP)
 		{
-			add_champion(vm, n, av[i]);
-			n = -1;
+			add_champion(vm, n_is_set, n, av[i]);
+			n_is_set = 0;
 			state = S_START;
 		}
 		i++;
