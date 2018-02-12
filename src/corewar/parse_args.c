@@ -6,7 +6,7 @@
 /*   By: stoupin <stoupin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/30 14:31:43 by alalaoui          #+#    #+#             */
-/*   Updated: 2018/02/12 15:48:16 by stoupin          ###   ########.fr       */
+/*   Updated: 2018/02/12 16:17:33 by stoupin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,8 @@ static void		add_champion(t_vm *vm, int n_is_set, int n, char *file_name)
 			n = find_available_number(vm);
 	}
 	else
-		err2(vm, "file name must end with .cor");
+		err2(vm, file_name[0] == '-' ? "unknown option"
+					: "file name must end with .cor");
 	if (vm->err == 0)
 	{
 		champion_load(vm, &(vm->champs[vm->n_champs]), n, file_name);
