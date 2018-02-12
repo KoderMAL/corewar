@@ -50,5 +50,5 @@ void	*pqueue_remove(t_pqueue *pqueue, t_pqueue_elem *elem)
 	pqueue->len--;
 	p = elem->p;
 	free(elem);
-	return (elem);
+	return (p);
 }
