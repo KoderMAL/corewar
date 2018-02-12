@@ -6,7 +6,7 @@
 /*   By: alalaoui <alalaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/12 16:17:49 by dhadley           #+#    #+#             */
-/*   Updated: 2018/02/12 18:33:51 by dhadley          ###   ########.fr       */
+/*   Updated: 2018/02/12 18:36:04 by dhadley          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ static void	kill_process(t_vm *vm)
 			pc->alive = false;
 		else
 		{
-			pqueue_remove(vm->threads, pq);
+			pqueue_remove(&(vm->threads), pq);
 			free(pc);
 		}
 		pq = tmp;
