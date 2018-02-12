@@ -6,7 +6,7 @@
 /*   By: stoupin <stoupin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/08 14:12:51 by stoupin           #+#    #+#             */
-/*   Updated: 2018/02/09 18:27:24 by dhadley          ###   ########.fr       */
+/*   Updated: 2018/02/12 15:44:38 by stoupin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ typedef struct		s_thread
 
 typedef struct		s_champ
 {
-	int			loaded;
+	int			number;
 	size_t		size;
 	size_t		size_bytecode;
 	char		name[PROG_NAME_LENGTH + 1];
@@ -105,7 +105,8 @@ t_thread			*dup_thread(t_thread *src_thread, int pc);
 ** champion.c
 */
 
-int					champion_load(t_vm *vm, t_champ *champ, char *file_name);
+int					champion_load(t_vm *vm, t_champ *champ, int n,
+									char *file_name);
 void				champion_to_vm(t_vm *vm, int i_champ);
 
 /*
