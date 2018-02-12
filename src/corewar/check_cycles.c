@@ -6,7 +6,7 @@
 /*   By: alalaoui <alalaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/12 16:17:49 by dhadley           #+#    #+#             */
-/*   Updated: 2018/02/12 17:55:23 by alalaoui         ###   ########.fr       */
+/*   Updated: 2018/02/12 18:04:36 by dhadley          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,10 @@ static void		kill_process(t_vm *vm)
 
 void		check_cycles(t_vm *vm)
 {
-	if (vm->game_cycle % vm->cycle_to_die == 0)
+	if (vm->cycle_to_die == 0)
+		;
+		//end game
+	else if (vm->game_cycle % vm->cycle_to_die == 0)
 	{
 		kill_process(vm);
 		if (vm->num_lives >= NBR_LIVE || vm->num_checkups == MAX_CHECKS)
