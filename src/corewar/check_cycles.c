@@ -3,18 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   check_cycles.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dhadley <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: alalaoui <alalaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/12 16:17:49 by dhadley           #+#    #+#             */
-/*   Updated: 2018/02/12 17:55:27 by dhadley          ###   ########.fr       */
+/*   Updated: 2018/02/12 18:07:20 by dhadley          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vm.h"
 
-static void kill_process(t_vm *vm)
+static void	kill_process(t_vm *vm)
 {
-	t_thead			*pc;
+	t_thread		*pc;
 	t_pqueue_elem	*pq;
 	int				i;
 
@@ -24,7 +24,7 @@ static void kill_process(t_vm *vm)
 	{
 		pc = pq->p;
 		if (pc->alive == true)
-			alive = false;
+			pc->alive = false;
 		else
 			//pop PC;
 		pq = pq->next;
@@ -32,9 +32,12 @@ static void kill_process(t_vm *vm)
 	}
 }
 
-void	check_cycles(t_vm *vm)
+void		check_cycles(t_vm *vm)
 {
-	if (vm->game_cycle % vm->cycle_to_die == 0)
+	if (vm->cycle_to_die == 0)
+		;
+		//end game
+	else if (vm->game_cycle % vm->cycle_to_die == 0)
 	{
 		kill_process(vm);
 		if (vm->num_lives >= NBR_LIVE || vm->num_checkups == MAX_CHECKS)

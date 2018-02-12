@@ -6,7 +6,7 @@
 /*   By: stoupin <stoupin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/06 13:50:22 by alalaoui          #+#    #+#             */
-/*   Updated: 2018/01/26 12:14:35 by stoupin          ###   ########.fr       */
+/*   Updated: 2018/02/12 17:28:27 by stoupin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 typedef struct	s_pqueue_elem
 {
 	void					*p;
+	struct s_pqueue_elem	*prev;
 	struct s_pqueue_elem	*next;
 }				t_pqueue_elem;
 
@@ -38,9 +39,10 @@ void			pqueue_delete(t_pqueue *pqueue);
 void			pqueue_clean(t_pqueue *pqueue);
 
 /*
-** pqueue_fast_pass.c
+** pqueue_util.c
 */
 
 int				pqueue_push_front(t_pqueue *pqueue, void *p);
+void			*pqueue_remove(t_pqueue *pqueue, t_pqueue_elem *elem);
 
 #endif
