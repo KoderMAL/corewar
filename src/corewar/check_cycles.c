@@ -6,13 +6,13 @@
 /*   By: alalaoui <alalaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/12 16:17:49 by dhadley           #+#    #+#             */
-/*   Updated: 2018/02/12 17:39:27 by alalaoui         ###   ########.fr       */
+/*   Updated: 2018/02/12 17:55:23 by alalaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vm.h"
 
-static int	kill_process(t_vm *vm)
+static void		kill_process(t_vm *vm)
 {
 	t_thread		*pc;
 	t_pqueue_elem	*pq;
@@ -32,7 +32,7 @@ static int	kill_process(t_vm *vm)
 	}
 }
 
-void	check_cycles(t_vm *vm)
+void		check_cycles(t_vm *vm)
 {
 	if (vm->game_cycle % vm->cycle_to_die == 0)
 	{
