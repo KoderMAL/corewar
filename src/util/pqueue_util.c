@@ -44,7 +44,7 @@ void	*pqueue_remove(t_pqueue *pqueue, t_pqueue_elem *elem)
 	void	*p;
 
 	if (pqueue == NULL || elem == NULL || pqueue->len < 1)
-		return ;
+		return (NULL);
 	elem->prev->next = elem->next;
 	elem->next->prev = elem->prev;
 	pqueue->len--;
