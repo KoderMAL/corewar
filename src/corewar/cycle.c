@@ -6,7 +6,7 @@
 /*   By: stoupin <stoupin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/26 11:51:04 by dhadley           #+#    #+#             */
-/*   Updated: 2018/02/12 18:33:54 by dhadley          ###   ########.fr       */
+/*   Updated: 2018/02/13 13:47:47 by dhadley          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ static void		check_countdown(t_vm *vm)
 			{
 				//printf("OPNAME:%s\n", vm->op->name); //
 				//printf("OPcode:%d\n", vm->op->opcode); //
-				pc->countdown = vm->op->n_cycles;
+				pc->countdown = (vm->op->n_cycles - 1);
 			}
 			else
 				pc->location = (pc->location + 1) % MEM_SIZE;

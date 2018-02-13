@@ -6,7 +6,7 @@
 /*   By: alalaoui <alalaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/16 14:30:57 by alalaoui          #+#    #+#             */
-/*   Updated: 2018/02/13 11:39:18 by alalaoui         ###   ########.fr       */
+/*   Updated: 2018/02/13 15:31:04 by alalaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 void		vm_init(t_vm *vm)
 {
 	ft_memset(vm, 0, sizeof(*vm));
+	ft_memset(&(vm->winner), 0, sizeof(t_win));
 	openfile_init(&(vm->stdout), STDOUT_FILENO);
 	openfile_init(&(vm->stderr), STDERR_FILENO);
 	vm->cycle_to_dump = -1;
@@ -59,6 +60,8 @@ int			main(int argc, char **argv)
 
 	vm_init(&vm);
 	parse_args(&vm, argc, argv);
+	if (argc < 2 || vm.n_champs < 1)
+		err2(&vm, "Usage: ./corewar [-d N] [[-n N] champ.cor] ...");
 	if (vm.err == 0)
 	{
 		openfile_write_str(&(vm.stdout), "Introducing contestants...", 1);

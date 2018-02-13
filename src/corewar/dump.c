@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   dump.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: stoupin <stoupin@student.42.fr>            +#+  +:+       +#+        */
+/*   By: alalaoui <alalaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/26 12:00:20 by alalaoui          #+#    #+#             */
-/*   Updated: 2018/02/13 10:43:45 by dhadley          ###   ########.fr       */
+/*   Updated: 2018/02/13 15:32:36 by alalaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static void	write_hex(t_vm *vm, unsigned char byte)
 	openfile_write_char(&(vm->stdout), digits[byte % 16]);
 }
 
-static void	write_map(t_vm *vm)
+void		write_map(t_vm *vm)
 {
 	unsigned char	byte;
 	unsigned int	i;

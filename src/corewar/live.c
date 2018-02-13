@@ -6,7 +6,7 @@
 /*   By: alalaoui <alalaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/25 11:32:35 by lramirez          #+#    #+#             */
-/*   Updated: 2018/02/12 18:06:17 by dhadley          ###   ########.fr       */
+/*   Updated: 2018/02/13 15:24:38 by alalaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ int	op_live(t_vm *vm, t_thread *process)
 		{
 			vm->num_lives++;
 			process->alive = true;
+			vm->champs[player].last_live = vm->game_cycle;
 			// noter que tel joueur a fait un live a tel cycle dans champ
 			//printf("un processus dit que le joueur %d(%s) est en vie\n", player + 1, vm->champs_fd[player].name);
 			break ;
