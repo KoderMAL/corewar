@@ -6,7 +6,7 @@
 /*   By: alalaoui <alalaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/12 16:17:49 by dhadley           #+#    #+#             */
-/*   Updated: 2018/02/13 15:38:38 by alalaoui         ###   ########.fr       */
+/*   Updated: 2018/02/13 17:15:33 by alalaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ static void	kill_process(t_vm *vm)
 
 	i = 0;
 	pq = vm->threads.first;
+	if (vm->threads.len == 1)
+		vm->winner = vm->threads.r
 	while (pq)
 	{
 		tmp = pq->next;
@@ -41,11 +43,12 @@ static void	print_winner(t_vm *vm)
 {
 	if (vm->cycle_to_dump != -1)
 		write_map(vm);
-	printf("WIN\n");
 	openfile_write_str(&(vm->stdout), "Winner is Player ", 0);
-	openfile_write_nbr(&(vm->stdout), vm->winner.nb, 0);
+	openfile_write_nbr(&(vm->stdout), vm->champs[vm->winner].number, 0);
 	openfile_write_str(&(vm->stdout), ": ", 0);
-	openfile_write_str(&(vm->stdout), vm->winner.name, 0);
+	openfile_write_str(&(vm->stdout), vm->champs[vm->winner].name, 0);
+	openfile_write_str(&(vm->stdout), "\n", 0);
+	vm_clean(vm);
 }
 
 void		check_cycles(t_vm *vm)
@@ -58,7 +61,10 @@ void		check_cycles(t_vm *vm)
 		return ;//		printf("CYCLE TO DIE == 0 and game should end");
 	}
 	else if (vm->threads.len == 0)
+	{
+		print_winner(vm);
 		return ;//		printf("vm->threads.len = 0 and we should end the game");
+	}
 	else if (vm->game_cycle % vm->cycle_to_die == 0)
 	{
 		kill_process(vm);
