@@ -6,7 +6,7 @@
 /*   By: stoupin <stoupin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/09 15:26:53 by dhadley           #+#    #+#             */
-/*   Updated: 2018/02/08 15:02:26 by stoupin          ###   ########.fr       */
+/*   Updated: 2018/02/13 14:59:31 by dhadley          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ void			encode_1_byte(unsigned char *champ, int *lc, int value)
 	champ[(*lc)++] = (unsigned char)value;
 }
 
+//check conversion because not sure for negative numbers
 void			encode_2_bytes(unsigned char *champ, int *lc, int value)
 {
 	if (value < 0 && value > -255)
