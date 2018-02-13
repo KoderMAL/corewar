@@ -6,7 +6,7 @@
 /*   By: alalaoui <alalaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/08 14:12:51 by stoupin           #+#    #+#             */
-/*   Updated: 2018/02/13 15:33:14 by alalaoui         ###   ########.fr       */
+/*   Updated: 2018/02/13 16:43:43 by alalaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,12 +48,6 @@ typedef struct		s_champ
 
 }					t_champ;
 
-typedef struct		s_win
-{
-	int				nb;
-	char			name[PROG_NAME_LENGTH + 1];
-}					t_win;
-
 typedef struct		s_vm
 {
 	t_champ			champs[MAX_PLAYERS];
@@ -73,7 +67,7 @@ typedef struct		s_vm
 	t_font			fonts[N_FONTS];
 	t_openfile		stdout;
 	t_openfile		stderr;
-	t_win			winner;
+	int				winner;
 }					t_vm;
 
 typedef enum		e_state
