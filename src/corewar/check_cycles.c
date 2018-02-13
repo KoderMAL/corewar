@@ -6,7 +6,7 @@
 /*   By: alalaoui <alalaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/12 16:17:49 by dhadley           #+#    #+#             */
-/*   Updated: 2018/02/13 13:26:07 by dhadley          ###   ########.fr       */
+/*   Updated: 2018/02/13 13:37:42 by dhadley          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,8 @@ static void	kill_process(t_vm *vm)
 
 void		check_cycles(t_vm *vm)
 {
+	if (vm->game_cycle == 0)
+		return ;
 	if (vm->cycle_to_die <= 0)
 		;//		printf("CYCLE TO DIE == 0 and game should end");
 	else if (vm->threads.len == 0)
