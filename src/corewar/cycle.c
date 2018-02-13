@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cycle.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: stoupin <stoupin@student.42.fr>            +#+  +:+       +#+        */
+/*   By: alalaoui <alalaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/26 11:51:04 by dhadley           #+#    #+#             */
-/*   Updated: 2018/02/13 13:47:47 by dhadley          ###   ########.fr       */
+/*   Updated: 2018/02/13 17:56:19 by alalaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ static void		do_op(t_vm *vm, t_thread *pc)
 {
 	int	i;
 
-	i = 1;
+	i = 0;
 	while (i < 16)
 	{
 		if (vm->op->opcode == g_op_assoc[i].opcode)
@@ -72,6 +72,11 @@ static void		check_countdown(t_vm *vm)
 	{
 		pc = pq->p;
 		//printf("pc->countdown=%d\n", pc->countdown); //
+		if (pc->countdown == 0)
+		{
+			do_op(vm, pc);
+			pc->countdown = -1;
+		} 
 		if (pc->countdown == -1)
 		{
 			//printf("PC LOCATION DANS MAP:%d\n", pc->location); //
@@ -84,11 +89,7 @@ static void		check_countdown(t_vm *vm)
 			else
 				pc->location = (pc->location + 1) % MEM_SIZE;
 		}
-		else if (pc->countdown == 0)
-		{
-			do_op(vm, pc);
-			pc->countdown = -1;
-		}
+		
 		else
 			pc->countdown--;
 		pq = pq->next;
@@ -100,9 +101,10 @@ void			war_cycle(t_vm *vm)
 {
 	if (vm->game_cycle == INT_MAX || vm->err != 0)
 		vm_clean(vm);
-	//printf("\n---CYCLE++---\n"); //
+//	printf("\n---CYCLE++---\n"); //
 	check_cycles(vm);
 	check_countdown(vm);
 	dump(vm);
+//	sleep(1);
 	vm->game_cycle++;
 }
