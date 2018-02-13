@@ -6,7 +6,7 @@
 /*   By: stoupin <stoupin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/29 15:23:39 by dhadley           #+#    #+#             */
-/*   Updated: 2018/02/13 16:14:23 by dhadley          ###   ########.fr       */
+/*   Updated: 2018/02/13 16:26:49 by dhadley          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,9 @@ static int	op_st_ind(t_vm *vm, t_thread *pc, int param1)
 	int	tmp;
 	int	i;
 
+	printf("passing st\n");
 	tmp = recup_param(vm, (pc->location + 1 + 2), 2);
+	printf("where tmp = %d\n", tmp);
 	if (param1 < 0)
 	{
 		param1 = ~(-param1);
