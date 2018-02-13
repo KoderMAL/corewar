@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   add.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: stoupin <stoupin@student.42.fr>            +#+  +:+       +#+        */
+/*   By: lramirez <lramirez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/26 12:10:18 by lramirez          #+#    #+#             */
-/*   Updated: 2018/02/08 12:16:22 by stoupin          ###   ########.fr       */
+/*   Updated: 2018/02/13 17:56:58 by lramirez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,8 @@ int	op_add(t_vm *vm, t_thread *process)
 	r1 = vm->map[(process->location + 2) % MEM_SIZE];
 	r2 = vm->map[(process->location + 3) % MEM_SIZE];
 	r3 = vm->map[(process->location + 4) % MEM_SIZE];
-	if (r1 <= REG_NUMBER && r2 <= REG_NUMBER && r3 <= REG_NUMBER)
+	if ((r1 <= REG_NUMBER && r1 >= 1) && (r2 <= REG_NUMBER && r2 >= 1) &&
+		(r3 <= REG_NUMBER && r3 >= 1)
 	{
 		process->r[r3] = process->r[r1] + process->r[r2];
 		process->carry = 1;
