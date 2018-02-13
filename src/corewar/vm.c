@@ -6,7 +6,7 @@
 /*   By: alalaoui <alalaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/16 14:30:57 by alalaoui          #+#    #+#             */
-/*   Updated: 2018/02/13 11:37:51 by alalaoui         ###   ########.fr       */
+/*   Updated: 2018/02/13 11:39:18 by alalaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,14 +32,11 @@ void		vm_start(t_vm *vm)
 
 	pqueue_init(&(vm->threads));
 	i = 0;
-	printf("CHECK\n");
-	printf("champ NUM:%d\n", vm->champs[i].number);
 	while (i < vm->n_champs)
 	{
 		pqueue_push(&(vm->threads), create_thread(vm, vm->champs[i].number));
 		i++;
 	}
-	printf("CHECK\n");
 	if (vm->draw_game)
 		draw_game_init(vm);
 }
