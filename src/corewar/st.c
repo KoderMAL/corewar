@@ -6,7 +6,7 @@
 /*   By: stoupin <stoupin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/29 15:23:39 by dhadley           #+#    #+#             */
-/*   Updated: 2018/02/09 18:29:14 by dhadley          ###   ########.fr       */
+/*   Updated: 2018/02/13 10:44:11 by dhadley          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,6 @@ int			op_st(t_vm *vm, t_thread *pc)
 	int	tmp;
 	int	param_type;
 
-	//assuming the pc->location should be on the opcode
 	if (check_params(vm->map[(pc->location + 1) % MEM_SIZE], 1) == REG_CODE)
 	{
 		tmp = recup_param(vm, (pc->location + 2) % MEM_SIZE, 1);
