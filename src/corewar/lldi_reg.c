@@ -6,21 +6,21 @@
 /*   By: dhadley <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/09 16:01:21 by dhadley           #+#    #+#             */
-/*   Updated: 2018/02/09 18:22:54 by dhadley          ###   ########.fr       */
+/*   Updated: 2018/02/13 13:00:51 by dhadley          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vm.h"
 
 /*
- ** Comme ldi sans le %IDX_MOD Cette opération modifie le carry.
- ** ldi = Cette opération modifie le carry. ldi 3,%4,r1 lit IND_SIZE
- ** octets a l’adresse :
- ** (pc + (3 % IDX_MOD)) ajoute 4 à cette valeur. On nommera S cette somme.
- ** On lit REG_SIZE octet à l’adresse (pc + (S % IDX_MOD))
- ** que l’on copie dans r1.
- ** Les paramètres 1 et 2 sont des index.
- */
+** Comme ldi sans le %IDX_MOD Cette opération modifie le carry.
+** ldi = Cette opération modifie le carry. ldi 3,%4,r1 lit IND_SIZE
+** octets a l’adresse :
+** (pc + (3 % IDX_MOD)) ajoute 4 à cette valeur. On nommera S cette somme.
+** On lit REG_SIZE octet à l’adresse (pc + (S % IDX_MOD))
+** que l’on copie dans r1.
+** Les paramètres 1 et 2 sont des index.
+*/
 
 static int second_reg(t_vm *vm, t_thread *pc, int param1, int tmp)
 {
@@ -64,7 +64,7 @@ static int second_dir(t_vm *vm, t_thread *pc, int param1, int tmp)
 	return (op_exit(pc, 50, true));
 }
 
-int	op_lldi_reg(t_vm *vm, t_thread *pc)
+int			op_lldi_reg(t_vm *vm, t_thread *pc)
 {
 	int	param1;
 	int	tmp;
@@ -75,7 +75,8 @@ int	op_lldi_reg(t_vm *vm, t_thread *pc)
 	param1 = pc->r[tmp];
 	if (check_params(vm->map[(pc->location + 1) % MEM_SIZE], 2) == DIR_CODE)
 		return (second_dir(vm, pc, param1, tmp));
-	else if (check_params(vm->map[(pc->location + 1) % MEM_SIZE], 2) == REG_CODE)
+	else if (check_params(vm->map[(pc->location + 1) % MEM_SIZE], 2)
+			== REG_CODE)
 		return (second_reg(vm, pc, param1, tmp));
 	return (op_exit(pc, 50, true));
 }

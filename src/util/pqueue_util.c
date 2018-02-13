@@ -6,7 +6,7 @@
 /*   By: stoupin <stoupin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/26 12:12:58 by stoupin           #+#    #+#             */
-/*   Updated: 2018/02/12 17:38:14 by stoupin          ###   ########.fr       */
+/*   Updated: 2018/02/13 13:25:29 by dhadley          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,14 @@ void	*pqueue_remove(t_pqueue *pqueue, t_pqueue_elem *elem)
 
 	if (pqueue == NULL || elem == NULL || pqueue->len < 1)
 		return (NULL);
-	elem->prev->next = elem->next;
-	elem->next->prev = elem->prev;
+	if (elem->prev)
+		elem->prev->next = elem->next;
+	else
+		pqueue->first = elem->next;
+	if (elem->next)
+		elem->next->prev = elem->prev;
+	else
+		pqueue->last = elem->prev;
 	pqueue->len--;
 	p = elem->p;
 	free(elem);

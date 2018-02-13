@@ -6,7 +6,7 @@
 /*   By: stoupin <stoupin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/05 13:44:43 by stoupin           #+#    #+#             */
-/*   Updated: 2018/02/08 18:34:49 by stoupin          ###   ########.fr       */
+/*   Updated: 2018/02/13 10:37:45 by dhadley          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void		openfile_write_buf(t_openfile *of, char *buf, size_t len,
 		{
 			openfile_write_char(of, buf[len - i - 1]);
 			i++;
-		}		
+		}
 	}
 	else
 	{

@@ -6,13 +6,12 @@
 /*   By: stoupin <stoupin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/26 12:00:20 by alalaoui          #+#    #+#             */
-/*   Updated: 2018/02/09 14:40:53 by stoupin          ###   ########.fr       */
+/*   Updated: 2018/02/13 10:43:45 by dhadley          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft/ft.h"
 #include "vm.h"
-
 
 static void	write_hex(t_vm *vm, unsigned char byte)
 {
@@ -25,7 +24,7 @@ static void	write_hex(t_vm *vm, unsigned char byte)
 static void	write_map(t_vm *vm)
 {
 	unsigned char	byte;
-	unsigned int 	i;
+	unsigned int	i;
 	unsigned int	j;
 
 	i = 0;

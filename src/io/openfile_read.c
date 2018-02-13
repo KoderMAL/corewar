@@ -6,7 +6,7 @@
 /*   By: stoupin <stoupin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/08 17:28:06 by stoupin           #+#    #+#             */
-/*   Updated: 2018/02/08 18:39:26 by stoupin          ###   ########.fr       */
+/*   Updated: 2018/02/13 10:37:20 by dhadley          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,5 +55,5 @@ int	openfile_skip(t_openfile *of, int len)
 			break ;
 		i++;
 	}
-	return (i);	
+	return (i);
 }
