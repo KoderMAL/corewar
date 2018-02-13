@@ -6,7 +6,7 @@
 /*   By: alalaoui <alalaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/12 16:17:49 by dhadley           #+#    #+#             */
-/*   Updated: 2018/02/13 10:41:58 by dhadley          ###   ########.fr       */
+/*   Updated: 2018/02/13 13:26:07 by dhadley          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static void	kill_process(t_vm *vm)
 
 	i = 0;
 	pq = vm->threads.first;
-	while (i < vm->threads.len)
+	while (pq)
 	{
 		tmp = pq->next;
 		pc = pq->p;
