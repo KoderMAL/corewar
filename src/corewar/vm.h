@@ -6,7 +6,7 @@
 /*   By: alalaoui <alalaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/08 14:12:51 by stoupin           #+#    #+#             */
-/*   Updated: 2018/02/13 15:20:39 by alalaoui         ###   ########.fr       */
+/*   Updated: 2018/02/13 15:33:14 by alalaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@
 
 # define ABS(X)	((X > 0) ? X : -(X))
 # define MAX_SIZE (PROG_NAME_LENGTH + COMMENT_LENGTH + CHAMP_MAX_SIZE + 14)
+# define N_FONTS 4
 
 typedef struct		s_thread
 {
@@ -47,7 +48,11 @@ typedef struct		s_champ
 
 }					t_champ;
 
-# define N_FONTS 4
+typedef struct		s_win
+{
+	int				nb;
+	char			name[PROG_NAME_LENGTH + 1];
+}					t_win;
 
 typedef struct		s_vm
 {
@@ -70,12 +75,6 @@ typedef struct		s_vm
 	t_openfile		stderr;
 	t_win			winner;
 }					t_vm;
-
-typedef struct		s_win
-{
-	int				nb;
-	char			name[PROG_NAME_LENGTH + 1];
-}
 
 typedef enum		e_state
 {
@@ -166,8 +165,7 @@ int					recup_param(t_vm *vm, int location, int size);
 ** dump.c
 */
 
-void				parse_options(t_vm *vm, int *ac, char **av);
-int					parse_number(t_vm *vm, char **av, int *i);
+void				write_map(t_vm *vm);
 void				dump(t_vm *vm);
 
 /*

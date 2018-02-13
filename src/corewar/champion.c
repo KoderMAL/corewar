@@ -6,7 +6,7 @@
 /*   By: alalaoui <alalaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/24 15:16:28 by alalaoui          #+#    #+#             */
-/*   Updated: 2018/02/13 15:26:58 by alalaoui         ###   ########.fr       */
+/*   Updated: 2018/02/13 15:31:17 by alalaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ int			champion_load(t_vm *vm, t_champ *champ, int n, char *file_name)
 	t_openfile	of;
 
 	champ->number = n;
-	champs->last_live = -1;
+	champ->last_live = -1;
 	if ((fd = open(file_name, O_RDONLY)) < 2)
 		return (err2(vm, "unable to open input file"));
 	openfile_init(&of, fd);
