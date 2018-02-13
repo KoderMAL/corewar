@@ -6,7 +6,7 @@
 /*   By: dhadley <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/08 18:37:11 by dhadley           #+#    #+#             */
-/*   Updated: 2018/02/13 11:15:59 by dhadley          ###   ########.fr       */
+/*   Updated: 2018/02/13 18:41:56 by dhadley          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,14 +26,18 @@ static int	second_reg(t_vm *vm, t_thread *pc, int param1)
 	int tmp;
 	int param2;
 	int sum;
+	int	i;
 
 	tmp = recup_param(vm, (pc->location + 1 + 3) % MEM_SIZE, 1);
 	if (tmp > REG_NUMBER || tmp < 1)
 		return (op_exit(pc, 25, false));
 	param2 = pc->r[tmp];
 	sum = param1 + param2;
-	tmp = recup_param(vm,
-			(pc->location + (sum % IDX_MOD)) % MEM_SIZE, REG_SIZE);
+	if (sum < 0)
+		i = pc->location + (sum % -IDX_MOD);
+	else
+		i = pc->location + (sum % IDX_MOD);
+	tmp = recup_param(vm, i % MEM_SIZE, REG_SIZE);
 	if (check_params(vm->map[(pc->location + 1) % MEM_SIZE], 3) == REG_CODE)
 	{
 		param1 = recup_param(vm, (pc->location + 1 + 3 + 1) % MEM_SIZE, 1);
@@ -50,11 +54,15 @@ static int	second_dir(t_vm *vm, t_thread *pc, int param1)
 	int param2;
 	int sum;
 	int tmp;
+	int i;
 
 	param2 = recup_param(vm, (pc->location + 1 + 3) % MEM_SIZE, IND_SIZE);
 	sum = param1 + param2;
-	tmp = recup_param(vm,
-			(pc->location + (sum % IDX_MOD)) % MEM_SIZE, REG_SIZE);
+	if (sum < 0)
+		i = pc->location + (sum % -IDX_MOD);
+	else
+		i = pc->location + (sum % IDX_MOD);
+	tmp = recup_param(vm, i % MEM_SIZE, REG_SIZE);
 	if (check_params(vm->map[(pc->location + 1) % MEM_SIZE], 3) == REG_CODE)
 	{
 		param1 = recup_param(vm, (pc->location + 1 + 3 + 2) % MEM_SIZE, 1);
