@@ -6,7 +6,7 @@
 /*   By: alalaoui <alalaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/12 16:17:49 by dhadley           #+#    #+#             */
-/*   Updated: 2018/02/13 17:15:33 by alalaoui         ###   ########.fr       */
+/*   Updated: 2018/02/13 17:31:59 by alalaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@ static void	kill_process(t_vm *vm)
 
 	i = 0;
 	pq = vm->threads.first;
-	if (vm->threads.len == 1)
-		vm->winner = vm->threads.r
+//	if (vm->threads.len == 1)
+		//vm->winner = vm->threads.first->p.r[1];
 	while (pq)
 	{
 		tmp = pq->next;
