@@ -6,7 +6,7 @@
 /*   By: lramirez <lramirez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/26 12:10:18 by lramirez          #+#    #+#             */
-/*   Updated: 2018/02/13 17:56:58 by lramirez         ###   ########.fr       */
+/*   Updated: 2018/02/13 18:05:16 by lramirez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ int	op_add(t_vm *vm, t_thread *process)
 		(r3 <= REG_NUMBER && r3 >= 1)
 	{
 		process->r[r3] = process->r[r1] + process->r[r2];
+		printf("third register contains %c\n", r[r3]);
 		process->carry = 1;
 		process->location = (process->location + 5) % MEM_SIZE;
 	}
