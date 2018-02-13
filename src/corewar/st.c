@@ -6,7 +6,7 @@
 /*   By: stoupin <stoupin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/29 15:23:39 by dhadley           #+#    #+#             */
-/*   Updated: 2018/02/13 15:59:07 by dhadley          ###   ########.fr       */
+/*   Updated: 2018/02/13 16:14:23 by dhadley          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,10 @@ static int	op_st_ind(t_vm *vm, t_thread *pc, int param1)
 		param1 = ~(-param1);
 		param1++;
 	}
-	i = pc->location + (tmp % IDX_MOD);
+	if (tmp < 0)
+		i = pc->location + (tmp % -IDX_MOD);
+	else
+		i = pc->location + (tmp % IDX_MOD);
 	vm->map[i % MEM_SIZE] = (param1 >> 24);
 	vm->map[(i + 1) % MEM_SIZE] = ((param1 >> 16) & 255);
 	vm->map[(i + 2) % MEM_SIZE] = ((param1 >> 8) & 255);
