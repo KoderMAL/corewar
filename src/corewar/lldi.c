@@ -6,7 +6,7 @@
 /*   By: stoupin <stoupin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/29 15:17:04 by dhadley           #+#    #+#             */
-/*   Updated: 2018/02/09 18:19:01 by dhadley          ###   ########.fr       */
+/*   Updated: 2018/02/13 12:59:56 by dhadley          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ static int	second_dir(t_vm *vm, t_thread *pc, int param1, int tmp)
 	return (op_exit(pc, 50, true));
 }
 
-int	op_lldi(t_vm *vm, t_thread *pc)
+int			op_lldi(t_vm *vm, t_thread *pc)
 {
 	int	param1;
 	int	tmp;
@@ -74,12 +74,15 @@ int	op_lldi(t_vm *vm, t_thread *pc)
 		param1 = recup_param(vm, (pc->location + tmp) % MEM_SIZE, IND_SIZE);
 		if (check_params(vm->map[(pc->location + 1) % MEM_SIZE], 2) == DIR_CODE)
 			return (second_dir(vm, pc, param1, tmp));
-		else if (check_params(vm->map[(pc->location + 1) % MEM_SIZE], 2) == REG_CODE)
+		else if (check_params(vm->map[(pc->location + 1) % MEM_SIZE], 2)
+				== REG_CODE)
 			return (second_reg(vm, pc, param1, tmp));
 	}
-	else if (check_params(vm->map[(pc->location + 1) % MEM_SIZE], 1) == DIR_CODE)
+	else if (check_params(vm->map[(pc->location + 1) % MEM_SIZE], 1)
+			== DIR_CODE)
 		return (op_lldi_dir(vm, pc));
-	else if (check_params(vm->map[(pc->location + 1) % MEM_SIZE], 1) == REG_CODE)
+	else if (check_params(vm->map[(pc->location + 1) % MEM_SIZE], 1)
+			== REG_CODE)
 		return (op_lldi_reg(vm, pc));
 	return (op_exit(pc, 50, true));
 }
