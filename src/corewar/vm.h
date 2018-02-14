@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   vm.h                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alalaoui <alalaoui@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lramirez <lramirez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/08 14:12:51 by stoupin           #+#    #+#             */
-/*   Updated: 2018/02/13 16:43:43 by alalaoui         ###   ########.fr       */
+/*   Updated: 2018/02/14 14:50:47 by lramirez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,13 @@ typedef struct		s_vm
 	t_openfile		stderr;
 	int				winner;
 }					t_vm;
+
+typedef struct		s_param
+{
+	int				first;
+	int				second;
+	int				third;
+}					t_param;
 
 typedef enum		e_state
 {
@@ -134,6 +141,14 @@ int					op_sub(t_vm *vm, t_thread *process);
 int					op_and(t_vm *vm, t_thread *pc);
 int					op_or(t_vm *vm, t_thread *pc);
 int					op_xor(t_vm *vm, t_thread *pc);
+int					get_dir_one(t_vm *vm, t_thread *pc, char code);
+int					get_ind_one(t_vm *vm, t_thread *pc, char code);
+int					get_reg_one(t_vm *vm, t_thread *pc, char code);
+int					get_dir_two(t_vm *vm, int location, int *param_2, int *reg);
+int					get_ind_two(t_vm *vm, int location, int *param_2, int *reg);
+int					get_reg_two(t_vm *vm, int location, int *param_2, int *reg);
+int					result_in_reg(t_thread *pc, t_param param, char code);
+int					and_or_xor_exit(t_thread *pc);
 int					op_zjmp(t_vm *vm, t_thread *process);
 int					op_ldi(t_vm *vm, t_thread *process);
 int					op_ldi_dir(t_vm *vm, t_thread *process);
