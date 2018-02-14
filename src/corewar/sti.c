@@ -6,13 +6,11 @@
 /*   By: stoupin <stoupin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/29 16:26:43 by dhadley           #+#    #+#             */
-/*   Updated: 2018/02/13 11:06:52 by dhadley          ###   ########.fr       */
+/*   Updated: 2018/02/13 18:53:28 by dhadley          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vm.h"
-
-#
 
 /*
 ** sti r2,%4,%5 sti copie REG_SIZE octet de r2 a l’adresse (4 + 5)
@@ -26,6 +24,22 @@
 **
 ** this function does not modify the carry
 */
+
+static void	print_in_mem(t_vm *vm, t_thread *pc, int tmp, int reg)
+{
+	int i;
+
+	if (tmp < 0)
+		i = tmp % -IDX_MOD;
+	else
+		i = tmp % IDX_MOD;
+	vm->map[(pc->location + i) % MEM_SIZE] = (reg >> 24);
+	vm->map[(pc->location + 1 + i) % MEM_SIZE] =
+		((reg >> 16) & 255);
+	vm->map[(pc->location + 2 + i) % MEM_SIZE] =
+		((reg >> 8) & 255);
+	vm->map[(pc->location + 3 + i) % MEM_SIZE] = (reg & 255);
+}
 
 static int	third_reg(t_vm *vm, t_thread *pc, int reg, int param1)
 {
@@ -42,12 +56,7 @@ static int	third_reg(t_vm *vm, t_thread *pc, int reg, int param1)
 		reg = ~(-reg);
 		reg++;
 	}
-	vm->map[(pc->location + (tmp % IDX_MOD)) % MEM_SIZE] = (reg >> 24);
-	vm->map[(pc->location + 1 + (tmp % IDX_MOD)) % MEM_SIZE] =
-		((reg >> 16) & 255);
-	vm->map[(pc->location + 2 + (tmp % IDX_MOD)) % MEM_SIZE] =
-		((reg >> 8) & 255);
-	vm->map[(pc->location + 3 + (tmp % IDX_MOD)) % MEM_SIZE] = (reg & 255);
+	print_in_mem(vm, pc, tmp, reg);
 	return (op_success(pc, 25, 1 + 1 + 1 + 2 + 1, false));
 }
 
@@ -63,12 +72,7 @@ static int	third_dir(t_vm *vm, t_thread *pc, int reg, int param1)
 		reg = ~(-reg);
 		reg++;
 	}
-	vm->map[(pc->location + (tmp % IDX_MOD)) % MEM_SIZE] = (reg >> 24);
-	vm->map[(pc->location + 1 + (tmp % IDX_MOD)) % MEM_SIZE] =
-		((reg >> 16) & 255);
-	vm->map[(pc->location + 2 + (tmp % IDX_MOD)) % MEM_SIZE] =
-		((reg >> 8) & 255);
-	vm->map[(pc->location + 3 + (tmp % IDX_MOD)) % MEM_SIZE] = (reg & 255);
+	print_in_mem(vm, pc, tmp, reg);
 	return (op_success(pc, 25, 1 + 1 + 1 + 2 + 2, false));
 }
 

@@ -6,7 +6,7 @@
 /*   By: stoupin <stoupin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/25 16:50:31 by dhadley           #+#    #+#             */
-/*   Updated: 2018/02/09 17:40:03 by dhadley          ###   ########.fr       */
+/*   Updated: 2018/02/13 18:31:53 by dhadley          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,10 +39,14 @@ static int	op_ld_ind(t_vm *vm, t_thread *pc)
 	int	param1;
 	int param2;
 	int tmp_ind;
+	int	i;
 
 	tmp_ind = recup_param(vm, (pc->location + 2) % MEM_SIZE, 2);
-	param1 = recup_param(vm, (pc->location + (tmp_ind % IDX_MOD))
-								% MEM_SIZE, REG_SIZE);
+	if (tmp_ind < 0)
+		i = pc->location + (tmp_ind % -IDX_MOD);
+	else
+		i = pc->location + (tmp_ind % IDX_MOD);
+	param1 = recup_param(vm, i % MEM_SIZE, REG_SIZE);
 	param2 = recup_param(vm, (pc->location + 2 + 2) % MEM_SIZE, 1);
 	if (param2 > REG_NUMBER || param2 < 1)
 		return (op_exit(pc, 5, true));
