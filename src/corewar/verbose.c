@@ -6,7 +6,7 @@
 /*   By: stoupin <stoupin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/15 11:37:33 by stoupin           #+#    #+#             */
-/*   Updated: 2018/02/15 11:57:26 by stoupin          ###   ########.fr       */
+/*   Updated: 2018/02/15 12:19:46 by stoupin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,5 +48,13 @@ void	print_nbr(t_vm *vm, int i, int endl)
 {
 	if (vm->verbose == 0)
 		return ;
+	openfile_write_nbr(&(vm->stdout), i, endl);
+}
+
+void	print_reg(t_vm *vm, int i, int endl)
+{
+	if (vm->verbose == 0)
+		return ;
+	openfile_write_char(&(vm->stdout), 'r');
 	openfile_write_nbr(&(vm->stdout), i, endl);
 }

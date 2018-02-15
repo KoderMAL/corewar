@@ -6,7 +6,7 @@
 /*   By: stoupin <stoupin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/08 14:12:51 by stoupin           #+#    #+#             */
-/*   Updated: 2018/02/15 12:14:40 by stoupin          ###   ########.fr       */
+/*   Updated: 2018/02/15 12:20:04 by stoupin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -208,5 +208,6 @@ void				print_instruction_start(t_vm *vm, t_thread *pc);
 void				print_instruction_continue(t_vm *vm, t_thread *pc);
 void				print_str(t_vm *vm, char *s, int endl);
 void				print_nbr(t_vm *vm, int i, int endl);
+void				print_reg(t_vm *vm, int i, int endl);
 
 #endif

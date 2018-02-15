@@ -6,7 +6,7 @@
 /*   By: stoupin <stoupin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/29 15:23:39 by dhadley           #+#    #+#             */
-/*   Updated: 2018/02/15 12:13:27 by stoupin          ###   ########.fr       */
+/*   Updated: 2018/02/15 12:20:24 by stoupin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,7 @@ static int	op_st_reg(t_vm *vm, t_thread *pc, int param1)
 	tmp = recup_param(vm, (pc->location + 1 + 2) % MEM_SIZE, 1);
 	if (tmp < 1 || tmp > REG_NUMBER)
 		return (op_exit(pc, 5, false));
-	print_str(vm, "r", 0);
-	print_nbr(vm, tmp, 1);
+	print_reg(vm, tmp, 1);
 	pc->r[tmp] = param1;
 	return (op_success(pc, 5, 1 + 2 + 1, false));
 }
