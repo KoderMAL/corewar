@@ -6,7 +6,7 @@
 /*   By: stoupin <stoupin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/30 14:31:43 by alalaoui          #+#    #+#             */
-/*   Updated: 2018/02/12 16:17:33 by stoupin          ###   ########.fr       */
+/*   Updated: 2018/02/15 11:35:55 by stoupin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,8 @@ int				parse_args(t_vm *vm, int ac, char **av)
 				state = S_D;
 			else if (ft_strcmp(av[i], "-visual") == 0)
 				vm->draw_game = 1;
+			else if (ft_strcmp(av[i], "-verbose") == 0)
+				vm->verbose = 1;
 			else if (ft_strcmp(av[i], "-n") == 0)
 				state = S_N;
 			else

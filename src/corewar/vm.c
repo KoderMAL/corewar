@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   vm.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alalaoui <alalaoui@student.42.fr>          +#+  +:+       +#+        */
+/*   By: stoupin <stoupin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/16 14:30:57 by alalaoui          #+#    #+#             */
-/*   Updated: 2018/02/13 16:45:54 by alalaoui         ###   ########.fr       */
+/*   Updated: 2018/02/15 11:35:49 by stoupin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ int			main(int argc, char **argv)
 	vm_init(&vm);
 	parse_args(&vm, argc, argv);
 	if (argc < 2 || vm.n_champs < 1)
-		err2(&vm, "Usage: ./corewar [-d N] [[-n N] champ.cor] ...");
+		err2(&vm, "Usage: ./corewar [-verbose] [-visual] [-d N] [[-n N] champ.cor] ...");
 	if (vm.err == 0)
 	{
 		openfile_write_str(&(vm.stdout), "Introducing contestants...", 1);

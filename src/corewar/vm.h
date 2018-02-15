@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   vm.h                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lramirez <lramirez@student.42.fr>          +#+  +:+       +#+        */
+/*   By: stoupin <stoupin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/08 14:12:51 by stoupin           #+#    #+#             */
-/*   Updated: 2018/02/14 14:50:47 by lramirez         ###   ########.fr       */
+/*   Updated: 2018/02/15 11:34:45 by stoupin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ typedef struct		s_vm
 	unsigned char	map[MEM_SIZE];
 	int				err;
 	int				cycle_to_dump;
+	int				verbose;
 	char			*err_msg;
 	int				game_cycle;
 	int				num_lives;
