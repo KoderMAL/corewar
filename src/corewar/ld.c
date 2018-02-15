@@ -6,7 +6,7 @@
 /*   By: stoupin <stoupin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/25 16:50:31 by dhadley           #+#    #+#             */
-/*   Updated: 2018/02/14 11:04:53 by dhadley          ###   ########.fr       */
+/*   Updated: 2018/02/15 12:25:58 by stoupin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,9 @@ static int	op_ld_dir(t_vm *vm, t_thread *pc)
 
 	param1 = recup_param(vm, (pc->location + 2) % MEM_SIZE, 4);
 	param2 = recup_param(vm, (pc->location + 2 + 4) % MEM_SIZE, 1);
+	print_nbr(vm, param1, 0);
+	print_str(vm, " ", 0);
+	print_reg(vm, param2, 1);
 	if (param2 > REG_NUMBER || param2 < 1)
 		return (op_exit(pc, 5, true));
 	pc->r[param2] = param1;
@@ -48,6 +51,9 @@ static int	op_ld_ind(t_vm *vm, t_thread *pc)
 		i = pc->location + (tmp_ind % IDX_MOD);
 	param1 = recup_param(vm, i % MEM_SIZE, REG_SIZE);
 	param2 = recup_param(vm, (pc->location + 2 + 2) % MEM_SIZE, 1);
+	print_nbr(vm, param1, 0);
+	print_str(vm, " ", 0);
+	print_reg(vm, param2, 1);
 	if (param2 > REG_NUMBER || param2 < 1)
 		return (op_exit(pc, 5, true));
 	pc->r[param2] = param1;
@@ -58,6 +64,8 @@ int			op_ld(t_vm *vm, t_thread *pc)
 {
 	int	param_type;
 
+	print_instruction_start(vm, pc);
+	print_str(vm, "ld ", 0);
 	param_type = check_params(vm->map[(pc->location + 1) % MEM_SIZE], 1);
 	if (param_type == DIR_CODE)
 		return (op_ld_dir(vm, pc));

@@ -6,7 +6,7 @@
 /*   By: stoupin <stoupin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/08 14:12:51 by stoupin           #+#    #+#             */
-/*   Updated: 2018/02/15 11:51:01 by dhadley          ###   ########.fr       */
+/*   Updated: 2018/02/15 12:20:04 by stoupin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@
 
 typedef struct		s_thread
 {
+	int			number;
 	int			carry;
 	int			r[REG_NUMBER + 1];
 	int			cycles;
@@ -198,5 +199,15 @@ void				check_cycles(t_vm *vm);
 
 int					op_exit(t_thread *pc, int cycles, bool carry);
 int					op_success(t_thread *pc, int cycles, int loc, bool carry);
+
+/*
+** verbose.c
+*/
+
+void				print_instruction_start(t_vm *vm, t_thread *pc);
+void				print_instruction_continue(t_vm *vm, t_thread *pc);
+void				print_str(t_vm *vm, char *s, int endl);
+void				print_nbr(t_vm *vm, int i, int endl);
+void				print_reg(t_vm *vm, int i, int endl);
 
 #endif

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cycle.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alalaoui <alalaoui@student.42.fr>          +#+  +:+       +#+        */
+/*   By: stoupin <stoupin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/26 11:51:04 by dhadley           #+#    #+#             */
-/*   Updated: 2018/02/13 17:56:19 by alalaoui         ###   ########.fr       */
+/*   Updated: 2018/02/15 16:35:04 by stoupin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ const t_op		*find_opcode(int pc)
 	int	i;
 
 	i = 0;
-	while (g_op_tab[i].opcode != 0)
+	while (i < 16)
 	{
 		if (g_op_tab[i].opcode == pc)
 			return (&(g_op_tab[i]));
@@ -51,6 +51,8 @@ static void		do_op(t_vm *vm, t_thread *pc)
 {
 	int	i;
 
+	if (vm->op == NULL)
+		return ;
 	i = 0;
 	while (i < 16)
 	{
@@ -71,6 +73,7 @@ static void		check_countdown(t_vm *vm)
 	while (i < vm->threads.len)
 	{
 		pc = pq->p;
+		pc->number = i;
 		//printf("pc->countdown=%d\n", pc->countdown); //
 		if (pc->countdown == 0)
 		{

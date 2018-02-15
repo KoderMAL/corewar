@@ -6,7 +6,7 @@
 /*   By: stoupin <stoupin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/16 14:30:57 by alalaoui          #+#    #+#             */
-/*   Updated: 2018/02/15 11:35:49 by stoupin          ###   ########.fr       */
+/*   Updated: 2018/02/15 16:20:30 by stoupin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,13 +28,21 @@ void		vm_init(t_vm *vm)
 
 void		vm_start(t_vm *vm)
 {
-	int	i;
+	int			i;
+	t_thread	*thread;
 
 	pqueue_init(&(vm->threads));
 	i = 0;
 	while (i < vm->n_champs)
 	{
-		pqueue_push(&(vm->threads), create_thread(vm, vm->champs[i].number));
+		thread = create_thread(vm, vm->champs[i].number);
+		if (thread)
+			pqueue_push(&(vm->threads), thread);
+		else
+		{
+			err2(vm, "memory error");
+			break ;
+		}
 		i++;
 	}
 	if (vm->draw_game)

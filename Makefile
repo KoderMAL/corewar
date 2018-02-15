@@ -37,7 +37,7 @@ SRC_COREWAR = parse_args.c error2.c thread.c vm.c champion.c draw_game.c dump.c 
 				st.c xor.c or.c \
 				and_or_xor_one.c and_or_xor_two.c \
 				op_success.c op_exit.c \
-				check_cycles.c
+				check_cycles.c verbose.c
 SRC_GUI = font.c font_cursor.c gui.c gui_hooks.c fonts.c
 SRC_TESTS = $(SRC_IO) $(SRC_FT) $(SRC_UTIL) \
 			tests.c tests_assert.c \
