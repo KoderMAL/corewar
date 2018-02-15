@@ -6,7 +6,7 @@
 /*   By: dhadley <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/15 11:27:57 by dhadley           #+#    #+#             */
-/*   Updated: 2018/02/15 12:04:44 by dhadley          ###   ########.fr       */
+/*   Updated: 2018/02/15 19:09:09 by dhadley          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,13 +79,13 @@ int			op_sti_ind(t_vm *vm, t_thread *pc)
 	int	reg;
 	int	param1;
 	int tmp;
+
 	tmp = recup_param(vm, (pc->location + 2) % MEM_SIZE, 1);
 	if (tmp < 1 || tmp > REG_NUMBER)
 		return (op_exit(pc, 25, false));
 	reg = pc->r[tmp];
-	tmp = recup_param(vm, vm->map[(pc->location + 1 + 1 + 1) % MEM_SIZE], 2);
-	param1 = recup_param(vm, vm->map[(pc->location + tmp) % MEM_SIZE], 4);
-	printf("the number is %d\n", param1);
+	tmp = recup_param(vm, (pc->location + 1 + 1 + 1) % MEM_SIZE, 2);
+	param1 = recup_param(vm, (pc->location + tmp) % MEM_SIZE, 4);
 	if (check_params(vm->map[(pc->location + 1) % MEM_SIZE], 3) == DIR_CODE)
 		return (third_dir(vm, pc, reg, param1));
 	else if (check_params(vm->map[(pc->location + 1) % MEM_SIZE], 3) == REG_CODE)

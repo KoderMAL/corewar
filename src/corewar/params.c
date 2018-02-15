@@ -6,7 +6,7 @@
 /*   By: alalaoui <alalaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/26 15:06:19 by dhadley           #+#    #+#             */
-/*   Updated: 2018/02/13 17:28:31 by dhadley          ###   ########.fr       */
+/*   Updated: 2018/02/15 19:09:11 by dhadley          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,8 @@ int		check_params(unsigned char byte, int number)
 int		recup_param(t_vm *vm, int location, int size)
 {	
 	int ret;
-
+	if (location < 0)
+		location += MEM_SIZE;
 	if (size == 1)
 		return (vm->map[location]);
 	else if (size == 2)
@@ -40,9 +41,12 @@ int		recup_param(t_vm *vm, int location, int size)
 		return (ret);
 	}
 	else if (size == 4)
-		return (vm->map[location] << 24
+	{
+		ret = vm->map[location] << 24
 				| vm->map[(location + 1) % MEM_SIZE] << 16
 				| vm->map[(location + 2) % MEM_SIZE] << 8
-				| vm->map[(location + 3) % MEM_SIZE]);
+				| vm->map[(location + 3) % MEM_SIZE];
+		return (ret);
+	}
 	return (0);
 }
