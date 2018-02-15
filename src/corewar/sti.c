@@ -6,7 +6,7 @@
 /*   By: stoupin <stoupin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/29 16:26:43 by dhadley           #+#    #+#             */
-/*   Updated: 2018/02/15 11:48:12 by dhadley          ###   ########.fr       */
+/*   Updated: 2018/02/15 11:52:37 by dhadley          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,6 @@ static void	print_in_mem(t_vm *vm, t_thread *pc, int tmp, int reg)
 {
 	int i;
 
-	printf("tmp = %d, pc->location = %d, reg = %d\n", tmp, pc->location, reg);
 	if (tmp < 0)
 		i = tmp % -IDX_MOD;
 	else
@@ -73,8 +72,6 @@ static int	third_dir(t_vm *vm, t_thread *pc, int reg, int param1)
 		reg = ~(-reg);
 		reg++;
 	}
-	printf("bipbop\n");
-	printf("tmp = %d, pc->location = %d, reg = %d, p2 = %d, p1 = %d\n", tmp, pc->location, reg, param2, param1);
 	print_in_mem(vm, pc, tmp, reg);
 	return (op_success(pc, 25, 1 + 1 + 1 + 2 + 2, false));
 }

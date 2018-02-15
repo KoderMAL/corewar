@@ -6,7 +6,7 @@
 /*   By: dhadley <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/15 11:27:57 by dhadley           #+#    #+#             */
-/*   Updated: 2018/02/15 11:49:30 by dhadley          ###   ########.fr       */
+/*   Updated: 2018/02/15 11:53:50 by dhadley          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@ static void	print_in_mem(t_vm *vm, t_thread *pc, int tmp, int reg)
 {
 	int i;
 
-	printf("tmp = %d, pc->location = %d, reg = %d\n", tmp, pc->location, reg);
 	if (tmp < 0)
 		i = tmp % -IDX_MOD;
 	else
@@ -71,8 +70,6 @@ static int	third_dir(t_vm *vm, t_thread *pc, int reg, int param1)
 		reg = ~(-reg);
 		reg++;
 	}
-	printf("bipbop\n");
-	printf("tmp = %d, pc->location = %d, reg = %d, p2 = %d, p1 = %d\n", tmp, pc->location, reg, param2, param1);
 	print_in_mem(vm, pc, tmp, reg);
 	return (op_success(pc, 25, 1 + 1 + 1 + 2 + 2, false));
 }
@@ -87,8 +84,8 @@ int			op_sti_ind(t_vm *vm, t_thread *pc)
 	if (tmp < 1 || tmp > REG_NUMBER)
 		return (op_exit(pc, 25, false));
 	reg = pc->r[tmp];
-	tmp = recup_param(vm->map[(pc->location + 1 + 1 + 1) % MEM_SIZE], 2);
-	param1 = recup_param(vm->map[(pc->location + tmp) % MEM_SIZE], 4);
+	tmp = recup_param(vm, vm->map[(pc->location + 1 + 1 + 1) % MEM_SIZE], 2);
+	param1 = recup_param(vm, vm->map[(pc->location + tmp) % MEM_SIZE], 4);
 	if (check_params(vm->map[(pc->location + 1) % MEM_SIZE], 3) == DIR_CODE)
 		return (third_dir(vm, pc, reg, param1));
 	else if (check_params(vm->map[(pc->location + 1) % MEM_SIZE], 3) == REG_CODE)
