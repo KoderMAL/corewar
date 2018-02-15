@@ -47,7 +47,7 @@ for champ in champs:
 	error, _, champ = compile_champ(ZAZ_ASM, champ)
 	if error:
 		continue
-	for i in range(20, 30):
+	for i in range(0, 30):
 		zaz_error, zaz_output = get_dump(ZAZ_CW, champ, i)
 		my_error, my_output = get_dump(MY_CW, champ, i)
 		if (zaz_error and not my_error) or (my_error and not zaz_error):
