@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   st.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alalaoui <alalaoui@student.42.fr>          +#+  +:+       +#+        */
+/*   By: stoupin <stoupin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/29 15:23:39 by dhadley           #+#    #+#             */
-/*   Updated: 2018/02/13 18:44:53 by dhadley          ###   ########.fr       */
+/*   Updated: 2018/02/15 12:13:27 by stoupin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,8 @@ static int	op_st_reg(t_vm *vm, t_thread *pc, int param1)
 	tmp = recup_param(vm, (pc->location + 1 + 2) % MEM_SIZE, 1);
 	if (tmp < 1 || tmp > REG_NUMBER)
 		return (op_exit(pc, 5, false));
+	print_str(vm, "r", 0);
+	print_nbr(vm, tmp, 1);
 	pc->r[tmp] = param1;
 	return (op_success(pc, 5, 1 + 2 + 1, false));
 }
@@ -39,6 +41,7 @@ static int	op_st_ind(t_vm *vm, t_thread *pc, int param1)
 	int	i;
 
 	tmp = recup_param(vm, (pc->location + 1 + 2), 2);
+	print_nbr(vm, tmp, 1);
 	if (param1 < 0)
 	{
 		param1 = ~(-param1);
@@ -61,9 +64,14 @@ int			op_st(t_vm *vm, t_thread *pc)
 	int	tmp;
 	int	param_type;
 
+	print_instruction_start(vm, pc);
+	print_str(vm, "st ", 0);
 	if (check_params(vm->map[(pc->location + 1) % MEM_SIZE], 1) == REG_CODE)
 	{
 		tmp = recup_param(vm, (pc->location + 2) % MEM_SIZE, 1);
+		print_str(vm, "r", 0);
+		print_nbr(vm, tmp, 0);
+		print_str(vm, " ", 0);
 		if (tmp < 1 || tmp > REG_NUMBER)
 			return (op_exit(pc, 5, false));
 		param1 = pc->r[tmp];
