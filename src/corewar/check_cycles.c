@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_cycles.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alalaoui <alalaoui@student.42.fr>          +#+  +:+       +#+        */
+/*   By: stoupin <stoupin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/12 16:17:49 by dhadley           #+#    #+#             */
-/*   Updated: 2018/02/13 17:31:59 by alalaoui         ###   ########.fr       */
+/*   Updated: 2018/02/15 16:36:55 by stoupin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,11 +43,11 @@ static void	print_winner(t_vm *vm)
 {
 	if (vm->cycle_to_dump != -1)
 		write_map(vm);
-	openfile_write_str(&(vm->stdout), "Winner is Player ", 0);
-	openfile_write_nbr(&(vm->stdout), vm->champs[vm->winner].number, 0);
-	openfile_write_str(&(vm->stdout), ": ", 0);
+	openfile_write_str(&(vm->stdout), "Contestant ", 0);
+	openfile_write_nbr(&(vm->stdout), vm->winner + 1, 0);
+	openfile_write_str(&(vm->stdout), ", \"", 0);
 	openfile_write_str(&(vm->stdout), vm->champs[vm->winner].name, 0);
-	openfile_write_str(&(vm->stdout), "\n", 0);
+	openfile_write_str(&(vm->stdout), "\" has won !", 1);
 	vm_clean(vm);
 }
 
