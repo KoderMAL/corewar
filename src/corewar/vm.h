@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   vm.h                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lramirez <lramirez@student.42.fr>          +#+  +:+       +#+        */
+/*   By: alalaoui <alalaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/08 14:12:51 by stoupin           #+#    #+#             */
-/*   Updated: 2018/02/16 15:43:02 by lramirez         ###   ########.fr       */
+/*   Updated: 2018/02/16 15:51:22 by alalaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -157,7 +157,7 @@ int					op_lldi(t_thread *process);
 int					op_lldi_dir(t_thread *process);
 int					op_lldi_reg(t_thread *process);
 int					op_lfork(t_thread *process);
-int					op_aff(t_thread *process);
+void					op_aff(t_thread *process);
 
 /*
 ** params.c
