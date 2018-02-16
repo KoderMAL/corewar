@@ -6,7 +6,7 @@
 /*   By: lramirez <lramirez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/08 14:12:51 by stoupin           #+#    #+#             */
-/*   Updated: 2018/02/16 17:08:14 by lramirez         ###   ########.fr       */
+/*   Updated: 2018/02/16 18:02:37 by lramirez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -167,16 +167,23 @@ int					check_params(unsigned char byte, int number);
 int					recup_param(t_vm *vm, int location, int size);
 
 /*
-** get.c
+** getters.c
 */
 
 int					get(t_thread *pc, int param_nbr);
+int					get_byte_at(t_thread *pc, int amount, bool indent);
+
+/*
+** setters.c
+*/
+
+void				set(t_thread *pc, int param_nbr, int value);
+void				set_bytes(t_thread *pc, int param, int value);
 
 /*
 ** params_new.c
 */
 
-int					get_byte_at(t_thread *pc, int amount, bool indent);
 int					shift_loc(t_thread *pc, int amount);
 
 /*

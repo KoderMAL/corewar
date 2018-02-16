@@ -6,7 +6,7 @@
 /*   By: lramirez <lramirez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/15 13:20:49 by lramirez          #+#    #+#             */
-/*   Updated: 2018/02/16 16:04:07 by lramirez         ###   ########.fr       */
+/*   Updated: 2018/02/16 17:56:04 by lramirez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,14 +15,6 @@
 int				shift_loc(t_thread *pc, int amount)
 {
 	return ((pc->location + amount) % MEM_SIZE);
-}
-
-int				get_byte_at(t_thread *pc, int amount, bool indent)
-{
-	if (indent)
-		return (pc->vm->map[shift_loc(pc, pc->indent + amount)]);
-	else
-		return (pc->vm->map[shift_loc(pc, amount)]);
 }
 
 int				get_code(unsigned char byte, int number)
