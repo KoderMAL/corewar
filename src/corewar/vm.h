@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   vm.h                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: stoupin <stoupin@student.42.fr>            +#+  +:+       +#+        */
+/*   By: lramirez <lramirez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/08 14:12:51 by stoupin           #+#    #+#             */
-/*   Updated: 2018/02/15 12:20:04 by stoupin          ###   ########.fr       */
+/*   Updated: 2018/02/16 15:13:08 by lramirez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,17 +25,6 @@
 # define ABS(X)	((X > 0) ? X : -(X))
 # define MAX_SIZE (PROG_NAME_LENGTH + COMMENT_LENGTH + CHAMP_MAX_SIZE + 14)
 # define N_FONTS 4
-
-typedef struct		s_thread
-{
-	int			number;
-	int			carry;
-	int			r[REG_NUMBER + 1];
-	int			cycles;
-	int			location;
-	int			countdown;
-	bool		alive;
-}					t_thread;
 
 typedef struct		s_champ
 {
@@ -72,12 +61,21 @@ typedef struct		s_vm
 	int				winner;
 }					t_vm;
 
-typedef struct		s_param
+typedef struct		s_thread
 {
-	int				first;
-	int				second;
-	int				third;
-}					t_param;
+	int			number;
+	int			carry;
+	int			r[REG_NUMBER + 1];
+	int			cycles;
+	int			location;
+	int			countdown;
+	bool		alive;
+	int			indent;
+	char		bytecode;
+	int			params[3];
+	int			params_type[3];
+	t_vm		*vm;
+}					t_thread;
 
 typedef enum		e_state
 {
@@ -138,19 +136,11 @@ void				draw_game_clean(t_vm *vm);
 int					op_live(t_vm *vm, t_thread *pc);
 int					op_ld(t_vm *vm, t_thread *pc);
 int					op_st(t_vm *vm, t_thread *pc);
-int					op_add(t_vm *vm, t_thread *process);
+void				op_add(t_thread *pc);
 int					op_sub(t_vm *vm, t_thread *process);
-int					op_and(t_vm *vm, t_thread *pc);
-int					op_or(t_vm *vm, t_thread *pc);
-int					op_xor(t_vm *vm, t_thread *pc);
-int					get_dir_one(t_vm *vm, t_thread *pc, char code);
-int					get_ind_one(t_vm *vm, t_thread *pc, char code);
-int					get_reg_one(t_vm *vm, t_thread *pc, char code);
-int					get_dir_two(t_vm *vm, int location, int *param_2, int *reg);
-int					get_ind_two(t_vm *vm, int location, int *param_2, int *reg);
-int					get_reg_two(t_vm *vm, int location, int *param_2, int *reg);
-int					result_in_reg(t_thread *pc, t_param param, char code);
-int					and_or_xor_exit(t_thread *pc);
+void				op_and(t_thread *pc);
+void				op_or(t_thread *pc);
+void				op_xor(t_thread *pc);
 int					op_zjmp(t_vm *vm, t_thread *process);
 int					op_ldi(t_vm *vm, t_thread *process);
 int					op_ldi_dir(t_vm *vm, t_thread *process);
