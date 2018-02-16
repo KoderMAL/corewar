@@ -6,7 +6,7 @@
 /*   By: alalaoui <alalaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/26 11:51:04 by dhadley           #+#    #+#             */
-/*   Updated: 2018/02/16 14:29:37 by alalaoui         ###   ########.fr       */
+/*   Updated: 2018/02/16 14:31:39 by alalaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,7 @@ static void		do_op(t_vm *vm, t_thread *pc)
 			g_op_assoc[i].op_function(vm, pc);
 		i++;
 	}
+	pc->countdown = -1;
 }
 
 static void		check_countdown(t_vm *vm)
@@ -75,10 +76,7 @@ static void		check_countdown(t_vm *vm)
 		pc = pq->p;
 		pc->number = i;
 		if (pc->countdown == 0)
-		{
 			do_op(vm, pc);
-			pc->countdown = -1;
-		}
 		if (pc->countdown == -1)
 		{
 			if ((vm->op = find_opcode(vm->map[pc->location])) != NULL)
