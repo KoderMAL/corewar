@@ -1,28 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   and.c                                              :+:      :+:    :+:   */
+/*   get.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lramirez <lramirez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/01/26 14:39:27 by lramirez          #+#    #+#             */
-/*   Updated: 2018/02/16 17:09:50 by lramirez         ###   ########.fr       */
+/*   Created: 2018/02/16 17:04:51 by lramirez          #+#    #+#             */
+/*   Updated: 2018/02/16 17:08:18 by lramirez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vm.h"
 
-void			op_and(t_thread *pc)
+int			get(t_thread *pc, int param_nbr)
 {
-	int		param[2];
-	int		i;
-
-	i = 0;
-	while (i < 2)
-	{
-		param[i] = get(pc, i);
-		i++;
-	}
-	pc->r[pc->params[2]] = param[0] & param[1];
-	return ;
+	int		type;
+	int		param;
+	
+	type = pc->params_type[param_nbr];
+	param = pc->params[param_nbr];
+	if (type == T_REG)
+		return (pc->r[param])
+	else if (type == T_DIR)
+		return (param);
+	else if (type == T_IND)
+		return (pc->vm->map[param]);
 }

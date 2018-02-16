@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   vm.h                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alalaoui <alalaoui@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lramirez <lramirez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/08 14:12:51 by stoupin           #+#    #+#             */
-/*   Updated: 2018/02/16 15:51:22 by alalaoui         ###   ########.fr       */
+/*   Updated: 2018/02/16 17:08:14 by lramirez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -165,6 +165,12 @@ void				op_aff(t_thread *process);
 
 int					check_params(unsigned char byte, int number);
 int					recup_param(t_vm *vm, int location, int size);
+
+/*
+** get.c
+*/
+
+int					get(t_thread *pc, int param_nbr);
 
 /*
 ** params_new.c
