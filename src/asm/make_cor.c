@@ -6,7 +6,7 @@
 /*   By: stoupin <stoupin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/15 10:53:17 by dhadley           #+#    #+#             */
-/*   Updated: 2018/02/08 18:34:17 by stoupin          ###   ########.fr       */
+/*   Updated: 2018/02/16 13:49:04 by dhadley          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void	write_cor(t_env *env)
 	int			fd;
 	t_openfile	of;
 
-	fd = open(env->file_name, O_CREAT | O_WRONLY, S_IRWXU);
+	fd = open(env->file_name, O_CREAT | O_WRONLY, S_IRUSR + S_IWUSR);
 	if (fd > 1)
 	{
 		openfile_init(&of, fd);
