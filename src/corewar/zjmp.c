@@ -43,5 +43,4 @@ void	op_zjmp(t_thread *process)
 		print_str(vm, " FAILED", 1);
 	}
 	process->cycles -= 20;
-	return ;
 }
