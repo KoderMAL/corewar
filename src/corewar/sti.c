@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sti.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: stoupin <stoupin@student.42.fr>            +#+  +:+       +#+        */
+/*   By: dhadley <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/01/29 16:26:43 by dhadley           #+#    #+#             */
-/*   Updated: 2018/02/16 18:11:31 by dhadley          ###   ########.fr       */
+/*   Created: 2018/02/16 18:34:00 by dhadley           #+#    #+#             */
+/*   Updated: 2018/02/16 18:34:01 by dhadley          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,86 +25,14 @@
 ** this function does not modify the carry
 */
 
-static void	print_in_mem(t_vm *vm, t_thread *pc, int tmp, int reg)
-{
-	int i;
-
-	if (tmp < 0)
-		i = tmp % -IDX_MOD;
-	else
-		i = tmp % IDX_MOD;
-	vm->map[(pc->location + i) % MEM_SIZE] = (reg >> 24);
-	vm->map[(pc->location + 1 + i) % MEM_SIZE] =
-		((reg >> 16) & 255);
-	vm->map[(pc->location + 2 + i) % MEM_SIZE] =
-		((reg >> 8) & 255);
-	vm->map[(pc->location + 3 + i) % MEM_SIZE] = (reg & 255);
-}
-
-static int	third_reg(t_vm *vm, t_thread *pc, int reg, int param1)
-{
-	int	param2;
-	int	tmp;
-	
-	tmp = recup_param(vm, (pc->location + 1 + 1 + 1 + 2) % MEM_SIZE, 1);
-	if (tmp < 1 || tmp > REG_SIZE)
-		return (op_exit(pc, 25, false));
-	param2 = pc->r[tmp];
-	tmp = param1 + param2;
-	if (reg < 0)
-	{
-		reg = ~(-reg);
-		reg++;
-	}
-	print_in_mem(vm, pc, tmp, reg);
-	return (op_success(pc, 25, 1 + 1 + 1 + 2 + 1, false));
-}
-
-static int	third_dir(t_vm *vm, t_thread *pc, int reg, int param1)
-{
-	int	param2;
-	int	tmp;
-
-	param2 = recup_param(vm, (pc->location + 1 + 1 + 1 + 2) % MEM_SIZE, 2);
-	tmp = param1 + param2;
-	if (reg < 0)
-	{
-		reg = ~(-reg);
-		reg++;
-	}
-	print_in_mem(vm, pc, tmp, reg);
-	return (op_success(pc, 25, 1 + 1 + 1 + 2 + 2, false));
-}
-
 void		op_sti(t_thread *pc)
 {
-	int	reg;
-	int param1;
-	int tmp;
-	t_vm *vm;
+	int index;
+	int value;
 
-	vm = pc->vm;	
-	if (check_params(vm->map[(pc->location + 1) % MEM_SIZE], 1) == REG_CODE)
-	{
-		tmp = recup_param(vm, (pc->location + 2) % MEM_SIZE, 1);
-		if (tmp < 1 || tmp > REG_NUMBER)
-			return ;//(op_exit(pc, 25, false));
-		reg = pc->r[tmp];
-		if (check_params(vm->map[(pc->location + 1) % MEM_SIZE], 2) == DIR_CODE)
-		{
-			param1 = recup_param(vm, (pc->location + 1 + 1 + 1) % MEM_SIZE, 2);
-			if (check_params(vm->map[(pc->location + 1) % MEM_SIZE], 3)
-					== DIR_CODE)
-				return ;//(third_dir(vm, pc, reg, param1));
-			else if (check_params(vm->map[(pc->location + 1) % MEM_SIZE], 3)
-					== REG_CODE)
-				return ;//(third_reg(vm, pc, reg, param1));
-		}
-		else if (check_params(vm->map[(pc->location + 1) % MEM_SIZE], 2) == IND_CODE)
-			return ;//(op_sti_ind(pc));
-		else if (check_params(vm->map[(pc->location + 1) % MEM_SIZE], 2)
-				== REG_CODE)
-			return ;//(op_sti_reg(pc));
-	}
-	return ;//(op_exit(pc, 25, false));
+	index = get(pc, 1) + get(pc, 2);
+	pc->params[3] = index;
+	pc->params_type[3] = T_DIR;
+	value = get(pc, 0);
+	set(pc, 3, value);
 }
