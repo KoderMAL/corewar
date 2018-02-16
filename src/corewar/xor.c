@@ -6,7 +6,7 @@
 /*   By: lramirez <lramirez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/26 14:39:27 by lramirez          #+#    #+#             */
-/*   Updated: 2018/02/16 17:15:53 by lramirez         ###   ########.fr       */
+/*   Updated: 2018/02/16 17:16:46 by lramirez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ void			op_xor(t_thread *pc)
 {
 	int		a;
 	int		b;
+	int		result;
 
 	a = get(pc, 0);
 	b = get(pc, 1);
