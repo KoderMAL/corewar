@@ -6,13 +6,13 @@
 /*   By: lramirez <lramirez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/26 14:39:27 by lramirez          #+#    #+#             */
-/*   Updated: 2018/02/16 17:16:37 by lramirez         ###   ########.fr       */
+/*   Updated: 2018/02/16 17:22:01 by lramirez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vm.h"
 
-void			op_or(t_thread *pc)
+void		op_or(t_thread *pc)
 {
 	int		a;
 	int		b;
