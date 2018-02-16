@@ -6,7 +6,7 @@
 /*   By: alalaoui <alalaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/24 15:16:28 by alalaoui          #+#    #+#             */
-/*   Updated: 2018/02/13 15:31:17 by alalaoui         ###   ########.fr       */
+/*   Updated: 2018/02/16 14:28:03 by alalaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 #include "io/openfile.h"
 #include "vm.h"
 
-static int	check_magic(t_vm *vm, t_openfile *of)
+static int		check_magic(t_vm *vm, t_openfile *of)
 {
 	unsigned char	magic[4];
 	int				ret;
@@ -31,9 +31,9 @@ static int	check_magic(t_vm *vm, t_openfile *of)
 	return (err2(vm, "wrong magic number"));
 }
 
-static int	read_buffers(t_vm *vm, t_champ *champ, t_openfile *of)
+static int		read_buffers(t_vm *vm, t_champ *champ, t_openfile *of)
 {
-	int	ret;
+	int			ret;
 
 	ret = openfile_read_buf(of, champ->name, PROG_NAME_LENGTH, 0);
 	if (ret < PROG_NAME_LENGTH)
@@ -58,7 +58,7 @@ static int	read_buffers(t_vm *vm, t_champ *champ, t_openfile *of)
 	return (0);
 }
 
-int			champion_load(t_vm *vm, t_champ *champ, int n, char *file_name)
+int				champion_load(t_vm *vm, t_champ *champ, int n, char *file_name)
 {
 	int			fd;
 	t_openfile	of;
@@ -83,9 +83,9 @@ int			champion_load(t_vm *vm, t_champ *champ, int n, char *file_name)
 
 void			champion_to_vm(t_vm *vm, int i_champ)
 {
-	t_champ	*champ;
-	size_t	i;
-	size_t	pos;
+	t_champ		*champ;
+	size_t		i;
+	size_t		pos;
 
 	champ = &(vm->champs[i_champ]);
 	pos = i_champ * (MEM_SIZE / vm->n_champs);

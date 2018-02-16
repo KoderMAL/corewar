@@ -6,7 +6,7 @@
 /*   By: alalaoui <alalaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/12 16:17:49 by dhadley           #+#    #+#             */
-/*   Updated: 2018/02/16 14:17:49 by alalaoui         ###   ########.fr       */
+/*   Updated: 2018/02/16 14:24:35 by alalaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ static void	kill_process(t_vm *vm)
 	}
 }
 
-static int	find_winner(t_vm *vm)
+static void	find_winner(t_vm *vm)
 {
 	int		i;
 	int		last;
@@ -72,12 +72,12 @@ void		check_cycles(t_vm *vm)
 	if (vm->cycle_to_die <= 0)
 	{
 		print_winner(vm);
-		return ;//		printf("CYCLE TO DIE == 0 and game should end");
+		return ;
 	}
 	else if (vm->threads.len == 0)
 	{
 		print_winner(vm);
-		return ;//		printf("vm->threads.len = 0 and we should end the game");
+		return ;
 	}
 	else if (vm->game_cycle % vm->cycle_to_die == 0)
 	{
