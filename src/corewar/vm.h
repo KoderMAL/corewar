@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   vm.h                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alalaoui <alalaoui@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lramirez <lramirez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/08 14:12:51 by stoupin           #+#    #+#             */
-/*   Updated: 2018/02/16 14:39:54 by alalaoui         ###   ########.fr       */
+/*   Updated: 2018/02/16 17:08:14 by lramirez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ typedef struct		s_vm
 	unsigned char	map[MEM_SIZE];
 	int				err;
 	int				cycle_to_dump;
+	int				dump_every;
 	int				verbose;
 	char			*err_msg;
 	int				game_cycle;
@@ -82,6 +83,7 @@ typedef enum		e_state
 	S_START,
 	S_D,
 	S_N,
+	S_S,
 	S_CHAMP
 }					t_state;
 
@@ -134,28 +136,28 @@ void				draw_game_clean(t_vm *vm);
 ** operations
 */
 
-int					op_live(t_vm *vm, t_thread *pc);
-int					op_ld(t_vm *vm, t_thread *pc);
-int					op_st(t_vm *vm, t_thread *pc);
+void				op_live(t_thread *pc);
+void				op_ld(t_thread *pc);
+void				op_st(t_thread *pc);
 void				op_add(t_thread *pc);
-int					op_sub(t_vm *vm, t_thread *process);
+void				op_sub(t_thread *process);
 void				op_and(t_thread *pc);
 void				op_or(t_thread *pc);
 void				op_xor(t_thread *pc);
-int					op_zjmp(t_vm *vm, t_thread *process);
-int					op_ldi(t_vm *vm, t_thread *process);
-int					op_ldi_dir(t_vm *vm, t_thread *process);
-int					op_ldi_reg(t_vm *vm, t_thread *process);
-int					op_sti(t_vm *vm, t_thread *process);
-int					op_sti_ind(t_vm *vm, t_thread *process);
-int					op_sti_reg(t_vm *vm, t_thread *process);
-int					op_fork(t_vm *vm, t_thread *process);
-int					op_lld(t_vm *vm, t_thread *process);
-int					op_lldi(t_vm *vm, t_thread *process);
-int					op_lldi_dir(t_vm *vm, t_thread *process);
-int					op_lldi_reg(t_vm *vm, t_thread *process);
-int					op_lfork(t_vm *vm, t_thread *process);
-int					op_aff(t_vm *vm, t_thread *process);
+void				op_zjmp(t_thread *process);
+void				op_ldi(t_thread *process);
+void				op_ldi_dir(t_thread *process);
+void				op_ldi_reg(t_thread *process);
+void				op_sti(t_thread *process);
+void				op_sti_ind(t_thread *process);
+void				op_sti_reg(t_thread *process);
+void				op_fork(t_thread *process);
+void				op_lld(t_thread *process);
+void				op_lldi(t_thread *process);
+void				op_lldi_dir(t_thread *process);
+void				op_lldi_reg(t_thread *process);
+void				op_lfork(t_thread *process);
+void				op_aff(t_thread *process);
 
 /*
 ** params.c
@@ -163,6 +165,19 @@ int					op_aff(t_vm *vm, t_thread *process);
 
 int					check_params(unsigned char byte, int number);
 int					recup_param(t_vm *vm, int location, int size);
+
+/*
+** get.c
+*/
+
+int					get(t_thread *pc, int param_nbr);
+
+/*
+** params_new.c
+*/
+
+int					get_byte_at(t_thread *pc, int amount, bool indent);
+int					shift_loc(t_thread *pc, int amount);
 
 /*
 ** dump.c

@@ -6,7 +6,7 @@
 /*   By: lramirez <lramirez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/15 13:20:49 by lramirez          #+#    #+#             */
-/*   Updated: 2018/02/16 15:26:09 by lramirez         ###   ########.fr       */
+/*   Updated: 2018/02/16 16:04:07 by lramirez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int				shift_loc(t_thread *pc, int amount)
 	return ((pc->location + amount) % MEM_SIZE);
 }
 
-int				get_loc(t_thread *pc, int amount, bool indent)
+int				get_byte_at(t_thread *pc, int amount, bool indent)
 {
 	if (indent)
 		return (pc->vm->map[shift_loc(pc, pc->indent + amount)]);
@@ -41,17 +41,17 @@ int				get_bytes(t_thread *pc, int bytes)
 
 	param = 0;
 	if (bytes == 1)
-		param = get_loc(pc, 0, true);
+		param = get_byte_at(pc, 0, true);
 	else if (bytes == 2)
 	{
-		param = get_loc(pc, 0, true) << 8 | get_loc(pc, 1, true);
+		param = get_byte_at(pc, 0, true) << 8 | get_byte_at(pc, 1, true);
 		if (param > 0x7FFF)
 			param = (param | 0xFFFF0000);
 	}
 	else if (bytes == 4)
 	{
-		param = get_loc(pc, 0, true) << 24 | get_loc(pc, 1, true) << 16 |
-			get_loc(pc, 2, true) << 8 | get_loc(pc, 3, true);
+		param = get_byte_at(pc, 0, true) << 24 | get_byte_at(pc, 1, true) << 16 |
+			get_byte_at(pc, 2, true) << 8 | get_byte_at(pc, 3, true);
 		param = (param < 0) ? shift_loc(pc, (param % -IDX_MOD)) :
 		shift_loc(pc, (param % IDX_MOD));
 	}
@@ -88,7 +88,7 @@ int            get_params(t_thread *pc, t_op *op)
 	if (op->has_pcode)
 	{
 		pc->indent = 2;
-		pc->bytecode = get_loc(pc, 1, false);
+		pc->bytecode = get_byte_at(pc, 1, false);
 	}
 	else
 		pc->indent = 1;

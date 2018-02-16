@@ -21,11 +21,13 @@
 ** Décrémente le process de 10 cycles (coût d'un live).
 */
 
-int	op_live(t_vm *vm, t_thread *process)
+void	op_live(t_thread *process)
 {
 	int		id;
 	int		player;
+	t_vm *vm;
 
+	vm = process->vm;
 	process->location = (process->location + 1) % MEM_SIZE;
 	id = vm->map[process->location] << 24
 			| vm->map[(process->location + 1) % MEM_SIZE] << 16
@@ -48,5 +50,4 @@ int	op_live(t_vm *vm, t_thread *process)
 	}
 	process->location = (process->location + 4) % MEM_SIZE;
 	process->cycles -= 10;
-	return (1);
 }

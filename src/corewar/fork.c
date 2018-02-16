@@ -6,7 +6,7 @@
 /*   By: stoupin <stoupin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/26 11:24:05 by lramirez          #+#    #+#             */
-/*   Updated: 2018/02/08 12:17:05 by stoupin          ###   ########.fr       */
+/*   Updated: 2018/02/16 15:54:20 by stoupin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,15 +19,16 @@
 ** Décrémente le process d'origine de 800 cycles (coût d'un fork).
 */
 
-int	op_fork(t_vm *vm, t_thread *process)
+void	op_fork(t_thread *process)
 {
 	short	index;
+	t_vm *vm;
 
+	vm = process->vm;
 	index = vm->map[(process->location + 1) % MEM_SIZE] << 8
 					| vm->map[(process->location + 2) % MEM_SIZE];
 	pqueue_push(&(vm->threads), dup_thread(process,
 					(process->location + (index % IDX_MOD)) % MEM_SIZE));
 	process->location = (process->location + 3) % MEM_SIZE;
 	process->cycles -= 800;
-	return (1);
 }

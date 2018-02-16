@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   zjmp.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: stoupin <stoupin@student.42.fr>            +#+  +:+       +#+        */
+/*   By: lramirez <lramirez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/25 17:58:09 by lramirez          #+#    #+#             */
-/*   Updated: 2018/02/15 12:29:51 by stoupin          ###   ########.fr       */
+/*   Updated: 2018/02/16 17:08:59 by lramirez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,12 @@
 ** Décrémente le process de 20 cycles (coût d'un zjmp).
 */
 
-int	op_zjmp(t_vm *vm, t_thread *process)
+void	op_zjmp(t_thread *process)
 {
 	short	index;
+	t_vm *vm;
 
+	vm = process->vm;
 	print_instruction_start(vm, process);
 	print_str(vm, "zjmp ", 0);
 	process->location = (process->location + 1) % MEM_SIZE;
@@ -41,5 +43,4 @@ int	op_zjmp(t_vm *vm, t_thread *process)
 		print_str(vm, " FAILED", 1);
 	}
 	process->cycles -= 20;
-	return (1);
 }

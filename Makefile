@@ -34,7 +34,7 @@ SRC_COREWAR = parse_args.c error2.c thread.c vm.c champion.c draw_game.c dump.c 
 				live.c zjmp.c fork.c aff.c ld.c params.c params_new.c add.c sub.c and.c \
 				lfork.c lld.c ldi.c ldi_dir.c ldi_reg.c \
 				lldi.c lldi_dir.c lldi_reg.c sti.c sti_ind.c sti_reg.c \
-				st.c xor.c or.c \
+				st.c xor.c or.c get.c \
 				op_success.c op_exit.c \
 				check_cycles.c verbose.c
 SRC_GUI = font.c font_cursor.c gui.c gui_hooks.c fonts.c
