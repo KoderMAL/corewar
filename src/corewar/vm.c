@@ -6,7 +6,7 @@
 /*   By: alalaoui <alalaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/16 14:30:57 by alalaoui          #+#    #+#             */
-/*   Updated: 2018/02/16 14:48:30 by alalaoui         ###   ########.fr       */
+/*   Updated: 2018/02/16 15:33:24 by alalaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,11 @@ void		vm_start(t_vm *vm)
 
 void		vm_clean(t_vm *vm)
 {
+	if (vm->err == 0)
+	{
+		if (vm->n_champs < 1)
+			err2(vm, "need at least one champion");
+	}
 	err2_display(vm);
 	pqueue_delete(&(vm->threads));
 	if (vm->draw_game)
@@ -69,9 +74,9 @@ int			main(int argc, char **argv)
 
 	vm_init(&vm);
 	parse_args(&vm, argc, argv);
-	if (argc < 2 || vm.n_champs < 1)
+	if (argc < 2)
 		err2(&vm, USAGE);
-	if (vm.err == 0)
+	if (vm.err == 0 && vm.n_champs > 0)
 	{
 		openfile_write_str(&(vm.stdout), "Introducing contestants...", 1);
 		i = 0;
@@ -79,7 +84,7 @@ int			main(int argc, char **argv)
 			announce_war(&vm, i++);
 		vm_start(&vm);
 	}
-	if (vm.err == 0)
+	if (vm.err == 0 && vm.n_champs > 0)
 	{
 		if (vm.draw_game)
 			mlx_loop(vm.gui.mlx_ptr);
