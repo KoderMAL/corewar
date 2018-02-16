@@ -93,10 +93,10 @@ static void		check_countdown(t_vm *vm)
 
 void			war_cycle(t_vm *vm)
 {
+	dump(vm);
 	if (vm->game_cycle == INT_MAX || vm->err != 0)
 		vm_clean(vm);
 	check_cycles(vm);
 	check_countdown(vm);
-	dump(vm);
 	vm->game_cycle++;
 }

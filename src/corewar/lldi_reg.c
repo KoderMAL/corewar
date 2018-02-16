@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lldi_reg.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dhadley <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: stoupin <stoupin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/09 16:01:21 by dhadley           #+#    #+#             */
-/*   Updated: 2018/02/13 13:00:51 by dhadley          ###   ########.fr       */
+/*   Updated: 2018/02/16 15:45:23 by stoupin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,11 +64,13 @@ static int second_dir(t_vm *vm, t_thread *pc, int param1, int tmp)
 	return (op_exit(pc, 50, true));
 }
 
-int			op_lldi_reg(t_vm *vm, t_thread *pc)
+int			op_lldi_reg(t_thread *pc)
 {
 	int	param1;
 	int	tmp;
+	t_vm *vm;
 
+	vm = pc->vm;
 	tmp = recup_param(vm, (pc->location + 2) % MEM_SIZE, 1);
 	if (tmp > REG_NUMBER || tmp < 1)
 		return (op_exit(pc, 50, true));

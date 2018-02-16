@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   aff.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lramirez <lramirez@student.42.fr>          +#+  +:+       +#+        */
+/*   By: stoupin <stoupin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/26 13:10:50 by lramirez          #+#    #+#             */
-/*   Updated: 2018/02/13 18:34:06 by lramirez         ###   ########.fr       */
+/*   Updated: 2018/02/16 15:42:17 by stoupin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,15 @@
 ** Décrémente le process de 2 cycles (coût d'un aff).
 */
 
-int	op_aff(t_vm *vm, t_thread *process)
+int	op_aff(t_thread *process)
 {
-	int		reg_nbr;
-	int		display;
+	//int		reg_nbr;
+	//int		display;
+	//t_vm *vm;
 
-	reg_nbr = vm->map[(process->location + 2) % MEM_SIZE];
-	display = process->r[reg_nbr] % 256;
+	//vm = process->vm;
+	//reg_nbr = vm->map[(process->location + 2) % MEM_SIZE];
+	// display = process->r[reg_nbr] % 256;
 	// if (reg_nbr <= REG_NUMBER)
 	// 	openfile_write_char(&(vm->stdout), (char)display);
 	process->cycles -= 2;

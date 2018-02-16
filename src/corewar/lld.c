@@ -6,7 +6,7 @@
 /*   By: stoupin <stoupin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/29 11:04:33 by dhadley           #+#    #+#             */
-/*   Updated: 2018/02/14 11:04:55 by dhadley          ###   ########.fr       */
+/*   Updated: 2018/02/16 15:42:52 by stoupin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,10 +51,12 @@ static int	op_lld_ind(t_vm *vm, t_thread *pc)
 	return (op_success(pc, 10, 1 + 1 + 2 + 1, true));
 }
 
-int			op_lld(t_vm *vm, t_thread *pc)
+int			op_lld(t_thread *pc)
 {
 	int	param_type;
+	t_vm *vm;
 
+	vm = pc->vm;
 	param_type = check_params(vm->map[(pc->location + 1) % MEM_SIZE], 1);
 	if (param_type == DIR_CODE)
 		return (op_lld_dir(vm, pc));
