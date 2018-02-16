@@ -6,7 +6,7 @@
 /*   By: lramirez <lramirez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/08 14:12:51 by stoupin           #+#    #+#             */
-/*   Updated: 2018/02/16 15:43:02 by lramirez         ###   ########.fr       */
+/*   Updated: 2018/02/16 16:06:01 by lramirez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -163,6 +163,13 @@ void				op_aff(t_thread *process);
 
 int					check_params(unsigned char byte, int number);
 int					recup_param(t_vm *vm, int location, int size);
+
+/*
+** params_new.c
+*/
+
+int					get_byte_at(t_thread *pc, int amount, bool indent);
+int					shift_loc(t_thread *pc, int amount);
 
 /*
 ** dump.c
