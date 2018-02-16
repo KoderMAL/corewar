@@ -6,7 +6,7 @@
 /*   By: stoupin <stoupin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/26 13:06:48 by lramirez          #+#    #+#             */
-/*   Updated: 2018/02/16 15:41:54 by stoupin          ###   ########.fr       */
+/*   Updated: 2018/02/16 15:56:18 by stoupin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 ** Dans les deux cas, décrémente le process de 10 cycles (coût d'un sub).
 */
 
-int	op_sub(t_thread *process)
+void	op_sub(t_thread *process)
 {
 	int		r1;
 	int		r2;
@@ -45,5 +45,4 @@ int	op_sub(t_thread *process)
 		process->location = (process->location + 2) % MEM_SIZE;
 	}
 	process->cycles -= 10;
-	return (0);
 }

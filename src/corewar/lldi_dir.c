@@ -6,7 +6,7 @@
 /*   By: stoupin <stoupin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/09 15:59:48 by dhadley           #+#    #+#             */
-/*   Updated: 2018/02/16 15:45:10 by stoupin          ###   ########.fr       */
+/*   Updated: 2018/02/16 15:59:11 by stoupin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ static int	second_dir(t_vm *vm, t_thread *pc, int param1)
 	return (op_exit(pc, 50, true));
 }
 
-int			op_lldi_dir(t_thread *pc)
+void		op_lldi_dir(t_thread *pc)
 {
 	int	param1;
 	t_vm *vm;
@@ -73,9 +73,9 @@ int			op_lldi_dir(t_thread *pc)
 	vm = pc->vm;
 	param1 = recup_param(vm, (pc->location + 2) % MEM_SIZE, IND_SIZE);
 	if (check_params(vm->map[(pc->location + 1) % MEM_SIZE], 2) == DIR_CODE)
-		return (second_dir(vm, pc, param1));
+		return ;//(second_dir(vm, pc, param1));
 	else if (check_params(vm->map[(pc->location + 1) % MEM_SIZE], 2)
 			== REG_CODE)
-		return (second_reg(vm, pc, param1));
-	return (op_exit(pc, 50, true));
+		return ;//(second_reg(vm, pc, param1));
+	return ;//(op_exit(pc, 50, true));
 }

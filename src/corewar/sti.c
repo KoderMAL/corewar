@@ -76,7 +76,7 @@ static int	third_dir(t_vm *vm, t_thread *pc, int reg, int param1)
 	return (op_success(pc, 25, 1 + 1 + 1 + 2 + 2, false));
 }
 
-int			op_sti(t_thread *pc)
+void		op_sti(t_thread *pc)
 {
 	int	reg;
 	int param1;
@@ -88,23 +88,23 @@ int			op_sti(t_thread *pc)
 	{
 		tmp = recup_param(vm, (pc->location + 2) % MEM_SIZE, 1);
 		if (tmp < 1 || tmp > REG_NUMBER)
-			return (op_exit(pc, 25, false));
+			return ;//(op_exit(pc, 25, false));
 		reg = pc->r[tmp];
 		if (check_params(vm->map[(pc->location + 1) % MEM_SIZE], 2) == DIR_CODE)
 		{
 			param1 = recup_param(vm, (pc->location + 1 + 1 + 1) % MEM_SIZE, 2);
 			if (check_params(vm->map[(pc->location + 1) % MEM_SIZE], 3)
 					== DIR_CODE)
-				return (third_dir(vm, pc, reg, param1));
+				return ;//(third_dir(vm, pc, reg, param1));
 			else if (check_params(vm->map[(pc->location + 1) % MEM_SIZE], 3)
 					== REG_CODE)
-				return (third_reg(vm, pc, reg, param1));
+				return ;//(third_reg(vm, pc, reg, param1));
 		}
 		else if (check_params(vm->map[(pc->location + 1) % MEM_SIZE], 2) == IND_CODE)
-			return (op_sti_ind(pc));
+			return ;//(op_sti_ind(pc));
 		else if (check_params(vm->map[(pc->location + 1) % MEM_SIZE], 2)
 				== REG_CODE)
-			return (op_sti_reg(pc));
+			return ;//(op_sti_reg(pc));
 	}
-	return (op_exit(pc, 25, false));
+	return ;//(op_exit(pc, 25, false));
 }

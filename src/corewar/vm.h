@@ -136,28 +136,28 @@ void				draw_game_clean(t_vm *vm);
 ** operations
 */
 
-int					op_live(t_thread *pc);
-int					op_ld(t_thread *pc);
-int					op_st(t_thread *pc);
+void				op_live(t_thread *pc);
+void				op_ld(t_thread *pc);
+void				op_st(t_thread *pc);
 void				op_add(t_thread *pc);
-int					op_sub(t_thread *process);
+void				op_sub(t_thread *process);
 void				op_and(t_thread *pc);
 void				op_or(t_thread *pc);
 void				op_xor(t_thread *pc);
-int					op_zjmp(t_thread *process);
-int					op_ldi(t_thread *process);
-int					op_ldi_dir(t_thread *process);
-int					op_ldi_reg(t_thread *process);
-int					op_sti(t_thread *process);
-int					op_sti_ind(t_thread *process);
-int					op_sti_reg(t_thread *process);
-int					op_fork(t_thread *process);
-int					op_lld(t_thread *process);
-int					op_lldi(t_thread *process);
-int					op_lldi_dir(t_thread *process);
-int					op_lldi_reg(t_thread *process);
-int					op_lfork(t_thread *process);
-int					op_aff(t_thread *process);
+void				op_zjmp(t_thread *process);
+void				op_ldi(t_thread *process);
+void				op_ldi_dir(t_thread *process);
+void				op_ldi_reg(t_thread *process);
+void				op_sti(t_thread *process);
+void				op_sti_ind(t_thread *process);
+void				op_sti_reg(t_thread *process);
+void				op_fork(t_thread *process);
+void				op_lld(t_thread *process);
+void				op_lldi(t_thread *process);
+void				op_lldi_dir(t_thread *process);
+void				op_lldi_reg(t_thread *process);
+void				op_lfork(t_thread *process);
+void				op_aff(t_thread *process);
 
 /*
 ** params.c

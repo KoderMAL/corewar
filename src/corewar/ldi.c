@@ -76,8 +76,7 @@ static int	second_dir(t_vm *vm, t_thread *pc, int tmp, int param1)
 	else
 		return (op_exit(pc, 25, false));
 }
-
-int			op_ldi(t_thread *pc)
+void		op_ldi(t_thread *pc)
 {
 	int	param1;
 	int	tmp;
@@ -94,16 +93,16 @@ int			op_ldi(t_thread *pc)
 			i = pc->location + (tmp % IDX_MOD);
 		param1 = recup_param(vm, i % MEM_SIZE, IND_SIZE);
 		if (check_params(vm->map[(pc->location + 1) % MEM_SIZE], 2) == DIR_CODE)
-			return (second_dir(vm, pc, tmp, param1));
+			return ;//(second_dir(vm, pc, tmp, param1));
 		else if (check_params(vm->map[(pc->location + 1) % MEM_SIZE], 2)
 				== REG_CODE)
-			return (second_reg(vm, pc, tmp, param1));
+			return ;//(second_reg(vm, pc, tmp, param1));
 	}
 	else if (check_params(vm->map[(pc->location + 1) % MEM_SIZE], 1)
 			== DIR_CODE)
-		return (op_ldi_dir(pc));
+		return ;//(op_ldi_dir(pc));
 	else if (check_params(vm->map[(pc->location + 1) % MEM_SIZE], 1)
 			== REG_CODE)
-		return (op_ldi_reg(pc));
-	return (op_exit(pc, 25, false));
+		return ;//(op_ldi_reg(pc));
+	return ;//(op_exit(pc, 25, false));
 }
