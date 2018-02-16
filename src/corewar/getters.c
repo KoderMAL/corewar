@@ -6,7 +6,7 @@
 /*   By: lramirez <lramirez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/16 17:04:51 by lramirez          #+#    #+#             */
-/*   Updated: 2018/02/16 17:56:04 by lramirez         ###   ########.fr       */
+/*   Updated: 2018/02/16 19:24:25 by lramirez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,4 +33,5 @@ int			get(t_thread *pc, int param_nbr)
 		return (param);
 	else if (type == T_IND)
 		return (pc->vm->map[param]);
+	return (-1);
 }
