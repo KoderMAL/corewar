@@ -6,7 +6,7 @@
 /*   By: dhadley <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/15 11:27:57 by dhadley           #+#    #+#             */
-/*   Updated: 2018/02/15 19:09:09 by dhadley          ###   ########.fr       */
+/*   Updated: 2018/02/16 12:11:43 by dhadley          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ static int	third_dir(t_vm *vm, t_thread *pc, int reg, int param1)
 {
 	int	param2;
 	int	tmp;
-
+	
 	param2 = recup_param(vm, (pc->location + 1 + 1 + 1 + 2) % MEM_SIZE, 2);
 	tmp = param1 + param2;
 	if (reg < 0)
