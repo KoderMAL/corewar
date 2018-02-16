@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cycle.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: stoupin <stoupin@student.42.fr>            +#+  +:+       +#+        */
+/*   By: alalaoui <alalaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/26 11:51:04 by dhadley           #+#    #+#             */
-/*   Updated: 2018/02/15 16:35:04 by stoupin          ###   ########.fr       */
+/*   Updated: 2018/02/16 13:20:22 by alalaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,6 +108,5 @@ void			war_cycle(t_vm *vm)
 	check_cycles(vm);
 	check_countdown(vm);
 	dump(vm);
-//	sleep(1);
 	vm->game_cycle++;
 }
