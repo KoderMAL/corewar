@@ -20,7 +20,7 @@
 ** Décrémente le process de 20 cycles (coût d'un zjmp).
 */
 
-int	op_zjmp(t_thread *process)
+void	op_zjmp(t_thread *process)
 {
 	short	index;
 	t_vm *vm;
@@ -43,5 +43,4 @@ int	op_zjmp(t_thread *process)
 		print_str(vm, " FAILED", 1);
 	}
 	process->cycles -= 20;
-	return (1);
 }
