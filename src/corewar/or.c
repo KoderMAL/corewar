@@ -6,7 +6,7 @@
 /*   By: lramirez <lramirez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/26 14:39:27 by lramirez          #+#    #+#             */
-/*   Updated: 2018/02/16 17:09:36 by lramirez         ###   ########.fr       */
+/*   Updated: 2018/02/16 17:15:44 by lramirez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,11 @@
 
 void			op_or(t_thread *pc)
 {
-	int		param[2];
-	int		i;
+	int		a;
+	int		b;
 
-	i = 0;
-	while (i < 2)
-	{
-		param[i] = get(pc, i);
-		i++;
-	}
-	pc->r[pc->params[2]] = param[0] | param[1];
-	return ;
+	a = get(pc, 0);
+	b = get(pc, 1);
+	result = a | b;
+	set(pc, 2, result);
 }
