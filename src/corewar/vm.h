@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   vm.h                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lramirez <lramirez@student.42.fr>          +#+  +:+       +#+        */
+/*   By: alalaoui <alalaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/08 14:12:51 by stoupin           #+#    #+#             */
-/*   Updated: 2018/02/16 15:13:08 by lramirez         ###   ########.fr       */
+/*   Updated: 2018/02/16 14:39:54 by alalaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,6 +105,7 @@ int					check_option(t_vm *vm, int i);
 
 int					err2(t_vm *vm, char *err_msg);
 void				err2_display(t_vm *vm);
+void				announce_war(t_vm *vm, int i);
 
 /*
 ** thread.c

@@ -6,7 +6,7 @@
 /*   By: dhadley <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/15 11:27:57 by dhadley           #+#    #+#             */
-/*   Updated: 2018/02/15 11:53:50 by dhadley          ###   ########.fr       */
+/*   Updated: 2018/02/16 12:11:43 by dhadley          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ static int	third_dir(t_vm *vm, t_thread *pc, int reg, int param1)
 {
 	int	param2;
 	int	tmp;
-
+	
 	param2 = recup_param(vm, (pc->location + 1 + 1 + 1 + 2) % MEM_SIZE, 2);
 	tmp = param1 + param2;
 	if (reg < 0)
@@ -84,8 +84,8 @@ int			op_sti_ind(t_vm *vm, t_thread *pc)
 	if (tmp < 1 || tmp > REG_NUMBER)
 		return (op_exit(pc, 25, false));
 	reg = pc->r[tmp];
-	tmp = recup_param(vm, vm->map[(pc->location + 1 + 1 + 1) % MEM_SIZE], 2);
-	param1 = recup_param(vm, vm->map[(pc->location + tmp) % MEM_SIZE], 4);
+	tmp = recup_param(vm, (pc->location + 1 + 1 + 1) % MEM_SIZE, 2);
+	param1 = recup_param(vm, (pc->location + tmp) % MEM_SIZE, 4);
 	if (check_params(vm->map[(pc->location + 1) % MEM_SIZE], 3) == DIR_CODE)
 		return (third_dir(vm, pc, reg, param1));
 	else if (check_params(vm->map[(pc->location + 1) % MEM_SIZE], 3) == REG_CODE)

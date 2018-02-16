@@ -1,7 +1,7 @@
 .name		"zdoh"
 .comment	"w8 for da next one"
 
-lol:	sti		r3, -1, %1
+lol:	sti		r3, -10, %1
 	and		r3, %0, r3
 
 jmp:	fork		%:start

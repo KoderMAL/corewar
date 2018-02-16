@@ -6,7 +6,7 @@
 /*   By: stoupin <stoupin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/29 16:26:43 by dhadley           #+#    #+#             */
-/*   Updated: 2018/02/15 11:52:37 by dhadley          ###   ########.fr       */
+/*   Updated: 2018/02/16 12:12:35 by dhadley          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ int			op_sti(t_vm *vm, t_thread *pc)
 	int	reg;
 	int param1;
 	int tmp;
-
+	
 	if (check_params(vm->map[(pc->location + 1) % MEM_SIZE], 1) == REG_CODE)
 	{
 		tmp = recup_param(vm, (pc->location + 2) % MEM_SIZE, 1);

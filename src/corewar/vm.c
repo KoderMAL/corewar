@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   vm.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: stoupin <stoupin@student.42.fr>            +#+  +:+       +#+        */
+/*   By: alalaoui <alalaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/16 14:30:57 by alalaoui          #+#    #+#             */
-/*   Updated: 2018/02/15 11:35:49 by stoupin          ###   ########.fr       */
+/*   Updated: 2018/02/16 14:48:30 by alalaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #include "mlx.h"
 #include "vm.h"
 #include "ft/ft.h"
+#define USAGE "Usage: ./corewar [-verbose] [-visual] [-d N] [[-n N] champ.cor]"
 
 void		vm_init(t_vm *vm)
 {
@@ -28,13 +29,21 @@ void		vm_init(t_vm *vm)
 
 void		vm_start(t_vm *vm)
 {
-	int	i;
+	int			i;
+	t_thread	*thread;
 
 	pqueue_init(&(vm->threads));
 	i = 0;
 	while (i < vm->n_champs)
 	{
-		pqueue_push(&(vm->threads), create_thread(vm, vm->champs[i].number));
+		thread = create_thread(vm, vm->champs[i].number);
+		if (thread)
+			pqueue_push(&(vm->threads), thread);
+		else
+		{
+			err2(vm, "memory error");
+			break ;
+		}
 		i++;
 	}
 	if (vm->draw_game)
@@ -61,25 +70,13 @@ int			main(int argc, char **argv)
 	vm_init(&vm);
 	parse_args(&vm, argc, argv);
 	if (argc < 2 || vm.n_champs < 1)
-		err2(&vm, "Usage: ./corewar [-verbose] [-visual] [-d N] [[-n N] champ.cor] ...");
+		err2(&vm, USAGE);
 	if (vm.err == 0)
 	{
 		openfile_write_str(&(vm.stdout), "Introducing contestants...", 1);
 		i = 0;
 		while (i < vm.n_champs && vm.err == 0)
-		{
-			openfile_write_str(&(vm.stdout), "* Player ", 0);
-			openfile_write_nbr(&(vm.stdout), i + 1, 0);
-			openfile_write_str(&(vm.stdout), ", weighing ", 0);
-			openfile_write_nbr(&(vm.stdout), vm.champs[i].size_bytecode, 0);
-			openfile_write_str(&(vm.stdout), " bytes, \"", 0);
-			openfile_write_str(&(vm.stdout), vm.champs[i].name, 0);
-			openfile_write_str(&(vm.stdout), "\" (\"", 0);
-			openfile_write_str(&(vm.stdout), vm.champs[i].comment, 0);
-			openfile_write_str(&(vm.stdout), "\") !", 1);
-			champion_to_vm(&vm, i);
-			i++;
-		}
+			announce_war(&vm, i++);
 		vm_start(&vm);
 	}
 	if (vm.err == 0)

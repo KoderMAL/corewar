@@ -6,7 +6,7 @@
 /*   By: alalaoui <alalaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/12 16:17:49 by dhadley           #+#    #+#             */
-/*   Updated: 2018/02/13 17:31:59 by alalaoui         ###   ########.fr       */
+/*   Updated: 2018/02/16 14:24:35 by alalaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,6 @@ static void	kill_process(t_vm *vm)
 
 	i = 0;
 	pq = vm->threads.first;
-//	if (vm->threads.len == 1)
-		//vm->winner = vm->threads.first->p.r[1];
 	while (pq)
 	{
 		tmp = pq->next;
@@ -39,15 +37,31 @@ static void	kill_process(t_vm *vm)
 	}
 }
 
+static void	find_winner(t_vm *vm)
+{
+	int		i;
+	int		last;
+
+	i = 0;
+	last = vm->champs[i].last_live;
+	while (i < 0)
+	{
+		if (vm->champs[i].last_live > last)
+			vm->winner = i;
+		i++;
+	}
+}
+
 static void	print_winner(t_vm *vm)
 {
 	if (vm->cycle_to_dump != -1)
 		write_map(vm);
-	openfile_write_str(&(vm->stdout), "Winner is Player ", 0);
-	openfile_write_nbr(&(vm->stdout), vm->champs[vm->winner].number, 0);
-	openfile_write_str(&(vm->stdout), ": ", 0);
+	find_winner(vm);
+	openfile_write_str(&(vm->stdout), "Contestant ", 0);
+	openfile_write_nbr(&(vm->stdout), vm->winner + 1, 0);
+	openfile_write_str(&(vm->stdout), ", \"", 0);
 	openfile_write_str(&(vm->stdout), vm->champs[vm->winner].name, 0);
-	openfile_write_str(&(vm->stdout), "\n", 0);
+	openfile_write_str(&(vm->stdout), "\" has won !", 1);
 	vm_clean(vm);
 }
 
@@ -58,12 +72,12 @@ void		check_cycles(t_vm *vm)
 	if (vm->cycle_to_die <= 0)
 	{
 		print_winner(vm);
-		return ;//		printf("CYCLE TO DIE == 0 and game should end");
+		return ;
 	}
 	else if (vm->threads.len == 0)
 	{
 		print_winner(vm);
-		return ;//		printf("vm->threads.len = 0 and we should end the game");
+		return ;
 	}
 	else if (vm->game_cycle % vm->cycle_to_die == 0)
 	{

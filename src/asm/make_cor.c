@@ -6,12 +6,13 @@
 /*   By: stoupin <stoupin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/15 10:53:17 by dhadley           #+#    #+#             */
-/*   Updated: 2018/02/08 18:34:17 by stoupin          ###   ########.fr       */
+/*   Updated: 2018/02/16 14:29:26 by dhadley          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <fcntl.h>
 #include <sys/stat.h>
+#include <unistd.h>
 #include "io/openfile.h"
 #include "asm.h"
 
@@ -45,7 +46,7 @@ void	write_cor(t_env *env)
 	int			fd;
 	t_openfile	of;
 
-	fd = open(env->file_name, O_CREAT | O_WRONLY, S_IRWXU);
+	fd = open(env->file_name, O_CREAT | O_WRONLY, S_IRUSR + S_IWUSR);
 	if (fd > 1)
 	{
 		openfile_init(&of, fd);
@@ -57,6 +58,9 @@ void	write_cor(t_env *env)
 		openfile_write_buf(&of, "\0\0\0\0", 4, 0);
 		openfile_write_buf(&of, (char*)env->champion, env->prog_size, 0);
 		openfile_flush(&of);
+		write(1, "Writing output program to ", 26);
+		write(1, env->file_name, ft_strlen(env->file_name));
+		write(1, "\n", 1);
 	}
 	else
 		err(env, "unable to write output file", -1);
