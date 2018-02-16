@@ -6,7 +6,7 @@
 /*   By: lramirez <lramirez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/15 13:20:49 by lramirez          #+#    #+#             */
-/*   Updated: 2018/02/16 15:07:00 by lramirez         ###   ########.fr       */
+/*   Updated: 2018/02/16 15:26:09 by lramirez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,8 +52,8 @@ int				get_bytes(t_thread *pc, int bytes)
 	{
 		param = get_loc(pc, 0, true) << 24 | get_loc(pc, 1, true) << 16 |
 			get_loc(pc, 2, true) << 8 | get_loc(pc, 3, true);
-		param = (param < 0) ? shift_loc(pc, pc->indent + (param % -IDX_MOD)) :
-		shift_loc(pc, pc->indent + (param % IDX_MOD));
+		param = (param < 0) ? shift_loc(pc, (param % -IDX_MOD)) :
+		shift_loc(pc, (param % IDX_MOD));
 	}
 	pc->indent += bytes;
 	return (param);
