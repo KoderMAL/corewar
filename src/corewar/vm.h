@@ -6,7 +6,7 @@
 /*   By: lramirez <lramirez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/08 14:12:51 by stoupin           #+#    #+#             */
-/*   Updated: 2018/02/16 18:02:37 by lramirez         ###   ########.fr       */
+/*   Updated: 2018/02/16 18:45:13 by dhadley          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,8 +73,8 @@ typedef struct		s_thread
 	bool		alive;
 	int			indent;
 	char		bytecode;
-	int			params[3];
-	int			params_type[3];
+	int			params[4];
+	int			params_type[4];
 	t_vm		*vm;
 }					t_thread;
 

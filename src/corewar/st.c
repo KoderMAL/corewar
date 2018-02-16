@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   st.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: stoupin <stoupin@student.42.fr>            +#+  +:+       +#+        */
+/*   By: dhadley <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/01/29 15:23:39 by dhadley           #+#    #+#             */
-/*   Updated: 2018/02/16 17:26:14 by dhadley          ###   ########.fr       */
+/*   Created: 2018/02/16 18:33:49 by dhadley           #+#    #+#             */
+/*   Updated: 2018/02/16 18:33:51 by dhadley          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,65 +22,10 @@
 ** This op does not modify the carry
 */
 
-static int	op_st_reg(t_vm *vm, t_thread *pc, int param1)
+void	op_st(t_thread *pc)
 {
-	int	tmp;
+	int value;
 
-	tmp = recup_param(vm, (pc->location + 1 + 2) % MEM_SIZE, 1);
-	if (tmp < 1 || tmp > REG_NUMBER)
-		return (op_exit(pc, 5, false));
-	print_reg(vm, tmp, 1);
-	pc->r[tmp] = param1;
-	return (op_success(pc, 5, 1 + 2 + 1, false));
-}
-
-static int	op_st_ind(t_vm *vm, t_thread *pc, int param1)
-{
-	int	tmp;
-	int	i;
-
-	tmp = recup_param(vm, (pc->location + 1 + 2), 2);
-	print_nbr(vm, tmp, 1);
-	if (param1 < 0)
-	{
-		param1 = ~(-param1);
-		param1++;
-	}
-	if (tmp < 0)
-		i = pc->location + (tmp % -IDX_MOD);
-	else
-		i = pc->location + (tmp % IDX_MOD);
-	vm->map[i % MEM_SIZE] = (param1 >> 24);
-	vm->map[(i + 1) % MEM_SIZE] = ((param1 >> 16) & 255);
-	vm->map[(i + 2) % MEM_SIZE] = ((param1 >> 8) & 255);
-	vm->map[(i + 3) % MEM_SIZE] = (param1 & 255);
-	return (op_success(pc, 5, 1 + 2 + 2, false));
-}
-
-void		op_st(t_thread *pc)
-{
-	int	param1;
-	int	tmp;
-	int	param_type;
-	t_vm *vm;
-
-	vm = pc->vm;
-	print_instruction_start(vm, pc);
-	print_str(vm, "st ", 0);
-	if (check_params(vm->map[(pc->location + 1) % MEM_SIZE], 1) == REG_CODE)
-	{
-		tmp = recup_param(vm, (pc->location + 2) % MEM_SIZE, 1);
-		print_str(vm, "r", 0);
-		print_nbr(vm, tmp, 0);
-		print_str(vm, " ", 0);
-		if (tmp < 1 || tmp > REG_NUMBER)
-			return ;//(op_exit(pc, 5, false));
-		param1 = pc->r[tmp];
-		param_type = check_params(vm->map[(pc->location + 1) % MEM_SIZE], 2);
-		if (param_type == REG_CODE)
-			return ;//(op_st_reg(vm, pc, param1));
-		else if (param_type == IND_CODE)
-			return ;//(op_st_ind(vm, pc, param1));
-	}
-	return (op_exit(pc, 5, false));
+	value = get(pc, 0);
+	set(pc, 1, value);
 }

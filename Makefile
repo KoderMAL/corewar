@@ -32,8 +32,8 @@ SRC_PARSING = states_main.c states_header.c states_label.c states_instruction.c 
 			  save_label.c save_argument.c save_instruction.c check_args.c
 SRC_COREWAR = parse_args.c error2.c thread.c vm.c champion.c draw_game.c dump.c cycle.c op.c \
 				live.c zjmp.c fork.c aff.c ld.c params.c params_new.c add.c sub.c and.c \
-				lfork.c lld.c ldi.c ldi_dir.c ldi_reg.c \
-				lldi.c lldi_dir.c lldi_reg.c sti.c sti_ind.c sti_reg.c \
+				lfork.c lld.c ldi.c \
+				lldi.c sti.c \
 				st.c xor.c or.c getters.c setters.c \
 				op_success.c op_exit.c \
 				check_cycles.c verbose.c
