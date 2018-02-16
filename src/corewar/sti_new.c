@@ -1,30 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ld_new.c                                           :+:      :+:    :+:   */
+/*   sti_new.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dhadley <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/02/16 16:14:50 by dhadley           #+#    #+#             */
-/*   Updated: 2018/02/16 18:11:38 by dhadley          ###   ########.fr       */
+/*   Created: 2018/02/16 17:57:10 by dhadley           #+#    #+#             */
+/*   Updated: 2018/02/16 18:11:25 by dhadley          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vm.h"
 
 /*
-** Cette instruction prend 2 paramètres, le deuxième est forcément un
-** registre (pas le pc).
-** Elle load la valeur du premier paramètre dans le registre.
-** Cette opération modifie le carry.
-** ld 34,r3 charge les REG_SIZE octets à partir de l’adresse
-** (pc + (34 % IDX_MOD)) dans le registre r3.
+** sti r2,%4,%5 sti copie REG_SIZE octet de r2 a l’adresse (4 + 5)
+** Les paramètres 2 et 3 sont des index.
+** Si les paramètres 2 ou 3 sont des registres, on utilisera leur
+** contenu comme un index.
+**
+** p1 = T_REG
+** p2 = T_REG | T_DIR | T_IND
+** p3 = T_DIR | T_REG
+**
+** this function does not modify the carry
 */
 
-void	op_ld(t_thread *pc)
+void		op_sti(t_thread *pc)
 {
+	int index;
 	int value;
 
+	index = get(pc, 1) + get(pc, 2);
+	pc->params[3] = index;
+	pc->params_type[3] = T_DIR;
 	value = get(pc, 0);
-	set(pc, 1, value);
+	set(pc, 3, value);
 }
