@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   check_cycles.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: stoupin <stoupin@student.42.fr>            +#+  +:+       +#+        */
+/*   By: alalaoui <alalaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/12 16:17:49 by dhadley           #+#    #+#             */
 /*   Updated: 2018/02/16 13:32:03 by dhadley          ###   ########.fr       */
@@ -21,8 +21,6 @@ static void	kill_process(t_vm *vm)
 
 	i = 0;
 	pq = vm->threads.first;
-//	if (vm->threads.len == 1)
-		//vm->winner = vm->threads.first->p.r[1];
 	while (pq)
 	{
 		tmp = pq->next;
