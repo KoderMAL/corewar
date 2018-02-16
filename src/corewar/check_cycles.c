@@ -6,7 +6,7 @@
 /*   By: alalaoui <alalaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/12 16:17:49 by dhadley           #+#    #+#             */
-/*   Updated: 2018/02/16 13:32:03 by dhadley          ###   ########.fr       */
+/*   Updated: 2018/02/16 14:17:49 by alalaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,10 +37,26 @@ static void	kill_process(t_vm *vm)
 	}
 }
 
+static int	find_winner(t_vm *vm)
+{
+	int		i;
+	int		last;
+
+	i = 0;
+	last = vm->champs[i].last_live;
+	while (i < 0)
+	{
+		if (vm->champs[i].last_live > last)
+			vm->winner = i;
+		i++;
+	}
+}
+
 static void	print_winner(t_vm *vm)
 {
 	if (vm->cycle_to_dump != -1)
 		write_map(vm);
+	find_winner(vm);
 	openfile_write_str(&(vm->stdout), "Contestant ", 0);
 	openfile_write_nbr(&(vm->stdout), vm->winner + 1, 0);
 	openfile_write_str(&(vm->stdout), ", \"", 0);
