@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sti_reg.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dhadley <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: stoupin <stoupin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/09 16:38:42 by dhadley           #+#    #+#             */
-/*   Updated: 2018/02/15 11:48:17 by dhadley          ###   ########.fr       */
+/*   Updated: 2018/02/16 16:01:44 by stoupin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,25 +75,27 @@ static int	third_dir(t_vm *vm, t_thread *pc, int reg, int param1)
 	return (op_success(pc, 25, 1 + 1 + 1 + 1 + 2, false));
 }
 
-int			op_sti_reg(t_vm *vm, t_thread *pc)
+void		op_sti_reg(t_thread *pc)
 {
 	int	reg;
 	int param1;
 	int tmp;
+	t_vm *vm;
 
+	vm = pc->vm;
 	tmp = recup_param(vm, (pc->location + 2) % MEM_SIZE, 1);
 	if (tmp < 1 || tmp > REG_NUMBER)
-		return (op_exit(pc, 25, false));
+		return ;//(op_exit(pc, 25, false));
 	reg = pc->r[tmp];
 	tmp = recup_param(vm, (pc->location + 1 + 1 + 1) % MEM_SIZE, 1);
 	if (tmp < 1 || tmp > REG_NUMBER)
-		return (op_exit(pc, 25, false));
+		return ;//(op_exit(pc, 25, false));
 	param1 = pc->r[tmp];
 	if (check_params(vm->map[(pc->location + 1) % MEM_SIZE], 3)
 			== DIR_CODE)
-		return (third_dir(vm, pc, reg, param1));
+		return ;//(third_dir(vm, pc, reg, param1));
 	else if (check_params(vm->map[(pc->location + 1) % MEM_SIZE], 3)
 			== REG_CODE)
-		return (third_reg(vm, pc, reg, param1));
-	return (op_exit(pc, 25, false));
+		return ;//(third_reg(vm, pc, reg, param1));
+	return ;//(op_exit(pc, 25, false));
 }

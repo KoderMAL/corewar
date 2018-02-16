@@ -6,7 +6,7 @@
 /*   By: stoupin <stoupin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/30 14:31:43 by alalaoui          #+#    #+#             */
-/*   Updated: 2018/02/15 11:35:55 by stoupin          ###   ########.fr       */
+/*   Updated: 2018/02/16 14:25:42 by stoupin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,6 +95,8 @@ int				parse_args(t_vm *vm, int ac, char **av)
 				vm->verbose = 1;
 			else if (ft_strcmp(av[i], "-n") == 0)
 				state = S_N;
+			else if (ft_strcmp(av[i], "-s") == 0)
+				state = S_S;
 			else
 			{
 				add_champion(vm, n_is_set, n, av[i]);
@@ -128,6 +130,16 @@ int				parse_args(t_vm *vm, int ac, char **av)
 			add_champion(vm, n_is_set, n, av[i]);
 			n_is_set = 0;
 			state = S_START;
+		}
+		else if (state == S_S)
+		{
+			if (ft_str_isdigit(av[i]))
+			{
+				vm->dump_every = ft_atoi(av[i]);
+				state = S_START;
+			}
+			else
+				return (err2(vm, "-s option needs a number"));			
 		}
 		i++;
 	}

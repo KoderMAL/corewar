@@ -6,7 +6,7 @@
 /*   By: stoupin <stoupin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/25 17:58:09 by lramirez          #+#    #+#             */
-/*   Updated: 2018/02/15 12:29:51 by stoupin          ###   ########.fr       */
+/*   Updated: 2018/02/16 15:40:16 by stoupin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,12 @@
 ** Décrémente le process de 20 cycles (coût d'un zjmp).
 */
 
-int	op_zjmp(t_vm *vm, t_thread *process)
+int	op_zjmp(t_thread *process)
 {
 	short	index;
+	t_vm *vm;
 
+	vm = process->vm;
 	print_instruction_start(vm, process);
 	print_str(vm, "zjmp ", 0);
 	process->location = (process->location + 1) % MEM_SIZE;

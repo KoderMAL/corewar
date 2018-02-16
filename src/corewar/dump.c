@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   dump.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alalaoui <alalaoui@student.42.fr>          +#+  +:+       +#+        */
+/*   By: stoupin <stoupin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/26 12:00:20 by alalaoui          #+#    #+#             */
-/*   Updated: 2018/02/13 15:32:36 by alalaoui         ###   ########.fr       */
+/*   Updated: 2018/02/16 14:26:36 by stoupin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,12 +49,10 @@ void		write_map(t_vm *vm)
 
 void		dump(t_vm *vm)
 {
-	if (vm->cycle_to_dump != -1)
+	if ((vm->cycle_to_dump != -1 && vm->game_cycle == vm->cycle_to_dump)
+	 || (vm->dump_every > 0 && vm->game_cycle % vm->dump_every == 0))
 	{
-		if (vm->game_cycle == vm->cycle_to_dump)
-		{
-			write_map(vm);
-			vm_clean(vm);
-		}
+		write_map(vm);
+		vm_clean(vm);
 	}
 }
