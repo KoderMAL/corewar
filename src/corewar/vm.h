@@ -6,7 +6,7 @@
 /*   By: lramirez <lramirez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/08 14:12:51 by stoupin           #+#    #+#             */
-/*   Updated: 2018/02/17 13:40:26 by dhadley          ###   ########.fr       */
+/*   Updated: 2018/02/17 13:50:34 by dhadley          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -213,6 +213,7 @@ void				check_cycles(t_vm *vm);
 */
 
 void				start_op(t_vm *vm, t_thread *pc);
+void				print_op(t_vm *vm, t_thread *pc);
 int					op_exit(t_thread *pc, int cycles, bool carry);
 int					op_success(t_thread *pc, int cycles, int loc, bool carry);
 

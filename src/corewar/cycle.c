@@ -57,7 +57,10 @@ void			do_op(t_vm *vm, t_thread *pc)
 	while (i < 16)
 	{
 		if (vm->op->opcode == g_op_assoc[i].opcode)
+		{
+			print_op(vm, pc);
 			g_op_assoc[i].op_function(pc);
+		}
 		i++;
 	}
 	pc->countdown = -1;
