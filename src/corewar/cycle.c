@@ -6,7 +6,7 @@
 /*   By: lramirez <lramirez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/26 11:51:04 by dhadley           #+#    #+#             */
-/*   Updated: 2018/02/17 11:36:48 by dhadley          ###   ########.fr       */
+/*   Updated: 2018/02/17 13:37:50 by dhadley          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ const t_op		*find_opcode(int pc)
 	return (NULL);
 }
 
-static void		do_op(t_vm *vm, t_thread *pc)
+void			do_op(t_vm *vm, t_thread *pc)
 {
 	int	i;
 
@@ -57,7 +57,11 @@ static void		do_op(t_vm *vm, t_thread *pc)
 	while (i < 16)
 	{
 		if (vm->op->opcode == g_op_assoc[i].opcode)
+		{
+			print_op(vm, pc);
 			g_op_assoc[i].op_function(pc);
+			print_str(vm, "\n", 0);
+		}
 		i++;
 	}
 	pc->countdown = -1;
