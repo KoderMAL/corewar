@@ -13,6 +13,12 @@
 #include "ft/ft.h"
 #include "vm.h"
 
+void				print_op(t_vm *vm, t_thread *pc);
+{
+	print_instruction_start(vm, pc);
+	print_str(vm, vm->op->name, 0);
+}
+
 static void	write_hex(t_vm *vm, unsigned char byte)
 {
 	static const char	digits[16] = "0123456789abcdef";

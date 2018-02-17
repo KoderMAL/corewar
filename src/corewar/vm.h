@@ -210,6 +210,7 @@ void				check_cycles(t_vm *vm);
 ** other
 */
 
+void				print_op(t_vm *vm, t_thread *pc);
 int					op_exit(t_thread *pc, int cycles, bool carry);
 int					op_success(t_thread *pc, int cycles, int loc, bool carry);
 
