@@ -60,7 +60,8 @@ void			do_op(t_vm *vm, t_thread *pc)
 		{
 			print_op(vm, pc);
 			g_op_assoc[i].op_function(pc);
-			print_str(vm, "\n", 0)		}
+			print_str(vm, "\n", 0);
+		}
 		i++;
 	}
 	pc->countdown = -1;
@@ -79,7 +80,7 @@ static void		check_countdown(t_vm *vm)
 		pc = pq->p;
 		pc->number = i;
 		if (pc->countdown == 0)
-			start_op(vm, pc);
+			do_op(vm, pc);
 		if (pc->countdown == -1)
 		{
 			if ((vm->op = find_opcode(vm->map[pc->location])) != NULL)
