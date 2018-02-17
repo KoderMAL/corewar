@@ -1,24 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   zjmp.c                                             :+:      :+:    :+:   */
+/*   ft_abs.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lramirez <lramirez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/01/25 17:58:09 by lramirez          #+#    #+#             */
-/*   Updated: 2018/02/17 14:53:23 by lramirez         ###   ########.fr       */
+/*   Created: 2017/05/01 23:32:45 by lramirez          #+#    #+#             */
+/*   Updated: 2018/02/17 15:09:49 by lramirez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "vm.h"
-
-void		op_zjmp(t_thread *pc)
+unsigned int	ft_abs(int n)
 {
-	short	index;
+	unsigned int nb;
 
-	index = get(pc, 0);
-	pc->location += (index < 0) ? shift_loc(pc, (index % -IDX_MOD)) :
-		shift_loc(pc, (index % IDX_MOD));
-	pc->indent = 0;
-
+	if (n < 0)
+	{
+		nb = (unsigned int)-n;
+		return (nb);
+	}
+	return (n);
 }

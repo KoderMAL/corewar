@@ -1,24 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   zjmp.c                                             :+:      :+:    :+:   */
+/*   ft_intlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lramirez <lramirez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/01/25 17:58:09 by lramirez          #+#    #+#             */
-/*   Updated: 2018/02/17 14:53:23 by lramirez         ###   ########.fr       */
+/*   Created: 2017/05/01 23:40:25 by lramirez          #+#    #+#             */
+/*   Updated: 2018/02/17 15:05:24 by lramirez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "vm.h"
+#include "ft.h"
 
-void		op_zjmp(t_thread *pc)
+size_t	ft_intlen(unsigned int n)
 {
-	short	index;
-
-	index = get(pc, 0);
-	pc->location += (index < 0) ? shift_loc(pc, (index % -IDX_MOD)) :
-		shift_loc(pc, (index % IDX_MOD));
-	pc->indent = 0;
-
+	if (n > 9)
+		return (1 + ft_intlen(n / 10));
+	return (1);
 }

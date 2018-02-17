@@ -1,24 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   zjmp.c                                             :+:      :+:    :+:   */
+/*   ft_memalloc.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lramirez <lramirez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/01/25 17:58:09 by lramirez          #+#    #+#             */
-/*   Updated: 2018/02/17 14:53:23 by lramirez         ###   ########.fr       */
+/*   Created: 2017/04/19 21:11:29 by lramirez          #+#    #+#             */
+/*   Updated: 2018/02/17 15:10:55 by lramirez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "vm.h"
+#include "ft.h"
+# include <unistd.h>
 
-void		op_zjmp(t_thread *pc)
+void	*ft_memalloc(size_t size)
 {
-	short	index;
+	unsigned char	*ptr;
+	size_t			i;
 
-	index = get(pc, 0);
-	pc->location += (index < 0) ? shift_loc(pc, (index % -IDX_MOD)) :
-		shift_loc(pc, (index % IDX_MOD));
-	pc->indent = 0;
-
+	if (!(ptr = (unsigned char *)malloc(sizeof(unsigned char) * size)))
+		return (NULL);
+	i = 0;
+	while (i < size)
+	{
+		ptr[i] = (unsigned char)0;
+		i++;
+	}
+	return (ptr);
 }
