@@ -38,7 +38,7 @@ int			get(t_thread *pc, int param_nbr)
 		return (param);
 	}
 	else if (type == T_IND)
-	}
+	{
 		print_nbr(pc->vm, param, 0);
 		return (pc->vm->map[param]);
 	}
