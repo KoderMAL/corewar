@@ -60,7 +60,7 @@ void			do_op(t_vm *vm, t_thread *pc)
 		{
 			print_op(vm, pc);
 			g_op_assoc[i].op_function(pc);
-		}
+			print_str(vm, "\n", 0)		}
 		i++;
 	}
 	pc->countdown = -1;
