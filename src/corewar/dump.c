@@ -13,7 +13,7 @@
 #include "ft/ft.h"
 #include "vm.h"
 
-void				print_op(t_vm *vm, t_thread *pc);
+void				print_op(t_vm *vm, t_thread *pc)
 {
 	print_instruction_start(vm, pc);
 	print_str(vm, vm->op->name, 0);
