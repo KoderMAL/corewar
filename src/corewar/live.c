@@ -3,51 +3,39 @@
 /*                                                        :::      ::::::::   */
 /*   live.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alalaoui <alalaoui@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lramirez <lramirez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/25 11:32:35 by lramirez          #+#    #+#             */
-/*   Updated: 2018/02/16 13:31:22 by dhadley          ###   ########.fr       */
+/*   Updated: 2018/02/17 15:08:17 by lramirez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vm.h"
 
-/*
-** Déplace le PC pour le placer sur le T_DIR à récupérer.
-** Récupère le T_DIR sur 4 octets.
-** Essaie de faire correspondre l'id récupéré avec un joueur - le cas échéant,
-** print un live de ce joueur.
-** Déplace le PC à la suite du T_DIR récupéré.
-** Décrémente le process de 10 cycles (coût d'un live).
-*/
-
-void	op_live(t_thread *process)
+void		op_live(t_thread *pc)
 {
 	int		id;
 	int		player;
-	t_vm *vm;
+	char	*player_itoa;
 
-	vm = process->vm;
-	process->location = (process->location + 1) % MEM_SIZE;
-	id = vm->map[process->location] << 24
-			| vm->map[(process->location + 1) % MEM_SIZE] << 16
-			| vm->map[(process->location + 2) % MEM_SIZE] << 8
-			| vm->map[(process->location + 3) % MEM_SIZE];
-	//printf("champion id:%d\n", id); 
+	pc->alive = true;
+	id = get(pc, 0);
+	player_itoa = ft_itoa(id + 1);
 	player = 0;
-	while (player < vm->n_champs)
+	while (player < pc->vm->n_champs)
 	{
-		process->alive = true;
 		if (id == player)
 		{
-			vm->num_lives++;
-			vm->champs[player].last_live = vm->game_cycle;
-			// noter que tel joueur a fait un live a tel cycle dans champ
-			//printf("un processus dit que le joueur %d(%s) est en vie\n", player + 1, vm->champs_fd[player].name);
+			pc->vm->num_lives++;
+			pc->vm->champs[player].last_live = pc->vm->game_cycle;
+			write(1, "un processus dit que le joueur ", 31);
+			write(1, player_itoa, ft_strlen(player_itoa));
+			write(1, "(", 1);
+			write(1, pc->vm->champs[player].name,
+				ft_strlen(pc->vm->champs[player].name));
+			write(1, ") est en vie\n", 13);
 			break ;
 		}
 		player++;
 	}
-	process->location = (process->location + 4) % MEM_SIZE;
-	process->cycles -= 10;
 }

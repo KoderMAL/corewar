@@ -1,23 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fork.c                                             :+:      :+:    :+:   */
+/*   ft_abs.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lramirez <lramirez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/01/26 11:24:05 by lramirez          #+#    #+#             */
-/*   Updated: 2018/02/17 13:16:05 by lramirez         ###   ########.fr       */
+/*   Created: 2017/05/01 23:32:45 by lramirez          #+#    #+#             */
+/*   Updated: 2018/02/17 15:09:49 by lramirez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "vm.h"
-
-void		op_fork(t_thread *pc)
+unsigned int	ft_abs(int n)
 {
-	int		index;
+	unsigned int nb;
 
-	index = get(pc, 0);
-	index = (index < 0) ? shift_loc(pc, (index % -IDX_MOD)) :
-		shift_loc(pc, (index % IDX_MOD));
-	pqueue_push(&(pc->vm->threads), dup_thread(pc, shift_loc(pc, index)));
+	if (n < 0)
+	{
+		nb = (unsigned int)-n;
+		return (nb);
+	}
+	return (n);
 }

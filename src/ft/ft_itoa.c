@@ -1,23 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fork.c                                             :+:      :+:    :+:   */
+/*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lramirez <lramirez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/01/26 11:24:05 by lramirez          #+#    #+#             */
-/*   Updated: 2018/02/17 13:16:05 by lramirez         ###   ########.fr       */
+/*   Created: 2017/05/01 22:08:32 by lramirez          #+#    #+#             */
+/*   Updated: 2018/02/17 15:05:51 by lramirez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "vm.h"
+#include "ft.h"
 
-void		op_fork(t_thread *pc)
+char	*ft_itoa(int n)
 {
-	int		index;
+	char			*number;
+	char			is_neg;
+	size_t			int_len;
+	unsigned int	nb;
 
-	index = get(pc, 0);
-	index = (index < 0) ? shift_loc(pc, (index % -IDX_MOD)) :
-		shift_loc(pc, (index % IDX_MOD));
-	pqueue_push(&(pc->vm->threads), dup_thread(pc, shift_loc(pc, index)));
+	is_neg = (n < 0) ? 1 : 0;
+	nb = ft_abs(n);
+	int_len = ft_intlen(nb) + is_neg;
+	if (!(number = ft_strnew(int_len)))
+		return (NULL);
+	if (n == 0)
+		number[0] = '0';
+	while (nb > 0)
+	{
+		number[int_len - 1] = nb % 10 + '0';
+		int_len--;
+		nb /= 10;
+	}
+	if (is_neg)
+		number[0] = '-';
+	return (number);
 }

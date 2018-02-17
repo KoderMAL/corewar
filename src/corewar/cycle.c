@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   cycle.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alalaoui <alalaoui@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lramirez <lramirez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/26 11:51:04 by dhadley           #+#    #+#             */
 /*   Updated: 2018/02/17 13:37:50 by dhadley          ###   ########.fr       */
@@ -60,6 +60,7 @@ void			do_op(t_vm *vm, t_thread *pc)
 		{
 			print_op(vm, pc);
 			g_op_assoc[i].op_function(pc);
+			print_str(vm, "\n", 0);
 		}
 		i++;
 	}
@@ -79,7 +80,7 @@ static void		check_countdown(t_vm *vm)
 		pc = pq->p;
 		pc->number = i;
 		if (pc->countdown == 0)
-			start_op(vm, pc);
+			do_op(vm, pc);
 		if (pc->countdown == -1)
 		{
 			if ((vm->op = find_opcode(vm->map[pc->location])) != NULL)
@@ -103,3 +104,17 @@ void			war_cycle(t_vm *vm)
 	check_countdown(vm);
 	vm->game_cycle++;
 }
+
+// if (get_params(...))
+// {
+//     do_op(...);
+//     if (op->carry)
+//         pc->carry = 1;
+// }
+// else
+// {
+//     if (op->carry)
+//         pc->carry = 0;
+//     pc->indent = 1;
+// }
+// shift_loc(pc, pc->indent); RAJOUTER VERBOSE

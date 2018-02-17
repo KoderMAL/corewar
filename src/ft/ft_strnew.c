@@ -1,23 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fork.c                                             :+:      :+:    :+:   */
+/*   ft_strnew.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lramirez <lramirez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/01/26 11:24:05 by lramirez          #+#    #+#             */
-/*   Updated: 2018/02/17 13:16:05 by lramirez         ###   ########.fr       */
+/*   Created: 2017/04/20 16:46:30 by lramirez          #+#    #+#             */
+/*   Updated: 2018/02/17 15:06:30 by lramirez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "vm.h"
+#include "ft.h"
 
-void		op_fork(t_thread *pc)
+char	*ft_strnew(size_t size)
 {
-	int		index;
+	char	*ptr;
+	size_t	i;
 
-	index = get(pc, 0);
-	index = (index < 0) ? shift_loc(pc, (index % -IDX_MOD)) :
-		shift_loc(pc, (index % IDX_MOD));
-	pqueue_push(&(pc->vm->threads), dup_thread(pc, shift_loc(pc, index)));
+	if (!(ptr = (char *)ft_memalloc(sizeof(char) * (size + 1))))
+		return (NULL);
+	i = 0;
+	while (i < size)
+	{
+		ptr[i] = '\0';
+		i++;
+	}
+	ptr[i] = '\0';
+	return (ptr);
 }
