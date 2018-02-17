@@ -6,7 +6,7 @@
 /*   By: alalaoui <alalaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/26 11:51:04 by dhadley           #+#    #+#             */
-/*   Updated: 2018/02/17 13:27:46 by dhadley          ###   ########.fr       */
+/*   Updated: 2018/02/17 13:37:50 by dhadley          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ const t_op		*find_opcode(int pc)
 	return (NULL);
 }
 
-static void		do_op(t_vm *vm, t_thread *pc)
+void			do_op(t_vm *vm, t_thread *pc)
 {
 	int	i;
 
@@ -76,9 +76,7 @@ static void		check_countdown(t_vm *vm)
 		pc = pq->p;
 		pc->number = i;
 		if (pc->countdown == 0)
-		{
-			do_op(vm, pc);
-		}
+			start_op(vm, pc);
 		if (pc->countdown == -1)
 		{
 			if ((vm->op = find_opcode(vm->map[pc->location])) != NULL)

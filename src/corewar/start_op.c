@@ -6,8 +6,17 @@
 /*   By: dhadley <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/17 13:27:28 by dhadley           #+#    #+#             */
-/*   Updated: 2018/02/17 13:27:41 by dhadley          ###   ########.fr       */
+/*   Updated: 2018/02/17 13:49:22 by dhadley          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vm.h"
+
+void	start_op(t_vm *vm, t_thread *pc)
+{
+	if (get_params(pc, vm->op))
+		do_op(vm, pc);
+	else
+		pc->indent = 1;
+	shift_loc(pc, pc->indent);
+}

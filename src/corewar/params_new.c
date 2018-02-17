@@ -6,7 +6,7 @@
 /*   By: lramirez <lramirez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/15 13:20:49 by lramirez          #+#    #+#             */
-/*   Updated: 2018/02/16 17:56:04 by lramirez         ###   ########.fr       */
+/*   Updated: 2018/02/17 13:48:59 by dhadley          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ int            get_param(t_thread *pc, int param_code)
 	return (param);
 }
 
-int            get_params(t_thread *pc, t_op *op)
+int            get_params(t_thread *pc, const t_op *op)
 {
 	int        param;
 	int        param_code;
