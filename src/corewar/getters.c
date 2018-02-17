@@ -29,17 +29,17 @@ int			get(t_thread *pc, int param_nbr)
 	param = pc->params[param_nbr];
 	if (type == T_REG)
 	{
-		print_reg(vm, param, 0);
+		print_reg(pc->vm, param, 0);
 		return (pc->r[param]);
 	}
 	else if (type == T_DIR)
 	{
-		print_nbr(vm, param, 0);
+		print_nbr(pc->vm, param, 0);
 		return (param);
 	}
 	else if (type == T_IND)
 	}
-		print_nbr(vm, param, 0);
+		print_nbr(pc->vm, param, 0);
 		return (pc->vm->map[param]);
 	}
 	return (-1);
