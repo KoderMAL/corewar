@@ -6,7 +6,7 @@
 /*   By: lramirez <lramirez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/08 14:12:51 by stoupin           #+#    #+#             */
-/*   Updated: 2018/02/16 18:45:13 by dhadley          ###   ########.fr       */
+/*   Updated: 2018/02/17 13:50:34 by dhadley          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -165,6 +165,7 @@ void				op_aff(t_thread *process);
 
 int					check_params(unsigned char byte, int number);
 int					recup_param(t_vm *vm, int location, int size);
+int					get_params(t_thread *pc, const t_op *op);
 
 /*
 ** getters.c
@@ -199,6 +200,7 @@ void				dump(t_vm *vm);
 
 void				war_cycle(t_vm *vm);
 const t_op			*find_opcode(int pc);
+void				do_op(t_vm *vm, t_thread *pc);
 
 /*
 ** check_cycles.c
@@ -210,6 +212,7 @@ void				check_cycles(t_vm *vm);
 ** other
 */
 
+void				start_op(t_vm *vm, t_thread *pc);
 void				print_op(t_vm *vm, t_thread *pc);
 int					op_exit(t_thread *pc, int cycles, bool carry);
 int					op_success(t_thread *pc, int cycles, int loc, bool carry);
