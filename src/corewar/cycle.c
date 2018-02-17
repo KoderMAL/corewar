@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cycle.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alalaoui <alalaoui@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lramirez <lramirez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/26 11:51:04 by dhadley           #+#    #+#             */
-/*   Updated: 2018/02/16 14:32:01 by alalaoui         ###   ########.fr       */
+/*   Updated: 2018/02/17 13:02:48 by lramirez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,3 +100,17 @@ void			war_cycle(t_vm *vm)
 	check_countdown(vm);
 	vm->game_cycle++;
 }
+
+// if (get_params(...))
+// {
+//     do_op(...);
+//     if (op->carry)
+//         pc->carry = 1;
+// }
+// else
+// {
+//     if (op->carry)
+//         pc->carry = 0;
+//     pc->indent = 1;
+// }
+// shift_loc(pc, pc->indent); RAJOUTER VERBOSE

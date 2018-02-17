@@ -3,32 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   lfork.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: stoupin <stoupin@student.42.fr>            +#+  +:+       +#+        */
+/*   By: lramirez <lramirez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/26 11:18:58 by lramirez          #+#    #+#             */
-/*   Updated: 2018/02/16 15:54:35 by stoupin          ###   ########.fr       */
+/*   Updated: 2018/02/17 13:15:47 by lramirez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vm.h"
 
-/*
-** Récupère le T_DIR sur 2 octets.
-** Crée un nouveau process à l'index récupéré (sans % IDX_MOD).
-** Déplace le PC du process d'origine à la fin du T_DIR récupéré.
-** Décrémente le process d'origine de 1000 cycles (coût d'un lfork).
-*/
-
-void	op_lfork(t_thread *process)
+void	op_lfork(t_thread *pc)
 {
-	short	index;
-	t_vm *vm;
+	int		index;
 
-	vm = process->vm;
-	index = vm->map[(process->location + 1) % MEM_SIZE] << 8
-					| vm->map[(process->location + 2) % MEM_SIZE];
-	pqueue_push(&(vm->threads), dup_thread(process,
-				(process->location + index) % MEM_SIZE));
-	process->location = (process->location + 3) % MEM_SIZE;
-	process->cycles -= 1000;
+	index = get(pc, 0);
+	pqueue_push(&(pc->vm->threads), dup_thread(pc, shift_loc(pc, index)));
 }
