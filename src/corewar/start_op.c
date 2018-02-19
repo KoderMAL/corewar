@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   start_op.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dhadley <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: lramirez <lramirez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/17 13:27:28 by dhadley           #+#    #+#             */
-/*   Updated: 2018/02/17 13:49:22 by dhadley          ###   ########.fr       */
+/*   Updated: 2018/02/19 11:36:05 by lramirez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,6 @@ void	start_op(t_vm *vm, t_thread *pc)
 	if (get_params(pc, vm->op))
 		do_op(vm, pc);
 	else
-		pc->indent = 1;
-	shift_loc(pc, pc->indent);
+		pc->shift = 1;
+	shift_loc(pc, pc->shift);
 }

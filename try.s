@@ -4,8 +4,11 @@
 live:
 live %4
 live %-1
-ld %30, r1
-ld %30, r2
-add r1, r2, r3
-and r1, r3, r3
-aff r3
+ld %0, r16
+zjmp %10
+xor r1, r2, r3
+zjmp %100
+ld %0, r2
+or r1, r2, r3
+zjmp %10
+

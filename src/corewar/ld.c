@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ld.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dhadley <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: lramirez <lramirez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/16 18:33:08 by dhadley           #+#    #+#             */
-/*   Updated: 2018/02/16 18:33:10 by dhadley          ###   ########.fr       */
+/*   Updated: 2018/02/19 10:59:15 by lramirez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,4 +27,6 @@ void	op_ld(t_thread *pc)
 
 	value = get(pc, 0);
 	set(pc, 1, value);
+	if (value == 0)
+		pc->carry = 1;
 }

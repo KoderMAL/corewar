@@ -6,7 +6,7 @@
 /*   By: lramirez <lramirez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/26 11:51:04 by dhadley           #+#    #+#             */
-/*   Updated: 2018/02/17 13:37:50 by dhadley          ###   ########.fr       */
+/*   Updated: 2018/02/19 11:52:40 by lramirez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,33 @@ void			do_op(t_vm *vm, t_thread *pc)
 	pc->countdown = -1;
 }
 
+// void			do_op_new(t_vm *vm, t_thread *pc)
+// {
+// 	int			i;
+// 	const t_op*	op;     
+
+// 	if (vm->op == NULL)
+// 		return ;
+// 	op = find_opcode(pc->location);
+// 	if (op)
+// 	{
+// 		print_op(vm, pc);
+// 		if (get_params(pc, op))
+// 			g_op_assoc.op[1];
+// 			else
+// 			{
+// 				if (op[6])
+// 					pc->carry = 0;
+// 				pc->shift = 1;
+// 			}
+// 			print_str(vm, "\n", 0);
+// 			shift_loc(pc, pc->shift);
+// 		}
+// 		i++;
+// 	}
+// 	pc->countdown = -1;
+// }
+
 static void		check_countdown(t_vm *vm)
 {
 	int				i;
@@ -86,7 +113,7 @@ static void		check_countdown(t_vm *vm)
 			if ((vm->op = find_opcode(vm->map[pc->location])) != NULL)
 				pc->countdown = (vm->op->n_cycles - 1);
 			else
-				pc->location = (pc->location + 1) % MEM_SIZE;
+				pc->location = shift_loc(pc, 1);
 		}
 		else
 			pc->countdown--;
@@ -104,17 +131,3 @@ void			war_cycle(t_vm *vm)
 	check_countdown(vm);
 	vm->game_cycle++;
 }
-
-// if (get_params(...))
-// {
-//     do_op(...);
-//     if (op->carry)
-//         pc->carry = 1;
-// }
-// else
-// {
-//     if (op->carry)
-//         pc->carry = 0;
-//     pc->indent = 1;
-// }
-// shift_loc(pc, pc->indent); RAJOUTER VERBOSE

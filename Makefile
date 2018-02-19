@@ -32,7 +32,7 @@ SRC_IO = openfile.c openfile_write.c openfile_read.c
 SRC_PARSING = states_main.c states_header.c states_label.c states_instruction.c \
 			  save_label.c save_argument.c save_instruction.c check_args.c
 SRC_COREWAR = parse_args.c error2.c thread.c vm.c champion.c draw_game.c dump.c cycle.c op.c \
-				live.c zjmp.c fork.c aff.c ld.c params.c params_new.c add.c sub.c and.c \
+				live.c zjmp.c fork.c aff.c ld.c params.c add.c sub.c and.c \
 				lfork.c lld.c ldi.c \
 				lldi.c sti.c \
 				st.c xor.c or.c getters.c setters.c \

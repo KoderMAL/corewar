@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lldi.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dhadley <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: lramirez <lramirez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/16 18:33:36 by dhadley           #+#    #+#             */
-/*   Updated: 2018/02/16 18:33:38 by dhadley          ###   ########.fr       */
+/*   Updated: 2018/02/19 11:00:45 by lramirez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,4 +32,6 @@ void		op_lldi(t_thread *pc)
 	pc->params_type[3] = T_IND;
 	value = get(pc, 3);
 	set(pc, 2, value);
+	if (value == 0)
+		pc->carry = 1;
 }

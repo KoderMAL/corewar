@@ -6,12 +6,12 @@
 /*   By: lramirez <lramirez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/19 21:11:29 by lramirez          #+#    #+#             */
-/*   Updated: 2018/02/17 15:10:55 by lramirez         ###   ########.fr       */
+/*   Updated: 2018/02/19 11:04:51 by lramirez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft.h"
-# include <unistd.h>
+# include <stdlib.h>
 
 void	*ft_memalloc(size_t size)
 {

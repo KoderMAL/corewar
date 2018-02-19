@@ -6,7 +6,7 @@
 /*   By: lramirez <lramirez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/08 14:12:51 by stoupin           #+#    #+#             */
-/*   Updated: 2018/02/17 13:50:34 by dhadley          ###   ########.fr       */
+/*   Updated: 2018/02/19 11:36:05 by lramirez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ typedef struct		s_thread
 	int			location;
 	int			countdown;
 	bool		alive;
-	int			indent;
+	int			shift;
 	char		bytecode;
 	int			params[4];
 	int			params_type[4];
@@ -160,19 +160,11 @@ void				op_lfork(t_thread *process);
 void				op_aff(t_thread *process);
 
 /*
-** params.c
-*/
-
-int					check_params(unsigned char byte, int number);
-int					recup_param(t_vm *vm, int location, int size);
-int					get_params(t_thread *pc, const t_op *op);
-
-/*
 ** getters.c
 */
 
 int					get(t_thread *pc, int param_nbr);
-int					get_byte_at(t_thread *pc, int amount, bool indent);
+int					get_byte_at(t_thread *pc, int amount, bool shift);
 
 /*
 ** setters.c
@@ -182,9 +174,10 @@ void				set(t_thread *pc, int param_nbr, int value);
 void				set_bytes(t_thread *pc, int param, int value);
 
 /*
-** params_new.c
+** params.c
 */
 
+int					get_params(t_thread *pc, const t_op *op);
 int					shift_loc(t_thread *pc, int amount);
 
 /*

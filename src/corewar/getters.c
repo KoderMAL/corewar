@@ -6,16 +6,16 @@
 /*   By: lramirez <lramirez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/16 17:04:51 by lramirez          #+#    #+#             */
-/*   Updated: 2018/02/16 19:24:25 by lramirez         ###   ########.fr       */
+/*   Updated: 2018/02/19 11:36:05 by lramirez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vm.h"
 
-int				get_byte_at(t_thread *pc, int amount, bool indent)
+int				get_byte_at(t_thread *pc, int amount, bool shift)
 {
-	if (indent)
-		return (pc->vm->map[shift_loc(pc, pc->indent + amount)]);
+	if (shift)
+		return (pc->vm->map[shift_loc(pc, pc->shift + amount)]);
 	else
 		return (pc->vm->map[shift_loc(pc, amount)]);
 }
