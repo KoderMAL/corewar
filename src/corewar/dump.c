@@ -6,7 +6,7 @@
 /*   By: stoupin <stoupin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/26 12:00:20 by alalaoui          #+#    #+#             */
-/*   Updated: 2018/02/16 14:26:36 by stoupin          ###   ########.fr       */
+/*   Updated: 2018/02/21 11:46:56 by stoupin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,7 @@ void		dump(t_vm *vm)
 	 || (vm->dump_every > 0 && vm->game_cycle % vm->dump_every == 0))
 	{
 		write_map(vm);
-		vm_clean(vm);
+		if (vm->game_cycle == vm->cycle_to_dump)
+			vm_clean(vm);
 	}
 }
