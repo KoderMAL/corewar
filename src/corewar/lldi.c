@@ -6,7 +6,7 @@
 /*   By: lramirez <lramirez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/16 18:33:36 by dhadley           #+#    #+#             */
-/*   Updated: 2018/02/21 13:54:28 by lramirez         ###   ########.fr       */
+/*   Updated: 2018/02/21 17:47:57 by lramirez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,10 @@ void		op_lldi(t_thread *pc)
 	int index;
 	int value;
 
-	index = get(pc, 0) + get(pc, 1);
+	index = get(pc, 0, true) + get(pc, 1, true);
 	pc->params[3] = index;
 	pc->params_type[3] = T_IND;
-	value = get(pc, 3);
+	value = get(pc, 3, true);
 	set(pc, 2, value);
 	if (value == 0)
 		pc->carry = 1;

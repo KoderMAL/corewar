@@ -6,7 +6,7 @@
 /*   By: lramirez <lramirez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/26 14:39:27 by lramirez          #+#    #+#             */
-/*   Updated: 2018/02/21 13:54:34 by lramirez         ###   ########.fr       */
+/*   Updated: 2018/02/21 17:48:10 by lramirez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@ void		op_or(t_thread *pc)
 	int		b;
 	int		result;
 
-	a = get(pc, 0);
-	b = get(pc, 1);
+	a = get(pc, 0, false);
+	b = get(pc, 1, false);
 	result = a | b;
 	set(pc, 2, result);
 	if (result == 0)

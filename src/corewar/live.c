@@ -6,7 +6,7 @@
 /*   By: lramirez <lramirez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/25 11:32:35 by lramirez          #+#    #+#             */
-/*   Updated: 2018/02/17 15:08:17 by lramirez         ###   ########.fr       */
+/*   Updated: 2018/02/21 17:44:37 by lramirez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void		op_live(t_thread *pc)
 	char	*player_itoa;
 
 	pc->alive = true;
-	id = get(pc, 0);
+	id = get(pc, 0, false);
 	player_itoa = ft_itoa(id + 1);
 	player = 0;
 	while (player < pc->vm->n_champs)

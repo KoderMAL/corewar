@@ -6,7 +6,7 @@
 /*   By: lramirez <lramirez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/16 17:04:51 by lramirez          #+#    #+#             */
-/*   Updated: 2018/02/21 17:40:22 by lramirez         ###   ########.fr       */
+/*   Updated: 2018/02/21 17:50:50 by lramirez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,3 @@ int			get(t_thread *pc, int param_nbr, bool long_range)
 	}
 	return (-1);
 }
-
-
-aram = (param < 0) ? shift_loc(pc, (param % -IDX_MOD)) :
-			shift_loc(pc, (param % IDX_MOD));

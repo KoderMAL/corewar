@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   vm.h                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: stoupin <stoupin@student.42.fr>            +#+  +:+       +#+        */
+/*   By: lramirez <lramirez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/08 14:12:51 by stoupin           #+#    #+#             */
-/*   Updated: 2018/02/21 17:09:51 by stoupin          ###   ########.fr       */
+/*   Updated: 2018/02/21 17:42:30 by lramirez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -166,7 +166,7 @@ void				op_aff(t_thread *pc);
 int					shift_loc(t_thread *pc, int shift);
 int					get_byte_at(t_thread *pc, int amount);
 int					get_bytes(t_thread *pc, int shift, int bytes);
-int					get(t_thread *pc, int param_nbr);
+int					get(t_thread *pc, int param_nbr, bool long_range);
 
 /*
 ** setters.c
