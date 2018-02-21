@@ -6,7 +6,7 @@
 /*   By: lramirez <lramirez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/15 13:20:49 by lramirez          #+#    #+#             */
-/*   Updated: 2018/02/21 16:25:23 by lramirez         ###   ########.fr       */
+/*   Updated: 2018/02/21 16:35:43 by lramirez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,14 +43,12 @@ int				get_bytes(t_thread *pc, int bytes)
 		param = get_byte_at(pc, 0) << 8 | get_byte_at(pc, 1);
 		if (param > 0x7FFF)
 			param = (param | 0xFFFF0000);
-	}
-	else if (bytes == 4)
-	{
-		param = get_byte_at(pc, 0) << 24 | get_byte_at(pc, 1) << 16 |
-			get_byte_at(pc, 2) << 8 | get_byte_at(pc, 3);
 		param = (param < 0) ? shift_loc(pc, (param % -IDX_MOD)) :
 		shift_loc(pc, (param % IDX_MOD));
 	}
+	else if (bytes == 4)
+		param = get_byte_at(pc, 0) << 24 | get_byte_at(pc, 1) << 16 |
+			get_byte_at(pc, 2) << 8 | get_byte_at(pc, 3);
 	pc->shift += bytes;
 	return (param);
 }
