@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   vm.h                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lramirez <lramirez@student.42.fr>          +#+  +:+       +#+        */
+/*   By: stoupin <stoupin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/08 14:12:51 by stoupin           #+#    #+#             */
-/*   Updated: 2018/02/19 11:36:05 by lramirez         ###   ########.fr       */
+/*   Updated: 2018/02/21 14:54:07 by stoupin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -177,6 +177,7 @@ void				set_bytes(t_thread *pc, int param, int value);
 ** params.c
 */
 
+int					get_bytes(t_thread *pc, int bytes);
 int					get_params(t_thread *pc, const t_op *op);
 int					shift_loc(t_thread *pc, int amount);
 
