@@ -6,7 +6,7 @@
 /*   By: stoupin <stoupin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/08 14:12:51 by stoupin           #+#    #+#             */
-/*   Updated: 2018/02/21 17:03:32 by stoupin          ###   ########.fr       */
+/*   Updated: 2018/02/21 17:09:51 by stoupin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -163,8 +163,10 @@ void				op_aff(t_thread *pc);
 ** getters.c
 */
 
-int					get(t_thread *pc, int param_nbr);
+int					shift_loc(t_thread *pc, int shift);
 int					get_byte_at(t_thread *pc, int amount);
+int					get_bytes(t_thread *pc, int shift, int bytes);
+int					get(t_thread *pc, int param_nbr);
 
 /*
 ** setters.c
@@ -177,9 +179,7 @@ void				set_bytes(t_thread *pc, int param, int value);
 ** params.c
 */
 
-int					get_bytes(t_thread *pc, int shift, int bytes);
 int					get_params(t_thread *pc, const t_op *op);
-int					shift_loc(t_thread *pc, int shift);
 
 /*
 ** dump.c

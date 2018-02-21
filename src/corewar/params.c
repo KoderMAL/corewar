@@ -6,16 +6,11 @@
 /*   By: stoupin <stoupin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/15 13:20:49 by lramirez          #+#    #+#             */
-/*   Updated: 2018/02/21 17:05:44 by stoupin          ###   ########.fr       */
+/*   Updated: 2018/02/21 17:08:39 by stoupin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vm.h"
-
-int				shift_loc(t_thread *pc, int amount)
-{
-	return ((pc->location + amount) % MEM_SIZE);
-}
 
 int				get_code(unsigned char byte, int number)
 {
@@ -29,25 +24,6 @@ int				get_code(unsigned char byte, int number)
 	if (code == REG_CODE)
 		return T_REG;
 	return (0);
-}
-
-int				get_bytes(t_thread *pc, int shift, int bytes)
-{
-	int		param;
-
-	param = 0;
-	if (bytes == 1)
-		param = get_byte_at(pc, shift);
-	else if (bytes == 2)
-	{
-		param = get_byte_at(pc, shift) << 8 | get_byte_at(pc, shift + 1);
-		if (param > 0x7FFF)
-			param |= 0xffff0000;
-	}
-	else if (bytes == 4)
-		param = get_byte_at(pc, shift) << 24 | get_byte_at(pc, shift + 1) << 16 |
-			get_byte_at(pc, shift + 2) << 8 | get_byte_at(pc, shift + 3);
-	return (param);
 }
 
 int            get_param(t_thread *pc, int param_code)
