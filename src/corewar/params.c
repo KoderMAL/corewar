@@ -6,7 +6,7 @@
 /*   By: lramirez <lramirez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/15 13:20:49 by lramirez          #+#    #+#             */
-/*   Updated: 2018/02/21 16:21:08 by lramirez         ###   ########.fr       */
+/*   Updated: 2018/02/21 16:25:23 by lramirez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,10 +89,7 @@ int            get_params(t_thread *pc, const t_op *op)
 		param_code =  op->has_pcode ? get_code(pc->bytecode, param + 1) : 0;
 		if ((param_code & op->arg_type[param]) == 0 ||
 			!(pc->params[param] = get_param(pc, param_code)))
-		{
-			pc->location = shift_loc(pc, 1);
 			return (0);
-		}
 		pc->params_type[param] = param_code;
 		param++;
 	}
