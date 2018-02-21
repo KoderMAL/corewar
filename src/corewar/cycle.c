@@ -68,6 +68,7 @@ void			do_op(t_vm *vm, t_thread *pc)
 		print_str(vm, "\n", 0);
 		shift_loc(pc, pc->shift);
 	}
+	print_str(vm, "", 1);
 	pc->countdown = -1;
 }
 

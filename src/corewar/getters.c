@@ -6,7 +6,7 @@
 /*   By: stoupin <stoupin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/16 17:04:51 by lramirez          #+#    #+#             */
-/*   Updated: 2018/02/21 11:52:02 by stoupin          ###   ########.fr       */
+/*   Updated: 2018/02/21 14:16:31 by stoupin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,19 +28,10 @@ int			get(t_thread *pc, int param_nbr)
 	type = pc->params_type[param_nbr];
 	param = pc->params[param_nbr];
 	if (type == T_REG)
-	{
-		print_reg(pc->vm, param, 0);
 		return (pc->r[param]);
-	}
 	else if (type == T_DIR)
-	{
-		print_nbr(pc->vm, param, 0);
 		return (param);
-	}
 	else if (type == T_IND)
-	{
-		print_nbr(pc->vm, pc->vm->map[param], 0);
 		return (pc->vm->map[param]);
-	}
 	return (-1);
 }
