@@ -6,11 +6,16 @@
 /*   By: lramirez <lramirez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/26 12:10:18 by lramirez          #+#    #+#             */
-/*   Updated: 2018/02/21 17:44:37 by lramirez         ###   ########.fr       */
+/*   Updated: 2018/02/21 18:28:41 by lramirez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vm.h"
+
+/*
+** Prend trois registres, additionne les 2 premiers,
+** et met le résultat dans le troisième.
+*/
 
 void		op_add(t_thread *pc)
 {

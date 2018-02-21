@@ -6,11 +6,17 @@
 /*   By: lramirez <lramirez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/26 13:06:48 by lramirez          #+#    #+#             */
-/*   Updated: 2018/02/21 17:50:11 by lramirez         ###   ########.fr       */
+/*   Updated: 2018/02/21 18:48:32 by lramirez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vm.h"
+
+/*
+** Pareil que add, mais utilise une soustraction.
+** add = Prend trois registres, additionne les 2 premiers,
+** et met le résultat dans le troisième.
+*/
 
 void		op_sub(t_thread *pc)
 {
