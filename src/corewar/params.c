@@ -6,7 +6,7 @@
 /*   By: lramirez <lramirez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/15 13:20:49 by lramirez          #+#    #+#             */
-/*   Updated: 2018/02/21 15:34:07 by lramirez         ###   ########.fr       */
+/*   Updated: 2018/02/21 16:00:56 by lramirez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,13 +80,10 @@ int            get_params(t_thread *pc, const t_op *op)
 	
 	pc->cycles -= op->n_cycles;
 	param = 0;
+	pc->shift = 0;
 	if (op->has_pcode)
-	{
-		pc->shift = 2;
-		pc->bytecode = get_byte_at(pc, 0);
-	}
-	else
-		pc->shift = 1;
+		pc->bytecode = get_byte_at(pc, 1);
+	pc->shift += 1 + op->has_pcode;
 	while (param < op->n_arg)
 	{
 		param_code =  op->has_pcode ? get_code(pc->bytecode, param + 1) : 0;
