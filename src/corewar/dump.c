@@ -6,7 +6,7 @@
 /*   By: stoupin <stoupin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/26 12:00:20 by alalaoui          #+#    #+#             */
-/*   Updated: 2018/02/21 14:53:25 by stoupin          ###   ########.fr       */
+/*   Updated: 2018/02/21 16:12:02 by stoupin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void				print_op(t_vm *vm, t_thread *pc)
 		if (param_type == T_REG)
 			print_reg(vm, param, 0);
 		else if (param_type == T_IND)
-			print_nbr(vm, get_bytes(shift_loc(pc, param), 4), 0);
+			print_nbr(vm, param, 0);
 		else
 			print_nbr(vm, param, 0);
 		i++;
