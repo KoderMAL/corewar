@@ -6,7 +6,7 @@
 /*   By: lramirez <lramirez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/15 13:20:49 by lramirez          #+#    #+#             */
-/*   Updated: 2018/02/21 16:00:56 by lramirez         ###   ########.fr       */
+/*   Updated: 2018/02/21 16:25:23 by lramirez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,5 +93,6 @@ int            get_params(t_thread *pc, const t_op *op)
 		pc->params_type[param] = param_code;
 		param++;
 	}
+	pc->location = shift_loc(pc, pc->shift);
 	return (1);
 }

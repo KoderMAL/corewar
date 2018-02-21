@@ -6,7 +6,7 @@
 /*   By: stoupin <stoupin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/26 11:51:04 by dhadley           #+#    #+#             */
-/*   Updated: 2018/02/21 15:55:23 by lramirez         ###   ########.fr       */
+/*   Updated: 2018/02/21 16:25:14 by lramirez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ void			do_op(t_vm *vm, t_thread *pc)
 		{
 			if (g_op_tab[i].has_pcode)
 				pc->carry = 0;
-			pc->shift = 1;
+			pc->location = shift_loc(pc, 1);
 		}
 		shift_loc(pc, pc->shift);
 	}
