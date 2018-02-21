@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cycle.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lramirez <lramirez@student.42.fr>          +#+  +:+       +#+        */
+/*   By: stoupin <stoupin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/26 11:51:04 by dhadley           #+#    #+#             */
-/*   Updated: 2018/02/19 11:52:40 by lramirez         ###   ########.fr       */
+/*   Updated: 2018/02/21 11:55:11 by stoupin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,7 +106,8 @@ static void		check_countdown(t_vm *vm)
 	{
 		pc = pq->p;
 		pc->number = i;
-		if (pc->countdown == 0)
+
+		if (pc->countdown == 0 && get_params(pc, vm->op))
 			do_op(vm, pc);
 		if (pc->countdown == -1)
 		{

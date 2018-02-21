@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   getters.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lramirez <lramirez@student.42.fr>          +#+  +:+       +#+        */
+/*   By: stoupin <stoupin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/16 17:04:51 by lramirez          #+#    #+#             */
-/*   Updated: 2018/02/19 11:36:05 by lramirez         ###   ########.fr       */
+/*   Updated: 2018/02/21 11:52:02 by stoupin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ int			get(t_thread *pc, int param_nbr)
 	}
 	else if (type == T_IND)
 	{
-		print_nbr(pc->vm, param, 0);
+		print_nbr(pc->vm, pc->vm->map[param], 0);
 		return (pc->vm->map[param]);
 	}
 	return (-1);

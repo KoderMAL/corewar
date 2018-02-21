@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   thread.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lramirez <lramirez@student.42.fr>          +#+  +:+       +#+        */
+/*   By: stoupin <stoupin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/17 14:08:01 by alalaoui          #+#    #+#             */
-/*   Updated: 2018/02/19 11:36:05 by lramirez         ###   ########.fr       */
+/*   Updated: 2018/02/21 12:02:56 by stoupin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ t_thread		*create_thread(t_vm *vm, int n)
 	new_thread = (t_thread*)malloc(sizeof(t_thread));
 	if (new_thread == NULL)
 		return (NULL);
+	new_thread->vm = vm;
 	new_thread->carry = 0;
 	while (j < REG_NUMBER + 1)
 		new_thread->r[j++] = 0;
