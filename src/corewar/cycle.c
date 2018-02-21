@@ -6,7 +6,7 @@
 /*   By: stoupin <stoupin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/26 11:51:04 by dhadley           #+#    #+#             */
-/*   Updated: 2018/02/21 16:25:14 by lramirez         ###   ########.fr       */
+/*   Updated: 2018/02/21 16:30:59 by stoupin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,8 +84,7 @@ static void		check_countdown(t_vm *vm)
 	while (i < vm->threads.len)
 	{
 		pc = pq->p;
-		pc->number = i;
-
+		pc->number = vm->threads.len - i;
 		if (pc->countdown == 0)
 			do_op(vm, pc);
 		if (pc->countdown == -1)
