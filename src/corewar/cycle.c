@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cycle.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: stoupin <stoupin@student.42.fr>            +#+  +:+       +#+        */
+/*   By: lramirez <lramirez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/26 11:51:04 by dhadley           #+#    #+#             */
-/*   Updated: 2018/02/21 14:23:51 by stoupin          ###   ########.fr       */
+/*   Updated: 2018/02/21 14:59:25 by lramirez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,64 +33,44 @@ static const t_op_assoc	g_op_assoc[16] = {
 	{16, &op_aff}
 };
 
-const t_op		*find_opcode(int pc)
+int			find_opcode(int pc)
 {
-	int	i;
+	int		i;
 
 	i = 0;
 	while (i < 16)
 	{
 		if (g_op_tab[i].opcode == pc)
-			return (&(g_op_tab[i]));
+			return (i);
 		i++;
 	}
-	return (NULL);
+	return (-1);
 }
 
 void			do_op(t_vm *vm, t_thread *pc)
 {
-	int	i;
+	int		i;
 
 	if (vm->op == NULL)
 		return ;
-	print_op(vm, pc);
-	i = 0;
-	while (i < 16)
+	i = find_opcode(pc->location);
+	if (i >= 0)
 	{
-		if (vm->op->opcode == g_op_assoc[i].opcode)
+		print_op(vm, pc);
+		if (get_params(pc, &g_op_tab[i]))
 			g_op_assoc[i].op_function(pc);
-		i++;
+		else
+		{
+			if (g_op_tab[i].has_pcode)
+				pc->carry = 0;
+			pc->shift = 1;
+		}
+		print_str(vm, "\n", 0);
+		shift_loc(pc, pc->shift);
 	}
 	print_str(vm, "", 1);
 	pc->countdown = -1;
 }
-
-// void			do_op_new(t_vm *vm, t_thread *pc)
-// {
-// 	int			i;
-// 	const t_op*	op;     
-
-// 	if (vm->op == NULL)
-// 		return ;
-// 	op = find_opcode(pc->location);
-// 	if (op)
-// 	{
-// 		print_op(vm, pc);
-// 		if (get_params(pc, op))
-// 			g_op_assoc.op[1];
-// 			else
-// 			{
-// 				if (op[6])
-// 					pc->carry = 0;
-// 				pc->shift = 1;
-// 			}
-// 			print_str(vm, "\n", 0);
-// 			shift_loc(pc, pc->shift);
-// 		}
-// 		i++;
-// 	}
-// 	pc->countdown = -1;
-// }
 
 static void		check_countdown(t_vm *vm)
 {
@@ -105,11 +85,11 @@ static void		check_countdown(t_vm *vm)
 		pc = pq->p;
 		pc->number = i;
 
-		if (pc->countdown == 0 && get_params(pc, vm->op))
+		if (pc->countdown == 0)
 			do_op(vm, pc);
 		if (pc->countdown == -1)
 		{
-			if ((vm->op = find_opcode(vm->map[pc->location])) != NULL)
+			if ((vm->op = get_op_by_code(vm->map[pc->location])) != -1)
 				pc->countdown = (vm->op->n_cycles - 1);
 			else
 				pc->location = shift_loc(pc, 1);

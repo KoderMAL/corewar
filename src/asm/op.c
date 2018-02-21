@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   op.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: stoupin <stoupin@student.42.fr>            +#+  +:+       +#+        */
+/*   By: lramirez <lramirez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/10/04 11:43:01 by zaz               #+#    #+#             */
-/*   Updated: 2018/01/28 19:21:37 by stoupin          ###   ########.fr       */
+/*   Updated: 2018/02/21 14:57:13 by lramirez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "op.h"
+#include "../corewar/vm.h"
 
 const t_op	g_op_tab[17] =
 {
@@ -42,3 +43,17 @@ const t_op	g_op_tab[17] =
 const char *g_name_cmd = NAME_CMD_STRING;
 const char *g_comment_cmd = COMMENT_CMD_STRING;
 const char *g_label_chars = LABEL_CHARS;
+
+const t_op		*get_op_by_code(int pc)
+{
+	int		i;
+
+	i = 0;
+	while (i < 16)
+	{
+		if (g_op_tab[i].opcode == pc)
+			return (&g_op_tab[i]);
+		i++;
+	}
+	return (NULL);
+}

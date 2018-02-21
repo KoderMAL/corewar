@@ -6,7 +6,7 @@
 /*   By: lramirez <lramirez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/16 18:33:36 by dhadley           #+#    #+#             */
-/*   Updated: 2018/02/19 11:00:45 by lramirez         ###   ########.fr       */
+/*   Updated: 2018/02/21 13:54:28 by lramirez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,4 +34,6 @@ void		op_lldi(t_thread *pc)
 	set(pc, 2, value);
 	if (value == 0)
 		pc->carry = 1;
+	else
+		pc->carry = 0;
 }

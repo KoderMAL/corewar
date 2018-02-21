@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   op_assoc.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: stoupin <stoupin@student.42.fr>            +#+  +:+       +#+        */
+/*   By: lramirez <lramirez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/08 11:54:44 by stoupin           #+#    #+#             */
-/*   Updated: 2018/02/16 15:51:15 by stoupin          ###   ########.fr       */
+/*   Updated: 2018/02/21 14:57:04 by lramirez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,5 +20,7 @@ typedef	struct	s_op_assoc
 	int		opcode;
 	void	(*op_function)(t_thread *process);
 }				t_op_assoc;
+
+const t_op		*get_op_by_code(int pc);
 
 #endif

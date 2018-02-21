@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   params.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: stoupin <stoupin@student.42.fr>            +#+  +:+       +#+        */
+/*   By: lramirez <lramirez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/15 13:20:49 by lramirez          #+#    #+#             */
-/*   Updated: 2018/02/21 12:40:06 by stoupin          ###   ########.fr       */
+/*   Updated: 2018/02/21 15:26:07 by lramirez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,6 @@ int            get_param(t_thread *pc, int param_code)
 		param = get_bytes(pc, 1);
 		if (param < 1 || param > REG_NUMBER)
 			return (0);
-		pc->shift += 1;
 	}
 	else if (param_code == T_IND || param_code == 0)
 		param = get_bytes(pc, 2);
