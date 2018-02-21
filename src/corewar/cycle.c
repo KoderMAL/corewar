@@ -6,7 +6,7 @@
 /*   By: lramirez <lramirez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/26 11:51:04 by dhadley           #+#    #+#             */
-/*   Updated: 2018/02/21 14:59:25 by lramirez         ###   ########.fr       */
+/*   Updated: 2018/02/21 15:34:38 by lramirez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,7 @@ static void		check_countdown(t_vm *vm)
 			do_op(vm, pc);
 		if (pc->countdown == -1)
 		{
-			if ((vm->op = get_op_by_code(vm->map[pc->location])) != -1)
+			if ((vm->op = get_op_by_code(vm->map[pc->location])) != NULL)
 				pc->countdown = (vm->op->n_cycles - 1);
 			else
 				pc->location = shift_loc(pc, 1);

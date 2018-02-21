@@ -6,7 +6,7 @@
 /*   By: stoupin <stoupin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/08 14:12:51 by stoupin           #+#    #+#             */
-/*   Updated: 2018/02/21 14:55:58 by lramirez         ###   ########.fr       */
+/*   Updated: 2018/02/21 15:33:51 by lramirez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -164,7 +164,7 @@ void				op_aff(t_thread *pc);
 */
 
 int					get(t_thread *pc, int param_nbr);
-int					get_byte_at(t_thread *pc, int amount, bool shift);
+int					get_byte_at(t_thread *pc, int amount);
 
 /*
 ** setters.c
