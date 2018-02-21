@@ -6,7 +6,7 @@
 /*   By: stoupin <stoupin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/15 11:37:33 by stoupin           #+#    #+#             */
-/*   Updated: 2018/02/15 12:19:46 by stoupin          ###   ########.fr       */
+/*   Updated: 2018/02/21 16:31:10 by stoupin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	print_instruction_start(t_vm *vm, t_thread *pc)
 	if (vm->verbose == 0)
 		return ;
 	openfile_write_str(&(vm->stdout), "P    ", 0);
-	openfile_write_nbr(&(vm->stdout), pc->number + 1, 0);
+	openfile_write_nbr(&(vm->stdout), pc->number, 0);
 	openfile_write_str(&(vm->stdout), " | ", 0);
 }
 

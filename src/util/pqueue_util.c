@@ -6,7 +6,7 @@
 /*   By: stoupin <stoupin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/26 12:12:58 by stoupin           #+#    #+#             */
-/*   Updated: 2018/02/13 13:25:29 by dhadley          ###   ########.fr       */
+/*   Updated: 2018/02/21 16:26:49 by stoupin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,10 @@ int		pqueue_push_front(t_pqueue *pqueue, void *p)
 		return (1);
 	element->p = p;
 	element->next = pqueue->first;
-	element->next->prev = element;
+	if (element->next)
+		element->next->prev = element;
+	else
+		pqueue->last = element;
 	element->prev = NULL;
 	pqueue->first = element;
 	pqueue->len++;
