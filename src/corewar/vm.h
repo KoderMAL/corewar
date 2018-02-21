@@ -6,7 +6,7 @@
 /*   By: lramirez <lramirez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/08 14:12:51 by stoupin           #+#    #+#             */
-/*   Updated: 2018/02/19 11:36:05 by lramirez         ###   ########.fr       */
+/*   Updated: 2018/02/21 14:55:58 by lramirez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -140,24 +140,24 @@ void				op_live(t_thread *pc);
 void				op_ld(t_thread *pc);
 void				op_st(t_thread *pc);
 void				op_add(t_thread *pc);
-void				op_sub(t_thread *process);
+void				op_sub(t_thread *pc);
 void				op_and(t_thread *pc);
 void				op_or(t_thread *pc);
 void				op_xor(t_thread *pc);
-void				op_zjmp(t_thread *process);
-void				op_ldi(t_thread *process);
-void				op_ldi_dir(t_thread *process);
-void				op_ldi_reg(t_thread *process);
-void				op_sti(t_thread *process);
-void				op_sti_ind(t_thread *process);
-void				op_sti_reg(t_thread *process);
-void				op_fork(t_thread *process);
-void				op_lld(t_thread *process);
-void				op_lldi(t_thread *process);
-void				op_lldi_dir(t_thread *process);
-void				op_lldi_reg(t_thread *process);
-void				op_lfork(t_thread *process);
-void				op_aff(t_thread *process);
+void				op_zjmp(t_thread *pc);
+void				op_ldi(t_thread *pc);
+void				op_ldi_dir(t_thread *pc);
+void				op_ldi_reg(t_thread *pc);
+void				op_sti(t_thread *pc);
+void				op_sti_ind(t_thread *pc);
+void				op_sti_reg(t_thread *pc);
+void				op_fork(t_thread *pc);
+void				op_lld(t_thread *pc);
+void				op_lldi(t_thread *pc);
+void				op_lldi_dir(t_thread *pc);
+void				op_lldi_reg(t_thread *pc);
+void				op_lfork(t_thread *pc);
+void				op_aff(t_thread *pc);
 
 /*
 ** getters.c
@@ -192,7 +192,7 @@ void				dump(t_vm *vm);
 */
 
 void				war_cycle(t_vm *vm);
-const t_op			*find_opcode(int pc);
+int					find_opcode(int pc);
 void				do_op(t_vm *vm, t_thread *pc);
 
 /*
