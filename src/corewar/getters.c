@@ -3,18 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   getters.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lramirez <lramirez@student.42.fr>          +#+  +:+       +#+        */
+/*   By: stoupin <stoupin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/16 17:04:51 by lramirez          #+#    #+#             */
-/*   Updated: 2018/02/21 15:30:15 by lramirez         ###   ########.fr       */
+/*   Updated: 2018/02/21 16:59:39 by stoupin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vm.h"
 
-int				get_byte_at(t_thread *pc, int amount)
+int				get_byte_at(t_thread *pc, int shift)
 {
-	return (pc->vm->map[shift_loc(pc, pc->shift + amount)]);
+	return (pc->vm->map[shift_loc(pc, shift)]);
 }
 
 int			get(t_thread *pc, int param_nbr)
