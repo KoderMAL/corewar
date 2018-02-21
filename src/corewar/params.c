@@ -6,7 +6,7 @@
 /*   By: lramirez <lramirez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/15 13:20:49 by lramirez          #+#    #+#             */
-/*   Updated: 2018/02/21 15:34:07 by lramirez         ###   ########.fr       */
+/*   Updated: 2018/02/21 15:56:52 by lramirez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,8 +82,8 @@ int            get_params(t_thread *pc, const t_op *op)
 	param = 0;
 	if (op->has_pcode)
 	{
+		pc->bytecode = get_byte_at(pc, 1);
 		pc->shift = 2;
-		pc->bytecode = get_byte_at(pc, 0);
 	}
 	else
 		pc->shift = 1;

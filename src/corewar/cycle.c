@@ -6,7 +6,7 @@
 /*   By: lramirez <lramirez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/26 11:51:04 by dhadley           #+#    #+#             */
-/*   Updated: 2018/02/21 15:34:38 by lramirez         ###   ########.fr       */
+/*   Updated: 2018/02/21 15:55:23 by lramirez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ void			do_op(t_vm *vm, t_thread *pc)
 
 	if (vm->op == NULL)
 		return ;
-	i = find_opcode(pc->location);
+	i = find_opcode(vm->op->opcode);
 	if (i >= 0)
 	{
 		print_op(vm, pc);
