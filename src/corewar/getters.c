@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   getters.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: stoupin <stoupin@student.42.fr>            +#+  +:+       +#+        */
+/*   By: lramirez <lramirez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/16 17:04:51 by lramirez          #+#    #+#             */
-/*   Updated: 2018/02/21 17:08:52 by stoupin          ###   ########.fr       */
+/*   Updated: 2018/02/21 17:40:22 by lramirez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ int				get_bytes(t_thread *pc, int shift, int bytes)
 	return (param);
 }
 
-int			get(t_thread *pc, int param_nbr)
+int			get(t_thread *pc, int param_nbr, bool long_range)
 {
 	int		type;
 	int		param;
@@ -53,6 +53,14 @@ int			get(t_thread *pc, int param_nbr)
 	else if (type == T_DIR)
 		return (param);
 	else if (type == T_IND)
+	{
+		if (!long_range)
+		param = (param < 0) ? param % -IDX_MOD : param % IDX_MOD;
 		return (pc->vm->map[param]);
+	}
 	return (-1);
 }
+
+
+aram = (param < 0) ? shift_loc(pc, (param % -IDX_MOD)) :
+			shift_loc(pc, (param % IDX_MOD));
