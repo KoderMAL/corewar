@@ -6,7 +6,7 @@
 /*   By: stoupin <stoupin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/26 11:51:04 by dhadley           #+#    #+#             */
-/*   Updated: 2018/02/21 11:55:11 by stoupin          ###   ########.fr       */
+/*   Updated: 2018/02/21 14:23:51 by stoupin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,17 +53,15 @@ void			do_op(t_vm *vm, t_thread *pc)
 
 	if (vm->op == NULL)
 		return ;
+	print_op(vm, pc);
 	i = 0;
 	while (i < 16)
 	{
 		if (vm->op->opcode == g_op_assoc[i].opcode)
-		{
-			print_op(vm, pc);
 			g_op_assoc[i].op_function(pc);
-			print_str(vm, "\n", 0);
-		}
 		i++;
 	}
+	print_str(vm, "", 1);
 	pc->countdown = -1;
 }
 
