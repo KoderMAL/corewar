@@ -6,7 +6,7 @@
 /*   By: stoupin <stoupin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/17 14:08:01 by alalaoui          #+#    #+#             */
-/*   Updated: 2018/02/21 12:02:56 by stoupin          ###   ########.fr       */
+/*   Updated: 2018/02/21 12:05:27 by stoupin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ t_thread		*dup_thread(t_thread *src_thread, int pc)
 	new_thread = (t_thread*)malloc(sizeof(t_thread));
 	if (new_thread == NULL)
 		return (NULL);
+	new_thread->vm = src_thread->vm;
 	new_thread->carry = src_thread->carry;
 	j = 0;
 	while (j < REG_NUMBER + 1)
