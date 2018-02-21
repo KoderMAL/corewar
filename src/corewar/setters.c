@@ -6,7 +6,7 @@
 /*   By: stoupin <stoupin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/16 17:04:51 by lramirez          #+#    #+#             */
-/*   Updated: 2018/02/21 17:06:47 by stoupin          ###   ########.fr       */
+/*   Updated: 2018/02/21 17:16:02 by stoupin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,8 @@ void		set(t_thread *pc, int param_nbr, int value)
 		set_bytes(pc, param, value);
 	else if (type == T_IND)
 	{
-		param = (param < 0) ? shift_loc(pc, (param % -IDX_MOD))
-				: shift_loc(pc, (param % IDX_MOD));
+		param = (param < 0) ? (param % -IDX_MOD)
+				: (param % IDX_MOD);
 		location = get_bytes(pc, param, 4);
 		set_bytes(pc, location, value);
 	}
