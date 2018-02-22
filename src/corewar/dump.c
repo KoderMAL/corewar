@@ -52,12 +52,12 @@ void		print_adv(t_vm *vm, t_thread *pc)
 	print_str(vm, " -> 0x", 0);
 	print_byte(vm, (pc->location + pc->shift) / 256, 0);
 	print_byte(vm, (pc->location + pc->shift) % 256, 0);
-	print_str(vm, ")", 0);
+	print_str(vm, ") ", 0);
 	i = 0;
 	while (i < pc->shift)
 	{
-		print_str(vm, " ", 0);
 		print_byte(vm, get_byte_at(pc, i), 0);
+		print_str(vm, " ", 0);
 		i++;
 	}
 	print_str(vm, "", 1);
