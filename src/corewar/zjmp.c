@@ -21,5 +21,12 @@ void		op_zjmp(t_thread *pc)
 	short	index;
 
 	index = get(pc, 0, false);
-	pc->shift = 0;
+	if (pc->carry == 1)
+	{
+		pc->location = index;
+		pc->shift = 0;
+		print_str(pc->vm, " OK", 0);
+	}
+	else
+		print_str(pc->vm, " FAILED", 0);
 }

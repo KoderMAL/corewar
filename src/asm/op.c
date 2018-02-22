@@ -10,8 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdlib.h>
 #include "op.h"
-#include "../corewar/vm.h"
 
 const t_op	g_op_tab[17] =
 {

@@ -26,35 +26,37 @@ int				get_code(unsigned char byte, int number)
 	return (0);
 }
 
-int            get_param(t_thread *pc, int param_code)
+int            get_param(t_thread *pc, int param_code, int *param)
 {
-	int	param;
-	
-	param = 0;
+	*param = 0;
 	if (param_code == T_REG)
 	{
-		param = get_bytes(pc, pc->shift, 1);
-		if (param < 1 || param > REG_NUMBER)
+		*param = get_bytes(pc, pc->shift, 1);
+		if (*param < 1 || *param > REG_NUMBER)
 			return (0);
 		pc->shift += 1;
 	}
 	else if (param_code == T_IND || param_code == 0)
 	{
-		param = get_bytes(pc, pc->shift, 2);
+		*param = get_bytes(pc, pc->shift, 2);
 		pc->shift += 2;
 	}
 	else if (param_code == T_DIR)
 	{
-		param = get_bytes(pc, pc->shift, 4);
+		*param = get_bytes(pc, pc->shift, 4);
 		pc->shift += 4;
 	}
-	return (param);
+	else
+		return (0);
+	return (1);
 }
 
-int            get_params(t_thread *pc, const t_op *op)
+int            get_params(t_thread *pc, const t_op *op,
+							const t_op_assoc *op_assoc)
 {
-	int        param;
-	int        param_code;
+	int	param;
+	int	param_code;
+	int	ok;
 	
 	pc->cycles -= op->n_cycles;
 	param = 0;
@@ -64,9 +66,17 @@ int            get_params(t_thread *pc, const t_op *op)
 	pc->shift += 1 + op->has_pcode;
 	while (param < op->n_arg)
 	{
-		param_code =  op->has_pcode ? get_code(pc->bytecode, param + 1) : 0;
-		if ((param_code & op->arg_type[param]) == 0 ||
-			!(pc->params[param] = get_param(pc, param_code)))
+		if (op->has_pcode)
+		{
+			param_code = get_code(pc->bytecode, param + 1);
+			ok = (param_code & op->arg_type[param]) != 0;
+		}
+		else
+		{
+			param_code = op_assoc->no_pcode_type;
+			ok = 1;
+		}
+		if (!ok || !(get_param(pc, param_code, &(pc->params[param]))))
 			return (0);
 		pc->params_type[param] = param_code;
 		param++;
