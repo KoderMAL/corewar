@@ -45,16 +45,6 @@ for champ in champs:
 		continue
 	zaz_error, zaz_output = get_dump([ZAZ_CW, '-v', '20', champ, champ])
 	my_error, my_output = get_dump([MY_CW, '-verbose', champ, champ])
-	if (zaz_error and not my_error) or (my_error and not zaz_error):
-		if zaz_error:
-			print('ZAZ OUTPUT')
-			print(zaz_output)
-			sys.exit(1)
-		if my_error:
-			print('OUR OUTPUT')
-			print(my_output)
-			sys.exit(1)
-	if not my_error and zaz_output != my_output:
 		with open('/tmp/zaz', 'w') as f:
 			f.write(zaz_output)
 		with open('/tmp/me', 'w') as f:
