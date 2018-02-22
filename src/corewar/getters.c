@@ -3,24 +3,45 @@
 /*                                                        :::      ::::::::   */
 /*   getters.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: stoupin <stoupin@student.42.fr>            +#+  +:+       +#+        */
+/*   By: lramirez <lramirez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/16 17:04:51 by lramirez          #+#    #+#             */
-/*   Updated: 2018/02/21 14:16:31 by stoupin          ###   ########.fr       */
+/*   Updated: 2018/02/21 17:50:50 by lramirez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vm.h"
 
-int				get_byte_at(t_thread *pc, int amount, bool shift)
+int				shift_loc(t_thread *pc, int amount)
 {
-	if (shift)
-		return (pc->vm->map[shift_loc(pc, pc->shift + amount)]);
-	else
-		return (pc->vm->map[shift_loc(pc, amount)]);
+	return ((pc->location + amount) % MEM_SIZE);
 }
 
-int			get(t_thread *pc, int param_nbr)
+unsigned char	get_byte_at(t_thread *pc, int shift)
+{
+	return (pc->vm->map[shift_loc(pc, shift)]);
+}
+
+int				get_bytes(t_thread *pc, int shift, int bytes)
+{
+	int		param;
+
+	param = 0;
+	if (bytes == 1)
+		param = get_byte_at(pc, shift);
+	else if (bytes == 2)
+	{
+		param = get_byte_at(pc, shift) << 8 | get_byte_at(pc, shift + 1);
+		if (param > 0x7FFF)
+			param |= 0xffff0000;
+	}
+	else if (bytes == 4)
+		param = get_byte_at(pc, shift) << 24 | get_byte_at(pc, shift + 1) << 16 |
+			get_byte_at(pc, shift + 2) << 8 | get_byte_at(pc, shift + 3);
+	return (param);
+}
+
+int			get(t_thread *pc, int param_nbr, bool long_range)
 {
 	int		type;
 	int		param;
@@ -32,6 +53,10 @@ int			get(t_thread *pc, int param_nbr)
 	else if (type == T_DIR)
 		return (param);
 	else if (type == T_IND)
+	{
+		if (!long_range)
+		param = (param < 0) ? param % -IDX_MOD : param % IDX_MOD;
 		return (pc->vm->map[param]);
+	}
 	return (-1);
 }

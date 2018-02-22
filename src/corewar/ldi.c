@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ldi.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dhadley <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: lramirez <lramirez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/16 18:33:18 by dhadley           #+#    #+#             */
-/*   Updated: 2018/02/16 18:33:19 by dhadley          ###   ########.fr       */
+/*   Updated: 2018/02/21 17:45:24 by lramirez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,9 @@ void		op_ldi(t_thread *pc)
 	int index;
 	int value;
 
-	index = get(pc, 0) + get(pc, 1);
+	index = get(pc, 0, false) + get(pc, 1, false);
 	pc->params[3] = index;
 	pc->params_type[3] = T_IND;
-	value = get(pc, 3);
+	value = get(pc, 3, false);
 	set(pc, 2, value);
 }

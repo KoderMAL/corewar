@@ -6,7 +6,7 @@
 /*   By: lramirez <lramirez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/16 17:04:51 by lramirez          #+#    #+#             */
-/*   Updated: 2018/02/17 11:58:23 by dhadley          ###   ########.fr       */
+/*   Updated: 2018/02/21 17:22:36 by stoupin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,12 +23,16 @@ void		set_bytes(t_thread *pc, int param, int value)
 void		set(t_thread *pc, int param_nbr, int value)
 {
 	int		type;
-	int		param;	
+	int		param;
 
 	type = pc->params_type[param_nbr];
 	param = pc->params[param_nbr];
 	if (type == T_REG)
 		pc->r[param] = value;
 	else if (type == T_IND)
+	{
+		param = (param < 0) ? (param % -IDX_MOD)
+				: (param % IDX_MOD);
 		set_bytes(pc, param, value);
+	}
 }

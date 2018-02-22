@@ -6,7 +6,7 @@
 /*   By: lramirez <lramirez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/08 14:12:51 by stoupin           #+#    #+#             */
-/*   Updated: 2018/02/19 11:36:05 by lramirez         ###   ########.fr       */
+/*   Updated: 2018/02/21 17:42:30 by lramirez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,6 @@ typedef struct		s_vm
 	int				num_lives;
 	int				cycle_to_die;
 	int				num_checkups;
-	const t_op		*op;
 	int				draw_game;
 	t_gui			gui;
 	t_font			fonts[N_FONTS];
@@ -64,18 +63,19 @@ typedef struct		s_vm
 
 typedef struct		s_thread
 {
-	int			number;
-	int			carry;
-	int			r[REG_NUMBER + 1];
-	int			cycles;
-	int			location;
-	int			countdown;
-	bool		alive;
-	int			shift;
-	char		bytecode;
-	int			params[4];
-	int			params_type[4];
-	t_vm		*vm;
+	int				number;
+	int				carry;
+	int				r[REG_NUMBER + 1];
+	const t_op		*op;
+	int				cycles;
+	int				location;
+	int				countdown;
+	bool			alive;
+	int				shift;
+	unsigned char	bytecode;
+	int				params[4];
+	int				params_type[4];
+	t_vm			*vm;
 }					t_thread;
 
 typedef enum		e_state
@@ -86,6 +86,15 @@ typedef enum		e_state
 	S_S,
 	S_CHAMP
 }					t_state;
+
+typedef	struct		s_op_assoc
+{
+	int			opcode;
+	void		(*op_function)(t_thread *process);
+	int			print_as_direct;
+}					t_op_assoc;
+
+const t_op			*get_op_by_code(int pc);
 
 /*
 ** vm.c
@@ -140,31 +149,33 @@ void				op_live(t_thread *pc);
 void				op_ld(t_thread *pc);
 void				op_st(t_thread *pc);
 void				op_add(t_thread *pc);
-void				op_sub(t_thread *process);
+void				op_sub(t_thread *pc);
 void				op_and(t_thread *pc);
 void				op_or(t_thread *pc);
 void				op_xor(t_thread *pc);
-void				op_zjmp(t_thread *process);
-void				op_ldi(t_thread *process);
-void				op_ldi_dir(t_thread *process);
-void				op_ldi_reg(t_thread *process);
-void				op_sti(t_thread *process);
-void				op_sti_ind(t_thread *process);
-void				op_sti_reg(t_thread *process);
-void				op_fork(t_thread *process);
-void				op_lld(t_thread *process);
-void				op_lldi(t_thread *process);
-void				op_lldi_dir(t_thread *process);
-void				op_lldi_reg(t_thread *process);
-void				op_lfork(t_thread *process);
-void				op_aff(t_thread *process);
+void				op_zjmp(t_thread *pc);
+void				op_ldi(t_thread *pc);
+void				op_ldi_dir(t_thread *pc);
+void				op_ldi_reg(t_thread *pc);
+void				op_sti(t_thread *pc);
+void				op_sti_ind(t_thread *pc);
+void				op_sti_reg(t_thread *pc);
+void				op_fork(t_thread *pc);
+void				op_lld(t_thread *pc);
+void				op_lldi(t_thread *pc);
+void				op_lldi_dir(t_thread *pc);
+void				op_lldi_reg(t_thread *pc);
+void				op_lfork(t_thread *pc);
+void				op_aff(t_thread *pc);
 
 /*
 ** getters.c
 */
 
-int					get(t_thread *pc, int param_nbr);
-int					get_byte_at(t_thread *pc, int amount, bool shift);
+int					shift_loc(t_thread *pc, int shift);
+unsigned char		get_byte_at(t_thread *pc, int amount);
+int					get_bytes(t_thread *pc, int shift, int bytes);
+int					get(t_thread *pc, int param_nbr, bool long_range);
 
 /*
 ** setters.c
@@ -177,13 +188,14 @@ void				set_bytes(t_thread *pc, int param, int value);
 ** params.c
 */
 
-int					get_params(t_thread *pc, const t_op *op);
-int					shift_loc(t_thread *pc, int amount);
+int            		get_params(t_thread *pc, const t_op *op);
 
 /*
 ** dump.c
 */
 
+void				print_op(t_vm *vm, t_thread *pc, int print_as_direct);
+void				print_adv(t_vm *vm, t_thread *pc);
 void				write_map(t_vm *vm);
 void				dump(t_vm *vm);
 
@@ -192,7 +204,7 @@ void				dump(t_vm *vm);
 */
 
 void				war_cycle(t_vm *vm);
-const t_op			*find_opcode(int pc);
+int					find_opcode(int pc);
 void				do_op(t_vm *vm, t_thread *pc);
 
 /*
@@ -206,7 +218,6 @@ void				check_cycles(t_vm *vm);
 */
 
 void				start_op(t_vm *vm, t_thread *pc);
-void				print_op(t_vm *vm, t_thread *pc);
 int					op_exit(t_thread *pc, int cycles, bool carry);
 int					op_success(t_thread *pc, int cycles, int loc, bool carry);
 
@@ -219,5 +230,6 @@ void				print_instruction_continue(t_vm *vm, t_thread *pc);
 void				print_str(t_vm *vm, char *s, int endl);
 void				print_nbr(t_vm *vm, int i, int endl);
 void				print_reg(t_vm *vm, int i, int endl);
+void				print_byte(t_vm *vm, unsigned char byte, int endl);
 
 #endif

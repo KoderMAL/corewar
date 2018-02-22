@@ -6,7 +6,7 @@
 /*   By: lramirez <lramirez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/16 18:33:27 by dhadley           #+#    #+#             */
-/*   Updated: 2018/02/19 11:00:32 by lramirez         ###   ########.fr       */
+/*   Updated: 2018/02/21 17:45:44 by lramirez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,10 @@ void		op_lld(t_thread *pc)
 {
 	int value;
 
-	value = get(pc, 0);
+	value = get(pc, 0, true);
 	set(pc, 1, value);
 	if (value == 0)
 		pc->carry = 1;
+	else
+		pc->carry = 0;
 }

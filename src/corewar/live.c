@@ -6,11 +6,17 @@
 /*   By: lramirez <lramirez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/25 11:32:35 by lramirez          #+#    #+#             */
-/*   Updated: 2018/02/17 15:08:17 by lramirez         ###   ########.fr       */
+/*   Updated: 2018/02/21 18:45:48 by lramirez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vm.h"
+
+/*
+** L’instruction qui permet à un processus de rester vivant. A également pour
+** effet de rapporter que le joueur dont le numéro est en paramètre est en vie.
+** Oh, et son seul paramètre est sur 4 octets.
+*/
 
 void		op_live(t_thread *pc)
 {
@@ -19,7 +25,7 @@ void		op_live(t_thread *pc)
 	char	*player_itoa;
 
 	pc->alive = true;
-	id = get(pc, 0);
+	id = get(pc, 0, false);
 	player_itoa = ft_itoa(id + 1);
 	player = 0;
 	while (player < pc->vm->n_champs)
