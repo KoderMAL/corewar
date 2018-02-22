@@ -49,11 +49,13 @@ int			find_opcode(int pc)
 
 void			do_op(t_vm *vm, t_thread *pc)
 {
+	int		opcode;
 	int		i;
 
-	if (vm->op == NULL)
+
+	if (pc->op == NULL)
 		return ;
-	i = find_opcode(vm->op->opcode);
+	i = find_opcode(pc->op->opcode);
 	if (i >= 0)
 	{
 		if (get_params(pc, &g_op_tab[i]))
@@ -90,8 +92,8 @@ static void		check_countdown(t_vm *vm)
 			do_op(vm, pc);
 		if (pc->countdown == -1)
 		{
-			if ((vm->op = get_op_by_code(vm->map[pc->location])) != NULL)
-				pc->countdown = (vm->op->n_cycles - 1);
+			if ((pc->op = get_op_by_code(vm->map[pc->location])) != NULL)
+				pc->countdown = (pc->op->n_cycles - 1);
 			else
 				pc->location = shift_loc(pc, 1);
 		}

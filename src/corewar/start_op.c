@@ -14,7 +14,7 @@
 
 void	start_op(t_vm *vm, t_thread *pc)
 {
-	if (get_params(pc, vm->op))
+	if (get_params(pc, pc->op))
 		do_op(vm, pc);
 	else
 		pc->shift = 1;

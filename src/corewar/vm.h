@@ -53,7 +53,6 @@ typedef struct		s_vm
 	int				num_lives;
 	int				cycle_to_die;
 	int				num_checkups;
-	const t_op		*op;
 	int				draw_game;
 	t_gui			gui;
 	t_font			fonts[N_FONTS];
@@ -67,6 +66,7 @@ typedef struct		s_thread
 	int			number;
 	int			carry;
 	int			r[REG_NUMBER + 1];
+	const t_op	*op;
 	int			cycles;
 	int			location;
 	int			countdown;

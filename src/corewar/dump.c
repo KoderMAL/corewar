@@ -21,9 +21,9 @@ void		print_op(t_vm *vm, t_thread *pc)
 
 
 	print_instruction_start(vm, pc);
-	print_str(vm, vm->op->name, 0);
+	print_str(vm, pc->op->name, 0);
 	i = 0;
-	while (i < vm->op->n_arg)
+	while (i < pc->op->n_arg)
 	{
 		print_str(vm, " ", 0);
 		param = pc->params[i];
