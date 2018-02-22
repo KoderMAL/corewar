@@ -43,7 +43,7 @@ for champ in champs:
 	error, _, champ = compile_champ(ZAZ_ASM, champ)
 	if error:
 		continue
-	zaz_error, zaz_output = get_dump([ZAZ_CW, '-v 20', champ, champ])
+	zaz_error, zaz_output = get_dump([ZAZ_CW, '-v', '20', champ, champ])
 	my_error, my_output = get_dump([MY_CW, '-verbose', champ, champ])
 	if (zaz_error and not my_error) or (my_error and not zaz_error):
 		if zaz_error:
