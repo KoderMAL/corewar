@@ -83,7 +83,7 @@ static void		check_countdown(t_vm *vm)
 
 	i = 0;
 	pq = (vm->threads.last);
-	while (i < vm->threads.len)
+	while (pq)
 	{
 		pc = pq->p;
 		pc->number = vm->threads.len - i;
