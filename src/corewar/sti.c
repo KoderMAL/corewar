@@ -35,4 +35,14 @@ void		op_sti(t_thread *pc)
 	pc->params_type[3] = T_DIR;
 	value = get(pc, 0, false);
 	set(pc, 3, value);
+	print_instruction_continue(pc->vm, pc);
+	print_str(pc->vm, "-> store to ", 0);
+	print_nbr(pc->vm, get(pc, 1, false), 0);
+	print_str(pc->vm, " + ", 0);
+	print_nbr(pc->vm, get(pc, 2, false), 0);
+	print_str(pc->vm, " = ", 0);
+	print_nbr(pc->vm, index, 0);
+	print_str(pc->vm, " (with pc and mod ", 0);
+	print_nbr(pc->vm, shift_loc(pc, index % IDX_MOD), 0);
+	print_str(pc->vm, ")", 0);
 }

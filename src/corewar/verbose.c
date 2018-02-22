@@ -28,7 +28,7 @@ void	print_instruction_continue(t_vm *vm, t_thread *pc)
 	if (vm->verbose == 0)
 		return ;
 	thread_number = pc->number;
-	openfile_write_str(&(vm->stdout), "     ", 0);
+	openfile_write_str(&(vm->stdout), "\n     ", 0);
 	while (thread_number >= 10)
 	{
 		openfile_write_char(&(vm->stdout), ' ');
