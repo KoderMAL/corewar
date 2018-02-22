@@ -31,7 +31,7 @@ void		print_op(t_vm *vm, t_thread *pc)
 		if (param_type == T_REG)
 			print_reg(vm, param, 0);
 		else if (param_type == T_IND)
-			print_nbr(vm, param, 0);
+			print_nbr(vm, get_bytes(pc, param, 4), 0);
 		else
 			print_nbr(vm, param, 0);
 		i++;
