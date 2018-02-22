@@ -45,9 +45,10 @@ for champ in champs:
 		continue
 	zaz_error, zaz_output = get_dump([ZAZ_CW, '-v', '20', champ, champ])
 	my_error, my_output = get_dump([MY_CW, '-verbose', champ, champ])
-	with open('/tmp/zaz', 'w') as f:
-		f.write(zaz_output)
-	with open('/tmp/me', 'w') as f:
-		f.write(my_output)
-	print(subprocess.check_output(['/usr/bin/diff', '/tmp/zaz', '/tmp/me']).decode('utf-8'))
-	sys.exit(1)
+	if zaz_output != my_output:
+		with open('/tmp/zaz', 'w') as f:
+			f.write(zaz_output)
+		with open('/tmp/me', 'w') as f:
+			f.write(my_output)
+		print(subprocess.check_output(['/usr/bin/diff', '/tmp/zaz', '/tmp/me']).decode('utf-8'))
+		sys.exit(1)
