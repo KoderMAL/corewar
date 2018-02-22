@@ -28,11 +28,15 @@ int				get_bytes(t_thread *pc, int shift, int bytes)
 
 	param = 0;
 	if (bytes == 1)
+	{
+		if (param > 0x7f)
+			param |= 0xffffff00;
 		param = get_byte_at(pc, shift);
+	}
 	else if (bytes == 2)
 	{
 		param = get_byte_at(pc, shift) << 8 | get_byte_at(pc, shift + 1);
-		if (param > 0x7FFF)
+		if (param > 0x7fff)
 			param |= 0xffff0000;
 	}
 	else if (bytes == 4)
@@ -55,8 +59,8 @@ int			get(t_thread *pc, int param_nbr, bool long_range)
 	else if (type == T_IND)
 	{
 		if (!long_range)
-		param = (param < 0) ? param % -IDX_MOD : param % IDX_MOD;
-		return (pc->vm->map[param]);
+			param = (param < 0) ? param % -IDX_MOD : param % IDX_MOD;
+		return (get_bytes(pc, param, 4));
 	}
 	return (-1);
 }
