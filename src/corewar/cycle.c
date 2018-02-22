@@ -61,14 +61,15 @@ void			do_op(t_vm *vm, t_thread *pc)
 			print_op(vm, pc);
 			g_op_assoc[i].op_function(pc);
 			print_str(vm, "", 1);
+			print_adv(vm, pc);
 		}
 		else
 		{
 			if (g_op_tab[i].has_pcode)
 				pc->carry = 0;
-			pc->location = shift_loc(pc, 1);
+			pc->shift = 1;
 		}
-		shift_loc(pc, pc->shift);
+		pc->location = shift_loc(pc, pc->shift);
 	}
 	pc->countdown = -1;
 }

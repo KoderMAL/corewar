@@ -13,7 +13,7 @@
 #include "ft/ft.h"
 #include "vm.h"
 
-void				print_op(t_vm *vm, t_thread *pc)
+void		print_op(t_vm *vm, t_thread *pc)
 {
 	int			i;
 	int			param;
@@ -36,6 +36,31 @@ void				print_op(t_vm *vm, t_thread *pc)
 			print_nbr(vm, param, 0);
 		i++;
 	}
+}
+
+void		print_adv(t_vm *vm, t_thread *pc)
+{
+	int	i;
+
+	if (pc->shift == 0)
+		return ;
+	print_str(vm, "ADV ", 0);
+	print_nbr(vm, pc->shift, 0);
+	print_str(vm, " (0x", 0);
+	print_byte(vm, pc->location / 256, 0);
+	print_byte(vm, pc->location % 256, 0);
+	print_str(vm, " -> 0x", 0);
+	print_byte(vm, (pc->location + pc->shift) / 256, 0);
+	print_byte(vm, (pc->location + pc->shift) % 256, 0);
+	print_str(vm, ")", 0);
+	i = 0;
+	while (i < pc->shift)
+	{
+		print_str(vm, " ", 0);
+		print_byte(vm, get_byte_at(pc, i), 0);
+		i++;
+	}
+	print_str(vm, "", 1);
 }
 
 static void	write_hex(t_vm *vm, unsigned char byte)

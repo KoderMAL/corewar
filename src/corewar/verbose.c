@@ -58,3 +58,15 @@ void	print_reg(t_vm *vm, int i, int endl)
 	openfile_write_char(&(vm->stdout), 'r');
 	openfile_write_nbr(&(vm->stdout), i, endl);
 }
+
+void	print_byte(t_vm *vm, unsigned char byte, int endl)
+{
+	static const char	*digits = "0123456789abcdef";
+
+	if (vm->verbose == 0)
+		return ;
+	openfile_write_char(&(vm->stdout), digits[byte / 16]);
+	openfile_write_char(&(vm->stdout), digits[byte % 16]);
+	if (endl)
+		openfile_write_char(&(vm->stdout), '\n');
+}

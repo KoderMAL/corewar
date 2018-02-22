@@ -185,6 +185,8 @@ int					get_params(t_thread *pc, const t_op *op);
 ** dump.c
 */
 
+void				print_op(t_vm *vm, t_thread *pc);
+void				print_adv(t_vm *vm, t_thread *pc);
 void				write_map(t_vm *vm);
 void				dump(t_vm *vm);
 
@@ -220,5 +222,6 @@ void				print_instruction_continue(t_vm *vm, t_thread *pc);
 void				print_str(t_vm *vm, char *s, int endl);
 void				print_nbr(t_vm *vm, int i, int endl);
 void				print_reg(t_vm *vm, int i, int endl);
+void				print_byte(t_vm *vm, unsigned char byte, int endl);
 
 #endif

@@ -71,6 +71,5 @@ int            get_params(t_thread *pc, const t_op *op)
 		pc->params_type[param] = param_code;
 		param++;
 	}
-	pc->location = shift_loc(pc, pc->shift);
 	return (1);
 }
