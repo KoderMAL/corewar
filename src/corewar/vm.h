@@ -185,7 +185,7 @@ int					get_params(t_thread *pc, const t_op *op);
 ** dump.c
 */
 
-void				print_op(t_vm *vm, t_thread *pc);
+void				print_op(t_vm *vm, t_thread *pc, int print_as_direct);
 void				print_adv(t_vm *vm, t_thread *pc);
 void				write_map(t_vm *vm);
 void				dump(t_vm *vm);
@@ -209,7 +209,6 @@ void				check_cycles(t_vm *vm);
 */
 
 void				start_op(t_vm *vm, t_thread *pc);
-void				print_op(t_vm *vm, t_thread *pc);
 int					op_exit(t_thread *pc, int cycles, bool carry);
 int					op_success(t_thread *pc, int cycles, int loc, bool carry);
 

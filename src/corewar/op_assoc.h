@@ -19,6 +19,7 @@ typedef	struct	s_op_assoc
 {
 	int		opcode;
 	void	(*op_function)(t_thread *process);
+	int		print_as_direct;
 }				t_op_assoc;
 
 const t_op		*get_op_by_code(int pc);

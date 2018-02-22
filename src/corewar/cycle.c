@@ -15,22 +15,22 @@
 #include "op_assoc.h"
 
 static const t_op_assoc	g_op_assoc[16] = {
-	{1, &op_live},
-	{2, &op_ld},
-	{3, &op_st},
-	{4, &op_add},
-	{5, &op_sub},
-	{6, &op_and},
-	{7, &op_or},
-	{8, &op_xor},
-	{9, &op_zjmp},
-	{10, &op_ldi},
-	{11, &op_sti},
-	{12, &op_fork},
-	{13, &op_lld},
-	{14, &op_lldi},
-	{15, &op_lfork},
-	{16, &op_aff}
+	{1, &op_live, 0},
+	{2, &op_ld, 0},
+	{3, &op_st, 1},
+	{4, &op_add, 0},
+	{5, &op_sub, 0},
+	{6, &op_and, 0},
+	{7, &op_or, 0},
+	{8, &op_xor, 0},
+	{9, &op_zjmp, 0},
+	{10, &op_ldi, 0},
+	{11, &op_sti, 1},
+	{12, &op_fork, 0},
+	{13, &op_lld, 0},
+	{14, &op_lldi, 0},
+	{15, &op_lfork, 0},
+	{16, &op_aff, 0}
 };
 
 int			find_opcode(int pc)
@@ -60,7 +60,7 @@ void			do_op(t_vm *vm, t_thread *pc)
 	{
 		if (get_params(pc, &g_op_tab[i]))
 		{
-			print_op(vm, pc);
+			print_op(vm, pc, g_op_assoc[i].print_as_direct);
 			g_op_assoc[i].op_function(pc);
 			print_str(vm, "", 1);
 			print_adv(vm, pc);
