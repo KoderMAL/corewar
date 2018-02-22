@@ -35,7 +35,7 @@ def get_dump(params):
 			output = subprocess.check_output(params, stderr=shutup).decode('utf-8')
 			return False, output
 	except subprocess.CalledProcessError as cpe:
-		return True, cpe.output
+		return True, cpe.output.decode('utf-8')
 
 champs = list_champs()
 for champ in champs:
