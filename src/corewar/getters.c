@@ -17,7 +17,7 @@ int				shift_loc(t_thread *pc, int amount)
 	return ((pc->location + amount) % MEM_SIZE);
 }
 
-int				get_byte_at(t_thread *pc, int shift)
+unsigned char	get_byte_at(t_thread *pc, int shift)
 {
 	return (pc->vm->map[shift_loc(pc, shift)]);
 }

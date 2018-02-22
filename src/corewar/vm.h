@@ -63,19 +63,19 @@ typedef struct		s_vm
 
 typedef struct		s_thread
 {
-	int			number;
-	int			carry;
-	int			r[REG_NUMBER + 1];
-	const t_op	*op;
-	int			cycles;
-	int			location;
-	int			countdown;
-	bool		alive;
-	int			shift;
-	char		bytecode;
-	int			params[4];
-	int			params_type[4];
-	t_vm		*vm;
+	int				number;
+	int				carry;
+	int				r[REG_NUMBER + 1];
+	const t_op		*op;
+	int				cycles;
+	int				location;
+	int				countdown;
+	bool			alive;
+	int				shift;
+	unsigned char	bytecode;
+	int				params[4];
+	int				params_type[4];
+	t_vm			*vm;
 }					t_thread;
 
 typedef enum		e_state
@@ -164,7 +164,7 @@ void				op_aff(t_thread *pc);
 */
 
 int					shift_loc(t_thread *pc, int shift);
-int					get_byte_at(t_thread *pc, int amount);
+unsigned char		get_byte_at(t_thread *pc, int amount);
 int					get_bytes(t_thread *pc, int shift, int bytes);
 int					get(t_thread *pc, int param_nbr, bool long_range);
 
