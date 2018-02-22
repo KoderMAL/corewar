@@ -51,8 +51,7 @@ int            get_param(t_thread *pc, int param_code, int *param)
 	return (1);
 }
 
-int            get_params(t_thread *pc, const t_op *op,
-							const t_op_assoc *op_assoc)
+int            get_params(t_thread *pc, const t_op *op)
 {
 	int	param;
 	int	param_code;
@@ -73,12 +72,14 @@ int            get_params(t_thread *pc, const t_op *op,
 		}
 		else
 		{
-			param_code = op_assoc->no_pcode_type;
+			param_code = op->arg_type[0];
 			ok = 1;
 		}
+		pc->params_type[param] = param_code;
+		if (param_code == T_DIR && op->has_idx)
+			param_code = T_IND;
 		if (!ok || !(get_param(pc, param_code, &(pc->params[param]))))
 			return (0);
-		pc->params_type[param] = param_code;
 		param++;
 	}
 	return (1);

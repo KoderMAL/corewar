@@ -23,7 +23,7 @@ void		op_zjmp(t_thread *pc)
 	index = get(pc, 0, false);
 	if (pc->carry == 1)
 	{
-		pc->location = index;
+		pc->location = shift_loc(pc, index % IDX_MOD);
 		pc->shift = 0;
 		print_str(pc->vm, " OK", 0);
 	}

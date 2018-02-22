@@ -92,7 +92,6 @@ typedef	struct		s_op_assoc
 	int			opcode;
 	void		(*op_function)(t_thread *process);
 	int			print_as_direct;
-	t_arg_type	no_pcode_type;
 }					t_op_assoc;
 
 const t_op			*get_op_by_code(int pc);
@@ -189,8 +188,7 @@ void				set_bytes(t_thread *pc, int param, int value);
 ** params.c
 */
 
-int            		get_params(t_thread *pc, const t_op *op,
-								const t_op_assoc *op_assoc);
+int            		get_params(t_thread *pc, const t_op *op);
 
 /*
 ** dump.c
