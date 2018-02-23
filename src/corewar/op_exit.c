@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   op_exit.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dhadley <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: stoupin <stoupin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/09 17:03:46 by dhadley           #+#    #+#             */
-/*   Updated: 2018/02/09 18:30:22 by dhadley          ###   ########.fr       */
+/*   Updated: 2018/02/23 21:10:03 by stoupin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 /*
 ** op_exit puts the pc->carry to 0 if carry is set to true
 ** then decrements the pc->cycles by cycles
-** and changes the pc->location to pc->location + 1 
+** and changes the pc->location to pc->location + 1
 ** before returning 0 to show the op has failed
 */
 

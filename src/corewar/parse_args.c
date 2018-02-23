@@ -6,7 +6,7 @@
 /*   By: stoupin <stoupin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/30 14:31:43 by alalaoui          #+#    #+#             */
-/*   Updated: 2018/02/16 14:25:42 by stoupin          ###   ########.fr       */
+/*   Updated: 2018/02/23 21:12:49 by stoupin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,6 +93,8 @@ int				parse_args(t_vm *vm, int ac, char **av)
 				vm->draw_game = 1;
 			else if (ft_strcmp(av[i], "-verbose") == 0)
 				vm->verbose = 1;
+			else if (ft_strcmp(av[i], "-zaz") == 0)
+				vm->zaz_mode = 1;
 			else if (ft_strcmp(av[i], "-n") == 0)
 				state = S_N;
 			else if (ft_strcmp(av[i], "-s") == 0)
@@ -139,7 +141,7 @@ int				parse_args(t_vm *vm, int ac, char **av)
 				state = S_START;
 			}
 			else
-				return (err2(vm, "-s option needs a number"));			
+				return (err2(vm, "-s option needs a number"));
 		}
 		i++;
 	}

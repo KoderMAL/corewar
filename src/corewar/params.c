@@ -6,7 +6,7 @@
 /*   By: stoupin <stoupin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/15 13:20:49 by lramirez          #+#    #+#             */
-/*   Updated: 2018/02/21 17:08:39 by stoupin          ###   ########.fr       */
+/*   Updated: 2018/02/23 21:11:36 by stoupin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,15 +18,15 @@ int				get_code(unsigned char byte, int number)
 
 	code = (byte >> (8 - number * 2)) & 3;
 	if (code == DIR_CODE)
-		return T_DIR;
+		return (T_DIR);
 	if (code == IND_CODE)
-		return T_IND;
+		return (T_IND);
 	if (code == REG_CODE)
-		return T_REG;
+		return (T_REG);
 	return (0);
 }
 
-int            get_param(t_thread *pc, int param_code, int *param)
+int				get_param(t_thread *pc, int param_code, int *param)
 {
 	*param = 0;
 	if (param_code == T_REG)
@@ -51,12 +51,12 @@ int            get_param(t_thread *pc, int param_code, int *param)
 	return (1);
 }
 
-int            get_params(t_thread *pc, const t_op *op)
+int				get_params(t_thread *pc, const t_op *op)
 {
 	int	param;
 	int	param_code;
 	int	ok;
-	
+
 	pc->cycles -= op->n_cycles;
 	param = 0;
 	pc->shift = 0;

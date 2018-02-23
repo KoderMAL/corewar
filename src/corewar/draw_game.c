@@ -6,7 +6,7 @@
 /*   By: stoupin <stoupin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/26 11:51:36 by alalaoui          #+#    #+#             */
-/*   Updated: 2018/02/08 12:07:52 by stoupin          ###   ########.fr       */
+/*   Updated: 2018/02/23 21:17:41 by stoupin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,19 +54,23 @@ void	draw_map(t_vm *vm, t_font_cursor *fc)
 int		draw_game_loop(t_vm *vm)
 {
 	t_font_cursor	fc;
+	t_pix			black;
 
 	war_cycle(vm);
 	vm->map[4095] = 0xff;
-	clear_image(vm->gui.image, vm->gui.screen_size, (t_pix)(unsigned int)0);
+	black.i = 0;
+	clear_image(vm->gui.image, vm->gui.screen_size, black);
 	font_cursor_init(&fc, &(vm->fonts[2]), (t_coord){5, 5}, 0);
 	font_cursor_print(&(vm->gui), &fc, "COREWAR ");
 	fc.font = &(vm->fonts[1]);
 	fc.c.y += vm->fonts[2].char_height - vm->fonts[1].char_height;
-	font_cursor_print(&(vm->gui), &fc, "BY ALALAOUI DHADLEY LRAMIREZ STOUPIN\n");
+	font_cursor_print(&(vm->gui), &fc,
+						"BY ALALAOUI DHADLEY LRAMIREZ STOUPIN\n");
 	fc.c.y += 5;
 	fc.font = &(vm->fonts[3]);
 	draw_map(vm, &fc);
-	mlx_put_image_to_window(vm->gui.mlx_ptr, vm->gui.mlx_win, vm->gui.image_ptr, 0, 0);
+	mlx_put_image_to_window(vm->gui.mlx_ptr, vm->gui.mlx_win,
+							vm->gui.image_ptr, 0, 0);
 	return (0);
 }
 

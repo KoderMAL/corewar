@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   vm.h                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lramirez <lramirez@student.42.fr>          +#+  +:+       +#+        */
+/*   By: stoupin <stoupin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/08 14:12:51 by stoupin           #+#    #+#             */
-/*   Updated: 2018/02/21 17:42:30 by lramirez         ###   ########.fr       */
+/*   Updated: 2018/02/23 21:15:59 by stoupin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ typedef struct		s_vm
 	int				cycle_to_dump;
 	int				dump_every;
 	int				verbose;
+	int				zaz_mode;
 	char			*err_msg;
 	int				game_cycle;
 	int				num_lives;
@@ -188,7 +189,7 @@ void				set_bytes(t_thread *pc, int param, int value);
 ** params.c
 */
 
-int            		get_params(t_thread *pc, const t_op *op);
+int					get_params(t_thread *pc, const t_op *op);
 
 /*
 ** dump.c
@@ -217,7 +218,6 @@ void				check_cycles(t_vm *vm);
 ** other
 */
 
-void				start_op(t_vm *vm, t_thread *pc);
 int					op_exit(t_thread *pc, int cycles, bool carry);
 int					op_success(t_thread *pc, int cycles, int loc, bool carry);
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   st.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lramirez <lramirez@student.42.fr>          +#+  +:+       +#+        */
+/*   By: stoupin <stoupin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/16 18:33:49 by dhadley           #+#    #+#             */
-/*   Updated: 2018/02/21 17:48:51 by lramirez         ###   ########.fr       */
+/*   Updated: 2018/02/23 21:13:30 by stoupin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@
 void	op_st(t_thread *pc)
 {
 	int value;
-	
+
 	value = get(pc, 0, false);
 	set(pc, 1, value);
 }

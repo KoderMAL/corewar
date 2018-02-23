@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   add.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lramirez <lramirez@student.42.fr>          +#+  +:+       +#+        */
+/*   By: stoupin <stoupin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/26 12:10:18 by lramirez          #+#    #+#             */
-/*   Updated: 2018/02/21 18:28:41 by lramirez         ###   ########.fr       */
+/*   Updated: 2018/02/23 20:59:41 by stoupin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,12 @@
 ** et met le résultat dans le troisième.
 */
 
-void		op_add(t_thread *pc)
+void	op_add(t_thread *pc)
 {
 	int		a;
 	int		b;
 	int		result;
-	
+
 	a = get(pc, 0, false);
 	b = get(pc, 1, false);
 	result = a + b;

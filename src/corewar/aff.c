@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   aff.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lramirez <lramirez@student.42.fr>          +#+  +:+       +#+        */
+/*   By: stoupin <stoupin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/26 13:10:50 by lramirez          #+#    #+#             */
-/*   Updated: 2018/02/21 18:28:41 by lramirez         ###   ########.fr       */
+/*   Updated: 2018/02/23 21:18:06 by stoupin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,10 @@
 ** Ce code est modulo 256.
 */
 
-void		op_aff(t_thread *pc)
+void	op_aff(t_thread *pc)
 {
-	// openfile_write_char(&(vm->stdout), (char)pc->r[pc->params[0]] % 256);
+	if (!pc->vm->zaz_mode)
+		openfile_write_char(&(pc->vm->stdout),
+							(char)pc->r[pc->params[0]] % 256);
 	return ;
 }

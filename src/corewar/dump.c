@@ -6,7 +6,7 @@
 /*   By: stoupin <stoupin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/26 12:00:20 by alalaoui          #+#    #+#             */
-/*   Updated: 2018/02/21 16:12:02 by stoupin          ###   ########.fr       */
+/*   Updated: 2018/02/23 21:06:36 by stoupin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@ void		print_op(t_vm *vm, t_thread *pc, int print_as_direct)
 	int			i;
 	int			param;
 	t_arg_type	param_type;
-
 
 	print_instruction_start(vm, pc);
 	print_str(vm, pc->op->name, 0);
@@ -100,7 +99,7 @@ void		write_map(t_vm *vm)
 void		dump(t_vm *vm)
 {
 	if ((vm->cycle_to_dump != -1 && vm->game_cycle == vm->cycle_to_dump)
-	 || (vm->dump_every > 0 && vm->game_cycle % vm->dump_every == 0))
+		|| (vm->dump_every > 0 && vm->game_cycle % vm->dump_every == 0))
 	{
 		write_map(vm);
 		if (vm->game_cycle == vm->cycle_to_dump)
