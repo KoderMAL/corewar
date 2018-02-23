@@ -32,7 +32,7 @@ void		op_sti(t_thread *pc)
 
 	index = get(pc, 1, false) + get(pc, 2, false);
 	pc->params[3] = index;
-	pc->params_type[3] = T_DIR;
+	pc->params_type[3] = T_IND;
 	value = get(pc, 0, false);
 	set(pc, 3, value);
 	print_instruction_continue(pc->vm, pc);

@@ -6,7 +6,7 @@
 /*   By: lramirez <lramirez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/26 11:24:05 by lramirez          #+#    #+#             */
-/*   Updated: 2018/02/21 18:33:48 by lramirez         ###   ########.fr       */
+/*   Updated: 2018/02/22 20:00:25 by lramirez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,4 +23,7 @@ void		op_fork(t_thread *pc)
 
 	index = get(pc, 0, false);
 	pqueue_push(&(pc->vm->threads), dup_thread(pc, shift_loc(pc, index)));
+	print_str(pc->vm, " (", 0);
+	print_nbr(pc->vm, shift_loc(pc, index), 0);
+	print_str(pc->vm, ")", 0);
 }
