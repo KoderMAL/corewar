@@ -13,7 +13,7 @@
 #include "ft/ft.h"
 #include "vm.h"
 
-void		print_op(t_vm *vm, t_thread *pc, int print_as_direct)
+void		print_op(t_vm *vm, t_thread *pc, int print_value)
 {
 	int			i;
 	int			param;
@@ -29,8 +29,13 @@ void		print_op(t_vm *vm, t_thread *pc, int print_as_direct)
 		param = pc->params[i];
 		param_type = pc->params_type[i];
 		if (param_type == T_REG)
-			print_reg(vm, param, 0);
-		else if (param_type == T_IND && !print_as_direct)
+		{
+			if (print_value & (1 << i))
+				print_nbr(vm, pc->r[param], 0);
+			else
+				print_reg(vm, param, 0);
+		}
+		else if (param_type == T_IND && !print_value)
 			print_nbr(vm, get_bytes(pc, param, 4), 0);
 		else
 			print_nbr(vm, param, 0);

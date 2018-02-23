@@ -6,7 +6,7 @@
 /*   By: lramirez <lramirez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/16 17:04:51 by lramirez          #+#    #+#             */
-/*   Updated: 2018/02/21 17:50:50 by lramirez         ###   ########.fr       */
+/*   Updated: 2018/02/23 16:40:07 by lramirez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 int				shift_loc(t_thread *pc, int amount)
 {
+	if (amount < 0)
+		return ((pc->location + amount) % -MEM_SIZE);
 	return ((pc->location + amount) % MEM_SIZE);
 }
 
@@ -59,7 +61,7 @@ int			get(t_thread *pc, int param_nbr, bool long_range)
 	else if (type == T_IND)
 	{
 		if (!long_range)
-			param = (param < 0) ? param % -IDX_MOD : param % IDX_MOD;
+			param %= IDX_MOD;
 		return (get_bytes(pc, param, 4));
 	}
 	return (-1);
