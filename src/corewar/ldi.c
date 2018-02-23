@@ -6,7 +6,7 @@
 /*   By: lramirez <lramirez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/16 18:33:18 by dhadley           #+#    #+#             */
-/*   Updated: 2018/02/23 21:09:01 by stoupin          ###   ########.fr       */
+/*   Updated: 2018/02/23 16:39:39 by lramirez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,4 +31,14 @@ void		op_ldi(t_thread *pc)
 	pc->params_type[3] = T_IND;
 	value = get(pc, 3, false);
 	set(pc, 2, value);
+	print_instruction_continue(pc->vm, pc);
+	print_str(pc->vm, "-> load from ", 0);
+	print_nbr(pc->vm, get(pc, 0, false), 0);
+	print_str(pc->vm, " + ", 0);
+	print_nbr(pc->vm, get(pc, 1, false), 0);
+	print_str(pc->vm, " = ", 0);
+	print_nbr(pc->vm, index, 0);
+	print_str(pc->vm, " (with pc and mod ", 0);
+	print_nbr(pc->vm, shift_loc(pc, index % IDX_MOD), 0);
+	print_str(pc->vm, ")", 0);
 }

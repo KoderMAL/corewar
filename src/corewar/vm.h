@@ -6,7 +6,7 @@
 /*   By: stoupin <stoupin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/08 14:12:51 by stoupin           #+#    #+#             */
-/*   Updated: 2018/02/23 21:15:59 by stoupin          ###   ########.fr       */
+/*   Updated: 2018/02/23 16:31:07 by lramirez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,9 @@
 # define ABS(X)	((X > 0) ? X : -(X))
 # define MAX_SIZE (PROG_NAME_LENGTH + COMMENT_LENGTH + CHAMP_MAX_SIZE + 14)
 # define N_FONTS 4
+# define PARAM1 1
+# define PARAM2 2
+# define PARAM3 4
 
 typedef struct		s_champ
 {
@@ -92,7 +95,7 @@ typedef	struct		s_op_assoc
 {
 	int			opcode;
 	void		(*op_function)(t_thread *process);
-	int			print_as_direct;
+	int			print_value;
 }					t_op_assoc;
 
 const t_op			*get_op_by_code(int pc);
@@ -195,7 +198,7 @@ int					get_params(t_thread *pc, const t_op *op);
 ** dump.c
 */
 
-void				print_op(t_vm *vm, t_thread *pc, int print_as_direct);
+void				print_op(t_vm *vm, t_thread *pc, int print_value);
 void				print_adv(t_vm *vm, t_thread *pc);
 void				write_map(t_vm *vm);
 void				dump(t_vm *vm);
