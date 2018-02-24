@@ -6,7 +6,7 @@
 /*   By: lramirez <lramirez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/12 16:17:49 by dhadley           #+#    #+#             */
-/*   Updated: 2018/02/24 18:01:28 by lramirez         ###   ########.fr       */
+/*   Updated: 2018/02/24 18:16:03 by lramirez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ void		check_cycles(t_vm *vm)
 	{
 		print_winner(vm);
 		return ;
-	}
+	}	
 	else if (vm->cycle_to_die == 0)
 	{
 		kill_process(vm);
@@ -84,4 +84,5 @@ void		check_cycles(t_vm *vm)
 		vm->num_checkups++;
 		vm->num_lives = 0;
 	}
+	vm->cycle_to_die--;
 }
