@@ -6,7 +6,7 @@
 /*   By: stoupin <stoupin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/26 11:51:04 by dhadley           #+#    #+#             */
-/*   Updated: 2018/02/21 16:30:59 by stoupin          ###   ########.fr       */
+/*   Updated: 2018/02/23 21:22:11 by stoupin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ static const t_op_assoc	g_op_assoc[16] = {
 	{16, &op_aff, 0}
 };
 
-int			find_opcode(int pc)
+int						find_opcode(int pc)
 {
 	int		i;
 
@@ -46,11 +46,9 @@ int			find_opcode(int pc)
 	return (-1);
 }
 
-void			do_op(t_vm *vm, t_thread *pc)
+void					do_op(t_vm *vm, t_thread *pc)
 {
-	int		opcode;
 	int		i;
-
 
 	if (pc->op == NULL)
 		return ;
@@ -75,7 +73,7 @@ void			do_op(t_vm *vm, t_thread *pc)
 	pc->countdown = -1;
 }
 
-static void		check_countdown(t_vm *vm)
+static void				check_countdown(t_vm *vm)
 {
 	int				i;
 	t_thread		*pc;
@@ -114,7 +112,7 @@ static void		check_countdown(t_vm *vm)
 	}
 }
 
-void			war_cycle(t_vm *vm)
+void					war_cycle(t_vm *vm)
 {
 	dump(vm);
 	if (vm->game_cycle == INT_MAX || vm->err != 0)

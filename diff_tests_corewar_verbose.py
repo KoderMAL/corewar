@@ -44,7 +44,7 @@ for champ in champs:
 	if error:
 		continue
 	zaz_error, zaz_output = get_dump([ZAZ_CW, '-v', '20', champ, champ])
-	my_error, my_output = get_dump([MY_CW, '-verbose', champ, champ])
+	my_error, my_output = get_dump([MY_CW, '-zaz', '-verbose', champ, champ])
 	if zaz_output != my_output:
 		with open('/tmp/zaz', 'w') as f:
 			f.write(zaz_output)

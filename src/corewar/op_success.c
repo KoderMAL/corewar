@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   op_success.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dhadley <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: stoupin <stoupin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/09 17:09:22 by dhadley           #+#    #+#             */
-/*   Updated: 2018/02/09 18:25:37 by dhadley          ###   ########.fr       */
+/*   Updated: 2018/02/23 21:10:14 by stoupin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 /*
 ** op_success puts the pc->carry to 1 if carry is true
 ** decrements the pc->cycles by cycles
-** and changes the pc->location to pc->location + loc 
+** and changes the pc->location to pc->location + loc
 ** before returning 1 to show the op was a success
 */
 
