@@ -61,7 +61,7 @@ static void	print_winner(t_vm *vm)
 	openfile_write_nbr(&(vm->stdout), vm->winner + 1, 0);
 	openfile_write_str(&(vm->stdout), ", \"", 0);
 	openfile_write_str(&(vm->stdout), vm->champs[vm->winner].name, 0);
-	openfile_write_str(&(vm->stdout), "\" has won !", 1);
+	openfile_write_str(&(vm->stdout), "\", has won !", 1);
 	vm_clean(vm);
 }
 
