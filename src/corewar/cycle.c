@@ -81,14 +81,25 @@ static void		check_countdown(t_vm *vm)
 	t_thread		*pc;
 	t_pqueue_elem	*pq;
 
+	if (vm->game_cycle > 0)
+	{
+		print_str(vm, "It is now cycle ", 0);
+		print_nbr(vm, vm->game_cycle, 1);
+	}
 	i = vm->threads.len;
 	pq = (vm->threads.last);
 	while (pq)
 	{
 		pc = pq->p;
 		pc->number = i;
+		// if (pc->countdown == 0 && pc->location == 0x000a && ft_strcmp(pc->op->name, "fork") == 0)
+		// 	printf("yo\n");
 		if (pc->countdown == 0)
+		{
 			do_op(vm, pc);
+			// if (ft_strcmp(pc->op->name, "fork") == 0)
+				// i++;
+		}
 		if (pc->countdown == -1)
 		{
 			if ((pc->op = get_op_by_code(vm->map[pc->location])) != NULL)
