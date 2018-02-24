@@ -6,7 +6,7 @@
 /*   By: lramirez <lramirez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/26 11:51:04 by dhadley           #+#    #+#             */
-/*   Updated: 2018/02/24 19:32:39 by lramirez         ###   ########.fr       */
+/*   Updated: 2018/02/24 20:39:48 by lramirez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,6 @@ void					do_op(t_vm *vm, t_thread *pc)
 	if (pc->op == NULL)
 		return ;
 	i = find_opcode(pc->op->opcode);
-	pc->op_failed = 0;
 	if (i >= 0)
 	{
 		if (get_params(pc, &g_op_tab[i]))
@@ -61,16 +60,17 @@ void					do_op(t_vm *vm, t_thread *pc)
 			print_op(vm, pc, g_op_assoc[i].print_value);
 			g_op_assoc[i].op_function(pc);
 			print_str(vm, "", 1);
-			print_adv(vm, pc);
 		}
 		else
 		{
 			if (g_op_tab[i].has_pcode)
 				pc->carry = 0;
-			pc->shift = 1;
 		}
-		pc->location = shift_loc(pc, pc->shift);
 	}
+	else
+		pc->shift = 1;
+	print_adv(vm, pc);
+	pc->location = shift_loc(pc, pc->shift);
 	pc->countdown = -1;
 }
 
