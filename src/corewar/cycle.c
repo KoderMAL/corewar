@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cycle.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: stoupin <stoupin@student.42.fr>            +#+  +:+       +#+        */
+/*   By: lramirez <lramirez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/26 11:51:04 by dhadley           #+#    #+#             */
-/*   Updated: 2018/02/23 21:22:11 by stoupin          ###   ########.fr       */
+/*   Updated: 2018/02/24 19:32:39 by lramirez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@ void					do_op(t_vm *vm, t_thread *pc)
 	if (pc->op == NULL)
 		return ;
 	i = find_opcode(pc->op->opcode);
+	pc->op_failed = 0;
 	if (i >= 0)
 	{
 		if (get_params(pc, &g_op_tab[i]))
@@ -79,11 +80,6 @@ static void				check_countdown(t_vm *vm)
 	t_thread		*pc;
 	t_pqueue_elem	*pq;
 
-	if (vm->game_cycle > 0)
-	{
-		print_str(vm, "It is now cycle ", 0);
-		print_nbr(vm, vm->game_cycle, 1);
-	}
 	i = vm->threads.len;
 	pq = (vm->threads.last);
 	while (pq)
@@ -93,11 +89,7 @@ static void				check_countdown(t_vm *vm)
 		// if (pc->countdown == 0 && pc->location == 0x000a && ft_strcmp(pc->op->name, "fork") == 0)
 		// 	printf("yo\n");
 		if (pc->countdown == 0)
-		{
 			do_op(vm, pc);
-			// if (ft_strcmp(pc->op->name, "fork") == 0)
-				// i++;
-		}
 		if (pc->countdown == -1)
 		{
 			if ((pc->op = get_op_by_code(vm->map[pc->location])) != NULL)
@@ -117,6 +109,11 @@ void					war_cycle(t_vm *vm)
 	dump(vm);
 	if (vm->game_cycle == INT_MAX || vm->err != 0)
 		vm_clean(vm);
+	if (vm->game_cycle > 0)
+	{
+		print_str(vm, "It is now cycle ", 0);
+		print_nbr(vm, vm->game_cycle, 1);
+	}
 	check_cycles(vm);
 	check_countdown(vm);
 	vm->game_cycle++;

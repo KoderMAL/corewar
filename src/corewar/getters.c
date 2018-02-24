@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   getters.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: stoupin <stoupin@student.42.fr>            +#+  +:+       +#+        */
+/*   By: lramirez <lramirez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/16 17:04:51 by lramirez          #+#    #+#             */
-/*   Updated: 2018/02/23 16:40:07 by lramirez         ###   ########.fr       */
+/*   Updated: 2018/02/24 20:01:21 by lramirez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,15 @@
 
 int				shift_loc(t_thread *pc, int amount)
 {
-	if (amount < 0)
-		return ((pc->location + amount) % -MEM_SIZE);
-	return ((pc->location + amount) % MEM_SIZE);
+	int location;
+
+	if (pc->location + amount < 0)
+		location = (pc->location + amount) % MEM_SIZE + MEM_SIZE;
+	else
+		location = (pc->location + amount) % MEM_SIZE;
+	if (location < 0)
+		printf("AAAAAAAAARGH!!!!1!\n");
+	return (location);
 }
 
 unsigned char	get_byte_at(t_thread *pc, int shift)

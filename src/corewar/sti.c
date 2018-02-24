@@ -6,7 +6,7 @@
 /*   By: lramirez <lramirez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/16 18:34:00 by dhadley           #+#    #+#             */
-/*   Updated: 2018/02/23 21:14:38 by stoupin          ###   ########.fr       */
+/*   Updated: 2018/02/24 20:20:51 by lramirez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void		op_sti(t_thread *pc)
 	int index;
 	int value;
 
-	index = get(pc, 1, false) + get(pc, 2, false);
+	index = (get(pc, 1, false) + get(pc, 2, false)) % IDX_MOD;
 	pc->params[3] = index;
 	pc->params_type[3] = T_IND;
 	value = get(pc, 0, false);
@@ -43,6 +43,6 @@ void		op_sti(t_thread *pc)
 	print_str(pc->vm, " = ", 0);
 	print_nbr(pc->vm, index, 0);
 	print_str(pc->vm, " (with pc and mod ", 0);
-	print_nbr(pc->vm, shift_loc(pc, index % IDX_MOD), 0);
+	print_nbr(pc->vm, (pc->location + index) % MEM_SIZE, 0);
 	print_str(pc->vm, ")", 0);
 }
