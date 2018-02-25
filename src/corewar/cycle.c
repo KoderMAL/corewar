@@ -6,7 +6,7 @@
 /*   By: stoupin <stoupin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/26 11:51:04 by dhadley           #+#    #+#             */
-/*   Updated: 2018/02/25 14:58:00 by stoupin          ###   ########.fr       */
+/*   Updated: 2018/02/25 15:00:29 by stoupin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,8 @@ void					do_op(t_vm *vm, t_thread *pc)
 	{
 		if (get_params(pc, &g_op_tab[i]))
 		{
+			if (vm->game_cycle == 20637 && pc->number == 70)
+				printf("yo\n");
 			print_op(vm, pc, g_op_assoc[i].print_value);
 			g_op_assoc[i].op_function(pc);
 			print_str(vm, "", 1);

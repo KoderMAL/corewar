@@ -6,7 +6,7 @@
 /*   By: stoupin <stoupin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/25 11:32:35 by lramirez          #+#    #+#             */
-/*   Updated: 2018/02/25 14:41:25 by stoupin          ###   ########.fr       */
+/*   Updated: 2018/02/25 15:05:34 by stoupin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,12 +36,11 @@ void		op_live(t_thread *pc)
 		{
 			pc->vm->num_lives++;
 			player->last_live = pc->vm->game_cycle;
-			// write(1, "un processus dit que le joueur ", 31);
-			// write(1, player_itoa, ft_strlen(player_itoa));
-			// write(1, "(", 1);
-			// write(1, pc->vm->champs[player].name,
-			// 	ft_strlen(pc->vm->champs[player].name));
-			// write(1, ") est en vie\n", 13);
+			print_str(pc->vm, "\nPlayer ", 0);
+			print_nbr(pc->vm, i + 1, 0);
+			print_str(pc->vm, " (", 0);
+			print_str(pc->vm, player->name, 0);
+			print_str(pc->vm, ") is said to be alive", 0);
 			break ;
 		}
 		i++;

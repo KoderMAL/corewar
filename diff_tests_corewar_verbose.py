@@ -34,7 +34,7 @@ for champ in champs:
 	error, _, champ = compile_champ(ZAZ_ASM, champ)
 	if error:
 		continue
-	os.system('./resources/corewar -v 30 {} {} > /tmp/zaz'.format(champ, champ))
+	os.system('./resources/corewar -v 31 {} {} > /tmp/zaz'.format(champ, champ))
 	os.system('./corewar -zaz -verbose {} {} > /tmp/me'.format(champ, champ))
 	zaz_output = open('/tmp/zaz', 'r').read()
 	my_output = open('/tmp/me', 'r').read()
