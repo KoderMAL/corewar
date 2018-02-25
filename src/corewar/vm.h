@@ -6,7 +6,7 @@
 /*   By: stoupin <stoupin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/08 14:12:51 by stoupin           #+#    #+#             */
-/*   Updated: 2018/02/25 15:27:13 by stoupin          ###   ########.fr       */
+/*   Updated: 2018/02/25 15:51:18 by stoupin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -221,6 +221,7 @@ void				do_op(t_vm *vm, t_thread *pc);
 */
 
 void				check_cycles(t_vm *vm);
+void				print_winner(t_vm *vm);
 
 /*
 ** other

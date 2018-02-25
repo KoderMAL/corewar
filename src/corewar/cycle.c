@@ -6,7 +6,7 @@
 /*   By: stoupin <stoupin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/26 11:51:04 by dhadley           #+#    #+#             */
-/*   Updated: 2018/02/25 15:33:35 by stoupin          ###   ########.fr       */
+/*   Updated: 2018/02/25 15:49:49 by stoupin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,11 +62,6 @@ void					do_op(t_vm *vm, t_thread *pc)
 			print_str(vm, "", 1);
 			vm->something_happened = 1;
 		}
-		else
-		{
-			if (g_op_tab[i].has_pcode)
-				pc->carry = 0;
-		}
 	}
 	else
 		pc->shift = 1;
@@ -105,6 +100,8 @@ void					war_cycle(t_vm *vm)
 	dump(vm);
 	if (vm->game_cycle == INT_MAX || vm->err != 0)
 		vm_clean(vm);
+	if (vm->base_cycle_to_die <= 0 || vm->threads.len == 0)
+		print_winner(vm);
 	if (vm->game_cycle > 0)
 	{
 		print_str(vm, "It is now cycle ", 0);

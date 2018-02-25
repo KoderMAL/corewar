@@ -6,7 +6,7 @@
 /*   By: stoupin <stoupin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/12 16:17:49 by dhadley           #+#    #+#             */
-/*   Updated: 2018/02/25 14:45:28 by stoupin          ###   ########.fr       */
+/*   Updated: 2018/02/25 15:54:41 by stoupin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,15 +48,15 @@ static void	find_winner(t_vm *vm)
 
 	i = 0;
 	last = vm->champs[i].last_live;
-	while (i < 0)
+	while (i < vm->n_champs)
 	{
-		if (vm->champs[i].last_live > last)
+		if (vm->champs[i].last_live >= last)
 			vm->winner = i;
 		i++;
 	}
 }
 
-static void	print_winner(t_vm *vm)
+void		print_winner(t_vm *vm)
 {
 	if (vm->cycle_to_dump != -1)
 		write_map(vm);
@@ -71,12 +71,7 @@ static void	print_winner(t_vm *vm)
 
 void		check_cycles(t_vm *vm)
 {
-	if (vm->base_cycle_to_die <= 0 || vm->threads.len == 0)
-	{
-		print_winner(vm);
-		return ;
-	}	
-	else if (vm->cycle_to_die == 0)
+	if (vm->cycle_to_die == 0)
 	{
 		kill_process(vm);
 		if (vm->num_lives >= NBR_LIVE || vm->num_checkups == MAX_CHECKS)
