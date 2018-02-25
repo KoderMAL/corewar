@@ -6,7 +6,7 @@
 /*   By: stoupin <stoupin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/12 16:17:49 by dhadley           #+#    #+#             */
-/*   Updated: 2018/02/25 14:24:39 by stoupin          ###   ########.fr       */
+/*   Updated: 2018/02/25 14:45:28 by stoupin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,23 +17,27 @@ static void	kill_process(t_vm *vm)
 	t_thread		*pc;
 	t_pqueue_elem	*pq;
 	t_pqueue_elem	*tmp;
-	int				i;
 
-	i = 0;
-	pq = vm->threads.first;
+	pq = vm->threads.last;
 	while (pq)
 	{
-		tmp = pq->next;
+		tmp = pq->prev;
 		pc = pq->p;
 		if (pc->alive == true)
 			pc->alive = false;
 		else
 		{
+			print_str(vm, "Process ", 0);
+			print_nbr(vm, pc->number, 0);
+			print_str(vm, " hasn't lived for ", 0);
+			print_nbr(vm, vm->game_cycle - pc->last_live, 0);
+			print_str(vm, " cycles (CTD ", 0);
+			print_nbr(vm, vm->base_cycle_to_die, 0);
+			print_str(vm, ")", 1);
 			pqueue_remove(&(vm->threads), pq);
 			free(pc);
 		}
 		pq = tmp;
-		i++;
 	}
 }
 

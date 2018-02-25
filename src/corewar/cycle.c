@@ -6,7 +6,7 @@
 /*   By: stoupin <stoupin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/26 11:51:04 by dhadley           #+#    #+#             */
-/*   Updated: 2018/02/25 14:31:09 by stoupin          ###   ########.fr       */
+/*   Updated: 2018/02/25 14:46:49 by stoupin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,8 +86,6 @@ static void				check_countdown(t_vm *vm)
 	{
 		pc = pq->p;
 		pc->number = i;
-		// if (pc->countdown == 0 && pc->location == 0x000a && ft_strcmp(pc->op->name, "fork") == 0)
-		// 	printf("yo\n");
 		if (pc->countdown == 0)
 			do_op(vm, pc);
 		if (pc->countdown == -1)

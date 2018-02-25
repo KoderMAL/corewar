@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   getters.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lramirez <lramirez@student.42.fr>          +#+  +:+       +#+        */
+/*   By: stoupin <stoupin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/16 17:04:51 by lramirez          #+#    #+#             */
-/*   Updated: 2018/02/24 20:01:21 by lramirez         ###   ########.fr       */
+/*   Updated: 2018/02/25 14:44:31 by stoupin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,6 @@ int				shift_loc(t_thread *pc, int amount)
 		location = (pc->location + amount) % MEM_SIZE + MEM_SIZE;
 	else
 		location = (pc->location + amount) % MEM_SIZE;
-	if (location < 0)
-		printf("AAAAAAAAARGH!!!!1!\n");
 	return (location);
 }
 
