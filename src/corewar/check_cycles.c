@@ -6,13 +6,13 @@
 /*   By: stoupin <stoupin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/12 16:17:49 by dhadley           #+#    #+#             */
-/*   Updated: 2018/02/25 15:54:41 by stoupin          ###   ########.fr       */
+/*   Updated: 2018/02/25 16:00:08 by stoupin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vm.h"
 
-static void	kill_process(t_vm *vm)
+void		kill_process(t_vm *vm)
 {
 	t_thread		*pc;
 	t_pqueue_elem	*pq;

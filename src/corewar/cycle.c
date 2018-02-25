@@ -6,7 +6,7 @@
 /*   By: stoupin <stoupin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/26 11:51:04 by dhadley           #+#    #+#             */
-/*   Updated: 2018/02/25 15:49:49 by stoupin          ###   ########.fr       */
+/*   Updated: 2018/02/25 16:48:25 by stoupin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,13 +94,32 @@ static void				check_countdown(t_vm *vm)
 	}
 }
 
+/*
+** kill every thread
+*/
+
+void					tatatatata(t_vm *vm)
+{
+	t_pqueue_elem	*elem;
+	t_thread		*victim;
+
+	elem = vm->threads.first;
+	while (elem)
+	{
+		victim = (t_thread*)elem->p;
+		victim->alive = false;
+		elem = elem->next;
+	}
+	vm->cycle_to_die = 0;
+}
+
 void					war_cycle(t_vm *vm)
 {
 	vm->something_happened = 0;
 	dump(vm);
 	if (vm->game_cycle == INT_MAX || vm->err != 0)
 		vm_clean(vm);
-	if (vm->base_cycle_to_die <= 0 || vm->threads.len == 0)
+	if (vm->threads.len == 0)
 		print_winner(vm);
 	if (vm->game_cycle > 0)
 	{
@@ -109,5 +128,7 @@ void					war_cycle(t_vm *vm)
 	}
 	check_countdown(vm);
 	check_cycles(vm);
+	if (vm->base_cycle_to_die < 0)
+		tatatatata(vm);
 	vm->game_cycle++;
 }
