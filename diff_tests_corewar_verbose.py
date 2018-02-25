@@ -4,7 +4,8 @@ MY_CW = './corewar'
 ZAZ_CW = './resources/corewar'
 
 ZAZ_ASM = './resources/asm'
-COMPILE_DIR = '/tmp'
+HOME_DIR = os.getenv('HOME')
+COMPILE_DIR = os.path.join(HOME_DIR, 'goinfre')
 
 def list_champs():
 	champs = []
@@ -34,10 +35,10 @@ for champ in champs:
 	error, _, champ = compile_champ(ZAZ_ASM, champ)
 	if error:
 		continue
-	os.system('./resources/corewar -v 31 {} {} > /tmp/zaz'.format(champ, champ))
-	os.system('./corewar -zaz -verbose {} {} > /tmp/me'.format(champ, champ))
-	zaz_output = open('/tmp/zaz', 'r').read()
-	my_output = open('/tmp/me', 'r').read()
+	os.system('./resources/corewar -v 31 {} {} > {}/goinfre/zaz'.format(champ, champ, HOME_DIR))
+	os.system('./corewar -zaz -verbose {} {} > {}/goinfre/me'.format(champ, champ, HOME_DIR))
+	zaz_output = open('{}/goinfre/zaz'.format(HOME_DIR), 'r').read()
+	my_output = open('{}/goinfre/me'.format(HOME_DIR), 'r').read()
 	if zaz_output != my_output:
-		os.system('/usr/bin/vimdiff /tmp/zaz /tmp/me')
+		os.system('/usr/bin/vimdiff {}/goinfre/zaz {}/goinfre/me'.format(HOME_DIR, HOME_DIR))
 		sys.exit(1)
