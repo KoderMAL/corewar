@@ -6,7 +6,7 @@
 /*   By: stoupin <stoupin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/08 14:12:51 by stoupin           #+#    #+#             */
-/*   Updated: 2018/02/25 14:56:09 by stoupin          ###   ########.fr       */
+/*   Updated: 2018/02/25 15:27:13 by stoupin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,7 @@ typedef struct		s_vm
 	t_openfile		stderr;
 	int				winner;
 	bool			something_happened;
+	int				thread_counter;
 }					t_vm;
 
 typedef struct		s_thread

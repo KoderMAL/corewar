@@ -6,7 +6,7 @@
 /*   By: stoupin <stoupin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/17 14:08:01 by alalaoui          #+#    #+#             */
-/*   Updated: 2018/02/25 14:41:07 by stoupin          ###   ########.fr       */
+/*   Updated: 2018/02/25 15:32:57 by stoupin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,8 @@ t_thread		*create_thread(t_vm *vm, int n)
 	new_thread->shift = 0;
 	new_thread->bytecode = 0;
 	new_thread->last_live = 0;
+	vm->thread_counter++;
+	new_thread->number = vm->thread_counter;
 	i--;
 	return (new_thread);
 }
@@ -59,5 +61,7 @@ t_thread		*dup_thread(t_thread *src_thread, int pc)
 	new_thread->location = pc;
 	new_thread->alive = false;
 	new_thread->last_live = 0;
+	new_thread->vm->thread_counter++;
+	new_thread->number = new_thread->vm->thread_counter;
 	return (new_thread);
 }
