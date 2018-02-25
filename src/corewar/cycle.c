@@ -6,7 +6,7 @@
 /*   By: stoupin <stoupin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/26 11:51:04 by dhadley           #+#    #+#             */
-/*   Updated: 2018/02/25 14:46:49 by stoupin          ###   ########.fr       */
+/*   Updated: 2018/02/25 14:58:00 by stoupin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,7 @@ void					do_op(t_vm *vm, t_thread *pc)
 			print_op(vm, pc, g_op_assoc[i].print_value);
 			g_op_assoc[i].op_function(pc);
 			print_str(vm, "", 1);
+			vm->something_happened = 1;
 		}
 		else
 		{
@@ -104,6 +105,7 @@ static void				check_countdown(t_vm *vm)
 
 void					war_cycle(t_vm *vm)
 {
+	vm->something_happened = 0;
 	dump(vm);
 	if (vm->game_cycle == INT_MAX || vm->err != 0)
 		vm_clean(vm);

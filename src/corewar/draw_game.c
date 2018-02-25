@@ -6,7 +6,7 @@
 /*   By: stoupin <stoupin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/26 11:51:36 by alalaoui          #+#    #+#             */
-/*   Updated: 2018/02/23 21:17:41 by stoupin          ###   ########.fr       */
+/*   Updated: 2018/02/25 14:58:18 by stoupin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,8 @@ int		draw_game_loop(t_vm *vm)
 	t_pix			black;
 
 	war_cycle(vm);
+	if (!vm->something_happened)
+		return (0);
 	vm->map[4095] = 0xff;
 	black.i = 0;
 	clear_image(vm->gui.image, vm->gui.screen_size, black);
