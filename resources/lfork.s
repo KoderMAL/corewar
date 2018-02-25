@@ -1,5 +1,6 @@
 .name "try"
 .comment"try"
 
-live:
-lfork %2100
+st r1, 6
+live %9348539485
+lfork %2000
