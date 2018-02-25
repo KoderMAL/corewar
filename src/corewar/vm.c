@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   vm.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lramirez <lramirez@student.42.fr>          +#+  +:+       +#+        */
+/*   By: stoupin <stoupin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/16 14:30:57 by alalaoui          #+#    #+#             */
-/*   Updated: 2018/02/24 17:59:49 by lramirez         ###   ########.fr       */
+/*   Updated: 2018/02/25 17:48:14 by stoupin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,6 @@ void		vm_init(t_vm *vm)
 	vm->cycle_to_dump = -1;
 	vm->base_cycle_to_die = CYCLE_TO_DIE;
 	vm->cycle_to_die = CYCLE_TO_DIE;
-	vm->num_checkups = 0;
-	vm->num_lives = 0;
 }
 
 void		vm_start(t_vm *vm)
@@ -49,7 +47,6 @@ void		vm_start(t_vm *vm)
 	}
 	if (vm->draw_game)
 		draw_game_init(vm);
-	vm->winner = 0;
 	vm->game_cycle = 0;
 }
 
