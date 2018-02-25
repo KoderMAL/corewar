@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_cycles.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alalaoui <alalaoui@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lramirez <lramirez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/12 16:17:49 by dhadley           #+#    #+#             */
-/*   Updated: 2018/02/16 14:24:35 by alalaoui         ###   ########.fr       */
+/*   Updated: 2018/02/24 18:47:57 by lramirez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,33 +61,32 @@ static void	print_winner(t_vm *vm)
 	openfile_write_nbr(&(vm->stdout), vm->winner + 1, 0);
 	openfile_write_str(&(vm->stdout), ", \"", 0);
 	openfile_write_str(&(vm->stdout), vm->champs[vm->winner].name, 0);
-	openfile_write_str(&(vm->stdout), "\" has won !", 1);
+	openfile_write_str(&(vm->stdout), "\", has won !", 1);
 	vm_clean(vm);
 }
 
 void		check_cycles(t_vm *vm)
 {
-	if (vm->game_cycle == 0)
-		return ;
-	if (vm->cycle_to_die <= 0)
+	if (vm->game_cycle == 1536)
+		printf("yeahhh\n");
+	if (vm->base_cycle_to_die <= 0 || vm->threads.len == 0)
 	{
 		print_winner(vm);
 		return ;
-	}
-	else if (vm->threads.len == 0)
-	{
-		print_winner(vm);
-		return ;
-	}
-	else if (vm->game_cycle % vm->cycle_to_die == 0)
+	}	
+	else if (vm->cycle_to_die == 0)
 	{
 		kill_process(vm);
 		if (vm->num_lives >= NBR_LIVE || vm->num_checkups == MAX_CHECKS)
 		{
-			vm->cycle_to_die -= CYCLE_DELTA;
+			vm->base_cycle_to_die -= CYCLE_DELTA;
+			print_str(vm, "Cycle to die is now ", 0);
+			print_nbr(vm, vm->base_cycle_to_die, 1);
 			vm->num_checkups = -1;
 		}
+		vm->cycle_to_die = vm->base_cycle_to_die;
 		vm->num_checkups++;
 		vm->num_lives = 0;
 	}
+	vm->cycle_to_die--;
 }

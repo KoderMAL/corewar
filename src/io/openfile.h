@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   openfile.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: stoupin <stoupin@student.42.fr>            +#+  +:+       +#+        */
+/*   By: lramirez <lramirez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/04 16:36:08 by alalaoui          #+#    #+#             */
-/*   Updated: 2018/02/22 16:38:13 by stoupin          ###   ########.fr       */
+/*   Updated: 2018/02/24 19:48:32 by lramirez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 # include <stdlib.h>
 
-# define BUFF_SIZE 1024
+# define BUFF_SIZE 1
 
 typedef struct		s_openfile
 {

@@ -6,7 +6,7 @@
 /*   By: lramirez <lramirez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/25 11:32:35 by lramirez          #+#    #+#             */
-/*   Updated: 2018/02/23 21:09:27 by stoupin          ###   ########.fr       */
+/*   Updated: 2018/02/24 19:17:14 by lramirez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,28 +20,30 @@
 
 void		op_live(t_thread *pc)
 {
-	int		id;
-	int		player;
-	char	*player_itoa;
+	int				id;
+	t_champ			*player;
+	char			*player_itoa;
+	int				i;
 
 	pc->alive = true;
 	id = get(pc, 0, false);
 	player_itoa = ft_itoa(id + 1);
-	player = 0;
-	while (player < pc->vm->n_champs)
+	i = 0;
+	while (i < pc->vm->n_champs)
 	{
-		if (id == player)
+		player = &(pc->vm->champs[i]);
+		if (id == player->number)
 		{
 			pc->vm->num_lives++;
-			pc->vm->champs[player].last_live = pc->vm->game_cycle;
-			write(1, "un processus dit que le joueur ", 31);
-			write(1, player_itoa, ft_strlen(player_itoa));
-			write(1, "(", 1);
-			write(1, pc->vm->champs[player].name,
-				ft_strlen(pc->vm->champs[player].name));
-			write(1, ") est en vie\n", 13);
+			player->last_live = pc->vm->game_cycle;
+			// write(1, "un processus dit que le joueur ", 31);
+			// write(1, player_itoa, ft_strlen(player_itoa));
+			// write(1, "(", 1);
+			// write(1, pc->vm->champs[player].name,
+			// 	ft_strlen(pc->vm->champs[player].name));
+			// write(1, ") est en vie\n", 13);
 			break ;
 		}
-		player++;
+		i++;
 	}
 }

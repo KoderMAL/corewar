@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cycle.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: stoupin <stoupin@student.42.fr>            +#+  +:+       +#+        */
+/*   By: lramirez <lramirez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/26 11:51:04 by dhadley           #+#    #+#             */
-/*   Updated: 2018/02/23 21:22:11 by stoupin          ###   ########.fr       */
+/*   Updated: 2018/02/24 20:39:48 by lramirez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,16 +60,17 @@ void					do_op(t_vm *vm, t_thread *pc)
 			print_op(vm, pc, g_op_assoc[i].print_value);
 			g_op_assoc[i].op_function(pc);
 			print_str(vm, "", 1);
-			print_adv(vm, pc);
 		}
 		else
 		{
 			if (g_op_tab[i].has_pcode)
 				pc->carry = 0;
-			pc->shift = 1;
 		}
-		pc->location = shift_loc(pc, pc->shift);
 	}
+	else
+		pc->shift = 1;
+	print_adv(vm, pc);
+	pc->location = shift_loc(pc, pc->shift);
 	pc->countdown = -1;
 }
 
@@ -85,6 +86,8 @@ static void				check_countdown(t_vm *vm)
 	{
 		pc = pq->p;
 		pc->number = i;
+		// if (pc->countdown == 0 && pc->location == 0x000a && ft_strcmp(pc->op->name, "fork") == 0)
+		// 	printf("yo\n");
 		if (pc->countdown == 0)
 			do_op(vm, pc);
 		if (pc->countdown == -1)
@@ -106,6 +109,11 @@ void					war_cycle(t_vm *vm)
 	dump(vm);
 	if (vm->game_cycle == INT_MAX || vm->err != 0)
 		vm_clean(vm);
+	if (vm->game_cycle > 0)
+	{
+		print_str(vm, "It is now cycle ", 0);
+		print_nbr(vm, vm->game_cycle, 1);
+	}
 	check_cycles(vm);
 	check_countdown(vm);
 	vm->game_cycle++;

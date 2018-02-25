@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   vm.h                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: stoupin <stoupin@student.42.fr>            +#+  +:+       +#+        */
+/*   By: lramirez <lramirez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/08 14:12:51 by stoupin           #+#    #+#             */
-/*   Updated: 2018/02/23 16:31:07 by lramirez         ###   ########.fr       */
+/*   Updated: 2018/02/24 21:18:52 by lramirez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ typedef struct		s_vm
 	char			*err_msg;
 	int				game_cycle;
 	int				num_lives;
+	int				base_cycle_to_die;
 	int				cycle_to_die;
 	int				num_checkups;
 	int				draw_game;
@@ -76,6 +77,7 @@ typedef struct		s_thread
 	int				countdown;
 	bool			alive;
 	int				shift;
+	int				adv;
 	unsigned char	bytecode;
 	int				params[4];
 	int				params_type[4];

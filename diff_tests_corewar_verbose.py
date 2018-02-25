@@ -26,16 +26,7 @@ def compile_champ(asm, champ):
 	result_file_name = os.path.splitext(champ_cpy)[0] + '.cor'
 	with open(result_file_name, 'rb') as f:
 		result_data = f.read()
-	os.rename(result_file_name, result_file_name)
 	return False, bytearray(result_data), result_file_name
-
-def get_dump(params):
-	try:
-		with open(os.devnull, 'w') as shutup:
-			output = subprocess.check_output(params, stderr=shutup).decode('utf-8')
-			return False, output
-	except subprocess.CalledProcessError as cpe:
-		return True, cpe.output.decode('utf-8')
 
 champs = list_champs()
 for champ in champs:
@@ -43,12 +34,10 @@ for champ in champs:
 	error, _, champ = compile_champ(ZAZ_ASM, champ)
 	if error:
 		continue
-	zaz_error, zaz_output = get_dump([ZAZ_CW, '-v', '20', champ, champ])
-	my_error, my_output = get_dump([MY_CW, '-zaz', '-verbose', champ, champ])
+	os.system('./resources/corewar -v 30 {} {} > /tmp/zaz'.format(champ, champ))
+	os.system('./corewar -zaz -verbose {} {} > /tmp/me'.format(champ, champ))
+	zaz_output = open('/tmp/zaz', 'r').read()
+	my_output = open('/tmp/me', 'r').read()
 	if zaz_output != my_output:
-		with open('/tmp/zaz', 'w') as f:
-			f.write(zaz_output)
-		with open('/tmp/me', 'w') as f:
-			f.write(my_output)
-		print(subprocess.check_output(['/usr/bin/diff', '/tmp/zaz', '/tmp/me']).decode('utf-8'))
+		os.system('/usr/bin/vimdiff /tmp/zaz /tmp/me')
 		sys.exit(1)
