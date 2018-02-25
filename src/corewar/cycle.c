@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cycle.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lramirez <lramirez@student.42.fr>          +#+  +:+       +#+        */
+/*   By: stoupin <stoupin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/26 11:51:04 by dhadley           #+#    #+#             */
-/*   Updated: 2018/02/24 20:39:48 by lramirez         ###   ########.fr       */
+/*   Updated: 2018/02/25 14:31:09 by stoupin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,7 +114,7 @@ void					war_cycle(t_vm *vm)
 		print_str(vm, "It is now cycle ", 0);
 		print_nbr(vm, vm->game_cycle, 1);
 	}
-	check_cycles(vm);
 	check_countdown(vm);
+	check_cycles(vm);
 	vm->game_cycle++;
 }
