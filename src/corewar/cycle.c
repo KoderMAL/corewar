@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cycle.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lramirez <lramirez@student.42.fr>          +#+  +:+       +#+        */
+/*   By: stoupin <stoupin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/26 11:51:04 by dhadley           #+#    #+#             */
-/*   Updated: 2018/02/24 20:39:48 by lramirez         ###   ########.fr       */
+/*   Updated: 2018/02/25 15:33:35 by stoupin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,7 @@ void					do_op(t_vm *vm, t_thread *pc)
 			print_op(vm, pc, g_op_assoc[i].print_value);
 			g_op_assoc[i].op_function(pc);
 			print_str(vm, "", 1);
+			vm->something_happened = 1;
 		}
 		else
 		{
@@ -76,18 +77,13 @@ void					do_op(t_vm *vm, t_thread *pc)
 
 static void				check_countdown(t_vm *vm)
 {
-	int				i;
 	t_thread		*pc;
 	t_pqueue_elem	*pq;
 
-	i = vm->threads.len;
 	pq = (vm->threads.last);
 	while (pq)
 	{
 		pc = pq->p;
-		pc->number = i;
-		// if (pc->countdown == 0 && pc->location == 0x000a && ft_strcmp(pc->op->name, "fork") == 0)
-		// 	printf("yo\n");
 		if (pc->countdown == 0)
 			do_op(vm, pc);
 		if (pc->countdown == -1)
@@ -100,12 +96,12 @@ static void				check_countdown(t_vm *vm)
 		else
 			pc->countdown--;
 		pq = pq->prev;
-		i--;
 	}
 }
 
 void					war_cycle(t_vm *vm)
 {
+	vm->something_happened = 0;
 	dump(vm);
 	if (vm->game_cycle == INT_MAX || vm->err != 0)
 		vm_clean(vm);
@@ -114,7 +110,7 @@ void					war_cycle(t_vm *vm)
 		print_str(vm, "It is now cycle ", 0);
 		print_nbr(vm, vm->game_cycle, 1);
 	}
-	check_cycles(vm);
 	check_countdown(vm);
+	check_cycles(vm);
 	vm->game_cycle++;
 }

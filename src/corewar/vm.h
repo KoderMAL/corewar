@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   vm.h                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lramirez <lramirez@student.42.fr>          +#+  +:+       +#+        */
+/*   By: stoupin <stoupin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/08 14:12:51 by stoupin           #+#    #+#             */
-/*   Updated: 2018/02/24 21:18:52 by lramirez         ###   ########.fr       */
+/*   Updated: 2018/02/25 15:27:13 by stoupin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,8 @@ typedef struct		s_vm
 	t_openfile		stdout;
 	t_openfile		stderr;
 	int				winner;
+	bool			something_happened;
+	int				thread_counter;
 }					t_vm;
 
 typedef struct		s_thread
@@ -76,6 +78,7 @@ typedef struct		s_thread
 	int				location;
 	int				countdown;
 	bool			alive;
+	int				last_live;
 	int				shift;
 	int				adv;
 	unsigned char	bytecode;
@@ -231,7 +234,7 @@ int					op_success(t_thread *pc, int cycles, int loc, bool carry);
 */
 
 void				print_instruction_start(t_vm *vm, t_thread *pc);
-void				print_instruction_continue(t_vm *vm, t_thread *pc);
+void				print_instruction_continue(t_vm *vm);
 void				print_str(t_vm *vm, char *s, int endl);
 void				print_nbr(t_vm *vm, int i, int endl);
 void				print_reg(t_vm *vm, int i, int endl);

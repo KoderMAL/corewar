@@ -6,7 +6,7 @@
 /*   By: stoupin <stoupin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/17 14:08:01 by alalaoui          #+#    #+#             */
-/*   Updated: 2018/02/25 15:35:36 by dhadley          ###   ########.fr       */
+/*   Updated: 2018/02/25 15:37:23 by dhadley          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,9 @@ t_thread		*create_thread(t_vm *vm, int n)
 	new_thread->location = (ABS(i) - 1) * (MEM_SIZE / vm->n_champs);
 	new_thread->shift = 0;
 	new_thread->bytecode = 0;
+	new_thread->last_live = 0;
+	vm->thread_counter++;
+	new_thread->number = vm->thread_counter;
 	i--;
 	return (new_thread);
 }
@@ -59,5 +62,8 @@ t_thread		*dup_thread(t_thread *src_thread, int pc)
 	new_thread->alive = false;
 	if (src_thread->alive == true)
 		new_thread->alive = true;
+	new_thread->last_live = 0;
+	new_thread->vm->thread_counter++;
+	new_thread->number = new_thread->vm->thread_counter;
 	return (new_thread);
 }
