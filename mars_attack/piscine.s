@@ -2,8 +2,8 @@
 .comment "Dan's first try at making a champion."
 		
 # FORK block which zjmps on live and fork
-		ld %0, r7 #to make first zjmp work
-		ld %15, r4
+		ld %509, r9 #to make first zjmp work
+		ld %508, r8
 		fork %:block2
 		live %999999
 		st r1, 29 #  :heartlive #modify to the heart live
@@ -23,5 +23,7 @@ block2:
 				ld 9, r2 #boilerplate 2 minus 1
 boilerplate:	live %9999999999999999999
 boilerplate2:	zjmp %-5
-				st r1, 509
-				st r2, 508
+				sti r1, r9, r10
+				sti r2, r8, r10
+				ld %0, r7
+				zjmp %497
