@@ -6,7 +6,7 @@
 /*   By: stoupin <stoupin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/25 11:32:35 by lramirez          #+#    #+#             */
-/*   Updated: 2018/02/25 15:05:34 by stoupin          ###   ########.fr       */
+/*   Updated: 2018/02/25 17:46:52 by stoupin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,20 +22,17 @@ void		op_live(t_thread *pc)
 {
 	int				id;
 	t_champ			*player;
-	char			*player_itoa;
 	int				i;
 
-	pc->alive = true;
 	id = get(pc, 0, false);
-	player_itoa = ft_itoa(id + 1);
 	i = 0;
 	while (i < pc->vm->n_champs)
 	{
 		player = &(pc->vm->champs[i]);
 		if (id == player->number)
 		{
-			pc->vm->num_lives++;
 			player->last_live = pc->vm->game_cycle;
+			pc->vm->played_last = i;
 			print_str(pc->vm, "\nPlayer ", 0);
 			print_nbr(pc->vm, i + 1, 0);
 			print_str(pc->vm, " (", 0);
@@ -45,5 +42,7 @@ void		op_live(t_thread *pc)
 		}
 		i++;
 	}
+	pc->alive = true;
 	pc->last_live = pc->vm->game_cycle;
+	pc->vm->num_lives++;
 }

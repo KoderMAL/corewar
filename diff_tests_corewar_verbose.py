@@ -30,13 +30,20 @@ def compile_champ(asm, champ):
 	return False, bytearray(result_data), result_file_name
 
 champs = list_champs()
-for champ in champs:
-	print(champ)
-	error, _, champ = compile_champ(ZAZ_ASM, champ)
+iterator = iter(champs)
+for champ in iterator:
+	name_champ1 = champ
+	name_champ2 = next(iterator)
+	print('{} vs. {}'.format(name_champ1, name_champ2))
+	error, _, champ1 = compile_champ(ZAZ_ASM, name_champ1)
 	if error:
 		continue
-	os.system('./resources/corewar -v 31 {} {} > {}/goinfre/zaz'.format(champ, champ, HOME_DIR))
-	os.system('./corewar -zaz -verbose {} {} > {}/goinfre/me'.format(champ, champ, HOME_DIR))
+	
+	error, _, champ2 = compile_champ(ZAZ_ASM, name_champ2)
+	if error:
+		continue
+	os.system('./resources/corewar -v 31 {} {} > {}/goinfre/zaz'.format(champ1, champ2, HOME_DIR))
+	os.system('./corewar -zaz -verbose {} {} > {}/goinfre/me'.format(champ1, champ2, HOME_DIR))
 	zaz_output = open('{}/goinfre/zaz'.format(HOME_DIR), 'r').read()
 	my_output = open('{}/goinfre/me'.format(HOME_DIR), 'r').read()
 	if zaz_output != my_output:

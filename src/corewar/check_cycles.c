@@ -6,7 +6,7 @@
 /*   By: stoupin <stoupin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/12 16:17:49 by dhadley           #+#    #+#             */
-/*   Updated: 2018/02/25 16:00:08 by stoupin          ###   ########.fr       */
+/*   Updated: 2018/02/25 17:48:43 by stoupin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,30 +41,14 @@ void		kill_process(t_vm *vm)
 	}
 }
 
-static void	find_winner(t_vm *vm)
-{
-	int		i;
-	int		last;
-
-	i = 0;
-	last = vm->champs[i].last_live;
-	while (i < vm->n_champs)
-	{
-		if (vm->champs[i].last_live >= last)
-			vm->winner = i;
-		i++;
-	}
-}
-
 void		print_winner(t_vm *vm)
 {
 	if (vm->cycle_to_dump != -1)
 		write_map(vm);
-	find_winner(vm);
 	openfile_write_str(&(vm->stdout), "Contestant ", 0);
-	openfile_write_nbr(&(vm->stdout), vm->winner + 1, 0);
+	openfile_write_nbr(&(vm->stdout), vm->played_last + 1, 0);
 	openfile_write_str(&(vm->stdout), ", \"", 0);
-	openfile_write_str(&(vm->stdout), vm->champs[vm->winner].name, 0);
+	openfile_write_str(&(vm->stdout), vm->champs[vm->played_last].name, 0);
 	openfile_write_str(&(vm->stdout), "\", has won !", 1);
 	vm_clean(vm);
 }

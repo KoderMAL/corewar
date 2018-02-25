@@ -6,7 +6,7 @@
 /*   By: stoupin <stoupin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/17 14:08:01 by alalaoui          #+#    #+#             */
-/*   Updated: 2018/02/25 15:37:23 by dhadley          ###   ########.fr       */
+/*   Updated: 2018/02/25 17:21:10 by stoupin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,9 +60,12 @@ t_thread		*dup_thread(t_thread *src_thread, int pc)
 	new_thread->cycles = CYCLE_TO_DIE;
 	new_thread->location = pc;
 	new_thread->alive = false;
+	new_thread->last_live = src_thread->last_live;
 	if (src_thread->alive == true)
+	{
 		new_thread->alive = true;
-	new_thread->last_live = 0;
+		new_thread->vm->num_lives++;
+	}
 	new_thread->vm->thread_counter++;
 	new_thread->number = new_thread->vm->thread_counter;
 	return (new_thread);

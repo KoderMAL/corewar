@@ -6,7 +6,7 @@
 /*   By: stoupin <stoupin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/16 18:33:18 by dhadley           #+#    #+#             */
-/*   Updated: 2018/02/25 13:40:30 by stoupin          ###   ########.fr       */
+/*   Updated: 2018/02/25 17:58:40 by stoupin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void		op_ldi(t_thread *pc)
 	int value;
 
 	index = get(pc, 0, false) + get(pc, 1, false);
-	pc->params[3] = index;
+	pc->params[3] = index % IDX_MOD;
 	pc->params_type[3] = T_IND;
 	value = get(pc, 3, false);
 	set(pc, 2, value);
@@ -39,6 +39,6 @@ void		op_ldi(t_thread *pc)
 	print_str(pc->vm, " = ", 0);
 	print_nbr(pc->vm, index, 0);
 	print_str(pc->vm, " (with pc and mod ", 0);
-	print_nbr(pc->vm, shift_loc(pc, index % IDX_MOD), 0);
+	print_nbr(pc->vm, pc->location + index % IDX_MOD, 0);
 	print_str(pc->vm, ")", 0);
 }

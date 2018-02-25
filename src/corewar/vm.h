@@ -6,7 +6,7 @@
 /*   By: stoupin <stoupin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/08 14:12:51 by stoupin           #+#    #+#             */
-/*   Updated: 2018/02/25 16:00:23 by stoupin          ###   ########.fr       */
+/*   Updated: 2018/02/25 17:47:43 by stoupin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,9 +63,9 @@ typedef struct		s_vm
 	t_font			fonts[N_FONTS];
 	t_openfile		stdout;
 	t_openfile		stderr;
-	int				winner;
 	bool			something_happened;
 	int				thread_counter;
+	int				played_last;
 }					t_vm;
 
 typedef struct		s_thread
