@@ -25,4 +25,5 @@ boilerplate:	live %9999999999999999999
 boilerplate2:	zjmp %-5
 				sti r1, r9, r10
 				sti r2, r8, r10
-				lfork %1500
+				ld %0, r7
+				zjmp %497
