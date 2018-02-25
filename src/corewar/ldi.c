@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ldi.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lramirez <lramirez@student.42.fr>          +#+  +:+       +#+        */
+/*   By: stoupin <stoupin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/16 18:33:18 by dhadley           #+#    #+#             */
-/*   Updated: 2018/02/23 16:39:39 by lramirez         ###   ########.fr       */
+/*   Updated: 2018/02/25 13:40:30 by stoupin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void		op_ldi(t_thread *pc)
 	pc->params_type[3] = T_IND;
 	value = get(pc, 3, false);
 	set(pc, 2, value);
-	print_instruction_continue(pc->vm, pc);
+	print_instruction_continue(pc->vm);
 	print_str(pc->vm, "-> load from ", 0);
 	print_nbr(pc->vm, get(pc, 0, false), 0);
 	print_str(pc->vm, " + ", 0);

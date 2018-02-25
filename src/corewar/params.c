@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   params.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lramirez <lramirez@student.42.fr>          +#+  +:+       +#+        */
+/*   By: stoupin <stoupin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/15 13:20:49 by lramirez          #+#    #+#             */
-/*   Updated: 2018/02/24 22:09:17 by lramirez         ###   ########.fr       */
+/*   Updated: 2018/02/25 14:17:59 by stoupin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ int				get_params(t_thread *pc, const t_op *op)
 	shift = pc->shift;
 	if (op->has_pcode)
 	{
-		while (param < 4)
+		while (param < op->n_arg)
 		{
 			pc->params_type[param] = 0;
 			param_code = get_code(pc->bytecode, param + 1);
@@ -117,8 +117,9 @@ int				get_params(t_thread *pc, const t_op *op)
 		param_code = pc->params_type[param];
 		if (param_code == T_DIR && op->has_idx)
 			param_code = T_IND;
-		get_param(pc, param_code, &(pc->params[param]), &shift);
+		if (!get_param(pc, param_code, &(pc->params[param]), &shift))
+			err = 1;
 		param++;
 	}
-	return (1);
+	return (!err);
 }

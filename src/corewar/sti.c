@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sti.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lramirez <lramirez@student.42.fr>          +#+  +:+       +#+        */
+/*   By: stoupin <stoupin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/16 18:34:00 by dhadley           #+#    #+#             */
-/*   Updated: 2018/02/24 20:20:51 by lramirez         ###   ########.fr       */
+/*   Updated: 2018/02/25 13:40:42 by stoupin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void		op_sti(t_thread *pc)
 	pc->params_type[3] = T_IND;
 	value = get(pc, 0, false);
 	set(pc, 3, value);
-	print_instruction_continue(pc->vm, pc);
+	print_instruction_continue(pc->vm);
 	print_str(pc->vm, "-> store to ", 0);
 	print_nbr(pc->vm, get(pc, 1, false), 0);
 	print_str(pc->vm, " + ", 0);

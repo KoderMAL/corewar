@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   verbose.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lramirez <lramirez@student.42.fr>          +#+  +:+       +#+        */
+/*   By: stoupin <stoupin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/15 11:37:33 by stoupin           #+#    #+#             */
-/*   Updated: 2018/02/24 20:22:24 by lramirez         ###   ########.fr       */
+/*   Updated: 2018/02/25 13:39:49 by stoupin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void	print_instruction_start(t_vm *vm, t_thread *pc)
 	openfile_write_str(&(vm->stdout), " | ", 0);
 }
 
-void	print_instruction_continue(t_vm *vm, t_thread *pc)
+void	print_instruction_continue(t_vm *vm)
 {
 	if (vm->verbose == 0)
 		return ;
