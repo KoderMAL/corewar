@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   vm.h                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: stoupin <stoupin@student.42.fr>            +#+  +:+       +#+        */
+/*   By: lramirez <lramirez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/08 14:12:51 by stoupin           #+#    #+#             */
-/*   Updated: 2018/02/25 17:47:43 by stoupin          ###   ########.fr       */
+/*   Updated: 2018/03/01 19:06:43 by lramirez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,7 @@ typedef struct		s_thread
 	unsigned char	bytecode;
 	int				params[4];
 	int				params_type[4];
+	bool			loaded;
 	t_vm			*vm;
 }					t_thread;
 
@@ -215,6 +216,8 @@ void				dump(t_vm *vm);
 void				war_cycle(t_vm *vm);
 int					find_opcode(int pc);
 void				do_op(t_vm *vm, t_thread *pc);
+void				manage_countdown(t_thread *pc);
+
 
 /*
 ** check_cycles.c

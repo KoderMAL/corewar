@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fork.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: stoupin <stoupin@student.42.fr>            +#+  +:+       +#+        */
+/*   By: lramirez <lramirez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/26 11:24:05 by lramirez          #+#    #+#             */
-/*   Updated: 2018/02/25 15:37:37 by dhadley          ###   ########.fr       */
+/*   Updated: 2018/03/01 19:01:33 by lramirez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,18 +20,13 @@
 void		op_fork(t_thread *pc)
 {
 	int			index;
-	t_thread *new_thread;
+	t_thread	*new_thread;
 
 	index = get(pc, 0, false) % IDX_MOD;
 	if (!(new_thread = dup_thread(pc, shift_loc(pc, index))))
 		return ;
-	if ((new_thread->op = get_op_by_code(pc->vm->map[new_thread->location])) != NULL)
-		new_thread->countdown = new_thread->op->n_cycles - 1;
-	else
-	{
-		new_thread->location = shift_loc(new_thread, 1);
-		new_thread->countdown = -1;
-	}
+	new_thread->countdown = -1;
+	manage_countdown(new_thread);
 	pqueue_push(&(pc->vm->threads), new_thread);
 	print_str(pc->vm, " (", 0);
 	print_nbr(pc->vm, shift_loc(pc, index), 0);

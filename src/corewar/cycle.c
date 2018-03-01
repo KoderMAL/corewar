@@ -6,7 +6,7 @@
 /*   By: lramirez <lramirez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/26 11:51:04 by dhadley           #+#    #+#             */
-/*   Updated: 2018/03/01 16:30:08 by lramirez         ###   ########.fr       */
+/*   Updated: 2018/03/01 19:06:26 by lramirez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,49 +50,52 @@ void					do_op(t_vm *vm, t_thread *pc)
 {
 	int		i;
 
-	if (pc->op == NULL)
-		i = -1;
-	else
-		i = find_opcode(pc->op->opcode);
-	if (i >= 0)
+	i = find_opcode(pc->op->opcode);
+	print_op(vm, pc, g_op_assoc[i].print_value);
+	g_op_assoc[i].op_function(pc);
+	print_str(vm, "", 1);
+	vm->something_happened = 1;
+}
+
+void					manage_countdown(t_thread *pc)
+{
+	if (pc->countdown <= 0)
 	{
-		if (get_params(pc, &g_op_tab[i]))
+		if (pc->countdown == 0)
 		{
-			print_op(vm, pc, g_op_assoc[i].print_value);
-			g_op_assoc[i].op_function(pc);
-			print_str(vm, "", 1);
-			vm->something_happened = 1;
+			do_op(pc->vm, pc);
+			pc->countdown = -1;
+			pc->op = NULL;
 		}
+		else if ((pc->op = get_op_by_code(pc->vm->map[pc->location])) != NULL)
+		{
+			get_params(pc, pc->op);
+			pc->countdown = (pc->op->n_cycles - 1);
+		}
+		else
+			pc->shift = 1;
+		print_adv(pc->vm, pc);
+		pc->location = shift_loc(pc, pc->shift);
 	}
 	else
-		pc->shift = 1;
-	print_adv(vm, pc);
-	pc->location = shift_loc(pc, pc->shift);
-	pc->countdown = -1;
+	{
+		pc->countdown--;
+		pc->shift = 0;
+	}
 }
 
 static void				check_countdown(t_vm *vm)
 {
-	t_thread		*pc;
-	t_pqueue_elem	*pq;
+	t_thread        *pc;
+    t_pqueue_elem    *pq;
 
-	pq = (vm->threads.last);
-	while (pq)
-	{
-		pc = pq->p;
-		if (pc->countdown == 0)
-			do_op(vm, pc);
-		if (pc->countdown == -1)
-		{
-			if ((pc->op = get_op_by_code(vm->map[pc->location])) != NULL)
-				pc->countdown = (pc->op->n_cycles - 1);
-			else
-				pc->location = shift_loc(pc, 1);
-		}
-		else
-			pc->countdown--;
-		pq = pq->prev;
-	}
+    pq = (vm->threads.last);
+    while (pq)
+    {
+        pc = pq->p;
+        manage_countdown(pc);
+        pq = pq->prev;
+    }
 }
 
 /*

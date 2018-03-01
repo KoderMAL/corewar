@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lfork.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: stoupin <stoupin@student.42.fr>            +#+  +:+       +#+        */
+/*   By: lramirez <lramirez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/26 11:18:58 by lramirez          #+#    #+#             */
-/*   Updated: 2018/02/25 17:00:31 by stoupin          ###   ########.fr       */
+/*   Updated: 2018/03/01 18:58:56 by lramirez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,13 +27,8 @@ void	op_lfork(t_thread *pc)
 	index = get(pc, 0, true);
 	if (!(new_thread = dup_thread(pc, shift_loc(pc, index))))
 		return ;
-	if ((new_thread->op = get_op_by_code(pc->vm->map[new_thread->location])) != NULL)
-		new_thread->countdown = new_thread->op->n_cycles - 1;
-	else
-	{
-		new_thread->location = shift_loc(new_thread, 1);
-		new_thread->countdown = -1;
-	}
+	new_thread->countdown = -1;
+	manage_countdown(new_thread);
 	pqueue_push(&(pc->vm->threads), new_thread);
 	print_str(pc->vm, " (", 0);
 	print_nbr(pc->vm, pc->location + index, 0);
