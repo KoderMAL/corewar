@@ -6,7 +6,7 @@
 /*   By: alalaoui <alalaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/30 14:31:43 by alalaoui          #+#    #+#             */
-/*   Updated: 2018/03/01 16:53:46 by alalaoui         ###   ########.fr       */
+/*   Updated: 2018/03/01 17:00:54 by alalaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 
 int		is_number_available(t_vm *vm, int n)
 {
-	int	i;
+	int i;
 
 	i = 0;
 	while (i < vm->n_champs)
@@ -36,7 +36,7 @@ int		is_number_available(t_vm *vm, int n)
 
 int		find_available_number(t_vm *vm)
 {
-	int	i;
+	int i;
 
 	i = -1;
 	while (1)
@@ -47,12 +47,12 @@ int		find_available_number(t_vm *vm)
 	}
 }
 
-void		add_champion(t_vm *vm, int n_is_set, int n, char *file_name)
+void	add_champion(t_vm *vm, int n_is_set, int n, char *file_name)
 {
 	if (vm->n_champs >= MAX_PLAYERS)
 		err2(vm, "too many champions (maximum is 4)");
-	else if (ft_strlen(file_name) >= 4
-			&& ft_strcmp(file_name + ft_strlen(file_name) - 4, ".cor") == 0)
+	else if (ft_strlen(file_name) >= 4 &&
+	ft_strcmp(file_name + ft_strlen(file_name) - 4, ".cor") == 0)
 	{
 		if (n_is_set)
 		{
@@ -64,7 +64,7 @@ void		add_champion(t_vm *vm, int n_is_set, int n, char *file_name)
 	}
 	else
 		err2(vm, file_name[0] == '-' ? "unknown option"
-					: "file name must end with .cor");
+		: "file name must end with .cor");
 	if (vm->err == 0)
 	{
 		champion_load(vm, &(vm->champs[vm->n_champs]), n, file_name);
@@ -72,9 +72,9 @@ void		add_champion(t_vm *vm, int n_is_set, int n, char *file_name)
 	}
 }
 
-int				parse_args(t_vm *vm, int ac, char **av)
+int		parse_args(t_vm *vm, int ac, char **av)
 {
-	int		i;
+	int i;
 
 	i = 1;
 	vm->n = 0;

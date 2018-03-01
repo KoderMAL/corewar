@@ -6,13 +6,13 @@
 /*   By: alalaoui <alalaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/01 15:11:08 by alalaoui          #+#    #+#             */
-/*   Updated: 2018/03/01 16:55:33 by alalaoui         ###   ########.fr       */
+/*   Updated: 2018/03/01 16:59:13 by alalaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vm.h"
 
-void state_start(t_vm *vm, char *av)
+void	state_start(t_vm *vm, char *av)
 {
 	if (ft_strcmp(av, "-d") == 0)
 		vm->state = &state_d;
@@ -33,14 +33,14 @@ void state_start(t_vm *vm, char *av)
 	}
 }
 
-void state_champ(t_vm *vm, char *av)
+void	state_champ(t_vm *vm, char *av)
 {
 	add_champion(vm, vm->n_is_set, vm->n, av);
 	vm->n_is_set = 0;
 	vm->state = &state_start;
 }
 
-void state_s(t_vm *vm, char *av)
+void	state_s(t_vm *vm, char *av)
 {
 	if (ft_str_isdigit(av))
 	{
@@ -51,7 +51,7 @@ void state_s(t_vm *vm, char *av)
 		err2(vm, "-s option needs a number");
 }
 
-void state_n(t_vm *vm, char *av)
+void	state_n(t_vm *vm, char *av)
 {
 	if (ft_str_isdigit(av))
 	{
@@ -63,7 +63,7 @@ void state_n(t_vm *vm, char *av)
 		err2(vm, "-n option needs a number");
 }
 
-void state_d(t_vm *vm, char *av)
+void	state_d(t_vm *vm, char *av)
 {
 	if (ft_str_isdigit(av))
 	{

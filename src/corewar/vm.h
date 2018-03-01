@@ -6,7 +6,7 @@
 /*   By: alalaoui <alalaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/08 14:12:51 by stoupin           #+#    #+#             */
-/*   Updated: 2018/03/01 16:53:10 by alalaoui         ###   ########.fr       */
+/*   Updated: 2018/03/01 17:01:35 by alalaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,7 +128,8 @@ void				state_d(t_vm *vm, char *av);
 void				state_n(t_vm *vm, char *av);
 int					is_number_available(t_vm *vm, int n);
 int					find_available_number(t_vm *vm);
-void				add_champion(t_vm *vm, int n_is_set, int n, char *file_name);
+void				add_champion(t_vm *vm, int n_is_set,
+									int n, char *file_name);
 
 /*
 ** error.c
