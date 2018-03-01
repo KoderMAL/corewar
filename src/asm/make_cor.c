@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   make_cor.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: stoupin <stoupin@student.42.fr>            +#+  +:+       +#+        */
+/*   By: alalaoui <alalaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/15 10:53:17 by dhadley           #+#    #+#             */
-/*   Updated: 2018/02/16 14:29:26 by dhadley          ###   ########.fr       */
+/*   Updated: 2018/03/01 14:16:42 by alalaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ void	write_cor(t_env *env)
 	int			fd;
 	t_openfile	of;
 
-	fd = open(env->file_name, O_CREAT | O_WRONLY, S_IRUSR + S_IWUSR);
+	fd = open(env->file_name, O_CREAT | O_WRONLY | O_TRUNC, S_IRUSR + S_IWUSR);
 	if (fd > 1)
 	{
 		openfile_init(&of, fd);
