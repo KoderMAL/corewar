@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cycle.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: stoupin <stoupin@student.42.fr>            +#+  +:+       +#+        */
+/*   By: lramirez <lramirez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/26 11:51:04 by dhadley           #+#    #+#             */
-/*   Updated: 2018/02/25 16:48:25 by stoupin          ###   ########.fr       */
+/*   Updated: 2018/03/01 16:30:08 by lramirez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,8 +51,9 @@ void					do_op(t_vm *vm, t_thread *pc)
 	int		i;
 
 	if (pc->op == NULL)
-		return ;
-	i = find_opcode(pc->op->opcode);
+		i = -1;
+	else
+		i = find_opcode(pc->op->opcode);
 	if (i >= 0)
 	{
 		if (get_params(pc, &g_op_tab[i]))
