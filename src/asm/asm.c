@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   asm.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: stoupin <stoupin@student.42.fr>            +#+  +:+       +#+        */
+/*   By: alalaoui <alalaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/04 15:49:30 by alalaoui          #+#    #+#             */
-/*   Updated: 2018/02/16 14:24:49 by dhadley          ###   ########.fr       */
+/*   Updated: 2018/03/01 14:46:30 by alalaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,8 @@ int				main(int argc, char **argv)
 	int			fd;
 
 	env_initialization(&env);
-	if (argc != 2 || argv[1][0] == '\0')
+	if (argc != 2 || argv[1][0] == '\0' || ft_strlen(argv[1]) <= 2 ||
+	ft_strcmp(argv[1] + ft_strlen(argv[1]) - 2, ".s"))
 		print_usage(&env, argv);
 	fd = -1;
 	if (env.err == 0 && (fd = open(argv[1], O_RDONLY)) < 2)

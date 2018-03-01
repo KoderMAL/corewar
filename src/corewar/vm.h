@@ -66,6 +66,9 @@ typedef struct		s_vm
 	bool			something_happened;
 	int				thread_counter;
 	int				played_last;
+	int				n;
+	int				n_is_set;
+	void			(*state)(struct s_vm *vm, char *av);
 }					t_vm;
 
 typedef struct		s_thread
@@ -119,6 +122,15 @@ void				vm_clean(t_vm *vm);
 
 int					parse_args(t_vm *vm, int ac, char **av);
 int					check_option(t_vm *vm, int i);
+void				state_start(t_vm *vm, char *av);
+void				state_champ(t_vm *vm, char *av);
+void				state_s(t_vm *vm, char *av);
+void				state_d(t_vm *vm, char *av);
+void				state_n(t_vm *vm, char *av);
+int					is_number_available(t_vm *vm, int n);
+int					find_available_number(t_vm *vm);
+void				add_champion(t_vm *vm, int n_is_set,
+									int n, char *file_name);
 
 /*
 ** error.c
