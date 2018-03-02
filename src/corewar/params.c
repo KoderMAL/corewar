@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   params.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: stoupin <stoupin@student.42.fr>            +#+  +:+       +#+        */
+/*   By: lramirez <lramirez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/15 13:20:49 by lramirez          #+#    #+#             */
-/*   Updated: 2018/02/25 14:17:59 by stoupin          ###   ########.fr       */
+/*   Updated: 2018/03/02 19:31:23 by lramirez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,28 @@ int				get_params(t_thread *pc, const t_op *op)
 	int	param;
 	int	param_code;
 	int err;
+	int shift;
+
+	err = 0;	
+	param = 0;
+	shift = 1 + op->has_pcode;
+	while (param < op->n_arg)
+	{
+		param_code = pc->params_type[param];
+		if (param_code == T_DIR && op->has_idx)
+			param_code = T_IND;
+		if (!get_param(pc, param_code, &(pc->params[param]), &shift))
+			err = 1;
+		param++;
+	}
+	return (!err);
+}
+
+int				get_params_type(t_thread *pc, const t_op *op)
+{
+	int	param;
+	int	param_code;
+	int err;
 	int	shift;
 
 	err = 0;
@@ -73,11 +95,7 @@ int				get_params(t_thread *pc, const t_op *op)
 			pc->params_type[param] = 0;
 			param_code = get_code(pc->bytecode, param + 1);
 			if ((param_code & op->arg_type[param]) == 0 && param < op->n_arg)
-			{
 				err = 1;
-				//param++;
-				//continue ;
-			}
 			if (param_code == T_REG)
 				pc->shift++;
 			else if (param_code == T_IND)
@@ -108,18 +126,6 @@ int				get_params(t_thread *pc, const t_op *op)
 				pc->shift += 4;
 		}
 		pc->params_type[0] = param_code;
-	}
-	if (err)
-		return(0);
-	param = 0;
-	while (param < op->n_arg)
-	{
-		param_code = pc->params_type[param];
-		if (param_code == T_DIR && op->has_idx)
-			param_code = T_IND;
-		if (!get_param(pc, param_code, &(pc->params[param]), &shift))
-			err = 1;
-		param++;
 	}
 	return (!err);
 }

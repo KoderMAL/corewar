@@ -6,7 +6,7 @@
 /*   By: lramirez <lramirez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/26 11:51:04 by dhadley           #+#    #+#             */
-/*   Updated: 2018/03/02 16:14:21 by lramirez         ###   ########.fr       */
+/*   Updated: 2018/03/02 19:38:08 by lramirez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,7 @@ void					manage_countdown(t_thread *pc)
 		}
 		else if ((pc->op = get_op_by_code(pc->vm->map[pc->location])) != NULL)
 		{
-			pc->is_valid = get_params(pc, pc->op);
+			pc->is_valid = get_params_type(pc, pc->op) & get_params(pc, pc->op);
 			pc->countdown = (pc->op->n_cycles - 2);
 		}
 		else
