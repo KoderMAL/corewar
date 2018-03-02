@@ -6,7 +6,7 @@
 /*   By: lramirez <lramirez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/16 14:30:57 by alalaoui          #+#    #+#             */
-/*   Updated: 2018/03/02 12:34:17 by lramirez         ###   ########.fr       */
+/*   Updated: 2018/03/02 15:31:31 by lramirez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void		vm_start(t_vm *vm)
 	}
 	if (vm->draw_game)
 		draw_game_init(vm);
-    vm->game_cycle = 1;
+    vm->game_cycle = 0;
 }
 
 void		vm_clean(t_vm *vm)

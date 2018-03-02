@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   getters.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: stoupin <stoupin@student.42.fr>            +#+  +:+       +#+        */
+/*   By: lramirez <lramirez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/16 17:04:51 by lramirez          #+#    #+#             */
-/*   Updated: 2018/02/25 14:44:31 by stoupin          ###   ########.fr       */
+/*   Updated: 2018/03/02 14:21:52 by lramirez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,9 +35,9 @@ int				get_bytes(t_thread *pc, int s, int bytes)
 	param = 0;
 	if (bytes == 1)
 	{
+		param = get_byte_at(pc, s);
 		if (param > 0x7f)
 			param |= 0xffffff00;
-		param = get_byte_at(pc, s);
 	}
 	else if (bytes == 2)
 	{
