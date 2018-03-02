@@ -6,7 +6,7 @@
 /*   By: lramirez <lramirez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/08 14:12:51 by stoupin           #+#    #+#             */
-/*   Updated: 2018/03/01 19:06:43 by lramirez         ###   ########.fr       */
+/*   Updated: 2018/03/02 12:41:15 by lramirez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ typedef struct		s_thread
 	unsigned char	bytecode;
 	int				params[4];
 	int				params_type[4];
-	bool			loaded;
+	bool			is_valid;
 	t_vm			*vm;
 }					t_thread;
 

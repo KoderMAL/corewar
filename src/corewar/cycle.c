@@ -6,7 +6,7 @@
 /*   By: lramirez <lramirez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/26 11:51:04 by dhadley           #+#    #+#             */
-/*   Updated: 2018/03/01 19:06:26 by lramirez         ###   ########.fr       */
+/*   Updated: 2018/03/02 12:41:43 by lramirez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,31 +57,39 @@ void					do_op(t_vm *vm, t_thread *pc)
 	vm->something_happened = 1;
 }
 
+void					advance(t_thread *pc, bool silent)
+{
+	if (!silent)
+		print_adv(pc->vm, pc);
+	pc->location = shift_loc(pc, pc->shift);
+	pc->shift = 0;
+}
+
 void					manage_countdown(t_thread *pc)
 {
 	if (pc->countdown <= 0)
 	{
 		if (pc->countdown == 0)
 		{
-			do_op(pc->vm, pc);
+			if (pc->is_valid)
+				do_op(pc->vm, pc);
+			advance(pc, false);
 			pc->countdown = -1;
 			pc->op = NULL;
 		}
 		else if ((pc->op = get_op_by_code(pc->vm->map[pc->location])) != NULL)
 		{
-			get_params(pc, pc->op);
-			pc->countdown = (pc->op->n_cycles - 1);
+			pc->is_valid = get_params(pc, pc->op);
+			pc->countdown = (pc->op->n_cycles - 2);
 		}
 		else
+		{
 			pc->shift = 1;
-		print_adv(pc->vm, pc);
-		pc->location = shift_loc(pc, pc->shift);
+			advance(pc, true);
+		}
 	}
 	else
-	{
 		pc->countdown--;
-		pc->shift = 0;
-	}
 }
 
 static void				check_countdown(t_vm *vm)
