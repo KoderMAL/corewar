@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: stoupin <stoupin@student.42.fr>            +#+  +:+       +#+        */
+/*   By: alalaoui <alalaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/08 11:13:07 by stoupin           #+#    #+#             */
-/*   Updated: 2018/02/08 11:14:58 by stoupin          ###   ########.fr       */
+/*   Updated: 2018/03/02 13:47:53 by alalaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@
 static int	parse_char(t_env *env, char c)
 {
 	(env->state)(env, c);
+	if (c == 0)
+		err(env, "NULL found, stop reading", 0);
 	if (env->err == 1)
 		return (env->err);
 	if (c == '\t')
