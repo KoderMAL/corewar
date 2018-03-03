@@ -6,7 +6,7 @@
 /*   By: stoupin <stoupin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/15 11:37:33 by stoupin           #+#    #+#             */
-/*   Updated: 2018/02/25 13:39:49 by stoupin          ###   ########.fr       */
+/*   Updated: 2018/03/03 16:42:42 by stoupin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@ void	print_instruction_start(t_vm *vm, t_thread *pc)
 		nbr /= 10;
 		n_digits++;
 	}
+	if (n_digits > 4)
+		n_digits = 4;
 	openfile_write_str(&(vm->stdout), "P", 0);
 	nbr = 0;
 	while (nbr < 5 - n_digits)

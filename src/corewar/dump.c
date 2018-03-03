@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   dump.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lramirez <lramirez@student.42.fr>          +#+  +:+       +#+        */
+/*   By: stoupin <stoupin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/26 12:00:20 by alalaoui          #+#    #+#             */
-/*   Updated: 2018/03/02 15:31:47 by lramirez         ###   ########.fr       */
+/*   Updated: 2018/03/03 17:37:49 by stoupin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,9 @@ void		print_op(t_vm *vm, t_thread *pc, int print_value)
 		print_str(vm, " ", 0);
 		param = pc->params[i];
 		param_type = pc->params_type[i];
-		if (param_type == T_REG)
+		if (ft_strcmp(pc->op->name, "st") == 0 && i == 1 && param_type == T_REG)
+			print_nbr(vm, param, 0);
+		else if (param_type == T_REG)
 		{
 			if (print_value & (1 << i))
 				print_nbr(vm, pc->r[param], 0);

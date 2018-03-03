@@ -31,8 +31,9 @@ def compile_champ(asm, champ):
 
 champs = list_champs()
 iterator = iter(champs)
+name_champ2 = next(iterator)
 for champ in iterator:
-	name_champ1 = champ
+	name_champ1 = name_champ2
 	name_champ2 = next(iterator)
 	print('{} vs. {}'.format(name_champ1, name_champ2))
 	error, _, champ1 = compile_champ(ZAZ_ASM, name_champ1)

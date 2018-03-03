@@ -6,7 +6,7 @@
 /*   By: stoupin <stoupin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/26 11:51:04 by dhadley           #+#    #+#             */
-/*   Updated: 2018/03/03 14:48:17 by stoupin          ###   ########.fr       */
+/*   Updated: 2018/03/03 17:38:28 by stoupin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,21 +49,12 @@ int						find_opcode(int pc)
 void          do_op(t_vm *vm, t_thread *pc) 
 { 
 	int    i; 
-	int    params_cpy[4]; 
 
 	i = find_opcode(pc->op->opcode); 
-	if (pc->vm->zaz_mode) 
-	{ 
-		ft_memcpy(params_cpy, pc->params, sizeof(int) * 4); 
-		get_params(pc, pc->op); 
-		print_op(vm, pc, g_op_assoc[i].print_value); 
-		ft_memcpy(pc->params, params_cpy, sizeof(int) * 4); 
-	} 
-	else 
-		print_op(vm, pc, g_op_assoc[i].print_value); 
+	print_op(vm, pc, g_op_assoc[i].print_value); 
 	g_op_assoc[i].op_function(pc); 
 	print_str(vm, "", 1); 
-	vm->something_happened = 1; 
+	vm->something_happened = 1;
 }
 
 void					advance(t_thread *pc, bool silent)
@@ -88,7 +79,7 @@ void					manage_countdown(t_thread *pc)
 		}
 		else if ((pc->op = get_op_by_code(pc->vm->map[pc->location])) != NULL)
 		{
-			pc->is_valid = get_params_type(pc, pc->op) & get_params(pc, pc->op);
+			// pc->is_valid = get_params_type(pc, pc->op) & get_params(pc, pc->op);
 			pc->countdown = (pc->op->n_cycles - 2);
 		}
 		else
@@ -149,6 +140,8 @@ void					war_cycle(t_vm *vm)
 		print_nbr(vm, vm->game_cycle, 1);
 	}
 	check_countdown(vm);
+	if (vm->base_cycle_to_die < 0 && vm->cycle_to_die == 0)
+		tatatatata(vm);
 	check_cycles(vm);
 	if (vm->base_cycle_to_die < 0)
 		tatatatata(vm);
