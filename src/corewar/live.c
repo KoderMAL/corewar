@@ -6,7 +6,7 @@
 /*   By: stoupin <stoupin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/25 11:32:35 by lramirez          #+#    #+#             */
-/*   Updated: 2018/02/25 17:46:52 by stoupin          ###   ########.fr       */
+/*   Updated: 2018/03/03 14:50:25 by stoupin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void		op_live(t_thread *pc)
 		}
 		i++;
 	}
-	pc->alive = true;
-	pc->last_live = pc->vm->game_cycle;
 	pc->vm->num_lives++;
+	pc->last_live = pc->vm->game_cycle;
+	pc->alive = true;
 }

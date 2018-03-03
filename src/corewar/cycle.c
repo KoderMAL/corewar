@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cycle.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lramirez <lramirez@student.42.fr>          +#+  +:+       +#+        */
+/*   By: stoupin <stoupin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/26 11:51:04 by dhadley           #+#    #+#             */
-/*   Updated: 2018/03/02 19:38:08 by lramirez         ###   ########.fr       */
+/*   Updated: 2018/03/03 14:48:17 by stoupin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,24 +46,24 @@ int						find_opcode(int pc)
 	return (-1);
 }
 
-void					do_op(t_vm *vm, t_thread *pc)
-{
-	int		i;
-	int		params_cpy[4];
-	
-	i = find_opcode(pc->op->opcode);
-	if (pc->vm->zaz_mode)
-	{
-		ft_memcpy(params_cpy, pc->params, sizeof(int) * 4);
-		get_params(pc, pc->op);
-		print_op(vm, pc, g_op_assoc[i].print_value);
-		ft_memcpy(pc->params, params_cpy, sizeof(int) * 4);
-	}
-	else
-		print_op(vm, pc, g_op_assoc[i].print_value);
-	g_op_assoc[i].op_function(pc);
-	print_str(vm, "", 1);
-	vm->something_happened = 1;
+void          do_op(t_vm *vm, t_thread *pc) 
+{ 
+	int    i; 
+	int    params_cpy[4]; 
+
+	i = find_opcode(pc->op->opcode); 
+	if (pc->vm->zaz_mode) 
+	{ 
+		ft_memcpy(params_cpy, pc->params, sizeof(int) * 4); 
+		get_params(pc, pc->op); 
+		print_op(vm, pc, g_op_assoc[i].print_value); 
+		ft_memcpy(pc->params, params_cpy, sizeof(int) * 4); 
+	} 
+	else 
+		print_op(vm, pc, g_op_assoc[i].print_value); 
+	g_op_assoc[i].op_function(pc); 
+	print_str(vm, "", 1); 
+	vm->something_happened = 1; 
 }
 
 void					advance(t_thread *pc, bool silent)
@@ -80,7 +80,7 @@ void					manage_countdown(t_thread *pc)
 	{
 		if (pc->countdown == 0)
 		{
-			if (pc->is_valid)
+			if (get_params_type(pc, pc->op) & get_params(pc, pc->op))
 				do_op(pc->vm, pc);
 			advance(pc, false);
 			pc->countdown = -1;
