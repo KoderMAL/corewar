@@ -6,7 +6,7 @@
 /*   By: stoupin <stoupin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/12 16:17:49 by dhadley           #+#    #+#             */
-/*   Updated: 2018/02/25 17:48:43 by stoupin          ###   ########.fr       */
+/*   Updated: 2018/03/03 15:36:59 by stoupin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ void		check_cycles(t_vm *vm)
 			vm->base_cycle_to_die -= CYCLE_DELTA;
 			print_str(vm, "Cycle to die is now ", 0);
 			print_nbr(vm, vm->base_cycle_to_die, 1);
-			vm->num_checkups = -1;
+			vm->num_checkups = 0;
 		}
 		vm->cycle_to_die = vm->base_cycle_to_die;
 		vm->num_checkups++;

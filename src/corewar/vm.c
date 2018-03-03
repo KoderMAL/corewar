@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   vm.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lramirez <lramirez@student.42.fr>          +#+  +:+       +#+        */
+/*   By: stoupin <stoupin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/16 14:30:57 by alalaoui          #+#    #+#             */
-/*   Updated: 2018/03/02 15:31:31 by lramirez         ###   ########.fr       */
+/*   Updated: 2018/03/03 15:34:58 by stoupin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,8 @@ void		vm_init(t_vm *vm)
 	openfile_init(&(vm->stderr), STDERR_FILENO);
 	vm->cycle_to_dump = -1;
 	vm->base_cycle_to_die = CYCLE_TO_DIE;
-	vm->cycle_to_die = CYCLE_TO_DIE - 1;
+	vm->num_checkups = 1;
+	vm->cycle_to_die = vm->base_cycle_to_die - 1;
 }
 
 void		vm_start(t_vm *vm)
