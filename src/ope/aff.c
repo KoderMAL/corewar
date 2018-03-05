@@ -3,15 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   aff.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: stoupin <stoupin@student.42.fr>            +#+  +:+       +#+        */
+/*   By: alalaoui <alalaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/26 13:10:50 by lramirez          #+#    #+#             */
-/*   Updated: 2018/02/23 21:18:06 by stoupin          ###   ########.fr       */
+/*   Updated: 2018/03/05 18:31:48 by alalaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
-#include "vm.h"
+#include "../corewar/vm.h"
 
 /*
 ** Il n’y a qu’un paramètre, qui est un registre, dont le contenu est interprété

@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   st.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: stoupin <stoupin@student.42.fr>            +#+  +:+       +#+        */
+/*   By: alalaoui <alalaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/16 18:33:49 by dhadley           #+#    #+#             */
-/*   Updated: 2018/02/23 21:13:30 by stoupin          ###   ########.fr       */
+/*   Updated: 2018/03/05 18:31:42 by alalaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "vm.h"
+#include "../corewar/vm.h"
 
 /*
 ** Cette instruction prend 2 paramètres. Elle store (REG_SIZE OCTET)

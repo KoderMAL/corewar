@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   lldi.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lramirez <lramirez@student.42.fr>          +#+  +:+       +#+        */
+/*   By: alalaoui <alalaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/16 18:33:36 by dhadley           #+#    #+#             */
-/*   Updated: 2018/02/23 21:09:49 by stoupin          ###   ########.fr       */
+/*   Updated: 2018/03/05 18:31:40 by alalaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "vm.h"
+#include "../corewar/vm.h"
 
 /*
 ** Comme ldi sans le %IDX_MOD Cette opération modifie le carry.

@@ -32,12 +32,10 @@ SRC_IO = openfile.c openfile_write.c openfile_read.c
 SRC_PARSING = states_main.c states_header.c states_label.c states_instruction.c \
 			  save_label.c save_argument.c save_instruction.c check_args.c
 SRC_COREWAR = parse_args.c parse_args2.c error2.c thread.c vm.c champion.c draw_game.c dump.c cycle.c op.c \
-				live.c zjmp.c fork.c aff.c ld.c params.c params_type.c add.c sub.c and.c \
-				lfork.c lld.c ldi.c \
-				lldi.c sti.c \
-				st.c xor.c or.c getters.c setters.c \
-				op_success.c op_exit.c do_op.c\
+				getters.c setters.c op_success.c op_exit.c do_op.c\
 				check_cycles.c verbose.c print_instruction.c
+SRC_OPE = live.c zjmp.c fork.c aff.c ld.c params.c params_type.c add.c sub.c and.c \
+			lfork.c lld.c ldi.c lldi.c sti.c st.c xor.c or.c
 SRC_GUI = font.c font_cursor.c gui.c gui_hooks.c fonts.c 
 SRC_TESTS = $(SRC_IO) $(SRC_FT) $(SRC_UTIL) \
 			tests.c tests_assert.c \
@@ -49,10 +47,10 @@ HEADERS = vm.h asm.h op.h ft.h openfile.h states.h cqueue.h pqueue.h assembly.h 
 
 SRC = $(SRC_FT) $(SRC_IO) $(SRC_PARSING) $(SRC_UTIL) $(SRC_ASM)
 OBJ_TMP = $(SRC:.c=.o)
-SRC2 = $(SRC_FT) $(SRC_IO) $(SRC_UTIL) $(SRC_GUI) $(SRC_COREWAR)
+SRC2 = $(SRC_FT) $(SRC_IO) $(SRC_UTIL) $(SRC_GUI) $(SRC_COREWAR) $(SRC_OPE)
 OBJ2_TMP = $(SRC2:.c=.o)
 
-VPATH = src/ft src/io src/asm src/parsing src/util src/tests src/corewar src/gui
+VPATH = src/ft src/io src/asm src/parsing src/util src/tests src/corewar src/gui src/ope
 IFLAGS = -Isrc
 OBJ_DIR = obj
 OBJ = $(addprefix $(OBJ_DIR)/, $(OBJ_TMP))

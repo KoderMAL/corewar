@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ld.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lramirez <lramirez@student.42.fr>          +#+  +:+       +#+        */
+/*   By: alalaoui <alalaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/16 18:33:08 by dhadley           #+#    #+#             */
-/*   Updated: 2018/02/23 21:08:48 by stoupin          ###   ########.fr       */
+/*   Updated: 2018/03/05 18:31:35 by alalaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "vm.h"
+#include "../corewar/vm.h"
 
 /*
 ** Cette instruction prend 2 paramètres, le deuxième est forcément un

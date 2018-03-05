@@ -1,23 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   and.c                                              :+:      :+:    :+:   */
+/*   or.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lramirez <lramirez@student.42.fr>          +#+  +:+       +#+        */
+/*   By: alalaoui <alalaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/26 14:39:27 by lramirez          #+#    #+#             */
-/*   Updated: 2018/03/05 16:22:18 by lramirez         ###   ########.fr       */
+/*   Updated: 2018/03/05 18:31:41 by alalaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "vm.h"
+#include "../corewar/vm.h"
 
 /*
-** Applique un & (ET bit-à-bit) sur les deux premiers paramètres, et stocke le
-** résultat dans le registre qui est le 3ème paramètre.
+** Cette opération est un OU bit-à-bit, suivant le même principe que and.
+** and = Applique un & (ET bit-à-bit) sur les deux premiers paramètres,
+** et stocke le résultat dans le registre qui est le 3ème paramètre.
 */
 
-void			op_and(t_thread *pc)
+void		op_or(t_thread *pc)
 {
 	int		a;
 	int		b;
@@ -25,7 +26,7 @@ void			op_and(t_thread *pc)
 
 	a = get(pc, 0, false);
 	b = get(pc, 1, false);
-	result = a & b;
+	result = a | b;
 	set(pc, 2, result);
 	if (result == 0)
 		pc->carry = 1;
