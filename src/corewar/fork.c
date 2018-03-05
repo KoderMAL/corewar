@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fork.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alalaoui <alalaoui@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lramirez <lramirez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/26 11:24:05 by lramirez          #+#    #+#             */
-/*   Updated: 2018/03/05 15:42:51 by alalaoui         ###   ########.fr       */
+/*   Updated: 2018/03/05 17:42:12 by lramirez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,6 @@ void		op_fork(t_thread *pc)
 	new_thread->countdown = -1;
 	pqueue_push(&(pc->vm->threads), new_thread);
 	print_str(pc->vm, " (", 0);
-	print_nbr(pc->vm, shift_loc(pc, index), 0);
+	print_nbr(pc->vm, pc->location + index, 0);
 	print_str(pc->vm, ")", 0);
 }
