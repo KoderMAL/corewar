@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   thread.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: stoupin <stoupin@student.42.fr>            +#+  +:+       +#+        */
+/*   By: alalaoui <alalaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/17 14:08:01 by alalaoui          #+#    #+#             */
-/*   Updated: 2018/03/03 15:36:26 by stoupin          ###   ########.fr       */
+/*   Updated: 2018/03/05 15:16:19 by alalaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,10 +63,7 @@ t_thread		*dup_thread(t_thread *src_thread, int pc)
 	new_thread->alive = false;
 	new_thread->last_live = src_thread->last_live;
 	if (src_thread->alive == true)
-	{
 		new_thread->alive = true;
-	// new_thread->vm->num_lives++;
-	}
 	new_thread->vm->thread_counter++;
 	new_thread->number = new_thread->vm->thread_counter;
 	return (new_thread);

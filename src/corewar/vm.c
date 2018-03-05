@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   vm.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: stoupin <stoupin@student.42.fr>            +#+  +:+       +#+        */
+/*   By: alalaoui <alalaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/16 14:30:57 by alalaoui          #+#    #+#             */
-/*   Updated: 2018/03/03 15:34:58 by stoupin          ###   ########.fr       */
+/*   Updated: 2018/03/05 15:16:52 by alalaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ void		vm_start(t_vm *vm)
 	}
 	if (vm->draw_game)
 		draw_game_init(vm);
-    vm->game_cycle = 0;
+	vm->game_cycle = 0;
 }
 
 void		vm_clean(t_vm *vm)

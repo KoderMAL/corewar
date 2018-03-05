@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   dump.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: stoupin <stoupin@student.42.fr>            +#+  +:+       +#+        */
+/*   By: alalaoui <alalaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/26 12:00:20 by alalaoui          #+#    #+#             */
-/*   Updated: 2018/03/03 17:37:49 by stoupin          ###   ########.fr       */
+/*   Updated: 2018/03/05 15:15:05 by alalaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,7 @@ void		print_op(t_vm *vm, t_thread *pc, int print_value)
 			print_nbr(vm, param, 0);
 		else if (param_type == T_REG)
 		{
-			if (print_value & (1 << i))
-				print_nbr(vm, pc->r[param], 0);
-			else
+			(print_value & (1 << i)) ? print_nbr(vm, pc->r[param], 0) :
 				print_reg(vm, param, 0);
 		}
 		else if (param_type == T_IND && !print_value)

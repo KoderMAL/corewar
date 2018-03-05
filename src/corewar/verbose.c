@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   verbose.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: stoupin <stoupin@student.42.fr>            +#+  +:+       +#+        */
+/*   By: alalaoui <alalaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/15 11:37:33 by stoupin           #+#    #+#             */
-/*   Updated: 2018/03/03 16:42:42 by stoupin          ###   ########.fr       */
+/*   Updated: 2018/03/05 15:17:45 by alalaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	print_instruction_start(t_vm *vm, t_thread *pc)
 {
 	int		n_digits;
 	int		nbr;
-	
+
 	if (vm->verbose == 0)
 		return ;
 	nbr = pc->number;
