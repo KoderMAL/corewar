@@ -23,14 +23,10 @@ void	op_lfork(t_thread *pc)
 	int			index;
 	t_thread	*new_thread;
 
-
 	index = get(pc, 0, true);
 	if (!(new_thread = dup_thread(pc, shift_loc(pc, index))))
 		return ;
 	new_thread->countdown = -1;
-	// manage_countdown(new_thread);
-	// if (new_thread->countdown > 0)
-	// 	new_thread->countdown++;
 	pqueue_push(&(pc->vm->threads), new_thread);
 	print_str(pc->vm, " (", 0);
 	print_nbr(pc->vm, pc->location + index, 0);
