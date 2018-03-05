@@ -6,7 +6,7 @@
 /*   By: lramirez <lramirez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/26 11:51:04 by dhadley           #+#    #+#             */
-/*   Updated: 2018/03/05 17:04:41 by lramirez         ###   ########.fr       */
+/*   Updated: 2018/03/05 18:03:47 by lramirez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,8 @@ void					manage_countdown(t_thread *pc)
 	{
 		if (pc->countdown == 0)
 		{
-			if (get_params_type(pc, pc->op) & get_params(pc, pc->op))
+			if (get_params_type(pc, pc->op) & get_params(pc, pc->op) &&
+				!(pc->vm->zaz_mode && pc->op->opcode == O_AFF))
 				do_op(pc->vm, pc);
 			advance(pc, false);
 			pc->countdown = -1;
