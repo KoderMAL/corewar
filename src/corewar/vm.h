@@ -6,7 +6,7 @@
 /*   By: alalaoui <alalaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/08 14:12:51 by stoupin           #+#    #+#             */
-/*   Updated: 2018/03/05 16:43:20 by alalaoui         ###   ########.fr       */
+/*   Updated: 2018/03/05 18:35:15 by alalaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -231,7 +231,6 @@ void				war_cycle(t_vm *vm);
 int					find_opcode(int pc);
 void				do_op(t_vm *vm, t_thread *pc);
 void				manage_countdown(t_thread *pc);
-
 
 /*
 ** check_cycles.c
