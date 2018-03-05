@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   vm.h                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: stoupin <stoupin@student.42.fr>            +#+  +:+       +#+        */
+/*   By: alalaoui <alalaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/08 14:12:51 by stoupin           #+#    #+#             */
-/*   Updated: 2018/03/03 11:45:36 by stoupin          ###   ########.fr       */
+/*   Updated: 2018/03/05 16:43:20 by alalaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -212,6 +212,7 @@ void				set_bytes(t_thread *pc, int param, int value);
 
 int					get_params(t_thread *pc, const t_op *op);
 int					get_params_type(t_thread *pc, const t_op *op);
+int					get_code(unsigned char byte, int number);
 
 /*
 ** dump.c

@@ -6,7 +6,7 @@
 /*   By: alalaoui <alalaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/15 13:20:49 by lramirez          #+#    #+#             */
-/*   Updated: 2018/03/05 15:53:14 by alalaoui         ###   ########.fr       */
+/*   Updated: 2018/03/05 17:26:58 by alalaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,57 +69,6 @@ int				get_params(t_thread *pc, const t_op *op)
 		if (!get_param(pc, param_code, &(pc->params[param]), &shift))
 			err = 1;
 		param++;
-	}
-	return (!err);
-}
-
-static void		get_params_util(t_thread *pc, const t_op *op, int param_code, int param)
-{
-	if (param_code == T_REG)
-		pc->shift++;
-	else if (param_code == T_IND)
-		pc->shift += 2;
-	else if (param_code == T_DIR)
-	{
-		if (op->has_idx)
-			pc->shift += 2;
-		else
-			pc->shift += 4;
-	}
-	pc->params_type[param] = param_code;
-}
-
-int				get_params_type(t_thread *pc, const t_op *op)
-{
-	int	param;
-	int	param_code;
-	int err;
-	int	shift;
-
-	err = 0;
-	pc->cycles -= op->n_cycles;
-	param = 0;
-	pc->shift = 0;
-	if (op->has_pcode)
-		pc->bytecode = get_byte_at(pc, 1);
-	pc->shift += 1 + op->has_pcode;
-	shift = pc->shift;
-	if (op->has_pcode)
-	{
-		while (param < op->n_arg)
-		{
-			pc->params_type[param] = 0;
-			param_code = get_code(pc->bytecode, param + 1);
-			if ((param_code & op->arg_type[param]) == 0 && param < op->n_arg)
-				err = 1;
-			get_params_util(pc, op, param_code, param);
-			param++;
-		}
-	}
-	else
-	{
-		param_code = op->arg_type[0];
-		get_params_util(pc, op, param_code, param);
 	}
 	return (!err);
 }
