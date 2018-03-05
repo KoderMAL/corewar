@@ -27,7 +27,8 @@ void					manage_countdown(t_thread *pc)
 	{
 		if (pc->countdown == 0)
 		{
-			if (get_params_type(pc, pc->op) & get_params(pc, pc->op))
+			if (get_params_type(pc, pc->op) & get_params(pc, pc->op) &&
+				!(pc->vm->zaz_mode && pc->op->opcode == O_AFF))
 				do_op(pc->vm, pc);
 			advance(pc, false);
 			pc->countdown = -1;
