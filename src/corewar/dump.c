@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   dump.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alalaoui <alalaoui@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lramirez <lramirez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/26 12:00:20 by alalaoui          #+#    #+#             */
-/*   Updated: 2018/03/05 15:15:05 by alalaoui         ###   ########.fr       */
+/*   Updated: 2018/03/05 17:44:25 by lramirez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,14 +27,18 @@ void		print_op(t_vm *vm, t_thread *pc, int print_value)
 		print_str(vm, " ", 0);
 		param = pc->params[i];
 		param_type = pc->params_type[i];
-		if (ft_strcmp(pc->op->name, "st") == 0 && i == 1 && param_type == T_REG)
+		if (vm->zaz_mode && pc->op->opcode == O_AFF)
+			;
+		else if (vm->zaz_mode && pc->op->opcode == O_AND && param_type == T_IND)
+			print_nbr(vm, get_bytes(pc, param % IDX_MOD, 4), 0);
+		else if (vm->zaz_mode && pc->op->opcode == O_ST && i == 1 && param_type == T_REG)
 			print_nbr(vm, param, 0);
 		else if (param_type == T_REG)
 		{
 			(print_value & (1 << i)) ? print_nbr(vm, pc->r[param], 0) :
 				print_reg(vm, param, 0);
 		}
-		else if (param_type == T_IND && !print_value)
+		else if (param_type == T_IND && !(print_value & (1 << i)))
 			print_nbr(vm, get_bytes(pc, param, 4), 0);
 		else
 			print_nbr(vm, param, 0);

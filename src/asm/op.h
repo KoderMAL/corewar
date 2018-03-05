@@ -6,7 +6,7 @@
 /*   By: lramirez <lramirez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/10/04 11:33:27 by zaz               #+#    #+#             */
-/*   Updated: 2018/02/15 14:36:23 by lramirez         ###   ########.fr       */
+/*   Updated: 2018/03/05 17:26:30 by lramirez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,23 @@ typedef char	t_arg_type;
 # define PROG_NAME_LENGTH		(128)
 # define COMMENT_LENGTH			(2048)
 # define COREWAR_EXEC_MAGIC		0xea83f3
+
+# define O_LIVE					1
+# define O_LD					2
+# define O_ST					3
+# define O_ADD					4
+# define O_SUB					5
+# define O_AND					6
+# define O_OR					7
+# define O_XOR					8
+# define O_ZJMP					9
+# define O_LDI					10
+# define O_STI					11
+# define O_FORK					12
+# define O_LLD					13
+# define O_LLDI					14
+# define O_LFORK				15
+# define O_AFF					16
 
 typedef struct		s_header
 {
