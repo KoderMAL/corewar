@@ -6,7 +6,7 @@
 /*   By: lramirez <lramirez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/16 18:33:36 by dhadley           #+#    #+#             */
-/*   Updated: 2018/02/23 21:09:49 by stoupin          ###   ########.fr       */
+/*   Updated: 2018/03/05 18:51:00 by lramirez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,4 +36,14 @@ void		op_lldi(t_thread *pc)
 		pc->carry = 1;
 	else
 		pc->carry = 0;
+	print_instruction_continue(pc->vm);
+	print_str(pc->vm, "-> load from ", 0);
+	print_nbr(pc->vm, get(pc, 0, false), 0);
+	print_str(pc->vm, " + ", 0);
+	print_nbr(pc->vm, get(pc, 1, false), 0);
+	print_str(pc->vm, " = ", 0);
+	print_nbr(pc->vm, index, 0);
+	print_str(pc->vm, " (with pc ", 0);
+	print_nbr(pc->vm, pc->location + index, 0);
+	print_str(pc->vm, ")", 0);
 }
