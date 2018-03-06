@@ -21,7 +21,7 @@ block2:
 				st r1, 16 #:boilerplate #live of boilerplate
 				ld :boilerplate, r1
 				ld 9, r2 #boilerplate 2 minus 1
-boilerplate:	live %9999999999999999999
+boilerplate:	live %-89999999999999999999
 boilerplate2:	zjmp %-5
 				sti r1, r9, r10
 				sti r2, r8, r10

@@ -6,16 +6,18 @@
 /*   By: stoupin <stoupin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/02 15:46:03 by alalaoui          #+#    #+#             */
-/*   Updated: 2018/01/28 20:04:26 by stoupin          ###   ########.fr       */
+/*   Updated: 2018/03/06 19:09:35 by dhadley          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "asm/asm.h"
+#include <limits.h>
 #include <stdlib.h>
+#include "asm/asm.h"
 
 static void	arg_save(t_argument *arg, int type)
 {
 	char			*tmp;
+	long long		value;
 
 	arg->type = type;
 	if (type == T_LAB && arg->name[0] == DIRECT_CHAR &&
@@ -28,7 +30,8 @@ static void	arg_save(t_argument *arg, int type)
 		tmp = arg->name;
 		if (type == T_DIR || type == T_REG)
 			tmp++;
-		arg->value = ft_atoi(tmp);
+		value = ft_atoi(tmp);
+		arg->value = (int)value;
 	}
 }
 

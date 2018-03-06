@@ -6,7 +6,7 @@
 /*   By: stoupin <stoupin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/04 16:36:08 by alalaoui          #+#    #+#             */
-/*   Updated: 2018/02/23 20:57:45 by stoupin          ###   ########.fr       */
+/*   Updated: 2018/03/06 18:47:56 by dhadley          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 size_t			ft_strlen(const char *s);
 int				ft_isprint(int c);
 char			*ft_strchr(const char *s, int c);
-int				ft_atoi(char *str);
+long long		ft_atoi(char *str);
 int				ft_isdigit(int c);
 int				ft_str_isdigit(char *s);
 int				ft_isspace(int c);

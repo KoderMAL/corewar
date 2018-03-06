@@ -6,16 +6,17 @@
 /*   By: stoupin <stoupin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/12 11:55:54 by alalaoui          #+#    #+#             */
-/*   Updated: 2018/01/23 14:55:09 by stoupin          ###   ########.fr       */
+/*   Updated: 2018/03/06 19:08:48 by dhadley          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <limits.h>
 #include "ft.h"
 
-int				ft_atoi(char *str)
+long long		ft_atoi(char *str)
 {
-	int			neg;
-	int			convert;
+	int					neg;
+	unsigned long long	convert;
 
 	convert = 0;
 	neg = 0;
@@ -31,6 +32,8 @@ int				ft_atoi(char *str)
 	while (ft_isdigit(*str) && *str != '\0')
 	{
 		convert = convert * 10 + (*str - '0');
+		if (convert > LONG_MAX)
+			return (neg - 1);
 		str++;
 	}
 	if (neg == 1)
