@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   asm.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alalaoui <alalaoui@student.42.fr>          +#+  +:+       +#+        */
+/*   By: stoupin <stoupin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/04 15:49:30 by alalaoui          #+#    #+#             */
-/*   Updated: 2018/03/01 14:46:30 by alalaoui         ###   ########.fr       */
+/*   Updated: 2018/03/06 14:05:46 by stoupin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ static int		set_cor_file_name(t_env *env, char *s_file_name)
 	size_t	len;
 
 	len = ft_strlen(s_file_name);
-	cor_file_name = (char *)malloc(sizeof(char) * len + 3);
+	cor_file_name = (char *)malloc(sizeof(char) * (len + 3));
 	if (cor_file_name == NULL)
 		return (err(env, "memory error", -1));
 	ft_strcpy(cor_file_name, s_file_name);
