@@ -6,7 +6,7 @@
 /*   By: alalaoui <alalaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/24 15:16:28 by alalaoui          #+#    #+#             */
-/*   Updated: 2018/02/16 14:28:03 by alalaoui         ###   ########.fr       */
+/*   Updated: 2018/03/06 19:28:10 by dhadley          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,8 @@ int				champion_load(t_vm *vm, t_champ *champ, int n, char *file_name)
 		close(fd);
 		return (vm->err);
 	}
+	if (champ->size_bytecode == 0 && !vm->zaz_mode)
+		return (err2(vm, "chamption has no instructions"));
 	return (0);
 }
 
