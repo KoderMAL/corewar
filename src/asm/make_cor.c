@@ -6,7 +6,7 @@
 /*   By: alalaoui <alalaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/15 10:53:17 by dhadley           #+#    #+#             */
-/*   Updated: 2018/03/01 14:16:42 by alalaoui         ###   ########.fr       */
+/*   Updated: 2018/03/06 16:28:58 by dhadley          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,7 @@ void	write_cor(t_env *env)
 		write(1, "Writing output program to ", 26);
 		write(1, env->file_name, ft_strlen(env->file_name));
 		write(1, "\n", 1);
+		check_warnings(env);
 	}
 	else
 		err(env, "unable to write output file", -1);
