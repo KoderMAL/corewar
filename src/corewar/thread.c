@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   thread.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: stoupin <stoupin@student.42.fr>            +#+  +:+       +#+        */
+/*   By: alalaoui <alalaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/17 14:08:01 by alalaoui          #+#    #+#             */
-/*   Updated: 2018/03/06 15:22:13 by stoupin          ###   ########.fr       */
+/*   Updated: 2018/03/06 17:57:12 by alalaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,12 +51,9 @@ t_thread		*dup_thread(t_thread *src_thread, int pc)
 		return (NULL);
 	new_thread->vm = src_thread->vm;
 	new_thread->carry = src_thread->carry;
-	j = 0;
-	while (j < REG_NUMBER + 1)
-	{
+	j = -1;
+	while (++j < REG_NUMBER + 1)
 		new_thread->r[j] = src_thread->r[j];
-		j++;
-	}
 	new_thread->countdown = -1;
 	new_thread->cycles = CYCLE_TO_DIE;
 	new_thread->location = pc;

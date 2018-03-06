@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   more_errors.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dhadley <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: alalaoui <alalaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/06 15:57:32 by dhadley           #+#    #+#             */
-/*   Updated: 2018/03/06 18:09:01 by dhadley          ###   ########.fr       */
+/*   Updated: 2018/03/06 18:12:18 by dhadley          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,17 +16,17 @@
 
 static void	no_code(void)
 {
-	write(1, "Warning: Champion has no code\n", 30); 
+	write(1, "Warning: Champion has no code\n", 30);
 }
 
 static void	no_comment(void)
 {
-	write(1, "Warning: Champion has no comment\n", 33); 
+	write(1, "Warning: Champion has no comment\n", 33);
 }
 
 static void	no_name(t_env *env)
 {
-	int 	fd;
+	int		fd;
 	char	buf[23115];
 	int		ret;
 	int		len;
