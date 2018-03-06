@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ldi.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alalaoui <alalaoui@student.42.fr>          +#+  +:+       +#+        */
+/*   By: stoupin <stoupin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/16 18:33:18 by dhadley           #+#    #+#             */
-/*   Updated: 2018/03/05 18:31:37 by alalaoui         ###   ########.fr       */
+/*   Updated: 2018/03/06 16:25:52 by stoupin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,6 @@ void		op_ldi(t_thread *pc)
 	int value;
 
 	index = get(pc, 0, false) + get(pc, 1, false);
-	pc->params[3] = index % IDX_MOD;
-	pc->params_type[3] = T_IND;
-	value = get(pc, 3, false);
-	set(pc, 2, value);
 	print_instruction_continue(pc->vm);
 	print_str(pc->vm, "-> load from ", 0);
 	print_nbr(pc->vm, get(pc, 0, false), 0);
@@ -41,4 +37,8 @@ void		op_ldi(t_thread *pc)
 	print_str(pc->vm, " (with pc and mod ", 0);
 	print_nbr(pc->vm, pc->location + index % IDX_MOD, 0);
 	print_str(pc->vm, ")", 0);
+	pc->params[3] = index % IDX_MOD;
+	pc->params_type[3] = T_IND;
+	value = get(pc, 3, false);
+	set(pc, 2, value);
 }
