@@ -6,7 +6,7 @@
 /*   By: stoupin <stoupin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/26 11:51:36 by alalaoui          #+#    #+#             */
-/*   Updated: 2018/03/06 14:42:16 by stoupin          ###   ########.fr       */
+/*   Updated: 2018/03/06 15:06:56 by stoupin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,8 +90,8 @@ int		draw_game_loop(t_vm *vm)
 	if (!vm->something_happened)
 		return (0);
 	vm->map[4095] = 0xff;
-	black.i = 0;
-	clear_image(vm->gui.image, vm->gui.screen_size, black);
+	color.i = 0;
+	clear_image(vm->gui.image, vm->gui.screen_size, color);
 	font_cursor_init(&fc, &(vm->fonts[2]), (t_coord){5, 5}, 0);
 	font_cursor_print(&(vm->gui), &fc, "COREWAR ");
 	fc.font = &(vm->fonts[1]);
@@ -102,8 +102,8 @@ int		draw_game_loop(t_vm *vm)
 	fc.font = &(vm->fonts[3]);
 	c0 = fc.c;
 	draw_map(vm, &fc);
-	cursor_color.i = 0x00ff00u;
-	draw_processes(vm, c0, fc.font, cursor_colo);
+	color.i = 0x00ff00u;
+	draw_processes(vm, c0, fc.font, color);
 	mlx_put_image_to_window(vm->gui.mlx_ptr, vm->gui.mlx_win,
 							vm->gui.image_ptr, 0, 0);
 	return (0);
