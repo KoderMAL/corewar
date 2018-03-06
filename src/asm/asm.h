@@ -6,7 +6,7 @@
 /*   By: stoupin <stoupin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/04 16:36:08 by alalaoui          #+#    #+#             */
-/*   Updated: 2018/02/08 18:30:30 by stoupin          ###   ########.fr       */
+/*   Updated: 2018/03/06 16:25:24 by dhadley          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,5 +135,11 @@ void				write_cor(t_env *env);
 */
 
 void				assemble(t_env *env);
+
+/*
+** from more_errors.c
+*/
+
+void				check_warnings(t_env *env);
 
 #endif
