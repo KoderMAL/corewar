@@ -6,7 +6,7 @@
 /*   By: dhadley <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/06 15:57:32 by dhadley           #+#    #+#             */
-/*   Updated: 2018/03/06 16:47:04 by dhadley          ###   ########.fr       */
+/*   Updated: 2018/03/06 18:09:01 by dhadley          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,8 @@ static void	no_name(t_env *env)
 	if (ret == len)
 		write(1, buf, len);
 	else
-		err(env, "Unable to read no_name.txt for warning", 1);
+		err(env,
+				"Unable to read no_name.txt\nWarning: Champion has no name", 1);
 }
 
 void		check_warnings(t_env *env)

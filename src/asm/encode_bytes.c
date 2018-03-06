@@ -6,7 +6,7 @@
 /*   By: stoupin <stoupin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/09 15:26:53 by dhadley           #+#    #+#             */
-/*   Updated: 2018/02/16 15:12:55 by alalaoui         ###   ########.fr       */
+/*   Updated: 2018/03/06 18:06:52 by dhadley          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,12 +47,7 @@ void			encode_1_byte(unsigned char *champ, int *lc, int value)
 
 void			encode_2_bytes(unsigned char *champ, int *lc, int value)
 {
-	if (value < 0 && value > -255)
-	{
-		value = ~(-value);
-		value++;
-	}
-	else if (value < -255)
+	if (value < 0)
 	{
 		value = ~(-value);
 		value++;
