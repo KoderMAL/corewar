@@ -6,7 +6,7 @@
 /*   By: stoupin <stoupin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/26 11:51:36 by alalaoui          #+#    #+#             */
-/*   Updated: 2018/02/25 14:58:18 by stoupin          ###   ########.fr       */
+/*   Updated: 2018/03/06 14:42:16 by stoupin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,14 +51,14 @@ void	draw_map(t_vm *vm, t_font_cursor *fc)
 	}
 }
 
-void	draw_processes(t_vm *vm, t_coord c0, t_font *f)
+void	draw_processes(t_vm *vm, t_coord c0, t_font *f, t_pix color)
 {
-    t_pqueue_elem	*elem;
+	t_pqueue_elem	*elem;
 	t_thread		*pc;
 	int				i;
 	t_coord			c;
 	int				location;
-	
+
 	elem = vm->threads.first;
 	while (elem)
 	{
@@ -71,7 +71,9 @@ void	draw_processes(t_vm *vm, t_coord c0, t_font *f)
 				location += MEM_SIZE;
 			c.x = c0.x + (location % 64) * f->char_width * 2;
 			c.y = c0.y + (location / 64) * f->char_height;
-			draw_rectangle(&(vm->gui), c, (t_coord){f->char_width * 2 - 1, f->char_height - 1}, (t_pix)0x00ff00u);
+			draw_rectangle(&(vm->gui), c,
+						(t_coord){f->char_width * 2 - 1, f->char_height - 1},
+						color);
 			i++;
 		}
 		elem = elem->next;
@@ -81,7 +83,7 @@ void	draw_processes(t_vm *vm, t_coord c0, t_font *f)
 int		draw_game_loop(t_vm *vm)
 {
 	t_font_cursor	fc;
-	t_pix			black;
+	t_pix			color;
 	t_coord			c0;
 
 	war_cycle(vm);
@@ -100,7 +102,8 @@ int		draw_game_loop(t_vm *vm)
 	fc.font = &(vm->fonts[3]);
 	c0 = fc.c;
 	draw_map(vm, &fc);
-	draw_processes(vm, c0, fc.font);
+	cursor_color.i = 0x00ff00u;
+	draw_processes(vm, c0, fc.font, cursor_colo);
 	mlx_put_image_to_window(vm->gui.mlx_ptr, vm->gui.mlx_win,
 							vm->gui.image_ptr, 0, 0);
 	return (0);
