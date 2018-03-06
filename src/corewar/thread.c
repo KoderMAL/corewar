@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   thread.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alalaoui <alalaoui@student.42.fr>          +#+  +:+       +#+        */
+/*   By: stoupin <stoupin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/17 14:08:01 by alalaoui          #+#    #+#             */
-/*   Updated: 2018/03/06 14:47:14 by alalaoui         ###   ########.fr       */
+/*   Updated: 2018/03/06 15:22:13 by stoupin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,5 +66,7 @@ t_thread		*dup_thread(t_thread *src_thread, int pc)
 		new_thread->alive = true;
 	new_thread->vm->thread_counter++;
 	new_thread->number = new_thread->vm->thread_counter;
+	new_thread->shift = 0;
+	new_thread->shift_save = 0;
 	return (new_thread);
 }

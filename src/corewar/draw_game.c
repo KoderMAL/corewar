@@ -6,7 +6,7 @@
 /*   By: stoupin <stoupin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/26 11:51:36 by alalaoui          #+#    #+#             */
-/*   Updated: 2018/03/06 15:06:56 by stoupin          ###   ########.fr       */
+/*   Updated: 2018/03/06 15:18:52 by stoupin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,9 +64,10 @@ void	draw_processes(t_vm *vm, t_coord c0, t_font *f, t_pix color)
 	{
 		pc = (t_thread*)elem->p;
 		i = 0;
+		pc->shift_save %= MEM_SIZE;
 		while (i <= pc->shift_save)
 		{
-			location = pc->location % MEM_SIZE - i;
+			location = (pc->location - i) % MEM_SIZE;
 			if (location < 0)
 				location += MEM_SIZE;
 			c.x = c0.x + (location % 64) * f->char_width * 2;
