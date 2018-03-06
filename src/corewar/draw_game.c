@@ -6,7 +6,7 @@
 /*   By: stoupin <stoupin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/26 11:51:36 by alalaoui          #+#    #+#             */
-/*   Updated: 2018/02/25 14:58:18 by stoupin          ###   ########.fr       */
+/*   Updated: 2018/03/06 15:18:52 by stoupin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,17 +51,48 @@ void	draw_map(t_vm *vm, t_font_cursor *fc)
 	}
 }
 
+void	draw_processes(t_vm *vm, t_coord c0, t_font *f, t_pix color)
+{
+	t_pqueue_elem	*elem;
+	t_thread		*pc;
+	int				i;
+	t_coord			c;
+	int				location;
+
+	elem = vm->threads.first;
+	while (elem)
+	{
+		pc = (t_thread*)elem->p;
+		i = 0;
+		pc->shift_save %= MEM_SIZE;
+		while (i <= pc->shift_save)
+		{
+			location = (pc->location - i) % MEM_SIZE;
+			if (location < 0)
+				location += MEM_SIZE;
+			c.x = c0.x + (location % 64) * f->char_width * 2;
+			c.y = c0.y + (location / 64) * f->char_height;
+			draw_rectangle(&(vm->gui), c,
+						(t_coord){f->char_width * 2 - 1, f->char_height - 1},
+						color);
+			i++;
+		}
+		elem = elem->next;
+	}
+}
+
 int		draw_game_loop(t_vm *vm)
 {
 	t_font_cursor	fc;
-	t_pix			black;
+	t_pix			color;
+	t_coord			c0;
 
 	war_cycle(vm);
 	if (!vm->something_happened)
 		return (0);
 	vm->map[4095] = 0xff;
-	black.i = 0;
-	clear_image(vm->gui.image, vm->gui.screen_size, black);
+	color.i = 0;
+	clear_image(vm->gui.image, vm->gui.screen_size, color);
 	font_cursor_init(&fc, &(vm->fonts[2]), (t_coord){5, 5}, 0);
 	font_cursor_print(&(vm->gui), &fc, "COREWAR ");
 	fc.font = &(vm->fonts[1]);
@@ -70,7 +101,10 @@ int		draw_game_loop(t_vm *vm)
 						"BY ALALAOUI DHADLEY LRAMIREZ STOUPIN\n");
 	fc.c.y += 5;
 	fc.font = &(vm->fonts[3]);
+	c0 = fc.c;
 	draw_map(vm, &fc);
+	color.i = 0x00ff00u;
+	draw_processes(vm, c0, fc.font, color);
 	mlx_put_image_to_window(vm->gui.mlx_ptr, vm->gui.mlx_win,
 							vm->gui.image_ptr, 0, 0);
 	return (0);

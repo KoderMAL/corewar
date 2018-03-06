@@ -83,6 +83,7 @@ typedef struct		s_thread
 	bool			alive;
 	int				last_live;
 	int				shift;
+	int				shift_save;
 	int				adv;
 	unsigned char	bytecode;
 	int				params[4];

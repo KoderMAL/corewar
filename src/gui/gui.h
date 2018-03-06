@@ -6,7 +6,7 @@
 /*   By: stoupin <stoupin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/26 21:43:22 by stoupin           #+#    #+#             */
-/*   Updated: 2018/01/29 11:49:45 by stoupin          ###   ########.fr       */
+/*   Updated: 2018/03/06 14:37:28 by stoupin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,5 +57,16 @@ int						gui_init(t_gui *gui, int width, int height,
 									char *title);
 void					gui_clean(t_gui *gui);
 void					clear_image(t_pix *image, t_coord size, t_pix color);
+
+/*
+** gui_draw.c
+*/
+
+void					draw_horizontal_line(t_gui *gui, t_coord a, int width,
+																t_pix color);
+void					draw_vertical_line(t_gui *gui, t_coord a, int height,
+																t_pix color);
+void					draw_rectangle(t_gui *gui, t_coord top_left,
+													t_coord dim, t_pix color);
 
 #endif

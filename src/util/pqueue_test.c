@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pqueue_test.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: stoupin <stoupin@student.42.fr>            +#+  +:+       +#+        */
+/*   By: alalaoui <alalaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/17 13:49:09 by stoupin           #+#    #+#             */
-/*   Updated: 2018/01/17 13:49:46 by stoupin          ###   ########.fr       */
+/*   Updated: 2018/03/06 14:20:52 by alalaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,11 @@ void		pqueue_test(t_tests_env *env)
 	t_pqueue	q;
 
 	s1 = malloc(42);
+	if (s1 == NULL)
+		return ;
 	s2 = malloc(42);
+	if (s2 == NULL)
+		return ;
 	tests_print(env, "Testing pqueue\n");
 	pqueue_init_test(env, &q);
 	pqueue_push_test(env, &q, s1, s2);
