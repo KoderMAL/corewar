@@ -6,7 +6,7 @@
 /*   By: lramirez <lramirez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/16 18:33:36 by dhadley           #+#    #+#             */
-/*   Updated: 2018/03/06 16:46:33 by lramirez         ###   ########.fr       */
+/*   Updated: 2018/03/06 17:35:34 by lramirez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void		op_lldi(t_thread *pc)
 	print_nbr(pc->vm, get(pc, 1, false), 0);
 	print_str(pc->vm, " = ", 0);
 	print_nbr(pc->vm, index, 0);
-	print_str(pc->vm, " (with pc and mod ", 0);
+	print_str(pc->vm, " (with pc ", 0);
 	print_nbr(pc->vm, pc->location + index, 0);
 	print_str(pc->vm, ")", 0);
 	pc->params[3] = index;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sti.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alalaoui <alalaoui@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lramirez <lramirez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/16 18:34:00 by dhadley           #+#    #+#             */
-/*   Updated: 2018/03/05 18:31:43 by alalaoui         ###   ########.fr       */
+/*   Updated: 2018/03/06 17:30:42 by lramirez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,6 @@ void		op_sti(t_thread *pc)
 	pc->params[3] = index % IDX_MOD;
 	pc->params_type[3] = T_IND;
 	value = get(pc, 0, false);
-	set(pc, 3, value);
 	print_instruction_continue(pc->vm);
 	print_str(pc->vm, "-> store to ", 0);
 	print_nbr(pc->vm, get(pc, 1, false), 0);
@@ -45,4 +44,5 @@ void		op_sti(t_thread *pc)
 	print_str(pc->vm, " (with pc and mod ", 0);
 	print_nbr(pc->vm, pc->location + index % IDX_MOD, 0);
 	print_str(pc->vm, ")", 0);
+	set(pc, 3, value);
 }
