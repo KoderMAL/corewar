@@ -3,73 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   dump.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lramirez <lramirez@student.42.fr>          +#+  +:+       +#+        */
+/*   By: alalaoui <alalaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/26 12:00:20 by alalaoui          #+#    #+#             */
-/*   Updated: 2018/03/05 18:06:01 by lramirez         ###   ########.fr       */
+/*   Updated: 2018/03/06 17:55:39 by alalaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft/ft.h"
 #include "vm.h"
-
-void		print_op(t_vm *vm, t_thread *pc, int print_value)
-{
-	int			i;
-	int			param;
-	t_arg_type	param_type;
-
-	print_instruction_start(vm, pc);
-	print_str(vm, pc->op->name, 0);
-	i = 0;
-	while (i < pc->op->n_arg)
-	{
-		print_str(vm, " ", 0);
-		param = pc->params[i];
-		param_type = pc->params_type[i];
-		if (vm->zaz_mode && pc->op->opcode == O_AND && param_type == T_IND)
-			print_nbr(vm, get_bytes(pc, param % IDX_MOD, 4), 0);
-		else if (vm->zaz_mode && pc->op->opcode == O_STI && param_type == T_IND)
-			print_nbr(vm, get_bytes(pc, param, 4), 0);
-		else if (vm->zaz_mode && pc->op->opcode == O_ST && i == 1 && param_type == T_REG)
-			print_nbr(vm, param, 0);
-		else if (param_type == T_REG)
-		{
-			(print_value & (1 << i)) ? print_nbr(vm, pc->r[param], 0) :
-				print_reg(vm, param, 0);
-		}
-		else if (param_type == T_IND && !(print_value & (1 << i)))
-			print_nbr(vm, get_bytes(pc, param, 4), 0);
-		else
-			print_nbr(vm, param, 0);
-		i++;
-	}
-}
-
-void		print_adv(t_vm *vm, t_thread *pc)
-{
-	int	i;
-
-	if (pc->shift == 0)
-		return ;
-	print_str(vm, "ADV ", 0);
-	print_nbr(vm, pc->shift, 0);
-	print_str(vm, " (0x", 0);
-	print_byte(vm, pc->location / 256, 0);
-	print_byte(vm, pc->location % 256, 0);
-	print_str(vm, " -> 0x", 0);
-	print_byte(vm, (pc->location + pc->shift) / 256, 0);
-	print_byte(vm, (pc->location + pc->shift) % 256, 0);
-	print_str(vm, ") ", 0);
-	i = 0;
-	while (i < pc->shift)
-	{
-		print_byte(vm, get_byte_at(pc, i), 0);
-		print_str(vm, " ", 0);
-		i++;
-	}
-	print_str(vm, "", 1);
-}
 
 static void	write_hex(t_vm *vm, unsigned char byte)
 {

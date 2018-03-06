@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_game.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: stoupin <stoupin@student.42.fr>            +#+  +:+       +#+        */
+/*   By: alalaoui <alalaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/26 11:51:36 by alalaoui          #+#    #+#             */
-/*   Updated: 2018/03/06 15:18:52 by stoupin          ###   ########.fr       */
+/*   Updated: 2018/03/06 17:57:46 by alalaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,9 +63,9 @@ void	draw_processes(t_vm *vm, t_coord c0, t_font *f, t_pix color)
 	while (elem)
 	{
 		pc = (t_thread*)elem->p;
-		i = 0;
+		i = -1;
 		pc->shift_save %= MEM_SIZE;
-		while (i <= pc->shift_save)
+		while (++i <= pc->shift_save)
 		{
 			location = (pc->location - i) % MEM_SIZE;
 			if (location < 0)
@@ -75,7 +75,6 @@ void	draw_processes(t_vm *vm, t_coord c0, t_font *f, t_pix color)
 			draw_rectangle(&(vm->gui), c,
 						(t_coord){f->char_width * 2 - 1, f->char_height - 1},
 						color);
-			i++;
 		}
 		elem = elem->next;
 	}
