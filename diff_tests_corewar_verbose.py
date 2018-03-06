@@ -63,17 +63,20 @@ champs = list_champs()
 iterator = iter(champs)
 name_champ2 = next(iterator)
 while 1:
-  print('')
-  name_champ1 = name_champ2
-  try:
-    name_champ2 = next(iterator)
-  except StopIteration:
-    break
-  print('{} vs. {}'.format(name_champ1, name_champ2))
-  error, error_msg, champ1 = compile_champ(ZAZ_ASM, name_champ1)
-  if error:
-    print(error_msg)  
-    continue
-  error, error_msg, champ2 = compile_champ(ZAZ_ASM, name_champ2)
-commit:c84275
-WIP on master: Auto stash before merge of "master" and "origin/master"
+	print('')
+	name_champ1 = name_champ2
+	try:
+		name_champ2 = next(iterator)
+	except StopIteration:
+		break
+	print('{} vs. {}'.format(name_champ1, name_champ2))
+	error, error_msg, champ1 = compile_champ(ZAZ_ASM, name_champ1)
+	if error:
+		print(error_msg)  
+		continue
+	error, error_msg, champ2 = compile_champ(ZAZ_ASM, name_champ2)
+	if error:
+		print(error_msg)  
+		continue
+	run_command('./resources/corewar -v 31 {} {}'.format(champ1, champ2),
+	'./corewar -zaz -verbose {} {}'.format(champ1, champ2))
