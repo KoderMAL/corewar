@@ -1,4 +1,4 @@
-import os, shutil, subprocess, sys, shlex, time, signal
+import os, shutil, subprocess, sys, shlex, time, signal, io
  
  
 MY_CW = './corewar'
@@ -26,25 +26,27 @@ def compile_champ(asm, champ):
   try:
     result = subprocess.check_output([asm, champ_cpy], stderr = subprocess.STDOUT).decode('utf-8')
   except subprocess.CalledProcessError as cpe:
-    return True, cpe.output, None
+    return True, cpe.output.decode('utf-8'), None
   result_file_name = os.path.splitext(champ_cpy)[0] + '.cor'
   with open(result_file_name, 'rb') as f:
     result_data = f.read()
   return False, bytearray(result_data), result_file_name
  
 def run_command(command_1, command_2):
-  print command_1
-  print command_2
+  print(command_1)
+  print(command_2)
   print('\n')
   process_1 = subprocess.Popen(shlex.split(command_1), stdout=subprocess.PIPE)
   process_2 = subprocess.Popen(shlex.split(command_2), stdout=subprocess.PIPE)
+  reader_1 = io.BufferedReader(process_1.stdout)
+  reader_2 = io.BufferedReader(process_2.stdout)
   t0 = time.time()
   differences = 0
   while True:
-    output_1 = process_1.stdout.readline().lstrip()
-    output_2 = process_2.stdout.readline().lstrip()
+    output_1 = reader_1.readline().decode('utf-8').lstrip()
+    output_2 = reader_2.readline().decode('utf-8').lstrip()
     if output_1 != output_2:
-      print output_1.ljust(80) + output_2
+      print(output_1.ljust(80) + output_2)
       differences += 1
     if output_1 == '' and process_1.poll() is not None and output_2 == '' and process_2.poll() is not None:
       break
@@ -59,24 +61,37 @@ def run_command(command_1, command_2):
   if process_2.poll() is None:
     process_2.kill()
  
+try:
+  n_champs = int(sys.argv[1])
+  if n_champs < 1 or n_champs > 4:
+    raise Exception('Wrong number of champions')
+except Exception:
+  print('Usage:')
+  print('  python3 diff_tests_corewar_verbose.py [n_champs]')
+  print('  n_champs must be 1, 2, 3 or 4')
+  sys.exit(0)
+
 champs = list_champs()
 iterator = iter(champs)
-name_champ2 = next(iterator)
+name_champs = []
+for i in range(n_champs):
+      name_champs.append(next(iterator))
 while 1:
 	print('')
-	name_champ1 = name_champ2
+	print(' vs. '.join(name_champs))
+	compiled_champs = []
+	for name_champ in name_champs:
+		error, error_msg, champ = compile_champ(ZAZ_ASM, name_champ)
+		if error:
+			print(error_msg)
+			break
+		compiled_champs.append(champ)
+	if not error:
+		run_command('./resources/corewar -v 31 {}'.format(' '.join(compiled_champs)),
+								'./corewar -zaz -verbose {}'.format(' '.join(compiled_champs)))
+	for i in range(n_champs - 1):
+		name_champs[i] = name_champs[i + 1]
 	try:
-		name_champ2 = next(iterator)
+		name_champs[-1] = next(iterator)
 	except StopIteration:
 		break
-	print('{} vs. {}'.format(name_champ1, name_champ2))
-	error, error_msg, champ1 = compile_champ(ZAZ_ASM, name_champ1)
-	if error:
-		print(error_msg)  
-		continue
-	error, error_msg, champ2 = compile_champ(ZAZ_ASM, name_champ2)
-	if error:
-		print(error_msg)  
-		continue
-	run_command('./resources/corewar -v 31 {} {}'.format(champ1, champ2),
-	'./corewar -zaz -verbose {} {}'.format(champ1, champ2))
