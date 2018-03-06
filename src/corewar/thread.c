@@ -6,7 +6,7 @@
 /*   By: alalaoui <alalaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/17 14:08:01 by alalaoui          #+#    #+#             */
-/*   Updated: 2018/03/05 15:16:19 by alalaoui         ###   ########.fr       */
+/*   Updated: 2018/03/06 14:47:14 by alalaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,7 @@ t_thread		*create_thread(t_vm *vm, int n)
 	int			j;
 
 	j = 0;
-	new_thread = (t_thread*)malloc(sizeof(t_thread));
-	if (new_thread == NULL)
+	if (!(new_thread = (t_thread*)malloc(sizeof(t_thread))))
 		return (NULL);
 	new_thread->vm = vm;
 	new_thread->carry = 0;
