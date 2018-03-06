@@ -33,6 +33,7 @@ t_thread		*create_thread(t_vm *vm, int n)
 	new_thread->alive = false;
 	new_thread->location = (ABS(i) - 1) * (MEM_SIZE / vm->n_champs);
 	new_thread->shift = 0;
+	new_thread->shift_save = 0;
 	new_thread->bytecode = 0;
 	new_thread->last_live = 0;
 	vm->thread_counter++;

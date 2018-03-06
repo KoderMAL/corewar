@@ -58,4 +58,12 @@ int						gui_init(t_gui *gui, int width, int height,
 void					gui_clean(t_gui *gui);
 void					clear_image(t_pix *image, t_coord size, t_pix color);
 
+/*
+** gui_draw.c
+*/
+
+void					draw_horizontal_line(t_gui *gui, t_coord a, int width, t_pix color);
+void					draw_vertical_line(t_gui *gui, t_coord a, int height, t_pix color);
+void					draw_rectangle(t_gui *gui, t_coord top_left, t_coord dim, t_pix color);
+
 #endif

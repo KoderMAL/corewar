@@ -36,7 +36,7 @@ SRC_COREWAR = parse_args.c parse_args2.c error2.c thread.c vm.c champion.c draw_
 				check_cycles.c verbose.c print_instruction.c
 SRC_OPE = live.c zjmp.c fork.c aff.c ld.c params.c params_type.c add.c sub.c and.c \
 			lfork.c lld.c ldi.c lldi.c sti.c st.c xor.c or.c
-SRC_GUI = font.c font_cursor.c gui.c gui_hooks.c fonts.c 
+SRC_GUI = font.c font_cursor.c gui.c gui_draw.c gui_hooks.c fonts.c 
 SRC_TESTS = $(SRC_IO) $(SRC_FT) $(SRC_UTIL) \
 			tests.c tests_assert.c \
 			ft_atoi_test.c ft_strchr_test.c ft_test.c \

@@ -51,10 +51,38 @@ void	draw_map(t_vm *vm, t_font_cursor *fc)
 	}
 }
 
+void	draw_processes(t_vm *vm, t_coord c0, t_font *f)
+{
+    t_pqueue_elem	*elem;
+	t_thread		*pc;
+	int				i;
+	t_coord			c;
+	int				location;
+	
+	elem = vm->threads.first;
+	while (elem)
+	{
+		pc = (t_thread*)elem->p;
+		i = 0;
+		while (i <= pc->shift_save)
+		{
+			location = pc->location % MEM_SIZE - i;
+			if (location < 0)
+				location += MEM_SIZE;
+			c.x = c0.x + (location % 64) * f->char_width * 2;
+			c.y = c0.y + (location / 64) * f->char_height;
+			draw_rectangle(&(vm->gui), c, (t_coord){f->char_width * 2 - 1, f->char_height - 1}, (t_pix)0x00ff00u);
+			i++;
+		}
+		elem = elem->next;
+	}
+}
+
 int		draw_game_loop(t_vm *vm)
 {
 	t_font_cursor	fc;
 	t_pix			black;
+	t_coord			c0;
 
 	war_cycle(vm);
 	if (!vm->something_happened)
@@ -70,7 +98,9 @@ int		draw_game_loop(t_vm *vm)
 						"BY ALALAOUI DHADLEY LRAMIREZ STOUPIN\n");
 	fc.c.y += 5;
 	fc.font = &(vm->fonts[3]);
+	c0 = fc.c;
 	draw_map(vm, &fc);
+	draw_processes(vm, c0, fc.font);
 	mlx_put_image_to_window(vm->gui.mlx_ptr, vm->gui.mlx_win,
 							vm->gui.image_ptr, 0, 0);
 	return (0);

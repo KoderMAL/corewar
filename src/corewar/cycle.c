@@ -18,6 +18,7 @@ void					advance(t_thread *pc, bool silent)
 	if (!silent)
 		print_adv(pc->vm, pc);
 	pc->location = shift_loc(pc, pc->shift);
+	pc->shift_save = pc->shift;
 	pc->shift = 0;
 }
 
