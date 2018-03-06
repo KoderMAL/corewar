@@ -61,30 +61,37 @@ def run_command(command_1, command_2):
   if process_2.poll() is None:
     process_2.kill()
  
+try:
+  n_champs = int(sys.argv[1])
+  if n_champs < 1 or n_champs > 4:
+    raise Exception('Wrong number of champions')
+except Exception:
+  print('Usage:')
+  print('  python3 diff_tests_corewar_verbose.py [n_champs]')
+  print('  n_champs must be 1, 2, 3 or 4')
+  sys.exit(0)
+
 champs = list_champs()
 iterator = iter(champs)
-name_champ2 = next(iterator)
-name_champ3 = next(iterator)
+name_champs = []
+for i in range(n_champs):
+      name_champs.append(next(iterator))
 while 1:
 	print('')
-	name_champ1 = name_champ2
-	name_champ2 = name_champ3
+	print(' vs. '.join(name_champs))
+	compiled_champs = []
+	for name_champ in name_champs:
+		error, error_msg, champ = compile_champ(ZAZ_ASM, name_champ)
+		if error:
+			print(error_msg)
+			break
+		compiled_champs.append(champ)
+	if not error:
+		run_command('./resources/corewar -v 31 {}'.format(' '.join(compiled_champs)),
+								'./corewar -zaz -verbose {}'.format(' '.join(compiled_champs)))
+	for i in range(n_champs - 1):
+		name_champs[i] = name_champs[i + 1]
 	try:
-		name_champ3 = next(iterator)
+		name_champs[-1] = next(iterator)
 	except StopIteration:
 		break
-	print('{} vs. {} vs. {}'.format(name_champ1, name_champ2, name_champ3))
-	error, error_msg, champ1 = compile_champ(ZAZ_ASM, name_champ1)
-	if error:
-		print(error_msg)  
-		continue
-	error, error_msg, champ2 = compile_champ(ZAZ_ASM, name_champ2)
-	if error:
-		print(error_msg)  
-		continue
-	error, error_msg, champ3 = compile_champ(ZAZ_ASM, name_champ3)
-	if error:
-		print(error_msg)  
-		continue
-	run_command('./resources/corewar -v 31 {} {} {}'.format(champ1, champ2, champ3),
-	'./corewar -zaz -verbose {} {} {}'.format(champ1, champ2, champ3))
